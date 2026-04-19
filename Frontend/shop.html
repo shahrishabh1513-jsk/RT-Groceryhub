@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - RT Groceryhub</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.13/dist/full.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body class="bg-gradient-to-br from-[#F0E7D5] to-[#e8ddc8]">
+    <div id="pageTransition" class="fixed inset-0 bg-[#212842] z-50 flex items-center justify-center transition-transform duration-500 transform translate-y-full">
+        <div class="text-center"><div class="spinner mb-4"></div><p class="text-white text-xl">Loading...</p></div>
+    </div>
+
+    <!-- Navbar (same as index) -->
+    <header class="sticky top-0 z-50 bg-[#F0E7D5]/95 backdrop-blur-md shadow-lg">
+        <nav class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center gap-2 group" data-link>
+                    <img src="images/logo.png" alt="RT Groceryhub" class="w-12 h-12 rounded-full shadow-md group-hover:scale-105 transition-transform">
+                    <span class="text-2xl font-bold bg-gradient-to-r from-[#212842] to-[#3a4770] bg-clip-text text-transparent">RT Groceryhub</span>
+                </a>
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="index.html" class="nav-link text-[#212842] hover:text-green-600 transition relative" data-link>Home</a>
+                    <a href="shop.html" class="nav-link text-[#212842] font-semibold hover:text-green-600 transition relative active" data-link>Shop</a>
+                    <a href="about.html" class="nav-link text-[#212842] hover:text-green-600 transition relative" data-link>About</a>
+                    <a href="contact.html" class="nav-link text-[#212842] hover:text-green-600 transition relative" data-link>Contact</a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="cart.html" class="relative group" data-link>
+                        <i class="fa-solid fa-cart-shopping text-2xl text-[#212842] group-hover:scale-110 transition-transform"></i>
+                        <span id="cartCount" class="absolute -top-2 -right-3 bg-red-500 text-white text-xs rounded-full px-1.5 py-0.5 min-w-[18px] text-center">0</span>
+                    </a>
+                    <button id="mobileMenuBtn" class="lg:hidden text-2xl text-[#212842]"><i class="fas fa-bars"></i></button>
+                </div>
+            </div>
+            <div id="mobileMenu" class="hidden lg:hidden mt-4 pb-4 space-y-2">
+                <a href="index.html" class="block py-2 text-[#212842] hover:bg-white/50 rounded-lg px-3 transition" data-link>Home</a>
+                <a href="shop.html" class="block py-2 text-[#212842] hover:bg-white/50 rounded-lg px-3 transition" data-link>Shop</a>
+                <a href="about.html" class="block py-2 text-[#212842] hover:bg-white/50 rounded-lg px-3 transition" data-link>About</a>
+                <a href="contact.html" class="block py-2 text-[#212842] hover:bg-white/50 rounded-lg px-3 transition" data-link>Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Shop Section -->
+    <section class="container mx-auto px-4 py-8">
+        <div class="flex flex-col md:flex-row gap-8">
+            <!-- Sidebar Filters -->
+            <div class="md:w-1/4 lg:w-1/5">
+                <div class="bg-white rounded-2xl p-6 shadow-lg sticky top-24" data-aos="fade-right">
+                    <h3 class="font-bold text-xl mb-4 text-[#212842]">Categories</h3>
+                    <div id="categoryFilters" class="space-y-3">
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition"><input type="checkbox" value="Vegetables" class="category-filter w-4 h-4"> <span>🥬 Vegetables</span></label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition"><input type="checkbox" value="Fruits" class="category-filter w-4 h-4"> <span>🍎 Fruits</span></label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition"><input type="checkbox" value="Dairy" class="category-filter w-4 h-4"> <span>🥛 Dairy & Eggs</span></label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition"><input type="checkbox" value="Snacks" class="category-filter w-4 h-4"> <span>🍿 Snacks</span></label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition"><input type="checkbox" value="Beverages" class="category-filter w-4 h-4"> <span>🥤 Beverages</span></label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition"><input type="checkbox" value="Meat" class="category-filter w-4 h-4"> <span>🍗 Meat</span></label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition"><input type="checkbox" value="Seafood" class="category-filter w-4 h-4"> <span>🐟 Seafood</span></label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition"><input type="checkbox" value="Bakery" class="category-filter w-4 h-4"> <span>🍞 Bakery</span></label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition"><input type="checkbox" value="Pantry" class="category-filter w-4 h-4"> <span>🛒 Pantry Staples</span></label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition"><input type="checkbox" value="Frozen" class="category-filter w-4 h-4"> <span>❄️ Frozen Foods</span></label>
+                    </div>
+                    
+                    <h3 class="font-bold text-xl mt-6 mb-4 text-[#212842]">Price Range</h3>
+                    <div class="space-y-3">
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition"><input type="radio" name="price" value="all" class="price-filter" checked> All Prices</label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition"><input type="radio" name="price" value="under100" class="price-filter"> Under ₹100</label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition"><input type="radio" name="price" value="100-300" class="price-filter"> ₹100 - ₹300</label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition"><input type="radio" name="price" value="300-500" class="price-filter"> ₹300 - ₹500</label>
+                        <label class="flex items-center gap-3 cursor-pointer hover:bg-gray-50 p-2 rounded-lg transition"><input type="radio" name="price" value="above500" class="price-filter"> Above ₹500</label>
+                    </div>
+                    
+                    <button id="clearFilters" class="btn w-full mt-6 bg-[#212842] text-white hover:bg-[#3a4770] transition-all">Clear All Filters</button>
+                </div>
+            </div>
+            
+            <!-- Products Grid -->
+            <div class="md:w-3/4 lg:w-4/5">
+                <div class="flex flex-wrap justify-between items-center mb-6 gap-4" data-aos="fade-left">
+                    <h2 class="text-2xl font-bold text-[#212842]">All Products</h2>
+                    <div class="flex items-center gap-3">
+                        <span class="text-gray-600">Sort by:</span>
+                        <select id="sortSelect" class="select select-bordered bg-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#212842]">
+                            <option value="default">Default</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="name-asc">Name: A to Z</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Products loaded dynamically -->
+                </div>
+                <div id="pagination" class="flex justify-center gap-2 mt-8"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#212842] text-white mt-16">
+        <div class="container mx-auto px-4 py-8 text-center text-gray-400">
+            <p>© 2024 RT Groceryhub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button id="backToTop" class="fixed bottom-5 right-5 bg-[#212842] text-white w-12 h-12 rounded-full shadow-lg hover:bg-[#3a4770] transition-all hidden z-40">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
