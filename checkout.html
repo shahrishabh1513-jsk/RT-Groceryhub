@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - RT GroceryHub</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .checkout-container {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 2rem;
+            padding: 3rem 0;
+        }
+        .checkout-form {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .payment-options {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+        .payment-option.selected {
+            border-color: var(--accent);
+            background: var(--cream);
+        }
+        .order-summary-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius-lg);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main>
+        <div class="container">
+            <div class="checkout-container">
+                <form class="checkout-form" id="checkout-form">
+                    <h2>Billing Details</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Full Name *</label>
+                            <input type="text" id="fullname" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number *</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="email">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Delivery Address *</label>
+                        <textarea id="address" rows="3" required></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>City *</label>
+                            <input type="text" id="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label>PIN Code *</label>
+                            <input type="text" id="pincode" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Delivery Instructions (Optional)</label>
+                        <textarea id="instructions" rows="2" placeholder="Gate code, landmark, etc."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Payment Method</label>
+                        <div class="payment-options">
+                            <div class="payment-option selected" data-method="cod">
+                                <i class="fas fa-money-bill-wave"></i> Cash on Delivery
+                            </div>
+                            <div class="payment-option" data-method="card">
+                                <i class="fas fa-credit-card"></i> Card/UPI
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Place Order <i class="fas fa-check-circle"></i></button>
+                </form>
+                
+                <div class="order-summary-card">
+                    <h3>Order Summary</h3>
+                    <div id="order-items-list"></div>
+                    <div style="border-top: 1px solid #eee; margin-top: 1rem; padding-top: 1rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Subtotal</span>
+                            <span id="order-subtotal">₹0</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Delivery Fee</span>
+                            <span>₹40</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-top: 0.5rem;">
+                            <span>Total</span>
+                            <span id="order-total">₹0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        function loadOrderSummary() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const itemsContainer = document.getElementById('order-items-list');
+            
+            itemsContainer.innerHTML = cart.map(item => `
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.8rem;">
+                    <span>${item.name} x ${item.quantity}</span>
+                    <span>₹${item.price * item.quantity}</span>
+                </div>
+            `).join('');
+            
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            document.getElementById('order-subtotal').textContent = `₹${subtotal}`;
+            document.getElementById('order-total').textContent = `₹${subtotal + 40}`;
+        }
+        
+        // Payment method selection
+        document.querySelectorAll('.payment-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+        
+        document.getElementById('checkout-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                window.location.href = 'shop.html';
+                return;
+            }
+            
+            const orderData = {
+                customer: {
+                    name: document.getElementById('fullname').value,
+                    phone: document.getElementById('phone').value,
+                    email: document.getElementById('email').value,
+                    address: document.getElementById('address').value,
+                    city: document.getElementById('city').value,
+                    pincode: document.getElementById('pincode').value,
+                    instructions: document.getElementById('instructions').value
+                },
+                items: cart,
+                paymentMethod: document.querySelector('.payment-option.selected').dataset.method,
+                total: parseInt(document.getElementById('order-total').textContent.replace('₹', '')),
+                orderDate: new Date().toISOString()
+            };
+            
+            // Save order
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+            orderData.orderId = 'ORD' + Date.now();
+            orders.push(orderData);
+            localStorage.setItem('orders', JSON.stringify(orders));
+            
+            // Clear cart
+            localStorage.removeItem('cart');
+            
+            // Redirect to success page
+            localStorage.setItem('lastOrder', JSON.stringify(orderData));
+            window.location.href = 'order-success.html';
+        });
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            loadOrderSummary();
+        });
+    </script>
+</body>
+</html>

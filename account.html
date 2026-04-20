@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - RT GroceryHub</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main>
+        <div class="container" style="padding: 3rem 0;">
+            <div style="display: grid; grid-template-columns: 280px 1fr; gap: 2rem;">
+                <!-- Sidebar -->
+                <aside style="background: white; border-radius: var(--border-radius-lg); padding: 1.5rem; height: fit-content;">
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <div style="width: 80px; height: 80px; background: var(--cream); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                            <i class="fas fa-user" style="font-size: 2rem; color: var(--accent);"></i>
+                        </div>
+                        <h3 id="user-name" style="margin-top: 0.5rem;">Guest User</h3>
+                        <p id="user-email" style="color: var(--gray); font-size: 0.85rem;"></p>
+                    </div>
+                    <div class="account-menu">
+                        <a href="#" class="menu-item active" data-section="profile"><i class="fas fa-user-circle"></i> Profile</a>
+                        <a href="#" class="menu-item" data-section="orders"><i class="fas fa-history"></i> Order History</a>
+                        <a href="#" class="menu-item" data-section="addresses"><i class="fas fa-map-marker-alt"></i> Saved Addresses</a>
+                        <a href="#" id="logout-btn" class="menu-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </aside>
+                
+                <!-- Content Area -->
+                <div style="background: white; border-radius: var(--border-radius-lg); padding: 2rem;">
+                    <div id="profile-section" class="account-section active">
+                        <h2>Profile Information</h2>
+                        <div id="profile-info"></div>
+                    </div>
+                    
+                    <div id="orders-section" class="account-section" style="display: none;">
+                        <h2>Order History</h2>
+                        <div id="orders-list"></div>
+                    </div>
+                    
+                    <div id="addresses-section" class="account-section" style="display: none;">
+                        <h2>Saved Addresses</h2>
+                        <div id="addresses-list"></div>
+                        <button class="btn btn-outline" onclick="addNewAddress()" style="margin-top: 1rem;">+ Add New Address</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        
+        if (!currentUser) {
+            window.location.href = 'login.html';
+        }
+        
+        document.getElementById('user-name').textContent = currentUser.name;
+        document.getElementById('user-email').textContent = currentUser.email;
+        
+        // Load profile
+        document.getElementById('profile-info').innerHTML = `
+            <div class="profile-field"><strong>Full Name:</strong> ${currentUser.name}</div>
+            <div class="profile-field"><strong>Email:</strong> ${currentUser.email}</div>
+            <div class="profile-field"><strong>Phone:</strong> ${currentUser.phone || 'Not added'}</div>
+            <div class="profile-field"><strong>Member Since:</strong> ${new Date(currentUser.joinDate).toLocaleDateString()}</div>
+        `;
+        
+        // Load orders
+        function loadOrders() {
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+            const userOrders = orders.filter(order => order.customer && order.customer.email === currentUser.email);
+            
+            const ordersContainer = document.getElementById('orders-list');
+            if (userOrders.length === 0) {
+                ordersContainer.innerHTML = '<p>No orders yet. <a href="shop.html">Start shopping!</a></p>';
+            } else {
+                ordersContainer.innerHTML = userOrders.map(order => `
+                    <div style="border: 1px solid #eee; border-radius: var(--border-radius); padding: 1rem; margin-bottom: 1rem;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <strong>Order ID:</strong> ${order.orderId}
+                            <strong>Total:</strong> ₹${order.total}
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.9rem; color: var(--gray);">
+                            <span>Date: ${new Date(order.orderDate).toLocaleDateString()}</span>
+                            <span>Payment: ${order.paymentMethod === 'cod' ? 'COD' : 'Card/UPI'}</span>
+                        </div>
+                        <details style="margin-top: 0.5rem;">
+                            <summary>View Items (${order.items.length})</summary>
+                            <div style="margin-top: 0.5rem; padding-left: 1rem;">
+                                ${order.items.map(item => `<div>${item.name} x ${item.quantity} = ₹${item.price * item.quantity}</div>`).join('')}
+                            </div>
+                        </details>
+                    </div>
+                `).join('');
+            }
+        }
+        
+        // Load addresses
+        function loadAddresses() {
+            let addresses = JSON.parse(localStorage.getItem('user_addresses')) || [];
+            const addressesContainer = document.getElementById('addresses-list');
+            if (addresses.length === 0) {
+                addressesContainer.innerHTML = '<p>No saved addresses. Add one for faster checkout!</p>';
+            } else {
+                addressesContainer.innerHTML = addresses.map((addr, index) => `
+                    <div style="border: 1px solid #eee; border-radius: var(--border-radius); padding: 1rem; margin-bottom: 1rem;">
+                        <p><strong>${addr.name}</strong> - ${addr.phone}</p>
+                        <p>${addr.address}, ${addr.city} - ${addr.pincode}</p>
+                        <button onclick="deleteAddress(${index})" style="background: none; border: none; color: var(--danger); cursor: pointer;">Delete</button>
+                    </div>
+                `).join('');
+            }
+        }
+        
+        function addNewAddress() {
+            const address = prompt('Enter your full address:');
+            if (address) {
+                let addresses = JSON.parse(localStorage.getItem('user_addresses')) || [];
+                addresses.push({
+                    name: currentUser.name,
+                    phone: currentUser.phone,
+                    address: address,
+                    city: 'Your City',
+                    pincode: '000000'
+                });
+                localStorage.setItem('user_addresses', JSON.stringify(addresses));
+                loadAddresses();
+            }
+        }
+        
+        window.deleteAddress = function(index) {
+            let addresses = JSON.parse(localStorage.getItem('user_addresses')) || [];
+            addresses.splice(index, 1);
+            localStorage.setItem('user_addresses', JSON.stringify(addresses));
+            loadAddresses();
+        }
+        
+        // Menu navigation
+        document.querySelectorAll('.menu-item').forEach(item => {
+            if (item.id !== 'logout-btn') {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const section = item.dataset.section;
+                    document.querySelectorAll('.account-section').forEach(s => s.style.display = 'none');
+                    document.getElementById(`${section}-section`).style.display = 'block';
+                    document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
+                    item.classList.add('active');
+                    
+                    if (section === 'orders') loadOrders();
+                    if (section === 'addresses') loadAddresses();
+                });
+            }
+        });
+        
+        document.getElementById('logout-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        });
+        
+        // Initial load
+        loadOrders();
+        loadAddresses();
+    </script>
+    
+    <style>
+        .menu-item {
+            display: block;
+            padding: 0.8rem 1rem;
+            color: var(--navy);
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            transition: var(--transition);
+        }
+        .menu-item:hover, .menu-item.active {
+            background: var(--cream);
+            color: var(--accent);
+        }
+        .profile-field {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+</body>
+</html>
