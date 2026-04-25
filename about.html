@@ -5,92 +5,180 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - RT GroceryHub</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/components.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .about-header {
+            background: linear-gradient(135deg, var(--primary-green-dark), var(--primary-green));
+            padding: 3rem 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .about-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
+            animation: rotate 20s linear infinite;
+        }
+        .about-content {
+            padding: 4rem 0;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .about-image {
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            animation: float 4s ease-in-out infinite;
+        }
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        .stat-card i {
+            font-size: 2.5rem;
+            color: var(--accent-orange);
+            margin-bottom: 0.5rem;
+        }
+        .stat-card .number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-green-dark);
+        }
+        .mission-vision {
+            background: linear-gradient(135deg, rgba(46,125,50,0.05), rgba(255,140,66,0.05));
+            padding: 4rem 0;
+        }
+        .mv-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .mv-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            text-align: center;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        .mv-card i {
+            font-size: 3rem;
+            color: var(--accent-orange);
+            margin-bottom: 1rem;
+        }
+        @media (max-width: 768px) {
+            .about-grid, .mv-grid, .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
 
     <main>
-        <section class="page-header" style="background: var(--navy); color: white; padding: 4rem 0; text-align: center;">
+        <section class="about-header" data-aos="fade-down">
             <div class="container">
-                <h1>About RT GroceryHub</h1>
-                <p>Your trusted partner for fresh groceries since 2020</p>
+                <h1><i class="fas fa-leaf"></i> About RT GroceryHub</h1>
+                <p>Your trusted partner for fresh, quality groceries since 2020</p>
             </div>
         </section>
-        
-        <section style="padding: 4rem 0;">
+
+        <div class="about-content">
             <div class="container">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
-                    <div>
-                        <h2>Our Story</h2>
-                        <p style="margin-bottom: 1rem;">RT GroceryHub was founded with a simple mission: to make fresh, quality groceries accessible to every Indian household at affordable prices. What started as a small local delivery service has now grown into a trusted online grocery platform serving thousands of happy customers.</p>
-                        <p>We believe that fresh food should be just a click away. That's why we've built a robust supply chain that ensures farm-fresh produce reaches your doorstep within hours of harvest.</p>
+                <div class="about-grid">
+                    <div class="about-text" data-aos="fade-right">
+                        <span class="subtitle">Our Story</span>
+                        <h2 style="color: var(--primary-green-dark); margin-bottom: 1rem;">Freshness Delivered with Love</h2>
+                        <p style="margin-bottom: 1rem; color: var(--text-muted);">RT GroceryHub was founded with a simple mission: to make fresh, quality groceries accessible to every Indian household at affordable prices.</p>
+                        <p style="margin-bottom: 1rem; color: var(--text-muted);">What started as a small local delivery service has now grown into a trusted online grocery platform serving thousands of happy customers across the city.</p>
+                        <p style="color: var(--text-muted);">We believe that fresh food should be just a click away. That's why we've built a robust supply chain that ensures farm-fresh produce reaches your doorstep within hours.</p>
                     </div>
-                    <div style="background: var(--cream); border-radius: var(--border-radius-lg); padding: 2rem; text-align: center;">
-                        <i class="fas fa-shopping-basket" style="font-size: 4rem; color: var(--accent); margin-bottom: 1rem;"></i>
-                        <h3>10,000+</h3>
-                        <p>Happy Customers</p>
+                    <div class="about-image" data-aos="fade-left">
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=600" alt="Fresh Groceries">
                     </div>
+                </div>
+
+                <div class="stats-grid" data-aos="zoom-in-up">
+                    <div class="stat-card"><i class="fas fa-smile"></i><div class="number">10,000+</div><p>Happy Customers</p></div>
+                    <div class="stat-card"><i class="fas fa-box"></i><div class="number">500+</div><p>Daily Orders</p></div>
+                    <div class="stat-card"><i class="fas fa-truck"></i><div class="number">30min</div><p>Avg Delivery</p></div>
+                    <div class="stat-card"><i class="fas fa-star"></i><div class="number">4.8</div><p>Customer Rating</p></div>
                 </div>
             </div>
-        </section>
-        
-        <section style="background: var(--navy); color: white; padding: 4rem 0;">
+        </div>
+
+        <section class="mission-vision">
             <div class="container">
-                <div class="section-header">
-                    <h2 style="color: white;">Our Mission & Vision</h2>
-                </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                    <div style="text-align: center; padding: 2rem;">
-                        <i class="fas fa-bullseye" style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i>
-                        <h3>Mission</h3>
-                        <p>To provide every Indian family with access to fresh, high-quality groceries at the best prices through innovative technology and passionate service.</p>
+                <div class="mv-grid">
+                    <div class="mv-card" data-aos="flip-left">
+                        <i class="fas fa-bullseye"></i>
+                        <h3 style="color: var(--primary-green-dark);">Our Mission</h3>
+                        <p style="color: var(--text-muted);">To provide every Indian family with access to fresh, high-quality groceries at the best prices through innovative technology and passionate service.</p>
                     </div>
-                    <div style="text-align: center; padding: 2rem;">
-                        <i class="fas fa-eye" style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i>
-                        <h3>Vision</h3>
-                        <p>To become India's most loved online grocery platform, known for freshness, reliability, and customer-first approach.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section style="padding: 4rem 0;">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Why Choose RT GroceryHub?</h2>
-                </div>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <i class="fas fa-leaf"></i>
-                        <h3>100% Fresh</h3>
-                        <p>Quality checked at every step</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-tag"></i>
-                        <h3>Best Prices</h3>
-                        <p>Direct from farmers & producers</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-truck-fast"></i>
-                        <h3>Fast Delivery</h3>
-                        <p>30-minute delivery guarantee</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-headset"></i>
-                        <h3>24/7 Support</h3>
-                        <p>Always here to help you</p>
+                    <div class="mv-card" data-aos="flip-right">
+                        <i class="fas fa-eye"></i>
+                        <h3 style="color: var(--primary-green-dark);">Our Vision</h3>
+                        <p style="color: var(--text-muted);">To become India's most loved online grocery platform, known for freshness, reliability, and customer-first approach.</p>
                     </div>
                 </div>
             </div>
         </section>
+
+        <div class="container" style="padding: 4rem 0;">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Why Choose RT GroceryHub?</h2>
+                <div class="title-decoration"></div>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="flip-left"><i class="fas fa-truck-fast"></i><h3>Fast Delivery</h3><p>30-minute delivery guarantee</p></div>
+                <div class="feature-card" data-aos="flip-left" data-aos-delay="100"><i class="fas fa-leaf"></i><h3>100% Fresh</h3><p>Quality checked at every step</p></div>
+                <div class="feature-card" data-aos="flip-left" data-aos-delay="200"><i class="fas fa-tag"></i><h3>Best Prices</h3><p>Direct from farmers</p></div>
+                <div class="feature-card" data-aos="flip-left" data-aos-delay="300"><i class="fas fa-headset"></i><h3>24/7 Support</h3><p>Always here to help</p></div>
+            </div>
+        </div>
     </main>
 
     <div id="footer-placeholder"></div>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

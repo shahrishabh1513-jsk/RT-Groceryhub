@@ -5,84 +5,225 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop - RT GroceryHub</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/components.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Shop Page Specific Styles */
+        .shop-header {
+            background: linear-gradient(135deg, var(--primary-green-dark), var(--primary-green));
+            padding: 3rem 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .shop-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
+            animation: rotate 20s linear infinite;
+        }
+        .shop-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .shop-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+            padding: 3rem 0;
+        }
+        .filters-sidebar {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+            transition: var(--transition);
+        }
+        .filter-group {
+            margin-bottom: 1.8rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            padding-bottom: 1rem;
+        }
+        .filter-group label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--primary-green-dark);
+        }
+        .filter-group input,
+        .filter-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .filter-group input:focus,
+        .filter-group select:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 0 3px rgba(255,140,66,0.1);
+        }
+        .price-range {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .price-range input {
+            width: 100%;
+        }
+        .category-list {
+            list-style: none;
+        }
+        .category-list li {
+            margin-bottom: 0.8rem;
+        }
+        .category-list label {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            font-weight: normal;
+            color: var(--text-muted);
+        }
+        .category-list input {
+            width: auto;
+            accent-color: var(--accent-orange);
+        }
+        .filter-reset {
+            width: 100%;
+            padding: 10px;
+            background: var(--bg-primary);
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-muted);
+        }
+        .filter-reset:hover {
+            background: var(--accent-orange);
+            color: white;
+            border-color: var(--accent-orange);
+        }
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .products-count {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .sort-select {
+            padding: 10px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            background: var(--bg-card);
+            cursor: pointer;
+        }
+        .no-products {
+            text-align: center;
+            padding: 4rem;
+            background: var(--bg-card);
+            border-radius: var(--border-radius-lg);
+        }
+        .no-products i {
+            font-size: 4rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        @media (max-width: 768px) {
+            .shop-layout {
+                grid-template-columns: 1fr;
+            }
+            .filters-sidebar {
+                position: static;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="header-placeholder"></div>
 
     <main>
-        <section class="page-header" style="background: var(--navy); color: white; padding: 3rem 0; text-align: center;">
+        <section class="shop-header" data-aos="fade-down">
             <div class="container">
-                <h1>Our Shop</h1>
-                <p>Fresh groceries delivered to your doorstep</p>
+                <h1><i class="fas fa-store"></i> Our Fresh Collection</h1>
+                <p>Discover the finest quality groceries delivered to your doorstep</p>
             </div>
         </section>
 
-        <section class="shop-section" style="padding: 3rem 0;">
-            <div class="container">
-                <div class="shop-layout" style="display: grid; grid-template-columns: 280px 1fr; gap: 2rem;">
-                    <!-- Sidebar Filters -->
-                    <aside class="filters-sidebar" style="background: white; padding: 1.5rem; border-radius: var(--border-radius-lg); height: fit-content;">
-                        <h3 style="margin-bottom: 1.5rem;">Filters</h3>
-                        
-                        <div class="filter-group" style="margin-bottom: 1.5rem;">
-                            <label style="font-weight: 600; margin-bottom: 0.5rem; display: block;">Search</label>
-                            <input type="text" id="search-products" placeholder="Search products..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
-                        </div>
-                        
-                        <div class="filter-group" style="margin-bottom: 1.5rem;">
-                            <label style="font-weight: 600; margin-bottom: 0.5rem; display: block;">Category</label>
-                            <select id="category-filter" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
-                                <option value="all">All Categories</option>
-                                <option value="fruits">Fruits</option>
-                                <option value="vegetables">Vegetables</option>
-                                <option value="dairy">Dairy</option>
-                                <option value="snacks">Snacks</option>
-                            </select>
-                        </div>
-                        
-                        <div class="filter-group" style="margin-bottom: 1.5rem;">
-                            <label style="font-weight: 600; margin-bottom: 0.5rem; display: block;">Price Range</label>
-                            <select id="price-filter" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
-                                <option value="all">All Prices</option>
-                                <option value="0-50">Under ₹50</option>
-                                <option value="50-100">₹50 - ₹100</option>
-                                <option value="100-200">₹100 - ₹200</option>
-                                <option value="200-500">₹200+</option>
-                            </select>
-                        </div>
-                        
-                        <div class="filter-group" style="margin-bottom: 1.5rem;">
-                            <label style="font-weight: 600; margin-bottom: 0.5rem; display: block;">Sort By</label>
-                            <select id="sort-products" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
-                                <option value="default">Default</option>
-                                <option value="price-low">Price: Low to High</option>
-                                <option value="price-high">Price: High to Low</option>
-                                <option value="rating">Top Rated</option>
-                            </select>
-                        </div>
-                    </aside>
+        <div class="container">
+            <div class="shop-layout">
+                <!-- Filters Sidebar -->
+                <aside class="filters-sidebar" data-aos="fade-right">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--primary-green-dark);"><i class="fas fa-filter"></i> Filters</h3>
                     
-                    <!-- Products Grid -->
-                    <div>
-                        <div id="shop-products-grid" class="products-grid"></div>
+                    <div class="filter-group">
+                        <label><i class="fas fa-search"></i> Search Products</label>
+                        <input type="text" id="search-input" placeholder="Search by name...">
                     </div>
+                    
+                    <div class="filter-group">
+                        <label><i class="fas fa-tags"></i> Categories</label>
+                        <ul class="category-list" id="category-filters">
+                            <li><label><input type="checkbox" value="all" checked> All Products</label></li>
+                            <li><label><input type="checkbox" value="fruits"> 🍎 Fruits</label></li>
+                            <li><label><input type="checkbox" value="vegetables"> 🥬 Vegetables</label></li>
+                            <li><label><input type="checkbox" value="grains"> 🌾 Grains & Rice</label></li>
+                            <li><label><input type="checkbox" value="pulses"> 🔴 Pulses & Dals</label></li>
+                            <li><label><input type="checkbox" value="spices"> 🌶️ Spices</label></li>
+                            <li><label><input type="checkbox" value="oils"> 🫒 Oils & Ghee</label></li>
+                            <li><label><input type="checkbox" value="dairy"> 🥛 Dairy</label></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label><i class="fas fa-rupee-sign"></i> Price Range</label>
+                        <div class="price-range">
+                            <input type="number" id="min-price" placeholder="Min" value="0">
+                            <span>-</span>
+                            <input type="number" id="max-price" placeholder="Max" value="500">
+                        </div>
+                    </div>
+                    
+                    <button class="filter-reset" id="reset-filters"><i class="fas fa-undo-alt"></i> Reset All Filters</button>
+                </aside>
+                
+                <!-- Products Grid -->
+                <div data-aos="fade-left">
+                    <div class="products-header">
+                        <div class="products-count" id="products-count">Showing 0 products</div>
+                        <select class="sort-select" id="sort-select">
+                            <option value="default">Sort by: Default</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="rating">Top Rated</option>
+                            <option value="name">Name: A to Z</option>
+                        </select>
+                    </div>
+                    <div class="products-grid" id="shop-products-grid"></div>
                 </div>
             </div>
-        </section>
+        </div>
     </main>
 
     <div id="footer-placeholder"></div>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/products.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            setupFilters();
-        });
-    </script>
 </body>
 </html>

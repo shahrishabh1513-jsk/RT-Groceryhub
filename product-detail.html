@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - RT GroceryHub</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .product-detail-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            padding: 4rem 0;
+        }
+        .product-gallery {
+            background: var(--bg-card);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+        }
+        .thumbnail-list {
+            display: flex;
+            gap: 1rem;
+        }
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+        .thumbnail:hover, .thumbnail.active {
+            border-color: var(--accent-orange);
+        }
+        .product-info {
+            background: var(--bg-card);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .rating {
+            color: #FFB800;
+            margin: 0.5rem 0;
+        }
+        .price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-orange);
+            margin: 1rem 0;
+        }
+        .old-price {
+            text-decoration: line-through;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-left: 0.5rem;
+        }
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #e0e0e0;
+            background: var(--bg-primary);
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+        }
+        .stock-status {
+            color: #28a745;
+            margin: 1rem 0;
+        }
+        @media (max-width: 768px) {
+            .product-detail-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main>
+        <div class="container">
+            <div class="product-detail-container" id="product-detail-container">
+                <!-- Product details loaded dynamically -->
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.css"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Load product details from URL parameter
+        function loadProductDetail() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = parseInt(urlParams.get('id'));
+            const product = productsDatabase.find(p => p.id === productId);
+            
+            if (product && document.getElementById('product-detail-container')) {
+                document.getElementById('product-detail-container').innerHTML = `
+                    <div class="product-gallery" data-aos="fade-right">
+                        <img src="${product.image}" alt="${product.name}" class="main-image" id="main-image">
+                        <div class="thumbnail-list">
+                            <img src="${product.image}" class="thumbnail active" onclick="changeImage(this.src)">
+                        </div>
+                    </div>
+                    <div class="product-info" data-aos="fade-left">
+                        <h1 style="color: var(--primary-green-dark);">${product.name}</h1>
+                        <div class="rating">${'★'.repeat(Math.floor(product.rating))}${product.rating % 1 ? '½' : ''} (${product.rating})</div>
+                        <div class="price">₹${product.price}<span class="old-price">₹${product.oldPrice}</span></div>
+                        <p style="color: var(--text-muted); margin: 1rem 0;">${product.description || 'Fresh and high quality product directly sourced from farms. 100% organic and chemical free.'}</p>
+                        <div class="stock-status"><i class="fas fa-check-circle"></i> In Stock (${product.stock} items left)</div>
+                        <div class="quantity-selector">
+                            <button class="quantity-btn" onclick="updateProductQty(-1)">-</button>
+                            <input type="number" id="product-qty" value="1" min="1" max="${product.stock}" class="quantity-input">
+                            <button class="quantity-btn" onclick="updateProductQty(1)">+</button>
+                        </div>
+                        <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="addToCart(${product.id}, '${product.name}', ${product.price}, '${product.image}')">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                `;
+            }
+        }
+        
+        function updateProductQty(change) {
+            const input = document.getElementById('product-qty');
+            let val = parseInt(input.value) + change;
+            if (val >= 1) input.value = val;
+        }
+        
+        function changeImage(src) {
+            document.getElementById('main-image').src = src;
+            document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProductDetail();
+            if (typeof AOS !== 'undefined') AOS.init({ duration: 800, once: true });
+        });
+    </script>
+</body>
+</html>

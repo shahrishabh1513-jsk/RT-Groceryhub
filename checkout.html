@@ -5,11 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - RT GroceryHub</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/components.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
+        .checkout-header {
+            background: linear-gradient(135deg, var(--primary-green-dark), var(--primary-green));
+            padding: 2.5rem 0;
+            text-align: center;
+            color: white;
+        }
         .checkout-container {
             display: grid;
             grid-template-columns: 1fr 400px;
@@ -17,9 +22,19 @@
             padding: 3rem 0;
         }
         .checkout-form {
-            background: white;
+            background: var(--bg-card);
             padding: 2rem;
             border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        .form-section {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .form-section h3 {
+            color: var(--primary-green-dark);
+            margin-bottom: 1.2rem;
         }
         .form-row {
             display: grid;
@@ -27,31 +42,65 @@
             gap: 1rem;
             margin-bottom: 1rem;
         }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 0 3px rgba(255,140,66,0.1);
+        }
         .payment-options {
             display: flex;
             gap: 1rem;
-            margin-top: 0.5rem;
+            flex-wrap: wrap;
         }
         .payment-option {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            border: 2px solid #ddd;
-            border-radius: 30px;
+            gap: 0.8rem;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
             cursor: pointer;
+            transition: var(--transition);
         }
         .payment-option.selected {
-            border-color: var(--accent);
-            background: var(--cream);
+            border-color: var(--accent-orange);
+            background: rgba(255,140,66,0.1);
+        }
+        .payment-option i {
+            font-size: 1.2rem;
         }
         .order-summary-card {
-            background: white;
+            background: var(--bg-card);
             padding: 1.5rem;
             border-radius: var(--border-radius-lg);
-            height: fit-content;
             position: sticky;
             top: 100px;
+            box-shadow: var(--shadow-sm);
+        }
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
         @media (max-width: 768px) {
             .checkout-container {
@@ -67,67 +116,77 @@
     <div id="header-placeholder"></div>
 
     <main>
+        <section class="checkout-header" data-aos="fade-down">
+            <div class="container">
+                <h1><i class="fas fa-clipboard-list"></i> Checkout</h1>
+                <p>Complete your order with delivery details</p>
+            </div>
+        </section>
+
         <div class="container">
             <div class="checkout-container">
-                <form class="checkout-form" id="checkout-form">
-                    <h2>Billing Details</h2>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Full Name *</label>
-                            <input type="text" id="fullname" required>
+                <form class="checkout-form" id="checkout-form" data-aos="fade-right">
+                    <div class="form-section">
+                        <h3><i class="fas fa-user"></i> Personal Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Full Name *</label>
+                                <input type="text" id="fullname" placeholder="Enter your full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number *</label>
+                                <input type="tel" id="phone" placeholder="10-digit mobile number" required>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label>Phone Number *</label>
-                            <input type="tel" id="phone" required>
+                            <label>Email Address</label>
+                            <input type="email" id="email" placeholder="your@email.com">
                         </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label>Email Address</label>
-                        <input type="email" id="email">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Delivery Address *</label>
-                        <textarea id="address" rows="3" required></textarea>
-                    </div>
-                    
-                    <div class="form-row">
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-map-marker-alt"></i> Delivery Address</h3>
                         <div class="form-group">
-                            <label>City *</label>
-                            <input type="text" id="city" required>
+                            <label>Street Address *</label>
+                            <textarea id="address" rows="2" placeholder="House number, building, street" required></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>City *</label>
+                                <input type="text" id="city" placeholder="City" required>
+                            </div>
+                            <div class="form-group">
+                                <label>PIN Code *</label>
+                                <input type="text" id="pincode" placeholder="PIN code" required>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label>PIN Code *</label>
-                            <input type="text" id="pincode" required>
+                            <label>Delivery Instructions (Optional)</label>
+                            <textarea id="instructions" rows="2" placeholder="Gate code, landmark, etc."></textarea>
                         </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label>Delivery Instructions (Optional)</label>
-                        <textarea id="instructions" rows="2" placeholder="Gate code, landmark, etc."></textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Payment Method</label>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-credit-card"></i> Payment Method</h3>
                         <div class="payment-options">
                             <div class="payment-option selected" data-method="cod">
                                 <i class="fas fa-money-bill-wave"></i> Cash on Delivery
                             </div>
                             <div class="payment-option" data-method="card">
-                                <i class="fas fa-credit-card"></i> Card/UPI
+                                <i class="fab fa-cc-visa"></i> Card / UPI
                             </div>
                         </div>
                     </div>
-                    
-                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Place Order <i class="fas fa-check-circle"></i></button>
+
+                    <button type="submit" class="btn btn-primary ripple" style="width: 100%; justify-content: center;">
+                        <i class="fas fa-check-circle"></i> Place Order
+                    </button>
                 </form>
-                
-                <div class="order-summary-card">
-                    <h3>Order Summary</h3>
+
+                <div class="order-summary-card" data-aos="fade-left">
+                    <h3 style="color: var(--primary-green-dark);"><i class="fas fa-shopping-bag"></i> Order Summary</h3>
                     <div id="order-items-list"></div>
-                    <div style="border-top: 1px solid #eee; margin-top: 1rem; padding-top: 1rem;">
+                    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(0,0,0,0.05);">
                         <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
                             <span>Subtotal</span>
                             <span id="order-subtotal">₹0</span>
@@ -136,7 +195,7 @@
                             <span>Delivery Fee</span>
                             <span>₹40</span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-top: 0.5rem;">
+                        <div style="display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 800; color: var(--accent-orange); margin-top: 0.8rem;">
                             <span>Total</span>
                             <span id="order-total">₹0</span>
                         </div>
@@ -148,75 +207,7 @@
 
     <div id="footer-placeholder"></div>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="assets/js/main.js"></script>
-    <script>
-        function loadOrderSummary() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const itemsContainer = document.getElementById('order-items-list');
-            
-            itemsContainer.innerHTML = cart.map(item => `
-                <div style="display: flex; justify-content: space-between; margin-bottom: 0.8rem;">
-                    <span>${item.name} x ${item.quantity}</span>
-                    <span>₹${item.price * item.quantity}</span>
-                </div>
-            `).join('');
-            
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            document.getElementById('order-subtotal').textContent = `₹${subtotal}`;
-            document.getElementById('order-total').textContent = `₹${subtotal + 40}`;
-        }
-        
-        // Payment method selection
-        document.querySelectorAll('.payment-option').forEach(option => {
-            option.addEventListener('click', function() {
-                document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
-                this.classList.add('selected');
-            });
-        });
-        
-        document.getElementById('checkout-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            if (cart.length === 0) {
-                alert('Your cart is empty!');
-                window.location.href = 'shop.html';
-                return;
-            }
-            
-            const orderData = {
-                customer: {
-                    name: document.getElementById('fullname').value,
-                    phone: document.getElementById('phone').value,
-                    email: document.getElementById('email').value,
-                    address: document.getElementById('address').value,
-                    city: document.getElementById('city').value,
-                    pincode: document.getElementById('pincode').value,
-                    instructions: document.getElementById('instructions').value
-                },
-                items: cart,
-                paymentMethod: document.querySelector('.payment-option.selected').dataset.method,
-                total: parseInt(document.getElementById('order-total').textContent.replace('₹', '')),
-                orderDate: new Date().toISOString()
-            };
-            
-            // Save order
-            const orders = JSON.parse(localStorage.getItem('orders')) || [];
-            orderData.orderId = 'ORD' + Date.now();
-            orders.push(orderData);
-            localStorage.setItem('orders', JSON.stringify(orders));
-            
-            // Clear cart
-            localStorage.removeItem('cart');
-            
-            // Redirect to success page
-            localStorage.setItem('lastOrder', JSON.stringify(orderData));
-            window.location.href = 'order-success.html';
-        });
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            loadOrderSummary();
-        });
-    </script>
 </body>
 </html>
