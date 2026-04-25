@@ -1,0 +1,64 @@
+RT-GroceryHub/
+│
+├── index.html                      # Homepage
+├── shop.html                       # Shop / All Products page
+├── product-detail.html             # Single product view page
+├── cart.html                       # Shopping cart page
+├── checkout.html                   # Checkout / Billing page
+├── order-success.html              # Order confirmation page
+├── about.html                      # About Us page
+├── contact.html                    # Contact Us page
+├── login.html                      # Login & Registration page
+├── account.html                    # User account / Orders page
+│
+├── assets/
+│   ├── css/
+│   │   ├── style.css               # Main styles (variables, base, layout)
+│   │   ├── components.css          # Reusable components (cards, buttons, modals)
+│   │   └── responsive.css          # Media queries (mobile, tablet)
+│   │
+│   ├── js/
+│   │   ├── main.js                 # Global functions (header/footer loader, cart, notifications)
+│   │   ├── products.js             # Products database & filter logic
+│   │   └── cart.js                 # Cart management (add, remove, update, localStorage)
+│   │
+│   └── images/
+│       ├── logo.png                # RT GroceryHub logo
+│       ├── hero-bg.jpg             # Hero section background (optional)
+│       ├── banner-deals.jpg        # Deals banner image
+│       ├── products/               # Category & product images
+│       │   ├── rice.jpg
+│       │   ├── wheat.jpg
+│       │   ├── spices.jpg
+│       │   ├── oil.jpg
+│       │   ├── apple.jpg
+│       │   ├── banana.jpg
+│       │   ├── carrot.jpg
+│       │   ├── tomato.jpg
+│       │   ├── onion.jpg
+│       │   ├── potato.jpg
+│       │   ├── milk.jpg
+│       │   ├── paneer.jpg
+│       │   ├── dal.jpg
+│       │   └── ... (more veg items)
+│       │
+│       └── icons/                  # Payment icons, social icons
+│           ├── visa.png
+│           ├── mastercard.png
+│           └── upi.png
+│
+├── pages/                          # Additional nested pages (optional)
+│   ├── categories/
+│   │   ├── fruits.html
+│   │   ├── vegetables.html
+│   │   ├── grains.html
+│   │   ├── dairy.html
+│   │   ├── spices.html
+│   │   └── oils.html
+│   │
+│   └── policies/
+│       ├── privacy.html
+│       ├── terms.html
+│       └── refund.html
+│
+└── README.md                       # Project documentation
