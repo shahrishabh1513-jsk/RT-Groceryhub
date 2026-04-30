@@ -1,152 +1,458 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - RT GroceryHub</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- DaisyUI + TailwindCSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/d18f75e53f.js" crossorigin="anonymous"></script>
+    <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        .contact-header {
-            background: linear-gradient(135deg, var(--primary-green-dark), var(--primary-green));
-            padding: 3rem 0;
-            text-align: center;
+        .font-sora { font-family: "Sora", serif; }
+        .font-poppins { font-family: "Poppins", serif; }
+        
+        .contact-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover .contact-icon {
+            transform: scale(1.1);
+            background-color: #16a34a;
+        }
+        
+        .contact-card:hover .contact-icon i {
             color: white;
         }
-        .contact-wrapper {
-            padding: 4rem 0;
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #16a34a;
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
         }
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+        
+        .social-icon {
+            transition: all 0.3s ease;
         }
-        .contact-info {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--shadow-sm);
+        
+        .social-icon:hover {
+            transform: translateY(-5px);
+            background-color: #16a34a;
         }
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(255,140,66,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .contact-icon i {
-            font-size: 1.5rem;
-            color: var(--accent-orange);
-        }
-        .contact-detail h4 {
-            margin-bottom: 0.3rem;
-            color: var(--text-dark);
-        }
-        .contact-detail p {
-            color: var(--text-muted);
-        }
-        .contact-form {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: var(--border-radius-lg);
-            box-shadow: var(--shadow-sm);
-        }
+        
         .map-container {
-            margin-top: 3rem;
-            border-radius: var(--border-radius-lg);
+            position: relative;
             overflow: hidden;
-            box-shadow: var(--shadow-md);
+            border-radius: 1rem;
         }
-        @media (max-width: 768px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
+        
+        .map-container iframe {
+            transition: transform 0.5s ease;
+        }
+        
+        .map-container:hover iframe {
+            transform: scale(1.02);
+        }
+        
+        .faq-item {
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            background-color: #f0fdf4;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        .error-shake {
+            animation: shake 0.3s ease-in-out;
+            border-color: #ef4444 !important;
         }
     </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'btn-primary': '#16a34a',
+                        'primary-green': '#179800',
+                        'accent-orange': '#FF8C42',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
+
+<body class="bg-[#fffffe]">
+
+    <!-- Header Placeholder -->
     <div id="header-placeholder"></div>
 
     <main>
-        <section class="contact-header" data-aos="fade-down">
-            <div class="container">
-                <h1><i class="fas fa-headset"></i> Contact Us</h1>
-                <p>We'd love to hear from you! Get in touch with our support team</p>
+        <!-- Contact Header -->
+        <section class="w-full bg-gradient-to-r from-green-700 to-green-500 py-16 lg:py-20 text-white">
+            <div class="container mx-auto px-4 lg:px-20 text-center" data-aos="fade-down">
+                <h1 class="font-sora text-3xl lg:text-5xl font-bold mb-4">
+                    <i class="fas fa-headset"></i> Contact Us
+                </h1>
+                <p class="font-poppins text-base lg:text-lg max-w-2xl mx-auto">We'd love to hear from you! Get in touch with our support team</p>
             </div>
         </section>
 
-        <div class="container">
-            <div class="contact-wrapper">
-                <div class="contact-grid">
-                    <div class="contact-info" data-aos="fade-right">
-                        <h2 style="color: var(--primary-green-dark); margin-bottom: 1.5rem;"><i class="fas fa-address-card"></i> Get in Touch</h2>
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
-                            <div class="contact-detail"><h4>Phone</h4><p>+91 98765 43210</p><p>Mon-Sat, 9AM - 8PM</p></div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                            <div class="contact-detail"><h4>Email</h4><p>support@rtgroceryhub.com</p><p>careers@rtgroceryhub.com</p></div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div class="contact-detail"><h4>Office Address</h4><p>123, Food Street, Andheri East,<br>Mumbai - 400093, India</p></div>
-                        </div>
-                        <div class="social-links" style="margin-top: 1.5rem; justify-content: flex-start;">
-                            <a href="#" style="background: var(--primary-green);"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" style="background: var(--primary-green);"><i class="fab fa-instagram"></i></a>
-                            <a href="#" style="background: var(--primary-green);"><i class="fab fa-twitter"></i></a>
-                            <a href="#" style="background: var(--primary-green);"><i class="fab fa-whatsapp"></i></a>
-                        </div>
+        <!-- Contact Info Section -->
+        <section class="container mx-auto px-4 lg:px-20 py-16">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
+                <!-- Phone Card -->
+                <div class="contact-card bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100 transition-all hover:shadow-md" data-aos="fade-up">
+                    <div class="contact-icon w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 transition-all">
+                        <i class="fas fa-phone-alt text-2xl text-green-600"></i>
                     </div>
+                    <h3 class="font-sora font-bold text-xl mb-2">Phone Support</h3>
+                    <p class="text-gray-500 mb-1">+91 98765 43210</p>
+                    <p class="text-gray-500 mb-3">+91 98765 43211</p>
+                    <p class="text-sm text-green-600">Mon-Sat, 9AM - 8PM</p>
+                </div>
+                
+                <!-- Email Card -->
+                <div class="contact-card bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100 transition-all hover:shadow-md" data-aos="fade-up" data-aos-delay="100">
+                    <div class="contact-icon w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 transition-all">
+                        <i class="fas fa-envelope text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="font-sora font-bold text-xl mb-2">Email Us</h3>
+                    <p class="text-gray-500 mb-1">support@rtgroceryhub.com</p>
+                    <p class="text-gray-500 mb-3">careers@rtgroceryhub.com</p>
+                    <p class="text-sm text-green-600">24/7 Email Support</p>
+                </div>
+                
+                <!-- Location Card -->
+                <div class="contact-card bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100 transition-all hover:shadow-md" data-aos="fade-up" data-aos-delay="200">
+                    <div class="contact-icon w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 transition-all">
+                        <i class="fas fa-map-marker-alt text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="font-sora font-bold text-xl mb-2">Visit Us</h3>
+                    <p class="text-gray-500 mb-1">123, Food Street, Andheri East</p>
+                    <p class="text-gray-500 mb-3">Mumbai - 400093, India</p>
+                    <p class="text-sm text-green-600">Get Directions →</p>
+                </div>
+            </div>
 
-                    <div class="contact-form" data-aos="fade-left">
-                        <h2 style="color: var(--primary-green-dark); margin-bottom: 1.5rem;"><i class="fas fa-paper-plane"></i> Send us a Message</h2>
+            <!-- Contact Form & Map -->
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Contact Form -->
+                <div class="lg:w-1/2" data-aos="fade-right">
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 lg:p-8">
+                        <div class="mb-6">
+                            <h2 class="font-sora text-2xl font-bold text-gray-800">Send us a Message</h2>
+                            <div class="w-16 h-1 bg-green-500 rounded-full mt-2"></div>
+                            <p class="text-gray-500 mt-3">Fill out the form below and we'll get back to you within 24 hours.</p>
+                        </div>
+                        
                         <form id="contact-form">
-                            <div class="form-group">
-                                <label>Your Name</label>
-                                <input type="text" id="contact-name" placeholder="Enter your name" required>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Your Name <span class="text-red-500">*</span></label>
+                                    <input type="text" id="contact-name" placeholder="Enter your name" required class="form-input w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 transition">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Email Address <span class="text-red-500">*</span></label>
+                                    <input type="email" id="contact-email" placeholder="your@email.com" required class="form-input w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 transition">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Email Address</label>
-                                <input type="email" id="contact-email" placeholder="your@email.com" required>
+                            
+                            <div class="mb-4">
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Phone Number</label>
+                                <input type="tel" id="contact-phone" placeholder="10-digit mobile number" class="form-input w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 transition">
                             </div>
-                            <div class="form-group">
-                                <label>Subject</label>
-                                <input type="text" id="contact-subject" placeholder="What is this regarding?">
+                            
+                            <div class="mb-4">
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Subject <span class="text-red-500">*</span></label>
+                                <select id="contact-subject" required class="form-input w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 transition bg-white">
+                                    <option value="">Select a subject</option>
+                                    <option value="order">Order Related Issue</option>
+                                    <option value="delivery">Delivery Question</option>
+                                    <option value="product">Product Quality</option>
+                                    <option value="feedback">Feedback & Suggestions</option>
+                                    <option value="other">Other</option>
+                                </select>
                             </div>
-                            <div class="form-group">
-                                <label>Message</label>
-                                <textarea id="contact-message" rows="5" placeholder="Tell us how we can help..." required></textarea>
+                            
+                            <div class="mb-6">
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Message <span class="text-red-500">*</span></label>
+                                <textarea id="contact-message" rows="5" placeholder="Tell us how we can help..." required class="form-input w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 transition resize-none"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary ripple" style="width: 100%; justify-content: center;">
+                            
+                            <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition flex items-center justify-center gap-2">
                                 <i class="fas fa-paper-plane"></i> Send Message
                             </button>
                         </form>
                     </div>
                 </div>
-
-                <div class="map-container" data-aos="zoom-in">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.937357552811!2d72.847250!3d19.076090!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c9b4c5b5b5b5%3A0x5b5b5b5b5b5b5b5b!2sMumbai!5e0!3m2!1sen!2sin!4v1234567890" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                
+                <!-- Map & Info -->
+                <div class="lg:w-1/2" data-aos="fade-left">
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 lg:p-8">
+                        <h2 class="font-sora text-2xl font-bold text-gray-800 mb-4">Find Us Here</h2>
+                        <div class="w-16 h-1 bg-green-500 rounded-full mb-6"></div>
+                        
+                        <!-- Google Map -->
+                        <div class="map-container mb-6">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.937357552811!2d72.847250!3d19.076090!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c9b4c5b5b5b5%3A0x5b5b5b5b5b5b5b5b!2sMumbai!5e0!3m2!1sen!2sin!4v1234567890" 
+                                width="100%" 
+                                height="250" 
+                                style="border:0; border-radius: 0.75rem;" 
+                                allowfullscreen="" 
+                                loading="lazy">
+                            </iframe>
+                        </div>
+                        
+                        <!-- Business Hours -->
+                        <div class="mb-6">
+                            <h3 class="font-semibold text-gray-800 mb-3"><i class="fas fa-clock text-green-600 mr-2"></i> Business Hours</h3>
+                            <div class="space-y-2 text-gray-600">
+                                <div class="flex justify-between">
+                                    <span>Monday - Saturday:</span>
+                                    <span class="font-medium">9:00 AM - 8:00 PM</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Sunday:</span>
+                                    <span class="font-medium">10:00 AM - 6:00 PM</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Customer Support:</span>
+                                    <span class="font-medium">24/7</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Social Media -->
+                        <div>
+                            <h3 class="font-semibold text-gray-800 mb-3"><i class="fas fa-share-alt text-green-600 mr-2"></i> Connect With Us</h3>
+                            <div class="flex gap-3">
+                                <a href="#" class="social-icon w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-green-600 hover:text-white transition-all">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-icon w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-green-600 hover:text-white transition-all">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="social-icon w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-green-600 hover:text-white transition-all">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-icon w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-green-600 hover:text-white transition-all">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="social-icon w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-green-600 hover:text-white transition-all">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="#" class="social-icon w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 hover:bg-green-600 hover:text-white transition-all">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="bg-gray-50 py-16">
+            <div class="container mx-auto px-4 lg:px-20">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <span class="text-green-600 font-semibold text-sm uppercase tracking-wider">FAQ</span>
+                    <h2 class="font-sora text-3xl lg:text-4xl font-bold text-gray-800 mt-2">Frequently Asked Questions</h2>
+                    <div class="w-20 h-1 bg-green-500 mx-auto rounded-full mt-4"></div>
+                    <p class="text-gray-500 mt-4 max-w-2xl mx-auto">Find quick answers to common questions about our services</p>
+                </div>
+                
+                <div class="max-w-3xl mx-auto">
+                    <div class="faq-item bg-white rounded-xl p-5 mb-4 shadow-sm" data-aos="fade-up">
+                        <details>
+                            <summary class="font-semibold text-gray-800 cursor-pointer">How do I place an order online?</summary>
+                            <p class="text-gray-600 mt-3 pl-4 border-l-2 border-green-500">Placing an order is simple! Browse our catalog by category or use the search bar to find specific items. Add your chosen products to the cart, review your order, and proceed to checkout. We offer multiple payment options including credit/debit cards, digital wallets, and secure online banking.</p>
+                        </details>
+                    </div>
+                    
+                    <div class="faq-item bg-white rounded-xl p-5 mb-4 shadow-sm" data-aos="fade-up" data-aos-delay="100">
+                        <details>
+                            <summary class="font-semibold text-gray-800 cursor-pointer">What delivery options are available?</summary>
+                            <p class="text-gray-600 mt-3 pl-4 border-l-2 border-green-500">We offer Same-Day Delivery (order before cutoff time), Scheduled Delivery (choose a convenient time slot), and Express Delivery for urgent orders. Delivery times and fees may vary based on your location and order size.</p>
+                        </details>
+                    </div>
+                    
+                    <div class="faq-item bg-white rounded-xl p-5 mb-4 shadow-sm" data-aos="fade-up" data-aos-delay="200">
+                        <details>
+                            <summary class="font-semibold text-gray-800 cursor-pointer">How do I track my order?</summary>
+                            <p class="text-gray-600 mt-3 pl-4 border-l-2 border-green-500">After your order is confirmed, you'll receive an email and/or SMS with a tracking link. Simply click the link to view real-time updates on your delivery status. You can also log into your account and access the "My Orders" section for tracking details.</p>
+                        </details>
+                    </div>
+                    
+                    <div class="faq-item bg-white rounded-xl p-5 mb-4 shadow-sm" data-aos="fade-up" data-aos-delay="300">
+                        <details>
+                            <summary class="font-semibold text-gray-800 cursor-pointer">What is your return and refund policy?</summary>
+                            <p class="text-gray-600 mt-3 pl-4 border-l-2 border-green-500">If you receive damaged or incorrect items, please contact our customer service team within 48 hours of delivery. We will arrange for a replacement, refund, or credit according to your preference.</p>
+                        </details>
+                    </div>
+                    
+                    <div class="faq-item bg-white rounded-xl p-5 mb-4 shadow-sm" data-aos="fade-up" data-aos-delay="400">
+                        <details>
+                            <summary class="font-semibold text-gray-800 cursor-pointer">Do you deliver to my area?</summary>
+                            <p class="text-gray-600 mt-3 pl-4 border-l-2 border-green-500">We currently deliver across Mumbai and surrounding areas. Enter your PIN code on the website or app to check if we deliver to your location. We're constantly expanding our delivery network!</p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Chat CTA -->
+        <section class="container mx-auto px-4 lg:px-20 py-16 text-center">
+            <div class="bg-gradient-to-r from-green-600 to-green-500 rounded-2xl p-8 lg:p-12 text-white" data-aos="zoom-in">
+                <i class="fas fa-comments text-4xl mb-4"></i>
+                <h2 class="font-sora text-2xl lg:text-3xl font-bold mb-3">Need Immediate Assistance?</h2>
+                <p class="text-green-100 mb-6">Our customer support team is available 24/7 to help you</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="startLiveChat()" class="bg-white text-green-600 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition inline-flex items-center gap-2 justify-center">
+                        <i class="fas fa-comment-dots"></i> Start Live Chat
+                    </button>
+                    <a href="tel:+919876543210" class="border-2 border-white text-white px-8 py-3 rounded-xl font-semibold hover:bg-white hover:text-green-600 transition inline-flex items-center gap-2 justify-center">
+                        <i class="fas fa-phone-alt"></i> Call Now
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
 
+    <!-- Footer Placeholder -->
     <div id="footer-placeholder"></div>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-sidebar-header">
+            <h2 class="text-xl font-bold"><i class="fas fa-shopping-cart"></i> Your Cart</h2>
+            <button onclick="toggleCartSidebar()" class="text-2xl">&times;</button>
+        </div>
+        <div id="cart-sidebar-items" class="cart-sidebar-items"></div>
+        <div class="cart-sidebar-footer">
+            <div class="flex justify-between font-bold text-lg mb-4">
+                <span>Total:</span>
+                <span id="cart-sidebar-total">₹0</span>
+            </div>
+            <a href="cart.html" class="btn btn-primary w-full bg-green-600 text-white py-2 rounded-lg text-center block">View Cart</a>
+            <a href="checkout.html" class="btn btn-success w-full bg-orange-500 text-white py-2 rounded-lg text-center block mt-2">Checkout</a>
+        </div>
+    </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="assets/js/main.js"></script>
+    
+    <script>
+        // Contact form validation and submission
+        function validateForm() {
+            let isValid = true;
+            const name = document.getElementById('contact-name');
+            const email = document.getElementById('contact-email');
+            const subject = document.getElementById('contact-subject');
+            const message = document.getElementById('contact-message');
+            
+            // Remove existing error styles
+            [name, email, subject, message].forEach(field => {
+                if (field) field.classList.remove('error-shake', 'border-red-500');
+            });
+            
+            if (!name.value.trim()) {
+                name.classList.add('error-shake', 'border-red-500');
+                isValid = false;
+            }
+            
+            if (!email.value.trim()) {
+                email.classList.add('error-shake', 'border-red-500');
+                isValid = false;
+            } else if (!/^\S+@\S+\.\S+$/.test(email.value)) {
+                email.classList.add('error-shake', 'border-red-500');
+                isValid = false;
+            }
+            
+            if (!subject.value) {
+                subject.classList.add('error-shake', 'border-red-500');
+                isValid = false;
+            }
+            
+            if (!message.value.trim()) {
+                message.classList.add('error-shake', 'border-red-500');
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+        
+        // Contact form submission
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                if (validateForm()) {
+                    const name = document.getElementById('contact-name').value;
+                    const email = document.getElementById('contact-email').value;
+                    const phone = document.getElementById('contact-phone').value;
+                    const subject = document.getElementById('contact-subject').options[document.getElementById('contact-subject').selectedIndex].text;
+                    const message = document.getElementById('contact-message').value;
+                    
+                    // Show success message
+                    const successDiv = document.createElement('div');
+                    successDiv.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+                    successDiv.innerHTML = `<i class="fas fa-check-circle mr-2"></i> Thank you ${name}! We'll get back to you soon.`;
+                    document.body.appendChild(successDiv);
+                    
+                    // Reset form
+                    contactForm.reset();
+                    
+                    // Remove success message after 5 seconds
+                    setTimeout(() => {
+                        successDiv.remove();
+                    }, 5000);
+                    
+                    // Optional: Save to localStorage for demo
+                    const contactMessages = JSON.parse(localStorage.getItem('contact_messages')) || [];
+                    contactMessages.push({
+                        name,
+                        email,
+                        phone,
+                        subject,
+                        message,
+                        date: new Date().toISOString()
+                    });
+                    localStorage.setItem('contact_messages', JSON.stringify(contactMessages));
+                }
+            });
+        }
+        
+        // Live chat function
+        function startLiveChat() {
+            alert('Live chat feature coming soon! Please call or email us for immediate assistance.');
+        }
+        
+        // Initialize AOS
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({ duration: 800, once: true });
+            }
+        });
+    </script>
 </body>
+
 </html>

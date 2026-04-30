@@ -1,37 +1,39 @@
-// ========== PRODUCTS DATABASE (100% Vegetarian) ==========
+// ========== PRODUCTS DATABASE ==========
 const productsDatabase = [
-    { id: 1, name: "Basmati Rice", category: "grains", price: 180, oldPrice: 220, image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300", rating: 4.7, stock: 100, description: "Premium aged basmati rice, long grains with rich aroma." },
-    { id: 2, name: "Whole Wheat Atta", category: "grains", price: 120, oldPrice: 150, image: "https://images.unsplash.com/photo-1599907497069-6c3f7c6e7e1e?w=300", rating: 4.8, stock: 200, description: "Fresh stone-ground whole wheat flour." },
-    { id: 3, name: "Toor Dal", category: "pulses", price: 140, oldPrice: 170, image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300", rating: 4.6, stock: 150, description: "Premium quality toor dal, rich in protein." },
-    { id: 4, name: "Turmeric Powder", category: "spices", price: 85, oldPrice: 110, image: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=300", rating: 4.9, stock: 300, description: "Pure organic turmeric powder." },
-    { id: 5, name: "Mustard Oil", category: "oils", price: 160, oldPrice: 200, image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300", rating: 4.5, stock: 80, description: "Cold-pressed pure mustard oil." },
-    { id: 6, name: "Fresh Apple", category: "fruits", price: 120, oldPrice: 160, image: "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=300", rating: 4.7, stock: 120, description: "Crisp and sweet Himalayan apples." },
+    { id: 1, name: "Organic Red Apples", category: "fruits", price: 120, oldPrice: 180, image: "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=300", rating: 4.5, stock: 50, description: "Fresh organic apples from Himalayan orchards. Sweet and crispy." },
+    { id: 2, name: "Fresh Spinach", category: "vegetables", price: 40, oldPrice: 60, image: "https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=300", rating: 4.8, stock: 100, description: "Farm-fresh spinach leaves, rich in iron and nutrients." },
+    { id: 3, name: "Organic Milk", category: "dairy", price: 60, oldPrice: 80, image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=300", rating: 4.9, stock: 150, description: "Fresh pasteurized milk, rich and creamy." },
+    { id: 4, name: "Fresh Broccoli", category: "vegetables", price: 55, oldPrice: 75, image: "https://images.unsplash.com/photo-1584270354949-c26b0d5b4a0c?w=300", rating: 4.6, stock: 80, description: "Green, crunchy broccoli heads." },
+    { id: 5, name: "Sweet Mangoes", category: "fruits", price: 200, oldPrice: 300, image: "https://images.unsplash.com/photo-1553279768-865429fa0078?w=300", rating: 4.9, stock: 40, description: "Juicy Alphonso mangoes - King of fruits!" },
+    { id: 6, name: "Basmati Rice", category: "grains", price: 180, oldPrice: 220, image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300", rating: 4.7, stock: 100, description: "Premium aged basmati rice, long grains with rich aroma." },
     { id: 7, name: "Fresh Tomato", category: "vegetables", price: 40, oldPrice: 60, image: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300", rating: 4.5, stock: 200, description: "Farm-fresh ripe tomatoes." },
     { id: 8, name: "Potato", category: "vegetables", price: 35, oldPrice: 50, image: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=300", rating: 4.6, stock: 250, description: "Fresh premium quality potatoes." },
     { id: 9, name: "Onion", category: "vegetables", price: 45, oldPrice: 65, image: "https://images.unsplash.com/photo-1508747703725-719777637510?w=300", rating: 4.4, stock: 200, description: "Fresh red onions." },
-    { id: 10, name: "Fresh Milk", category: "dairy", price: 60, oldPrice: 75, image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=300", rating: 4.9, stock: 100, description: "Pure pasteurized full-cream milk." },
-    { id: 11, name: "Paneer", category: "dairy", price: 180, oldPrice: 220, image: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=300", rating: 4.8, stock: 90, description: "Fresh soft cottage cheese." },
-    { id: 12, name: "Cumin Seeds", category: "spices", price: 95, oldPrice: 120, image: "https://images.unsplash.com/photo-1596040033229-a9821a540eb3?w=300", rating: 4.7, stock: 180, description: "Premium quality cumin seeds." },
-    { id: 13, name: "Garam Masala", category: "spices", price: 110, oldPrice: 140, image: "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=300", rating: 4.8, stock: 150, description: "Authentic blend of aromatic spices." },
-    { id: 14, name: "Coconut Oil", category: "oils", price: 220, oldPrice: 280, image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300", rating: 4.6, stock: 70, description: "Pure virgin coconut oil." },
-    { id: 15, name: "Banana", category: "fruits", price: 50, oldPrice: 70, image: "https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=300", rating: 4.5, stock: 150, description: "Sweet ripe bananas." },
-    { id: 16, name: "Carrot", category: "vegetables", price: 55, oldPrice: 75, image: "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=300", rating: 4.7, stock: 180, description: "Fresh organic carrots." },
-    { id: 17, name: "Spinach", category: "vegetables", price: 30, oldPrice: 45, image: "https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=300", rating: 4.8, stock: 120, description: "Fresh green spinach leaves." },
-    { id: 18, name: "Curd", category: "dairy", price: 45, oldPrice: 60, image: "https://images.unsplash.com/photo-1550583724-c2692d22c3b7?w=300", rating: 4.7, stock: 100, description: "Fresh probiotic curd." },
-    { id: 19, name: "Honey", category: "spices", price: 250, oldPrice: 300, image: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=300", rating: 4.9, stock: 60, description: "Pure organic honey." },
-    { id: 20, name: "Ghee", category: "oils", price: 450, oldPrice: 550, image: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=300", rating: 4.9, stock: 50, description: "Pure desi cow ghee." }
+    { id: 10, name: "Turmeric Powder", category: "spices", price: 85, oldPrice: 110, image: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=300", rating: 4.9, stock: 300, description: "Pure organic turmeric powder." },
+    { id: 11, name: "Cumin Seeds", category: "spices", price: 95, oldPrice: 120, image: "https://images.unsplash.com/photo-1596040033229-a9821a540eb3?w=300", rating: 4.7, stock: 180, description: "Premium quality cumin seeds." },
+    { id: 12, name: "Fresh Paneer", category: "dairy", price: 180, oldPrice: 220, image: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=300", rating: 4.8, stock: 90, description: "Fresh soft cottage cheese." }
 ];
 
 // ========== CART MANAGEMENT ==========
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-// Save cart to localStorage
 function saveCart() {
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartCount();
+    renderCartSidebar();
 }
 
-// Add to cart function (make it global)
+function updateCartCount() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.querySelectorAll('.cart-count').forEach(el => {
+        el.textContent = totalItems;
+    });
+}
+
+function getCartTotal() {
+    return cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+}
+
 window.addToCart = function(id, name, price, image) {
     const existingItem = cart.find(item => item.id === id);
     if (existingItem) {
@@ -41,10 +43,8 @@ window.addToCart = function(id, name, price, image) {
     }
     saveCart();
     showNotification(`${name} added to cart!`, 'success');
-    renderCartPage(); // Update cart page if open
 };
 
-// Update quantity
 window.updateQuantity = function(id, change) {
     const item = cart.find(item => item.id === id);
     if (item) {
@@ -54,11 +54,9 @@ window.updateQuantity = function(id, change) {
         }
         saveCart();
         renderCartPage();
-        if (typeof renderCartItems === 'function') renderCartItems();
     }
 };
 
-// Remove from cart
 window.removeFromCart = function(id) {
     cart = cart.filter(item => item.id !== id);
     saveCart();
@@ -66,161 +64,48 @@ window.removeFromCart = function(id) {
     showNotification('Item removed from cart', 'info');
 };
 
-// Update cart count in header
-function updateCartCount() {
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    document.querySelectorAll('.cart-count').forEach(el => {
-        if (el) el.textContent = totalItems;
-    });
-}
-
-// Get cart total
-function getCartTotal() {
-    return cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-}
-
-// Show notification
 function showNotification(message, type = 'success') {
     const notification = document.createElement('div');
-    notification.className = `alert alert-${type}`;
-    notification.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: ${type === 'success' ? '#4CAF50' : '#FF9800'};
-        color: white;
-        padding: 12px 24px;
-        border-radius: 50px;
-        z-index: 9999;
-        animation: slideIn 0.3s ease;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        font-weight: 500;
-    `;
+    notification.className = `notification ${type === 'error' ? 'error' : ''}`;
     notification.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-info-circle'}"></i> ${message}`;
     document.body.appendChild(notification);
     setTimeout(() => notification.remove(), 3000);
 }
 
-// ========== CART PAGE RENDERING ==========
-function renderCartPage() {
-    const container = document.getElementById('cart-items-container');
+// ========== CART SIDEBAR ==========
+function renderCartSidebar() {
+    const container = document.getElementById('cart-sidebar-items');
     if (!container) return;
     
     if (cart.length === 0) {
-        container.innerHTML = `
-            <div class="empty-cart" style="text-align: center; padding: 3rem;">
-                <i class="fas fa-shopping-basket" style="font-size: 4rem; color: #ccc; margin-bottom: 1rem;"></i>
-                <p style="margin-bottom: 1rem;">Your cart is empty</p>
-                <a href="shop.html" class="btn btn-primary">Continue Shopping</a>
-            </div>
-        `;
-        const subtotalEl = document.getElementById('cart-subtotal');
-        const totalEl = document.getElementById('cart-total');
-        if (subtotalEl) subtotalEl.textContent = '₹0';
-        if (totalEl) totalEl.textContent = '₹40';
+        container.innerHTML = '<div class="text-center py-8 text-gray-500">Your cart is empty</div>';
+        document.getElementById('cart-sidebar-total').textContent = '₹0';
         return;
     }
     
     container.innerHTML = cart.map(item => `
-        <div class="cart-item" data-id="${item.id}">
-            <img src="${item.image || 'https://via.placeholder.com/80'}" alt="${item.name}">
-            <div>
-                <h4>${item.name}</h4>
-                <p class="cart-item-price">₹${item.price}</p>
+        <div class="cart-sidebar-item">
+            <img src="${item.image}" alt="${item.name}">
+            <div class="flex-1">
+                <h4 class="font-semibold">${item.name}</h4>
+                <p class="text-orange-500 font-bold">₹${item.price}</p>
+                <div class="flex items-center gap-2 mt-2">
+                    <button onclick="updateQuantity(${item.id}, -1)" class="w-6 h-6 border rounded-full">-</button>
+                    <span>${item.quantity}</span>
+                    <button onclick="updateQuantity(${item.id}, 1)" class="w-6 h-6 border rounded-full">+</button>
+                    <button onclick="removeFromCart(${item.id})" class="text-red-500 ml-2"><i class="fas fa-trash"></i></button>
+                </div>
             </div>
-            <div class="quantity-controls">
-                <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
-                <span style="min-width: 30px; text-align: center;">${item.quantity}</span>
-                <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
-                <button class="remove-btn" onclick="removeFromCart(${item.id})"><i class="fas fa-trash"></i></button>
-            </div>
-            <div style="font-weight: 700; color: var(--accent-orange);">₹${item.price * item.quantity}</div>
+            <div class="font-bold">₹${item.price * item.quantity}</div>
         </div>
     `).join('');
     
-    const subtotal = getCartTotal();
-    const total = subtotal + 40;
-    
-    const subtotalEl = document.getElementById('cart-subtotal');
-    const totalEl = document.getElementById('cart-total');
-    if (subtotalEl) subtotalEl.textContent = `₹${subtotal}`;
-    if (totalEl) totalEl.textContent = `₹${total}`;
+    document.getElementById('cart-sidebar-total').textContent = `₹${getCartTotal()}`;
 }
 
-// ========== SHOP PAGE RENDERING ==========
-function renderShopProducts(filteredProducts = null) {
-    const grid = document.getElementById('shop-products-grid');
-    if (!grid) return;
-    
-    const products = filteredProducts || productsDatabase;
-    const countEl = document.getElementById('products-count');
-    if (countEl) countEl.textContent = `Showing ${products.length} products`;
-    
-    if (products.length === 0) {
-        grid.innerHTML = `<div class="no-products"><i class="fas fa-search"></i><h3>No products found</h3><p>Try adjusting your filters</p></div>`;
-        return;
-    }
-    
-    grid.innerHTML = products.map(product => `
-        <div class="product-card" data-aos="fade-up">
-            ${product.oldPrice ? `<div class="product-badge">Sale</div>` : ''}
-            <img src="${product.image}" alt="${product.name}" onclick="location.href='product-detail.html?id=${product.id}'" style="cursor: pointer;">
-            <h3>${product.name}</h3>
-            <div class="product-price">
-                <span class="current">₹${product.price}</span>
-                ${product.oldPrice ? `<span class="old">₹${product.oldPrice}</span>` : ''}
-            </div>
-            <div class="product-rating">${'★'.repeat(Math.floor(product.rating))}${product.rating % 1 ? '½' : ''} (${product.rating})</div>
-            <button class="btn-add-cart" onclick="addToCart(${product.id}, '${product.name}', ${product.price}, '${product.image}')">
-                <i class="fas fa-shopping-cart"></i> Add to Cart
-            </button>
-        </div>
-    `).join('');
-}
-
-// ========== TRENDING PRODUCTS (Homepage) ==========
-function renderTrendingProducts() {
-    const grid = document.getElementById('trending-products');
-    if (!grid) return;
-    
-    const trending = productsDatabase.slice(0, 8);
-    grid.innerHTML = trending.map(product => `
-        <div class="product-card">
-            ${product.oldPrice ? `<div class="product-badge">Trending</div>` : ''}
-            <img src="${product.image}" alt="${product.name}" onclick="location.href='product-detail.html?id=${product.id}'" style="cursor: pointer;">
-            <h3>${product.name}</h3>
-            <div class="product-price">
-                <span class="current">₹${product.price}</span>
-                ${product.oldPrice ? `<span class="old">₹${product.oldPrice}</span>` : ''}
-            </div>
-            <div class="product-rating">${'★'.repeat(Math.floor(product.rating))}${product.rating % 1 ? '½' : ''} (${product.rating})</div>
-            <button class="btn-add-cart" onclick="addToCart(${product.id}, '${product.name}', ${product.price}, '${product.image}')">
-                <i class="fas fa-shopping-cart"></i> Add to Cart
-            </button>
-        </div>
-    `).join('');
-}
-
-// ========== CHECKOUT ORDER SUMMARY ==========
-function loadOrderSummary() {
-    const itemsContainer = document.getElementById('order-items-list');
-    if (!itemsContainer) return;
-    
-    if (cart.length === 0) {
-        window.location.href = 'cart.html';
-        return;
-    }
-    
-    itemsContainer.innerHTML = cart.map(item => `
-        <div class="order-item">
-            <span>${item.name} x ${item.quantity}</span>
-            <span>₹${item.price * item.quantity}</span>
-        </div>
-    `).join('');
-    
-    const subtotal = getCartTotal();
-    document.getElementById('order-subtotal').textContent = `₹${subtotal}`;
-    document.getElementById('order-total').textContent = `₹${subtotal + 40}`;
+function toggleCartSidebar() {
+    const sidebar = document.getElementById('cart-sidebar');
+    sidebar.classList.toggle('open');
 }
 
 // ========== HEADER & FOOTER ==========
@@ -230,23 +115,64 @@ function loadHeader() {
     
     headerPlaceholder.innerHTML = `
         <header class="main-header">
-            <div class="container">
-                <div class="logo">
-                    <a href="index.html">RT <span>GroceryHub</span></a>
+            <nav class="w-full border-b-2 border-green-300 lg:border-b-0">
+                <div class="navbar bg-base-100 w-[90%] mx-auto">
+                    <div class="navbar-start">
+                        <a href="index.html"><img class="w-40" src="https://i.imgur.com/4QZ7qV0.png" alt="Logo" onerror="this.src='https://via.placeholder.com/160'"></a>
+                    </div>
+                    <div class="navbar-center hidden lg:flex">
+                        <ul class="menu menu-horizontal px-1 font-sora text-lg text-[#4b4b4b]">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="shop.html">Shop</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="navbar-end gap-4">
+                        <details class="dropdown lg:hidden">
+                            <summary class="btn btn-ghost">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 font-extrabold text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+                                </svg>
+                            </summary>
+                            <ul class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow font-sora">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="shop.html">Shop</a></li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="account.html">Account</a></li>
+                            </ul>
+                        </details>
+                        <div class="hidden md:flex gap-4 items-center">
+                            <a href="account.html" class="text-gray-600 hover:text-green-600"><i class="fa-solid fa-user text-xl"></i></a>
+                            <button onclick="toggleCartSidebar()" class="relative">
+                                <i class="fa-solid fa-cart-shopping text-xl text-gray-600"></i>
+                                <span class="cart-count absolute -top-2 -right-3 bg-orange-500 text-white text-xs rounded-full px-1.5 py-0.5">0</span>
+                            </button>
+                            <a href="login.html" class="btn w-20 text-black font-sora bg-white border-green-600">Login</a>
+                            <a href="login.html" class="btn btn-success border-none bg-btn-primary text-white font-sora px-6">Register</a>
+                        </div>
+                    </div>
                 </div>
-                <nav class="nav-menu">
-                    <a href="index.html">Home</a>
-                    <a href="shop.html">Shop</a>
-                    <a href="about.html">About</a>
-                    <a href="contact.html">Contact</a>
-                    <a href="account.html"><i class="fas fa-user"></i> Account</a>
-                    <a href="cart.html" class="cart-icon">
-                        <i class="fas fa-shopping-cart"></i> 
-                        <span class="cart-count" id="cart-count-nav">0</span>
-                    </a>
-                </nav>
-            </div>
+            </nav>
         </header>
+        
+        <!-- Cart Sidebar -->
+        <div id="cart-sidebar" class="cart-sidebar">
+            <div class="cart-sidebar-header">
+                <h2 class="text-xl font-bold"><i class="fas fa-shopping-cart"></i> Your Cart</h2>
+                <button onclick="toggleCartSidebar()" class="text-2xl">&times;</button>
+            </div>
+            <div id="cart-sidebar-items" class="cart-sidebar-items"></div>
+            <div class="cart-sidebar-footer">
+                <div class="flex justify-between font-bold text-lg mb-4">
+                    <span>Total:</span>
+                    <span id="cart-sidebar-total">₹0</span>
+                </div>
+                <a href="cart.html" class="btn btn-primary w-full bg-green-600 text-white py-2 rounded-lg text-center block">View Cart</a>
+                <a href="checkout.html" class="btn btn-success w-full bg-orange-500 text-white py-2 rounded-lg text-center block mt-2">Checkout</a>
+            </div>
+        </div>
     `;
 }
 
@@ -255,49 +181,207 @@ function loadFooter() {
     if (!footerPlaceholder) return;
     
     footerPlaceholder.innerHTML = `
-        <footer class="footer">
-            <div class="container">
-                <div class="footer-grid">
-                    <div class="footer-col">
-                        <h4>RT GroceryHub</h4>
-                        <p>Fresh groceries delivered to your doorstep with love and care.</p>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-whatsapp"></i></a>
-                        </div>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Quick Links</h4>
-                        <a href="about.html">About Us</a>
-                        <a href="contact.html">Contact Us</a>
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms & Conditions</a>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Categories</h4>
-                        <a href="shop.html?category=fruits">Fruits</a>
-                        <a href="shop.html?category=vegetables">Vegetables</a>
-                        <a href="shop.html?category=grains">Grains</a>
-                        <a href="shop.html?category=dairy">Dairy</a>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Contact Info</h4>
-                        <p><i class="fas fa-phone"></i> +91 98765 43210</p>
-                        <p><i class="fas fa-envelope"></i> support@rtgroceryhub.com</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Mumbai, India</p>
-                    </div>
+        <div class="relative mt-20">
+            <div class="absolute w-5/6 -top-28 left-1/2 transform -translate-x-1/2 lg:w-5/6 flex flex-col lg:flex-row gap-4 p-6 bg-[#EFEBE4] rounded-3xl z-20">
+                <div class="lg:p-4">
+                    <img src="https://i.imgur.com/4QZ7qV0.png" alt="Newsletter" class="w-24">
                 </div>
-                <div class="footer-bottom">
-                    <p>&copy; 2024 RT GroceryHub. All rights reserved.</p>
+                <div class="flex flex-col gap-4 justify-center items-center lg:items-start text-center">
+                    <h2 class="text-2xl lg:text-3xl font-bold text-green-600">Get Grocery News!</h2>
+                    <p class="text-sm lg:text-lg">Exclusive training tips, tricks, product deals and more.</p>
+                    <div class="flex w-full max-w-md gap-2">
+                        <input id="newsletter-email" class="flex-1 p-3 rounded-lg border border-gray-300" type="email" placeholder="Enter email....">
+                        <button onclick="subscribeNewsletter()" class="text-white bg-green-600 px-6 py-2 rounded-lg">Subscribe</button>
+                    </div>
                 </div>
             </div>
-        </footer>
+            <footer class="relative pt-48 pb-16 text-white bg-[#179800]">
+                <div class="container mx-auto px-4 lg:px-20">
+                    <div class="flex flex-col gap-12 lg:flex-row lg:justify-between">
+                        <div>
+                            <img src="https://i.imgur.com/4QZ7qV0.png" alt="Logo" class="w-40 mb-4">
+                            <p class="text-lg">Fresh groceries delivered to your <br> doorstep with love and care.</p>
+                        </div>
+                        <div>
+                            <ul class="flex flex-col gap-3 text-lg">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="shop.html">Shop</a></li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                        <div class="flex flex-col gap-4">
+                            <h5 class="text-xl">Follow Us</h5>
+                            <div class="flex text-3xl gap-6">
+                                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center pt-8 mt-8 border-t border-white/20">
+                        <p>&copy; 2024 RT GroceryHub. All rights reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
     `;
 }
 
-// ========== FILTERS & SORTING (Shop Page) ==========
+window.subscribeNewsletter = function() {
+    const email = document.getElementById('newsletter-email')?.value;
+    if (email) {
+        alert(`Thanks for subscribing! ${email} will receive exclusive offers.`);
+        document.getElementById('newsletter-email').value = '';
+    } else {
+        alert('Please enter a valid email address.');
+    }
+};
+
+// ========== RENDER FUNCTIONS ==========
+function renderPopularProducts() {
+    const grid = document.getElementById('popular-products-grid');
+    if (!grid) return;
+    
+    const popular = productsDatabase.slice(0, 6);
+    grid.innerHTML = popular.map(product => `
+        <div class="product-card bg-white rounded-lg p-3">
+            <img src="${product.image}" alt="${product.name}" class="w-full h-32 object-cover rounded-lg cursor-pointer" onclick="location.href='product-detail.html?id=${product.id}'">
+            <div class="flex items-center gap-1 mt-2">
+                <i class="fa-solid fa-star text-yellow-500 text-sm"></i>
+                <p class="text-sm">${product.rating}</p>
+            </div>
+            <h4 class="font-bold text-sm lg:text-base">${product.name}</h4>
+            <p class="text-orange-500 font-bold">₹${product.price}</p>
+            <button onclick="addToCart(${product.id}, '${product.name}', ${product.price}, '${product.image}')" class="w-full mt-2 bg-green-600 text-white py-1 rounded-lg text-sm">Add to Cart</button>
+        </div>
+    `).join('');
+}
+
+function renderShopProducts(filteredProducts = null) {
+    const grid = document.getElementById('shop-products-grid');
+    if (!grid) return;
+    
+    const products = filteredProducts || productsDatabase;
+    document.getElementById('products-count').textContent = `Showing ${products.length} products`;
+    
+    if (products.length === 0) {
+        grid.innerHTML = '<div class="col-span-full text-center py-12">No products found</div>';
+        return;
+    }
+    
+    grid.innerHTML = products.map(product => `
+        <div class="product-card bg-white rounded-lg p-4 shadow-sm">
+            <img src="${product.image}" alt="${product.name}" class="w-full h-40 object-cover rounded-lg cursor-pointer" onclick="location.href='product-detail.html?id=${product.id}'">
+            <div class="flex items-center gap-1 mt-2">
+                <i class="fa-solid fa-star text-yellow-500"></i>
+                <span>${product.rating}</span>
+            </div>
+            <h3 class="font-bold text-lg mt-1">${product.name}</h3>
+            <div class="flex gap-2 items-center mt-1">
+                <span class="text-orange-600 font-bold text-xl">₹${product.price}</span>
+                <span class="text-gray-400 line-through">₹${product.oldPrice}</span>
+            </div>
+            <button onclick="addToCart(${product.id}, '${product.name}', ${product.price}, '${product.image}')" class="w-full mt-3 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition">Add to Cart</button>
+        </div>
+    `).join('');
+}
+
+function renderCartPage() {
+    const container = document.getElementById('cart-items-container');
+    if (!container) return;
+    
+    if (cart.length === 0) {
+        container.innerHTML = `
+            <div class="text-center py-16">
+                <i class="fas fa-shopping-basket text-6xl text-gray-300 mb-4"></i>
+                <p class="text-gray-500 mb-4">Your cart is empty</p>
+                <a href="shop.html" class="bg-green-600 text-white px-6 py-2 rounded-lg">Continue Shopping</a>
+            </div>
+        `;
+        document.getElementById('cart-subtotal').textContent = '₹0';
+        document.getElementById('cart-total').textContent = '₹40';
+        return;
+    }
+    
+    container.innerHTML = cart.map(item => `
+        <div class="flex gap-4 p-4 border-b">
+            <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded-lg">
+            <div class="flex-1">
+                <h3 class="font-bold">${item.name}</h3>
+                <p class="text-orange-500 font-bold">₹${item.price}</p>
+                <div class="flex items-center gap-3 mt-2">
+                    <button onclick="updateQuantity(${item.id}, -1)" class="w-8 h-8 border rounded-full">-</button>
+                    <span>${item.quantity}</span>
+                    <button onclick="updateQuantity(${item.id}, 1)" class="w-8 h-8 border rounded-full">+</button>
+                    <button onclick="removeFromCart(${item.id})" class="text-red-500 ml-4"><i class="fas fa-trash"></i></button>
+                </div>
+            </div>
+            <div class="font-bold text-lg">₹${item.price * item.quantity}</div>
+        </div>
+    `).join('');
+    
+    const subtotal = getCartTotal();
+    document.getElementById('cart-subtotal').textContent = `₹${subtotal}`;
+    document.getElementById('cart-total').textContent = `₹${subtotal + 40}`;
+}
+
+function loadProductDetail() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = parseInt(urlParams.get('id'));
+    const product = productsDatabase.find(p => p.id === productId);
+    const container = document.getElementById('product-detail-container');
+    
+    if (product && container) {
+        container.innerHTML = `
+            <div class="flex flex-col lg:flex-row gap-8 py-12" data-aos="fade-up">
+                <div class="lg:w-1/2">
+                    <img src="${product.image}" alt="${product.name}" class="w-full rounded-xl shadow-lg">
+                </div>
+                <div class="lg:w-1/2">
+                    <h1 class="text-3xl font-bold text-gray-800">${product.name}</h1>
+                    <div class="flex items-center gap-2 mt-2">
+                        <div class="flex text-yellow-500">${'★'.repeat(Math.floor(product.rating))}${product.rating % 1 ? '½' : ''}</div>
+                        <span>(${product.rating})</span>
+                    </div>
+                    <div class="flex gap-3 items-center mt-4">
+                        <span class="text-3xl font-bold text-orange-600">₹${product.price}</span>
+                        <span class="text-gray-400 line-through text-xl">₹${product.oldPrice}</span>
+                        <span class="bg-green-100 text-green-600 px-2 py-1 rounded-lg text-sm">${Math.round((1 - product.price/product.oldPrice) * 100)}% OFF</span>
+                    </div>
+                    <p class="text-gray-600 mt-4">${product.description}</p>
+                    <div class="mt-4">
+                        <span class="text-green-600"><i class="fas fa-check-circle"></i> In Stock (${product.stock} items)</span>
+                    </div>
+                    <div class="flex items-center gap-4 mt-6">
+                        <div class="flex items-center border rounded-lg">
+                            <button onclick="updateQty(-1)" class="px-4 py-2 text-xl">-</button>
+                            <input type="number" id="product-qty" value="1" min="1" max="${product.stock}" class="w-16 text-center border-x">
+                            <button onclick="updateQty(1)" class="px-4 py-2 text-xl">+</button>
+                        </div>
+                        <button onclick="addToCartFromDetail(${product.id}, '${product.name}', ${product.price}, '${product.image}')" class="flex-1 bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+}
+
+function updateQty(change) {
+    const input = document.getElementById('product-qty');
+    let val = parseInt(input.value) + change;
+    if (val >= 1) input.value = val;
+}
+
+function addToCartFromDetail(id, name, price, image) {
+    const qty = parseInt(document.getElementById('product-qty').value);
+    for (let i = 0; i < qty; i++) {
+        addToCart(id, name, price, image);
+    }
+}
+
+// ========== FILTERS & SORTING ==========
 function setupFilters() {
     const searchInput = document.getElementById('search-input');
     const sortSelect = document.getElementById('sort-select');
@@ -309,7 +393,6 @@ function setupFilters() {
     function filterProducts() {
         let filtered = [...productsDatabase];
         
-        // Category filter
         const selectedCategories = Array.from(categoryCheckboxes)
             .filter(cb => cb.checked && cb.value !== 'all')
             .map(cb => cb.value);
@@ -318,25 +401,21 @@ function setupFilters() {
             filtered = filtered.filter(p => selectedCategories.includes(p.category));
         }
         
-        // Search filter
         if (searchInput && searchInput.value) {
             const query = searchInput.value.toLowerCase();
             filtered = filtered.filter(p => p.name.toLowerCase().includes(query));
         }
         
-        // Price filter
         const min = parseInt(minPrice?.value) || 0;
         const max = parseInt(maxPrice?.value) || 1000;
         filtered = filtered.filter(p => p.price >= min && p.price <= max);
         
-        // Sort
         if (sortSelect) {
             switch(sortSelect.value) {
                 case 'price-low': filtered.sort((a,b) => a.price - b.price); break;
                 case 'price-high': filtered.sort((a,b) => b.price - a.price); break;
                 case 'rating': filtered.sort((a,b) => b.rating - a.rating); break;
                 case 'name': filtered.sort((a,b) => a.name.localeCompare(b.name)); break;
-                default: filtered.sort((a,b) => a.id - b.id);
             }
         }
         
@@ -348,165 +427,85 @@ function setupFilters() {
     if (minPrice) minPrice.addEventListener('input', filterProducts);
     if (maxPrice) maxPrice.addEventListener('input', filterProducts);
     categoryCheckboxes.forEach(cb => cb.addEventListener('change', filterProducts));
-    if (resetBtn) resetBtn.addEventListener('click', () => {
-        categoryCheckboxes.forEach(cb => cb.checked = false);
-        const allCheckbox = document.querySelector('#category-filters input[value="all"]');
-        if (allCheckbox) allCheckbox.checked = true;
-        if (searchInput) searchInput.value = '';
-        if (minPrice) minPrice.value = 0;
-        if (maxPrice) maxPrice.value = 500;
-        if (sortSelect) sortSelect.value = 'default';
-        filterProducts();
-    });
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+            categoryCheckboxes.forEach(cb => cb.checked = false);
+            const allCheckbox = document.querySelector('#category-filters input[value="all"]');
+            if (allCheckbox) allCheckbox.checked = true;
+            if (searchInput) searchInput.value = '';
+            if (minPrice) minPrice.value = 0;
+            if (maxPrice) maxPrice.value = 500;
+            if (sortSelect) sortSelect.value = 'default';
+            filterProducts();
+        });
+    }
     
     filterProducts();
 }
 
-// ========== COUNTDOWN TIMER ==========
-function startCountdown() {
-    let hours = 24, minutes = 0, seconds = 0;
-    setInterval(() => {
-        if (seconds === 0) {
-            if (minutes === 0) {
-                if (hours === 0) return;
-                hours--;
-                minutes = 59;
-            } else {
-                minutes--;
-            }
-            seconds = 59;
-        } else {
-            seconds--;
-        }
-        const hEl = document.getElementById('hours');
-        const mEl = document.getElementById('minutes');
-        const sEl = document.getElementById('seconds');
-        if (hEl) hEl.textContent = hours.toString().padStart(2, '0');
-        if (mEl) mEl.textContent = minutes.toString().padStart(2, '0');
-        if (sEl) sEl.textContent = seconds.toString().padStart(2, '0');
-    }, 1000);
+// ========== CHECKOUT ==========
+function loadOrderSummary() {
+    if (!document.getElementById('order-items-list')) return;
+    
+    if (cart.length === 0) {
+        window.location.href = 'cart.html';
+        return;
+    }
+    
+    document.getElementById('order-items-list').innerHTML = cart.map(item => `
+        <div class="flex justify-between py-2 border-b">
+            <span>${item.name} x ${item.quantity}</span>
+            <span>₹${item.price * item.quantity}</span>
+        </div>
+    `).join('');
+    
+    const subtotal = getCartTotal();
+    document.getElementById('order-subtotal').textContent = `₹${subtotal}`;
+    document.getElementById('order-total').textContent = `₹${subtotal + 40}`;
 }
 
-// ========== INITIALIZE ==========
-document.addEventListener('DOMContentLoaded', () => {
-    loadHeader();
-    loadFooter();
-    updateCartCount();
-    renderTrendingProducts();
-    startCountdown();
+function setupCheckout() {
+    const form = document.getElementById('checkout-form');
+    if (!form) return;
     
-    // Initialize AOS
-    if (typeof AOS !== 'undefined') {
-        AOS.init({ duration: 800, once: true });
-    }
-    
-    // Cart page
-    if (document.getElementById('cart-items-container')) {
-        renderCartPage();
-    }
-    
-    // Shop page
-    if (document.getElementById('shop-products-grid')) {
-        renderShopProducts();
-        setupFilters();
-    }
-    
-    // Checkout page
-    if (document.getElementById('order-items-list')) {
-        loadOrderSummary();
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
         
-        // Payment method selection
-        document.querySelectorAll('.payment-option').forEach(option => {
-            option.addEventListener('click', function() {
-                document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
-                this.classList.add('selected');
-            });
-        });
+        if (cart.length === 0) {
+            alert('Your cart is empty!');
+            window.location.href = 'shop.html';
+            return;
+        }
         
-        // Checkout form submit
-        const checkoutForm = document.getElementById('checkout-form');
-        if (checkoutForm) {
-            checkoutForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                
-                if (cart.length === 0) {
-                    alert('Your cart is empty!');
-                    window.location.href = 'shop.html';
-                    return;
-                }
-                
-                const orderData = {
-                    orderId: 'ORD' + Date.now(),
-                    customer: {
-                        name: document.getElementById('fullname')?.value || '',
-                        phone: document.getElementById('phone')?.value || '',
-                        email: document.getElementById('email')?.value || '',
-                        address: document.getElementById('address')?.value || '',
-                        city: document.getElementById('city')?.value || '',
-                        pincode: document.getElementById('pincode')?.value || '',
-                        instructions: document.getElementById('instructions')?.value || ''
-                    },
-                    items: [...cart],
-                    paymentMethod: document.querySelector('.payment-option.selected')?.dataset.method || 'cod',
-                    total: getCartTotal() + 40,
-                    orderDate: new Date().toISOString()
-                };
-                
-                // Save order
-                const orders = JSON.parse(localStorage.getItem('orders')) || [];
-                orders.push(orderData);
-                localStorage.setItem('orders', JSON.stringify(orders));
-                
-                // Clear cart
-                cart = [];
-                saveCart();
-                
-                // Save last order for success page
-                localStorage.setItem('lastOrder', JSON.stringify(orderData));
-                
-                // Redirect to success
-                window.location.href = 'order-success.html';
-            });
-        }
-    }
-    
-    // Order success page
-    if (document.getElementById('order-details')) {
-        const lastOrder = JSON.parse(localStorage.getItem('lastOrder'));
-        if (lastOrder) {
-            document.getElementById('order-details').innerHTML = `
-                <div class="order-detail-row"><strong>Order ID:</strong> <span>${lastOrder.orderId}</span></div>
-                <div class="order-detail-row"><strong>Total Amount:</strong> <span>₹${lastOrder.total}</span></div>
-                <div class="order-detail-row"><strong>Delivery Address:</strong> <span>${lastOrder.customer.address}, ${lastOrder.customer.city} - ${lastOrder.customer.pincode}</span></div>
-                <div class="order-detail-row"><strong>Payment Method:</strong> <span>${lastOrder.paymentMethod === 'cod' ? 'Cash on Delivery' : 'Card/UPI'}</span></div>
-            `;
-            localStorage.removeItem('lastOrder');
-        } else {
-            document.getElementById('order-details').innerHTML = '<p>No recent order found. <a href="shop.html">Start shopping</a></p>';
-        }
-    }
-    
-    // Contact form
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your message! We will get back to you within 24 hours.');
-            contactForm.reset();
-        });
-    }
-    
-    // Newsletter form
-    const newsletterForm = document.getElementById('newsletter-form');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thanks for subscribing! Check your email for 20% off coupon.');
-            newsletterForm.reset();
-        });
-    }
-    
-    // Login/Register functionality
+        const orderData = {
+            orderId: 'ORD' + Date.now(),
+            customer: {
+                name: document.getElementById('fullname')?.value,
+                phone: document.getElementById('phone')?.value,
+                email: document.getElementById('email')?.value,
+                address: document.getElementById('address')?.value,
+                city: document.getElementById('city')?.value,
+                pincode: document.getElementById('pincode')?.value
+            },
+            items: [...cart],
+            total: getCartTotal() + 40,
+            orderDate: new Date().toISOString()
+        };
+        
+        const orders = JSON.parse(localStorage.getItem('orders')) || [];
+        orders.push(orderData);
+        localStorage.setItem('orders', JSON.stringify(orders));
+        localStorage.setItem('lastOrder', JSON.stringify(orderData));
+        
+        cart = [];
+        saveCart();
+        
+        window.location.href = 'order-success.html';
+    });
+}
+
+// ========== AUTHENTICATION ==========
+function setupAuth() {
     const loginForm = document.getElementById('login-form');
     const registerForm = document.getElementById('register-form');
     
@@ -515,7 +514,6 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const email = document.getElementById('login-email')?.value;
             const password = document.getElementById('login-password')?.value;
-            
             const users = JSON.parse(localStorage.getItem('users')) || [];
             const user = users.find(u => (u.email === email || u.phone === email) && u.password === password);
             
@@ -553,172 +551,79 @@ document.addEventListener('DOMContentLoaded', () => {
             users.push(newUser);
             localStorage.setItem('users', JSON.stringify(users));
             localStorage.setItem('currentUser', JSON.stringify(newUser));
-            alert('Registration successful! Welcome to RT GroceryHub.');
+            alert('Registration successful!');
             window.location.href = 'index.html';
         });
     }
-    
-    // Account page
+}
+
+// ========== ACCOUNT PAGE ==========
+function loadAccountPage() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser && document.getElementById('user-name')) {
+        window.location.href = 'login.html';
+        return;
+    }
+    
     if (document.getElementById('user-name')) {
-        if (!currentUser) {
-            window.location.href = 'login.html';
-            return;
-        }
         document.getElementById('user-name').textContent = currentUser.name;
         document.getElementById('user-email').textContent = currentUser.email;
         
-        // Profile info
-        const profileInfo = document.getElementById('profile-info');
-        if (profileInfo) {
-            profileInfo.innerHTML = `
-                <div class="profile-field"><span class="label">Full Name:</span><span class="value">${currentUser.name}</span></div>
-                <div class="profile-field"><span class="label">Email:</span><span class="value">${currentUser.email}</span></div>
-                <div class="profile-field"><span class="label">Phone:</span><span class="value">${currentUser.phone || 'Not added'}</span></div>
-                <div class="profile-field"><span class="label">Member Since:</span><span class="value">${new Date(currentUser.joinDate).toLocaleDateString()}</span></div>
-            `;
-        }
+        document.getElementById('profile-info').innerHTML = `
+            <div class="flex py-2 border-b"><span class="w-32 font-semibold">Name:</span><span>${currentUser.name}</span></div>
+            <div class="flex py-2 border-b"><span class="w-32 font-semibold">Email:</span><span>${currentUser.email}</span></div>
+            <div class="flex py-2 border-b"><span class="w-32 font-semibold">Phone:</span><span>${currentUser.phone || 'Not added'}</span></div>
+            <div class="flex py-2"><span class="w-32 font-semibold">Member Since:</span><span>${new Date(currentUser.joinDate).toLocaleDateString()}</span></div>
+        `;
         
-        // Load orders
         const orders = JSON.parse(localStorage.getItem('orders')) || [];
-        const userOrders = orders.filter(order => order.customer && order.customer.email === currentUser.email);
+        const userOrders = orders.filter(order => order.customer?.email === currentUser.email);
         const ordersList = document.getElementById('orders-list');
-        if (ordersList) {
-            if (userOrders.length === 0) {
-                ordersList.innerHTML = '<p style="color: var(--text-muted);">No orders yet. <a href="shop.html">Start shopping!</a></p>';
-            } else {
-                ordersList.innerHTML = userOrders.map(order => `
-                    <div class="order-card">
-                        <div class="order-header">
-                            <span class="order-id">${order.orderId}</span>
-                            <span class="order-status">Delivered</span>
-                        </div>
-                        <div><strong>Total:</strong> ₹${order.total}</div>
-                        <div><strong>Date:</strong> ${new Date(order.orderDate).toLocaleDateString()}</div>
-                        <div><strong>Items:</strong> ${order.items.length} products</div>
-                        <details style="margin-top: 0.5rem;">
-                            <summary style="cursor: pointer; color: var(--accent-orange);">View Details</summary>
-                            <div style="margin-top: 0.5rem; padding-left: 1rem;">
-                                ${order.items.map(item => `<div>${item.name} x ${item.quantity} = ₹${item.price * item.quantity}</div>`).join('')}
-                            </div>
-                        </details>
+        
+        if (userOrders.length === 0) {
+            ordersList.innerHTML = '<p class="text-gray-500">No orders yet. <a href="shop.html" class="text-green-600">Start shopping!</a></p>';
+        } else {
+            ordersList.innerHTML = userOrders.map(order => `
+                <div class="border rounded-lg p-4 mb-3">
+                    <div class="flex justify-between">
+                        <span class="font-bold text-orange-500">${order.orderId}</span>
+                        <span class="bg-green-100 text-green-600 px-2 py-1 rounded-lg text-sm">Delivered</span>
                     </div>
-                `).join('');
-            }
+                    <div class="mt-2"><strong>Total:</strong> ₹${order.total}</div>
+                    <div><strong>Date:</strong> ${new Date(order.orderDate).toLocaleDateString()}</div>
+                    <details class="mt-2">
+                        <summary class="text-orange-500 cursor-pointer">View Details</summary>
+                        <div class="pl-4 mt-2">${order.items.map(item => `<div>${item.name} x ${item.quantity} = ₹${item.price * item.quantity}</div>`).join('')}</div>
+                    </details>
+                </div>
+            `).join('');
         }
         
-        // Load addresses
-        let addresses = JSON.parse(localStorage.getItem('user_addresses')) || [];
-        const addressesList = document.getElementById('addresses-list');
-        if (addressesList) {
-            if (addresses.length === 0) {
-                addressesList.innerHTML = '<p style="color: var(--text-muted);">No saved addresses. Add one for faster checkout!</p>';
-            } else {
-                addressesList.innerHTML = addresses.map((addr, index) => `
-                    <div class="address-card">
-                        <p><strong>${addr.name}</strong> - ${addr.phone}</p>
-                        <p>${addr.address}, ${addr.city} - ${addr.pincode}</p>
-                        <button onclick="deleteAddress(${index})" style="background: none; border: none; color: #e74c3c; cursor: pointer; margin-top: 0.5rem;"><i class="fas fa-trash"></i> Delete</button>
-                    </div>
-                `).join('');
-            }
-        }
-        
-        // Account menu navigation
-        window.switchAccountSection = function(section) {
-            document.querySelectorAll('.account-section').forEach(s => s.classList.remove('active'));
-            document.getElementById(`${section}-section`).classList.add('active');
-            document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
-            document.querySelector(`.menu-item[data-section="${section}"]`).classList.add('active');
-        };
-        
-        document.querySelectorAll('.menu-item[data-section]').forEach(item => {
-            item.addEventListener('click', (e) => {
-                e.preventDefault();
-                switchAccountSection(item.dataset.section);
-            });
+        document.getElementById('logout-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
         });
-        
-        // Logout
-        const logoutBtn = document.getElementById('logout-btn');
-        if (logoutBtn) {
-            logoutBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                localStorage.removeItem('currentUser');
-                window.location.href = 'login.html';
-            });
-        }
+    }
+}
+
+// ========== INITIALIZE ==========
+document.addEventListener('DOMContentLoaded', () => {
+    loadHeader();
+    loadFooter();
+    updateCartCount();
+    renderCartSidebar();
+    renderPopularProducts();
+    renderShopProducts();
+    setupFilters();
+    loadProductDetail();
+    renderCartPage();
+    loadOrderSummary();
+    setupCheckout();
+    setupAuth();
+    loadAccountPage();
+    
+    if (typeof AOS !== 'undefined') {
+        AOS.init({ duration: 800, once: true });
     }
 });
-
-// Delete address function
-window.deleteAddress = function(index) {
-    let addresses = JSON.parse(localStorage.getItem('user_addresses')) || [];
-    addresses.splice(index, 1);
-    localStorage.setItem('user_addresses', JSON.stringify(addresses));
-    location.reload();
-};
-
-// Add new address function
-window.addNewAddress = function() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const address = prompt('Enter your full address:');
-    if (address) {
-        let addresses = JSON.parse(localStorage.getItem('user_addresses')) || [];
-        addresses.push({
-            name: currentUser.name,
-            phone: currentUser.phone,
-            address: address,
-            city: 'Your City',
-            pincode: '000000'
-        });
-        localStorage.setItem('user_addresses', JSON.stringify(addresses));
-        location.reload();
-    }
-};
-
-// Coupon function
-window.applyCoupon = function() {
-    const code = document.getElementById('coupon-code')?.value;
-    if (code === 'SAVE10') {
-        const subtotal = getCartTotal();
-        const discounted = subtotal * 0.9;
-        const totalEl = document.getElementById('cart-total');
-        if (totalEl) totalEl.textContent = `₹${discounted + 40}`;
-        alert('Coupon applied! 10% off on your order.');
-    } else if (code === 'WELCOME20') {
-        const subtotal = getCartTotal();
-        const discounted = subtotal * 0.8;
-        const totalEl = document.getElementById('cart-total');
-        if (totalEl) totalEl.textContent = `₹${discounted + 40}`;
-        alert('Coupon applied! 20% off on your order.');
-    } else if (code) {
-        alert('Invalid coupon code. Try SAVE10 or WELCOME20');
-    }
-};
-
-// Auth tab switching
-window.switchTab = function(tab) {
-    document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
-    if (tab === 'login') {
-        document.querySelector('.auth-tab[data-tab="login"]').classList.add('active');
-        document.getElementById('login-form').classList.add('active');
-    } else {
-        document.querySelector('.auth-tab[data-tab="register"]').classList.add('active');
-        document.getElementById('register-form').classList.add('active');
-    }
-};
-
-// Add animation keyframes to document
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideIn {
-        from { transform: translateX(100%); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
-    }
-    .alert {
-        animation: slideIn 0.3s ease;
-    }
-`;
-document.head.appendChild(style);

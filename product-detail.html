@@ -1,169 +1,350 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details - RT GroceryHub</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- DaisyUI + TailwindCSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/d18f75e53f.js" crossorigin="anonymous"></script>
+    <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        .product-detail-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            padding: 4rem 0;
-        }
-        .product-gallery {
-            background: var(--bg-card);
-            border-radius: var(--border-radius-lg);
-            padding: 2rem;
-            box-shadow: var(--shadow-sm);
-        }
-        .main-image {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-radius: var(--border-radius);
-            margin-bottom: 1rem;
-        }
-        .thumbnail-list {
-            display: flex;
-            gap: 1rem;
-        }
-        .thumbnail {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: var(--transition);
-        }
-        .thumbnail:hover, .thumbnail.active {
-            border-color: var(--accent-orange);
-        }
-        .product-info {
-            background: var(--bg-card);
-            border-radius: var(--border-radius-lg);
-            padding: 2rem;
-            box-shadow: var(--shadow-sm);
-        }
-        .rating {
-            color: #FFB800;
-            margin: 0.5rem 0;
-        }
-        .price {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--accent-orange);
-            margin: 1rem 0;
-        }
-        .old-price {
-            text-decoration: line-through;
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            margin-left: 0.5rem;
-        }
-        .quantity-selector {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
+        .font-sora { font-family: "Sora", serif; }
+        .font-poppins { font-family: "Poppins", serif; }
+        
         .quantity-btn {
-            width: 40px;
-            height: 40px;
-            border: 1px solid #e0e0e0;
-            background: var(--bg-primary);
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
+            transition: all 0.2s ease;
         }
-        .quantity-input {
-            width: 60px;
-            text-align: center;
-            padding: 10px;
-            border: 1px solid #e0e0e0;
-            border-radius: var(--border-radius);
+        
+        .quantity-btn:hover {
+            background-color: #16a34a;
+            color: white;
+            border-color: #16a34a;
         }
-        .stock-status {
-            color: #28a745;
-            margin: 1rem 0;
+        
+        .related-product-card {
+            transition: all 0.3s ease;
         }
-        @media (max-width: 768px) {
-            .product-detail-container {
-                grid-template-columns: 1fr;
-            }
+        
+        .related-product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
         }
     </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'btn-primary': '#16a34a',
+                        'primary-green': '#179800',
+                        'accent-orange': '#FF8C42',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
+
+<body class="bg-[#fffffe]">
+
+    <!-- Header Placeholder -->
     <div id="header-placeholder"></div>
 
     <main>
-        <div class="container">
-            <div class="product-detail-container" id="product-detail-container">
-                <!-- Product details loaded dynamically -->
+        <!-- Breadcrumb -->
+        <div class="container mx-auto px-4 lg:px-20 py-6" data-aos="fade-down">
+            <div class="flex items-center gap-2 text-sm text-gray-500">
+                <a href="index.html" class="hover:text-green-600">Home</a>
+                <i class="fas fa-chevron-right text-xs"></i>
+                <a href="shop.html" class="hover:text-green-600">Shop</a>
+                <i class="fas fa-chevron-right text-xs"></i>
+                <span class="text-green-600 font-semibold" id="breadcrumb-product-name">Product Details</span>
             </div>
         </div>
+
+        <!-- Product Detail Container -->
+        <div id="product-detail-container" class="container mx-auto px-4 lg:px-20 py-6">
+            <!-- Product details loaded dynamically -->
+        </div>
+
+        <!-- Related Products Section -->
+        <section class="container mx-auto px-4 lg:px-20 py-12">
+            <div class="text-center mb-8" data-aos="fade-up">
+                <h2 class="font-sora text-2xl lg:text-3xl font-bold text-gray-800">You May Also Like</h2>
+                <div class="w-20 h-1 bg-green-500 mx-auto mt-2 rounded-full"></div>
+            </div>
+            <div id="related-products-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+                <!-- Related products loaded via JS -->
+            </div>
+        </section>
     </main>
 
+    <!-- Footer Placeholder -->
     <div id="footer-placeholder"></div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.css"></script>
+    <!-- Cart Sidebar (Same as main.js) -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-sidebar-header">
+            <h2 class="text-xl font-bold"><i class="fas fa-shopping-cart"></i> Your Cart</h2>
+            <button onclick="toggleCartSidebar()" class="text-2xl">&times;</button>
+        </div>
+        <div id="cart-sidebar-items" class="cart-sidebar-items"></div>
+        <div class="cart-sidebar-footer">
+            <div class="flex justify-between font-bold text-lg mb-4">
+                <span>Total:</span>
+                <span id="cart-sidebar-total">₹0</span>
+            </div>
+            <a href="cart.html" class="btn btn-primary w-full bg-green-600 text-white py-2 rounded-lg text-center block">View Cart</a>
+            <a href="checkout.html" class="btn btn-success w-full bg-orange-500 text-white py-2 rounded-lg text-center block mt-2">Checkout</a>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="assets/js/main.js"></script>
+    
     <script>
+        // Additional product detail functions specific to this page
+        let currentProduct = null;
+        
         // Load product details from URL parameter
         function loadProductDetail() {
             const urlParams = new URLSearchParams(window.location.search);
             const productId = parseInt(urlParams.get('id'));
+            
+            if (!productsDatabase || productsDatabase.length === 0) {
+                console.error('Products database not loaded');
+                return;
+            }
+            
             const product = productsDatabase.find(p => p.id === productId);
             
             if (product && document.getElementById('product-detail-container')) {
+                currentProduct = product;
+                document.getElementById('breadcrumb-product-name').textContent = product.name;
+                
                 document.getElementById('product-detail-container').innerHTML = `
-                    <div class="product-gallery" data-aos="fade-right">
-                        <img src="${product.image}" alt="${product.name}" class="main-image" id="main-image">
-                        <div class="thumbnail-list">
-                            <img src="${product.image}" class="thumbnail active" onclick="changeImage(this.src)">
+                    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12" data-aos="fade-up">
+                        <!-- Product Image Gallery -->
+                        <div class="lg:w-1/2">
+                            <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-lg">
+                                <img src="${product.image}" alt="${product.name}" id="main-product-image" class="w-full h-80 lg:h-96 object-cover">
+                            </div>
+                            <div class="flex gap-3 mt-4 justify-center">
+                                <div class="w-20 h-20 rounded-lg overflow-hidden border-2 border-green-500 cursor-pointer" onclick="changeImage('${product.image}')">
+                                    <img src="${product.image}" class="w-full h-full object-cover">
+                                </div>
+                                <div class="w-20 h-20 rounded-lg overflow-hidden border-2 border-gray-200 cursor-pointer hover:border-green-500 transition" onclick="changeImage('${product.image}')">
+                                    <img src="${product.image}" class="w-full h-full object-cover">
+                                </div>
+                                <div class="w-20 h-20 rounded-lg overflow-hidden border-2 border-gray-200 cursor-pointer hover:border-green-500 transition" onclick="changeImage('${product.image}')">
+                                    <img src="${product.image}" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product Info -->
+                        <div class="lg:w-1/2">
+                            <div class="bg-white rounded-2xl p-6 shadow-sm">
+                                <h1 class="font-sora text-2xl lg:text-3xl font-bold text-gray-800 mb-2">${product.name}</h1>
+                                
+                                <!-- Rating -->
+                                <div class="flex items-center gap-2 mb-4">
+                                    <div class="flex text-yellow-500">
+                                        ${'★'.repeat(Math.floor(product.rating))}${product.rating % 1 ? '½' : ''}
+                                    </div>
+                                    <span class="text-gray-500">(${product.rating} stars)</span>
+                                    <span class="text-green-600 text-sm bg-green-50 px-2 py-1 rounded-full">In Stock</span>
+                                </div>
+                                
+                                <!-- Price -->
+                                <div class="mb-4">
+                                    <span class="text-3xl lg:text-4xl font-bold text-orange-600">₹${product.price}</span>
+                                    ${product.oldPrice ? `<span class="text-gray-400 line-through text-lg ml-2">₹${product.oldPrice}</span>` : ''}
+                                    ${product.oldPrice ? `<span class="bg-green-100 text-green-600 px-2 py-1 rounded-lg text-sm ml-2">${Math.round((1 - product.price/product.oldPrice) * 100)}% OFF</span>` : ''}
+                                </div>
+                                
+                                <!-- Description -->
+                                <p class="text-gray-600 mb-4 leading-relaxed">${product.description || 'Fresh and high quality product directly sourced from farms. 100% organic and chemical free. Premium quality guaranteed.'}</p>
+                                
+                                <!-- Stock Info -->
+                                <div class="flex items-center gap-2 mb-4 text-green-600">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>${product.stock} items available</span>
+                                </div>
+                                
+                                <!-- Quantity Selector -->
+                                <div class="mb-6">
+                                    <label class="block font-semibold mb-2">Quantity:</label>
+                                    <div class="flex items-center gap-3">
+                                        <button onclick="updateProductQty(-1)" class="quantity-btn w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center text-xl">-</button>
+                                        <input type="number" id="product-qty" value="1" min="1" max="${product.stock}" class="w-20 text-center p-2 border border-gray-300 rounded-lg">
+                                        <button onclick="updateProductQty(1)" class="quantity-btn w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center text-xl">+</button>
+                                        <span class="text-gray-500 text-sm">${product.stock} kg/pcs available</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Action Buttons -->
+                                <div class="flex flex-col sm:flex-row gap-3">
+                                    <button onclick="addToCartFromDetail()" class="flex-1 bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition flex items-center justify-center gap-2">
+                                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                                    </button>
+                                    <button onclick="buyNow()" class="flex-1 bg-orange-500 text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition flex items-center justify-center gap-2">
+                                        <i class="fas fa-bolt"></i> Buy Now
+                                    </button>
+                                </div>
+                                
+                                <!-- Delivery Info -->
+                                <div class="mt-6 pt-4 border-t border-gray-100">
+                                    <div class="flex items-center gap-3 text-sm text-gray-500 mb-2">
+                                        <i class="fas fa-truck text-green-600"></i>
+                                        <span>Free delivery on orders above ₹499</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 text-sm text-gray-500">
+                                        <i class="fas fa-undo-alt text-green-600"></i>
+                                        <span>Easy returns within 7 days</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="product-info" data-aos="fade-left">
-                        <h1 style="color: var(--primary-green-dark);">${product.name}</h1>
-                        <div class="rating">${'★'.repeat(Math.floor(product.rating))}${product.rating % 1 ? '½' : ''} (${product.rating})</div>
-                        <div class="price">₹${product.price}<span class="old-price">₹${product.oldPrice}</span></div>
-                        <p style="color: var(--text-muted); margin: 1rem 0;">${product.description || 'Fresh and high quality product directly sourced from farms. 100% organic and chemical free.'}</p>
-                        <div class="stock-status"><i class="fas fa-check-circle"></i> In Stock (${product.stock} items left)</div>
-                        <div class="quantity-selector">
-                            <button class="quantity-btn" onclick="updateProductQty(-1)">-</button>
-                            <input type="number" id="product-qty" value="1" min="1" max="${product.stock}" class="quantity-input">
-                            <button class="quantity-btn" onclick="updateProductQty(1)">+</button>
-                        </div>
-                        <button class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="addToCart(${product.id}, '${product.name}', ${product.price}, '${product.image}')">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
-                        </button>
+                `;
+                
+                // Load related products
+                loadRelatedProducts(product.category, product.id);
+            } else if (!product) {
+                document.getElementById('product-detail-container').innerHTML = `
+                    <div class="text-center py-16">
+                        <i class="fas fa-search text-6xl text-gray-300 mb-4"></i>
+                        <h2 class="text-2xl font-bold text-gray-600">Product Not Found</h2>
+                        <p class="text-gray-500 mt-2">The product you're looking for doesn't exist.</p>
+                        <a href="shop.html" class="inline-block mt-4 bg-green-600 text-white px-6 py-2 rounded-lg">Continue Shopping</a>
                     </div>
                 `;
             }
         }
         
+        // Change main image
+        function changeImage(src) {
+            const mainImage = document.getElementById('main-product-image');
+            if (mainImage) {
+                mainImage.src = src;
+            }
+            // Update active thumbnail styling
+            document.querySelectorAll('.thumbnail-img').forEach((thumb, index) => {
+                if (thumb.src === src) {
+                    thumb.parentElement.classList.add('border-green-500');
+                    thumb.parentElement.classList.remove('border-gray-200');
+                } else {
+                    thumb.parentElement.classList.remove('border-green-500');
+                    thumb.parentElement.classList.add('border-gray-200');
+                }
+            });
+        }
+        
+        // Update product quantity
         function updateProductQty(change) {
             const input = document.getElementById('product-qty');
-            let val = parseInt(input.value) + change;
-            if (val >= 1) input.value = val;
+            if (input) {
+                let newVal = parseInt(input.value) + change;
+                const max = parseInt(input.max) || 99;
+                if (newVal >= 1 && newVal <= max) {
+                    input.value = newVal;
+                }
+            }
         }
         
-        function changeImage(src) {
-            document.getElementById('main-image').src = src;
-            document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
-            event.target.classList.add('active');
+        // Add to cart from product detail page
+        function addToCartFromDetail() {
+            if (!currentProduct) return;
+            const qty = parseInt(document.getElementById('product-qty').value);
+            for (let i = 0; i < qty; i++) {
+                addToCart(currentProduct.id, currentProduct.name, currentProduct.price, currentProduct.image);
+            }
         }
         
+        // Buy now (add to cart and redirect to checkout)
+        function buyNow() {
+            if (!currentProduct) return;
+            const qty = parseInt(document.getElementById('product-qty').value);
+            for (let i = 0; i < qty; i++) {
+                addToCart(currentProduct.id, currentProduct.name, currentProduct.price, currentProduct.image);
+            }
+            window.location.href = 'checkout.html';
+        }
+        
+        // Load related products (same category)
+        function loadRelatedProducts(category, currentProductId) {
+            const container = document.getElementById('related-products-grid');
+            if (!container) return;
+            
+            const related = productsDatabase
+                .filter(p => p.category === category && p.id !== currentProductId)
+                .slice(0, 4);
+            
+            if (related.length === 0) {
+                // If no related products in same category, show some random products
+                const randomProducts = productsDatabase.filter(p => p.id !== currentProductId).slice(0, 4);
+                renderRelatedProducts(randomProducts, container);
+            } else {
+                renderRelatedProducts(related, container);
+            }
+        }
+        
+        function renderRelatedProducts(products, container) {
+            container.innerHTML = products.map(product => `
+                <div class="related-product-card bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer" onclick="location.href='product-detail.html?id=${product.id}'">
+                    <img src="${product.image}" alt="${product.name}" class="w-full h-36 lg:h-40 object-cover">
+                    <div class="p-3">
+                        <div class="flex items-center gap-1 text-sm">
+                            <i class="fa-solid fa-star text-yellow-500"></i>
+                            <span>${product.rating}</span>
+                        </div>
+                        <h3 class="font-semibold text-sm lg:text-base mt-1 truncate">${product.name}</h3>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="text-orange-600 font-bold">₹${product.price}</span>
+                            ${product.oldPrice ? `<span class="text-gray-400 line-through text-xs">₹${product.oldPrice}</span>` : ''}
+                        </div>
+                        <button onclick="event.stopPropagation(); addToCart(${product.id}, '${product.name}', ${product.price}, '${product.image}')" class="w-full mt-2 bg-green-600 text-white py-1 rounded-lg text-sm hover:bg-green-700 transition">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Override addToCart to also update sidebar
+        const originalAddToCart = window.addToCart;
+        window.addToCart = function(id, name, price, image) {
+            if (originalAddToCart) originalAddToCart(id, name, price, image);
+            if (typeof renderCartSidebar === 'function') renderCartSidebar();
+        };
+        
+        // Initialize when DOM is ready
         document.addEventListener('DOMContentLoaded', () => {
-            loadProductDetail();
-            if (typeof AOS !== 'undefined') AOS.init({ duration: 800, once: true });
+            // Wait for productsDatabase to be available
+            const checkProducts = setInterval(() => {
+                if (typeof productsDatabase !== 'undefined' && productsDatabase.length > 0) {
+                    clearInterval(checkProducts);
+                    loadProductDetail();
+                }
+            }, 100);
+            
+            if (typeof AOS !== 'undefined') {
+                AOS.init({ duration: 800, once: true });
+            }
         });
     </script>
 </body>
+
 </html>

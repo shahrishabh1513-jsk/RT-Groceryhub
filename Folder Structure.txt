@@ -13,52 +13,9 @@ RT-GroceryHub/
 │
 ├── assets/
 │   ├── css/
-│   │   ├── style.css               # Main styles (variables, base, layout)
-│   │   ├── components.css          # Reusable components (cards, buttons, modals)
-│   │   └── responsive.css          # Media queries (mobile, tablet)
-│   │
+│   │   └── style.css               # Main styles (Tailwind + custom)
 │   ├── js/
-│   │   ├── main.js                 # Global functions (header/footer loader, cart, notifications)
-│   │   ├── products.js             # Products database & filter logic
-│   │   └── cart.js                 # Cart management (add, remove, update, localStorage)
-│   │
-│   └── images/
-│       ├── logo.png                # RT GroceryHub logo
-│       ├── hero-bg.jpg             # Hero section background (optional)
-│       ├── banner-deals.jpg        # Deals banner image
-│       ├── products/               # Category & product images
-│       │   ├── rice.jpg
-│       │   ├── wheat.jpg
-│       │   ├── spices.jpg
-│       │   ├── oil.jpg
-│       │   ├── apple.jpg
-│       │   ├── banana.jpg
-│       │   ├── carrot.jpg
-│       │   ├── tomato.jpg
-│       │   ├── onion.jpg
-│       │   ├── potato.jpg
-│       │   ├── milk.jpg
-│       │   ├── paneer.jpg
-│       │   ├── dal.jpg
-│       │   └── ... (more veg items)
-│       │
-│       └── icons/                  # Payment icons, social icons
-│           ├── visa.png
-│           ├── mastercard.png
-│           └── upi.png
+│   │   └── main.js                 # All JavaScript functionality
+│   └── images/                     (Optional - for local images)
 │
-├── pages/                          # Additional nested pages (optional)
-│   ├── categories/
-│   │   ├── fruits.html
-│   │   ├── vegetables.html
-│   │   ├── grains.html
-│   │   ├── dairy.html
-│   │   ├── spices.html
-│   │   └── oils.html
-│   │
-│   └── policies/
-│       ├── privacy.html
-│       ├── terms.html
-│       └── refund.html
-│
-└── README.md                       # Project documentation
+└── README.md

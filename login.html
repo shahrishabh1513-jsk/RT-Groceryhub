@@ -1,178 +1,572 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - RT GroceryHub</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Login / Register - RT GroceryHub</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- DaisyUI + TailwindCSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/d18f75e53f.js" crossorigin="anonymous"></script>
+    <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        .auth-header {
-            background: linear-gradient(135deg, var(--primary-green-dark), var(--primary-green));
-            padding: 2rem 0;
-            text-align: center;
-            color: white;
-        }
-        .auth-container {
-            min-height: 70vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 3rem 0;
-        }
+        .font-sora { font-family: "Sora", serif; }
+        .font-poppins { font-family: "Poppins", serif; }
+        
         .auth-card {
-            background: var(--bg-card);
-            border-radius: var(--border-radius-lg);
-            padding: 2.5rem;
-            width: 100%;
-            max-width: 450px;
-            box-shadow: var(--shadow-lg);
-            transition: var(--transition);
+            transition: all 0.3s ease;
         }
+        
         .auth-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
-        .auth-tabs {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            border-bottom: 2px solid rgba(0,0,0,0.05);
-        }
+        
         .auth-tab {
-            padding: 0.8rem 0;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--text-muted);
-            border-bottom: 2px solid transparent;
-            margin-bottom: -2px;
-            transition: var(--transition);
+            transition: all 0.3s ease;
+            position: relative;
         }
+        
         .auth-tab.active {
-            color: var(--accent-orange);
-            border-bottom-color: var(--accent-orange);
+            color: #16a34a;
         }
-        .auth-form {
-            display: none;
-            animation: fadeIn 0.4s ease;
+        
+        .auth-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #16a34a;
+            border-radius: 2px;
         }
-        .auth-form.active {
-            display: block;
+        
+        .auth-tab:hover:not(.active) {
+            color: #16a34a;
         }
-        .form-group {
-            margin-bottom: 1.2rem;
+        
+        .form-input {
+            transition: all 0.3s ease;
         }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #e0e0e0;
-            border-radius: var(--border-radius);
-            transition: var(--transition);
-        }
-        .form-group input:focus {
+        
+        .form-input:focus {
             outline: none;
-            border-color: var(--accent-orange);
-            box-shadow: 0 0 0 3px rgba(255,140,66,0.1);
+            border-color: #16a34a;
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
         }
-        .forgot-password {
-            text-align: right;
-            margin-top: 0.5rem;
+        
+        .form-input.error {
+            border-color: #ef4444;
+            animation: shake 0.3s ease-in-out;
         }
-        .forgot-password a {
-            color: var(--accent-orange);
-            text-decoration: none;
-            font-size: 0.85rem;
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        
+        .password-toggle {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .password-toggle:hover {
+            color: #16a34a;
+        }
+        
+        .social-login-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .social-login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .floating-image {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .benefit-item {
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideIn 0.5s ease forwards;
+        }
+        
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
     </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'btn-primary': '#16a34a',
+                        'primary-green': '#179800',
+                        'accent-orange': '#FF8C42',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
+
+<body class="bg-[#fffffe]">
+
+    <!-- Header Placeholder -->
     <div id="header-placeholder"></div>
 
     <main>
-        <section class="auth-header" data-aos="fade-down">
-            <div class="container">
-                <h1><i class="fas fa-user-circle"></i> Welcome Back</h1>
-                <p>Login to your account or create a new one</p>
+        <!-- Auth Header -->
+        <section class="w-full bg-gradient-to-r from-green-700 to-green-500 py-12 lg:py-16 text-white">
+            <div class="container mx-auto px-4 lg:px-20 text-center" data-aos="fade-down">
+                <h1 class="font-sora text-3xl lg:text-5xl font-bold mb-3">
+                    <i class="fas fa-user-circle"></i> Welcome Back
+                </h1>
+                <p class="font-poppins text-base lg:text-lg">Login to your account or create a new one</p>
             </div>
         </section>
 
-        <div class="container">
-            <div class="auth-container" data-aos="zoom-in">
-                <div class="auth-card">
-                    <div class="auth-tabs">
-                        <div class="auth-tab active" data-tab="login">Login</div>
-                        <div class="auth-tab" data-tab="register">Create Account</div>
+        <!-- Auth Section -->
+        <div class="container mx-auto px-4 lg:px-20 py-12 lg:py-20">
+            <div class="flex flex-col lg:flex-row gap-12 max-w-6xl mx-auto">
+                <!-- Auth Card -->
+                <div class="flex-1" data-aos="zoom-in">
+                    <div class="auth-card bg-white rounded-2xl shadow-xl overflow-hidden">
+                        <!-- Tabs -->
+                        <div class="flex border-b border-gray-100">
+                            <button onclick="switchTab('login')" id="login-tab" class="auth-tab active flex-1 py-4 text-center font-semibold text-gray-600 transition">
+                                <i class="fas fa-sign-in-alt mr-2"></i> Login
+                            </button>
+                            <button onclick="switchTab('register')" id="register-tab" class="auth-tab flex-1 py-4 text-center font-semibold text-gray-600 transition">
+                                <i class="fas fa-user-plus mr-2"></i> Register
+                            </button>
+                        </div>
+                        
+                        <!-- Login Form -->
+                        <div id="login-form-container" class="p-6 lg:p-8">
+                            <form id="login-form">
+                                <div class="mb-5">
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                        <i class="fas fa-envelope text-green-600 mr-1"></i> Email or Phone Number
+                                    </label>
+                                    <input type="text" id="login-email" placeholder="Enter email or phone number" required 
+                                           class="form-input w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 transition">
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                        <i class="fas fa-lock text-green-600 mr-1"></i> Password
+                                    </label>
+                                    <div class="relative">
+                                        <input type="password" id="login-password" placeholder="Enter password" required 
+                                               class="form-input w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 transition pr-12">
+                                        <span class="password-toggle absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" onclick="togglePassword('login-password')">
+                                            <i class="far fa-eye"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-between items-center mb-6">
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="checkbox" class="rounded border-gray-300 text-green-600 focus:ring-green-500">
+                                        <span class="text-sm text-gray-600">Remember me</span>
+                                    </label>
+                                    <a href="#" class="text-sm text-green-600 hover:underline">Forgot Password?</a>
+                                </div>
+                                
+                                <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition flex items-center justify-center gap-2">
+                                    <i class="fas fa-sign-in-alt"></i> Login to Account
+                                </button>
+                                
+                                <!-- Social Login -->
+                                <div class="mt-6">
+                                    <div class="relative">
+                                        <div class="absolute inset-0 flex items-center">
+                                            <div class="w-full border-t border-gray-200"></div>
+                                        </div>
+                                        <div class="relative flex justify-center text-sm">
+                                            <span class="px-4 bg-white text-gray-500">Or continue with</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="grid grid-cols-3 gap-3 mt-4">
+                                        <button type="button" onclick="socialLogin('google')" class="social-login-btn flex items-center justify-center gap-2 p-2 border border-gray-200 rounded-lg hover:border-green-500 transition">
+                                            <i class="fab fa-google text-red-500"></i>
+                                            <span class="text-sm hidden sm:inline">Google</span>
+                                        </button>
+                                        <button type="button" onclick="socialLogin('facebook')" class="social-login-btn flex items-center justify-center gap-2 p-2 border border-gray-200 rounded-lg hover:border-green-500 transition">
+                                            <i class="fab fa-facebook-f text-blue-600"></i>
+                                            <span class="text-sm hidden sm:inline">Facebook</span>
+                                        </button>
+                                        <button type="button" onclick="socialLogin('apple')" class="social-login-btn flex items-center justify-center gap-2 p-2 border border-gray-200 rounded-lg hover:border-green-500 transition">
+                                            <i class="fab fa-apple text-gray-800"></i>
+                                            <span class="text-sm hidden sm:inline">Apple</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <!-- Register Form -->
+                        <div id="register-form-container" class="p-6 lg:p-8 hidden">
+                            <form id="register-form">
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                            <i class="fas fa-user text-green-600 mr-1"></i> Full Name <span class="text-red-500">*</span>
+                                        </label>
+                                        <input type="text" id="reg-name" placeholder="Enter full name" required 
+                                               class="form-input w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 transition">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                            <i class="fas fa-envelope text-green-600 mr-1"></i> Email Address <span class="text-red-500">*</span>
+                                        </label>
+                                        <input type="email" id="reg-email" placeholder="your@email.com" required 
+                                               class="form-input w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 transition">
+                                    </div>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                            <i class="fas fa-phone text-green-600 mr-1"></i> Phone Number <span class="text-red-500">*</span>
+                                        </label>
+                                        <input type="tel" id="reg-phone" placeholder="10-digit mobile number" required 
+                                               class="form-input w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 transition">
+                                    </div>
+                                    <div></div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                        <i class="fas fa-lock text-green-600 mr-1"></i> Password <span class="text-red-500">*</span>
+                                    </label>
+                                    <div class="relative">
+                                        <input type="password" id="reg-password" placeholder="Create password" required 
+                                               class="form-input w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 transition pr-12">
+                                        <span class="password-toggle absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" onclick="togglePassword('reg-password')">
+                                            <i class="far fa-eye"></i>
+                                        </span>
+                                    </div>
+                                    <p class="text-xs text-gray-500 mt-1">Password must be at least 6 characters</p>
+                                </div>
+                                
+                                <div class="mb-5">
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                        <i class="fas fa-check-circle text-green-600 mr-1"></i> Confirm Password <span class="text-red-500">*</span>
+                                    </label>
+                                    <div class="relative">
+                                        <input type="password" id="reg-confirm" placeholder="Confirm password" required 
+                                               class="form-input w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 transition pr-12">
+                                        <span class="password-toggle absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" onclick="togglePassword('reg-confirm')">
+                                            <i class="far fa-eye"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="checkbox" id="terms-checkbox" required class="rounded border-gray-300 text-green-600 focus:ring-green-500">
+                                        <span class="text-sm text-gray-600">I agree to the <a href="#" class="text-green-600 hover:underline">Terms of Service</a> and <a href="#" class="text-green-600 hover:underline">Privacy Policy</a></span>
+                                    </label>
+                                </div>
+                                
+                                <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition flex items-center justify-center gap-2">
+                                    <i class="fas fa-user-plus"></i> Create Account
+                                </button>
+                                
+                                <!-- Social Signup -->
+                                <div class="mt-6">
+                                    <div class="relative">
+                                        <div class="absolute inset-0 flex items-center">
+                                            <div class="w-full border-t border-gray-200"></div>
+                                        </div>
+                                        <div class="relative flex justify-center text-sm">
+                                            <span class="px-4 bg-white text-gray-500">Or sign up with</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="grid grid-cols-3 gap-3 mt-4">
+                                        <button type="button" onclick="socialLogin('google')" class="social-login-btn flex items-center justify-center gap-2 p-2 border border-gray-200 rounded-lg hover:border-green-500 transition">
+                                            <i class="fab fa-google text-red-500"></i>
+                                            <span class="text-sm hidden sm:inline">Google</span>
+                                        </button>
+                                        <button type="button" onclick="socialLogin('facebook')" class="social-login-btn flex items-center justify-center gap-2 p-2 border border-gray-200 rounded-lg hover:border-green-500 transition">
+                                            <i class="fab fa-facebook-f text-blue-600"></i>
+                                            <span class="text-sm hidden sm:inline">Facebook</span>
+                                        </button>
+                                        <button type="button" onclick="socialLogin('apple')" class="social-login-btn flex items-center justify-center gap-2 p-2 border border-gray-200 rounded-lg hover:border-green-500 transition">
+                                            <i class="fab fa-apple text-gray-800"></i>
+                                            <span class="text-sm hidden sm:inline">Apple</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    
-                    <!-- Login Form -->
-                    <form id="login-form" class="auth-form active">
-                        <div class="form-group">
-                            <label><i class="fas fa-envelope"></i> Email or Phone</label>
-                            <input type="text" id="login-email" placeholder="Enter email or phone" required>
+                </div>
+                
+                <!-- Benefits Sidebar -->
+                <div class="lg:w-80" data-aos="fade-left">
+                    <div class="bg-gradient-to-br from-green-600 to-green-500 rounded-2xl p-6 text-white text-center">
+                        <div class="floating-image mb-6">
+                            <i class="fas fa-shopping-basket text-6xl"></i>
                         </div>
-                        <div class="form-group">
-                            <label><i class="fas fa-lock"></i> Password</label>
-                            <input type="password" id="login-password" placeholder="Enter password" required>
+                        <h3 class="font-sora text-xl font-bold mb-4">Why Join RT GroceryHub?</h3>
+                        
+                        <div class="space-y-4 text-left">
+                            <div class="benefit-item flex items-start gap-3" style="animation-delay: 0.1s">
+                                <i class="fas fa-tag mt-1"></i>
+                                <div>
+                                    <p class="font-semibold">Exclusive Offers</p>
+                                    <p class="text-sm text-green-100">Get member-only discounts and deals</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item flex items-start gap-3" style="animation-delay: 0.2s">
+                                <i class="fas fa-truck-fast mt-1"></i>
+                                <div>
+                                    <p class="font-semibold">Free Delivery</p>
+                                    <p class="text-sm text-green-100">On orders above ₹499</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item flex items-start gap-3" style="animation-delay: 0.3s">
+                                <i class="fas fa-gift mt-1"></i>
+                                <div>
+                                    <p class="font-semibold">Welcome Bonus</p>
+                                    <p class="text-sm text-green-100">Get ₹100 off on first order</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item flex items-start gap-3" style="animation-delay: 0.4s">
+                                <i class="fas fa-clock mt-1"></i>
+                                <div>
+                                    <p class="font-semibold">Order Tracking</p>
+                                    <p class="text-sm text-green-100">Real-time delivery updates</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item flex items-start gap-3" style="animation-delay: 0.5s">
+                                <i class="fas fa-star mt-1"></i>
+                                <div>
+                                    <p class="font-semibold">Reward Points</p>
+                                    <p class="text-sm text-green-100">Earn points on every purchase</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="forgot-password">
-                            <a href="#">Forgot Password?</a>
+                        
+                        <div class="mt-6 pt-4 border-t border-green-400">
+                            <p class="text-sm">Already have an account? <a href="#" onclick="switchTab('login')" class="font-semibold underline">Login here</a></p>
                         </div>
-                        <button type="submit" class="btn btn-primary ripple" style="width: 100%; justify-content: center; margin-top: 1rem;">
-                            <i class="fas fa-sign-in-alt"></i> Login
-                        </button>
-                        <p style="text-align: center; margin-top: 1.5rem; color: var(--text-muted);">
-                            Don't have an account? <a href="#" onclick="switchTab('register')" style="color: var(--accent-orange);">Register</a>
-                        </p>
-                    </form>
-                    
-                    <!-- Register Form -->
-                    <form id="register-form" class="auth-form">
-                        <div class="form-group">
-                            <label><i class="fas fa-user"></i> Full Name</label>
-                            <input type="text" id="reg-name" placeholder="Enter your full name" required>
-                        </div>
-                        <div class="form-group">
-                            <label><i class="fas fa-envelope"></i> Email Address</label>
-                            <input type="email" id="reg-email" placeholder="your@email.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label><i class="fas fa-phone"></i> Phone Number</label>
-                            <input type="tel" id="reg-phone" placeholder="10-digit mobile number" required>
-                        </div>
-                        <div class="form-group">
-                            <label><i class="fas fa-lock"></i> Password</label>
-                            <input type="password" id="reg-password" placeholder="Create password" required>
-                        </div>
-                        <div class="form-group">
-                            <label><i class="fas fa-check-circle"></i> Confirm Password</label>
-                            <input type="password" id="reg-confirm" placeholder="Confirm password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary ripple" style="width: 100%; justify-content: center;">
-                            <i class="fas fa-user-plus"></i> Create Account
-                        </button>
-                        <p style="text-align: center; margin-top: 1.5rem; color: var(--text-muted);">
-                            Already have an account? <a href="#" onclick="switchTab('login')" style="color: var(--accent-orange);">Login</a>
-                        </p>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 
+    <!-- Footer Placeholder -->
     <div id="footer-placeholder"></div>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-sidebar-header">
+            <h2 class="text-xl font-bold"><i class="fas fa-shopping-cart"></i> Your Cart</h2>
+            <button onclick="toggleCartSidebar()" class="text-2xl">&times;</button>
+        </div>
+        <div id="cart-sidebar-items" class="cart-sidebar-items"></div>
+        <div class="cart-sidebar-footer">
+            <div class="flex justify-between font-bold text-lg mb-4">
+                <span>Total:</span>
+                <span id="cart-sidebar-total">₹0</span>
+            </div>
+            <a href="cart.html" class="btn btn-primary w-full bg-green-600 text-white py-2 rounded-lg text-center block">View Cart</a>
+            <a href="checkout.html" class="btn btn-success w-full bg-orange-500 text-white py-2 rounded-lg text-center block mt-2">Checkout</a>
+        </div>
+    </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="assets/js/main.js"></script>
+    
+    <script>
+        // Tab switching
+        function switchTab(tab) {
+            const loginTab = document.getElementById('login-tab');
+            const registerTab = document.getElementById('register-tab');
+            const loginContainer = document.getElementById('login-form-container');
+            const registerContainer = document.getElementById('register-form-container');
+            
+            if (tab === 'login') {
+                loginTab.classList.add('active');
+                registerTab.classList.remove('active');
+                loginContainer.classList.remove('hidden');
+                registerContainer.classList.add('hidden');
+            } else {
+                loginTab.classList.remove('active');
+                registerTab.classList.add('active');
+                loginContainer.classList.add('hidden');
+                registerContainer.classList.remove('hidden');
+            }
+        }
+        
+        // Toggle password visibility
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = input.nextElementSibling.querySelector('i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+        
+        // Social login (demo)
+        function socialLogin(provider) {
+            alert(`${provider.charAt(0).toUpperCase() + provider.slice(1)} login feature coming soon! Please use email registration for now.`);
+        }
+        
+        // Show notification
+        function showAuthNotification(message, isError = false) {
+            const notification = document.createElement('div');
+            notification.className = `fixed bottom-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 transition-all ${isError ? 'bg-red-500' : 'bg-green-500'} text-white`;
+            notification.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-check-circle'} mr-2"></i> ${message}`;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 3000);
+        }
+        
+        // Login functionality
+        const loginForm = document.getElementById('login-form');
+        if (loginForm) {
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                
+                if (!email || !password) {
+                    showAuthNotification('Please fill in all fields', true);
+                    return;
+                }
+                
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                const user = users.find(u => (u.email === email || u.phone === email) && u.password === password);
+                
+                if (user) {
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    showAuthNotification(`Welcome back, ${user.name}!`);
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                } else {
+                    showAuthNotification('Invalid email/phone or password. Please try again or register.', true);
+                }
+            });
+        }
+        
+        // Register functionality
+        const registerForm = document.getElementById('register-form');
+        if (registerForm) {
+            registerForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const name = document.getElementById('reg-name').value;
+                const email = document.getElementById('reg-email').value;
+                const phone = document.getElementById('reg-phone').value;
+                const password = document.getElementById('reg-password').value;
+                const confirm = document.getElementById('reg-confirm').value;
+                const terms = document.getElementById('terms-checkbox').checked;
+                
+                if (!name || !email || !phone || !password || !confirm) {
+                    showAuthNotification('Please fill in all fields', true);
+                    return;
+                }
+                
+                if (!/^\d{10}$/.test(phone)) {
+                    showAuthNotification('Please enter a valid 10-digit phone number', true);
+                    return;
+                }
+                
+                if (password.length < 6) {
+                    showAuthNotification('Password must be at least 6 characters', true);
+                    return;
+                }
+                
+                if (password !== confirm) {
+                    showAuthNotification('Passwords do not match!', true);
+                    return;
+                }
+                
+                if (!terms) {
+                    showAuthNotification('Please agree to the Terms of Service and Privacy Policy', true);
+                    return;
+                }
+                
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                if (users.find(u => u.email === email)) {
+                    showAuthNotification('Email already registered! Please login.', true);
+                    return;
+                }
+                
+                if (users.find(u => u.phone === phone)) {
+                    showAuthNotification('Phone number already registered!', true);
+                    return;
+                }
+                
+                const newUser = { 
+                    name, 
+                    email, 
+                    phone, 
+                    password, 
+                    joinDate: new Date().toISOString(),
+                    points: 100
+                };
+                users.push(newUser);
+                localStorage.setItem('users', JSON.stringify(users));
+                localStorage.setItem('currentUser', JSON.stringify(newUser));
+                
+                showAuthNotification(`Welcome to RT GroceryHub, ${name}! Your account has been created.`);
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            });
+        }
+        
+        // Initialize AOS
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({ duration: 800, once: true });
+            }
+            
+            // Check if already logged in
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (currentUser && window.location.pathname.includes('login.html')) {
+                // Optional: Auto redirect to homepage
+                // window.location.href = 'index.html';
+            }
+        });
+    </script>
 </body>
+
 </html>
