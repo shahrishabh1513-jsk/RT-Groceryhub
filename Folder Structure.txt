@@ -1,21 +1,28 @@
 RT-GroceryHub/
 │
-├── index.html                      # Homepage
-├── shop.html                       # Shop / All Products page
+├── index.html                      # Homepage (with brand slider, popular products, shop buttons)
+├── shop.html                       # Shop page (hero section, filters, quick view, add to cart)
 ├── product-detail.html             # Single product view page
 ├── cart.html                       # Shopping cart page
-├── checkout.html                   # Checkout / Billing page
+├── checkout.html                   # Checkout page
 ├── order-success.html              # Order confirmation page
-├── about.html                      # About Us page
-├── contact.html                    # Contact Us page
+├── about.html                      # About Us page (enhanced with timeline to 2026)
+├── contact.html                    # Contact Us page (with Google Map)
 ├── login.html                      # Login & Registration page
-├── account.html                    # User account / Orders page
+├── account.html                    # User account page (with bill print)
 │
 ├── assets/
 │   ├── css/
-│   │   └── style.css               # Main styles (Tailwind + custom)
+│   │   ├── style.css               # Main styles
+│   │   ├── components.css          # Component styles
+│   │   └── responsive.css          # Responsive styles
 │   ├── js/
-│   │   └── main.js                 # All JavaScript functionality
-│   └── images/                     (Optional - for local images)
+│   │   ├── main.js                 # Main JavaScript
+│   │   ├── products.js             # Products database
+│   │   └── brand-slider.js         # Brand auto-slider
+│   └── images/
+│       ├── Rtlogo.png              # Header logo
+│       ├── logofooter.png          # Footer logo
+│       └── (other images)
 │
 └── README.md

@@ -5,343 +5,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart - RT GroceryHub</title>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <!-- DaisyUI + TailwindCSS -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/d18f75e53f.js" crossorigin="anonymous"></script>
-    <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
         .font-sora { font-family: "Sora", serif; }
         .font-poppins { font-family: "Poppins", serif; }
-        
-        .cart-item {
-            transition: all 0.3s ease;
-        }
-        
-        .cart-item:hover {
-            background-color: #f9fafb;
-        }
-        
-        .quantity-btn {
-            transition: all 0.2s ease;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            border: 1px solid #e5e7eb;
-            background: white;
-            cursor: pointer;
-        }
-        
-        .quantity-btn:hover {
-            background-color: #16a34a;
-            color: white;
-            border-color: #16a34a;
-        }
-        
-        .remove-item-btn {
-            transition: all 0.2s ease;
-        }
-        
-        .remove-item-btn:hover {
-            color: #dc2626;
-            transform: scale(1.1);
-        }
-        
-        .coupon-input:focus {
-            outline: none;
-            border-color: #16a34a;
-            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
-        }
-        
-        .empty-cart-icon {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        .cart-item {
-            animation: slideIn 0.3s ease forwards;
-        }
+        .cart-item { transition: all 0.3s ease; }
+        .cart-item:hover { background-color: #f9fafb; }
+        .quantity-btn { transition: all 0.2s ease; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid #e5e7eb; background: white; cursor: pointer; }
+        .quantity-btn:hover { background-color: #16a34a; color: white; border-color: #16a34a; }
+        .coupon-input:focus { outline: none; border-color: #16a34a; box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1); }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+        .cart-item { animation: slideIn 0.3s ease forwards; }
     </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'btn-primary': '#16a34a',
-                        'primary-green': '#179800',
-                        'accent-orange': '#FF8C42',
-                    }
-                }
-            }
-        }
-    </script>
+    <script> tailwind.config = { theme: { extend: { colors: { 'btn-primary': '#16a34a', 'primary-green': '#179800', 'accent-orange': '#FF8C42' } } } } </script>
 </head>
 
 <body class="bg-[#fffffe]">
-
-    <!-- Header Placeholder -->
     <div id="header-placeholder"></div>
-
     <main>
-        <!-- Cart Header -->
         <section class="w-full bg-gradient-to-r from-green-700 to-green-500 py-12 lg:py-16 text-white">
             <div class="container mx-auto px-4 lg:px-20 text-center" data-aos="fade-down">
-                <h1 class="font-sora text-3xl lg:text-5xl font-bold mb-3">
-                    <i class="fas fa-shopping-cart"></i> Your Shopping Cart
-                </h1>
+                <h1 class="font-sora text-3xl lg:text-5xl font-bold mb-3"><i class="fas fa-shopping-cart"></i> Your Shopping Cart</h1>
                 <p class="font-poppins text-base lg:text-lg">Review your items and proceed to checkout</p>
             </div>
         </section>
-
-        <!-- Cart Content -->
         <div class="container mx-auto px-4 lg:px-20 py-12">
             <div class="flex flex-col lg:flex-row gap-8">
-                <!-- Cart Items Section -->
-                <div class="flex-1" data-aos="fade-right">
-                    <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
-                        <div class="hidden lg:grid grid-cols-12 gap-4 p-4 bg-gray-50 border-b font-semibold text-gray-600">
-                            <div class="col-span-6">Product</div>
-                            <div class="col-span-2 text-center">Price</div>
-                            <div class="col-span-2 text-center">Quantity</div>
-                            <div class="col-span-2 text-right">Total</div>
-                        </div>
-                        <div id="cart-items-container" class="divide-y divide-gray-100">
-                            <!-- Cart items loaded dynamically -->
-                        </div>
-                    </div>
-                    
-                    <!-- Continue Shopping Link -->
-                    <div class="mt-6">
-                        <a href="shop.html" class="inline-flex items-center gap-2 text-green-600 hover:text-green-700 font-semibold transition">
-                            <i class="fas fa-arrow-left"></i> Continue Shopping
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Order Summary Section -->
-                <div class="lg:w-96" data-aos="fade-left">
-                    <div class="bg-white rounded-2xl shadow-sm p-6 sticky top-24">
-                        <h2 class="font-sora text-xl font-bold text-gray-800 mb-4 pb-3 border-b">
-                            <i class="fas fa-receipt text-green-600"></i> Order Summary
-                        </h2>
-                        
-                        <!-- Subtotal -->
-                        <div class="flex justify-between py-3 text-gray-600">
-                            <span>Subtotal</span>
-                            <span id="cart-subtotal" class="font-semibold">₹0</span>
-                        </div>
-                        
-                        <!-- Delivery Fee -->
-                        <div class="flex justify-between py-3 text-gray-600 border-b">
-                            <span>Delivery Fee</span>
-                            <span class="font-semibold">₹40</span>
-                        </div>
-                        
-                        <!-- Coupon Section -->
-                        <div class="py-4">
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">
-                                <i class="fas fa-tag"></i> Apply Coupon
-                            </label>
-                            <div class="flex gap-2">
-                                <input type="text" id="coupon-code" placeholder="Enter coupon code" class="coupon-input flex-1 p-3 border border-gray-200 rounded-lg text-sm">
-                                <button onclick="applyCoupon()" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-green-600 hover:text-white transition font-semibold">
-                                    Apply
-                                </button>
-                            </div>
-                            <div id="coupon-message" class="text-xs mt-2"></div>
-                            <div class="mt-3 text-xs text-gray-500">
-                                <p class="mb-1">Available coupons:</p>
-                                <p><span class="font-mono bg-gray-100 px-1 rounded">SAVE10</span> - Get 10% off</p>
-                                <p><span class="font-mono bg-gray-100 px-1 rounded">WELCOME20</span> - Get 20% off (First order)</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Total -->
-                        <div class="flex justify-between py-3 text-lg font-bold text-orange-600 border-t pt-4">
-                            <span>Total Amount</span>
-                            <span id="cart-total">₹0</span>
-                        </div>
-                        
-                        <!-- Checkout Button -->
-                        <a href="checkout.html" class="btn btn-primary w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition flex items-center justify-center gap-2 mt-4">
-                            <i class="fas fa-credit-card"></i> Proceed to Checkout
-                        </a>
-                        
-                        <!-- Secure Payment Info -->
-                        <div class="mt-4 text-center text-xs text-gray-400">
-                            <i class="fas fa-lock"></i> Secure Payment
-                        </div>
-                    </div>
-                </div>
+                <div class="flex-1" data-aos="fade-right"><div class="bg-white rounded-2xl shadow-sm overflow-hidden"><div class="hidden lg:grid grid-cols-12 gap-4 p-4 bg-gray-50 border-b font-semibold text-gray-600"><div class="col-span-6">Product</div><div class="col-span-2 text-center">Price</div><div class="col-span-2 text-center">Quantity</div><div class="col-span-2 text-right">Total</div></div><div id="cart-items-container" class="divide-y divide-gray-100"></div></div><div class="mt-6"><a href="shop.html" class="inline-flex items-center gap-2 text-green-600 hover:text-green-700 font-semibold"><i class="fas fa-arrow-left"></i> Continue Shopping</a></div></div>
+                <div class="lg:w-96" data-aos="fade-left"><div class="bg-white rounded-2xl shadow-sm p-6 sticky top-24"><h2 class="font-sora text-xl font-bold mb-4 pb-3 border-b"><i class="fas fa-receipt text-green-600"></i> Order Summary</h2><div class="flex justify-between py-3"><span>Subtotal</span><span id="cart-subtotal" class="font-semibold">₹0</span></div><div class="flex justify-between py-3 border-b"><span>Delivery Fee</span><span class="font-semibold">₹40</span></div><div class="py-4"><label class="block text-sm font-semibold mb-2"><i class="fas fa-tag"></i> Apply Coupon</label><div class="flex gap-2"><input type="text" id="coupon-code" placeholder="SAVE10 or WELCOME20" class="coupon-input flex-1 p-3 border rounded-lg text-sm"><button onclick="applyCoupon()" class="px-4 py-2 bg-gray-100 rounded-lg hover:bg-green-600 hover:text-white transition">Apply</button></div><div id="coupon-message" class="text-xs mt-2"></div></div><div class="flex justify-between py-3 text-lg font-bold text-orange-600 border-t pt-4"><span>Total Amount</span><span id="cart-total">₹0</span></div><a href="checkout.html" class="btn btn-primary w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition flex items-center justify-center gap-2 mt-4"><i class="fas fa-credit-card"></i> Proceed to Checkout</a><div class="mt-4 text-center text-xs text-gray-400"><i class="fas fa-lock"></i> Secure Payment</div></div></div>
             </div>
         </div>
-        
-        <!-- Recommended Products Section -->
-        <section class="container mx-auto px-4 lg:px-20 py-12 bg-gray-50 mt-8">
-            <div class="text-center mb-8" data-aos="fade-up">
-                <h2 class="font-sora text-2xl lg:text-3xl font-bold text-gray-800">You Might Also Like</h2>
-                <div class="w-20 h-1 bg-green-500 mx-auto mt-2 rounded-full"></div>
-            </div>
-            <div id="recommended-products" class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-                <!-- Recommended products loaded via JS -->
-            </div>
-        </section>
+        <section class="container mx-auto px-4 lg:px-20 py-12 bg-gray-50 mt-8"><div class="text-center mb-8" data-aos="fade-up"><h2 class="font-sora text-2xl lg:text-3xl font-bold text-gray-800">You Might Also Like</h2><div class="w-20 h-1 bg-green-500 mx-auto mt-2 rounded-full"></div></div><div id="recommended-products" class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"></div></section>
     </main>
-
-    <!-- Footer Placeholder -->
     <div id="footer-placeholder"></div>
-
-    <!-- Cart Sidebar -->
-    <div id="cart-sidebar" class="cart-sidebar">
-        <div class="cart-sidebar-header">
-            <h2 class="text-xl font-bold"><i class="fas fa-shopping-cart"></i> Your Cart</h2>
-            <button onclick="toggleCartSidebar()" class="text-2xl">&times;</button>
-        </div>
-        <div id="cart-sidebar-items" class="cart-sidebar-items"></div>
-        <div class="cart-sidebar-footer">
-            <div class="flex justify-between font-bold text-lg mb-4">
-                <span>Total:</span>
-                <span id="cart-sidebar-total">₹0</span>
-            </div>
-            <a href="cart.html" class="btn btn-primary w-full bg-green-600 text-white py-2 rounded-lg text-center block">View Cart</a>
-            <a href="checkout.html" class="btn btn-success w-full bg-orange-500 text-white py-2 rounded-lg text-center block mt-2">Checkout</a>
-        </div>
-    </div>
-
+    <div id="cart-sidebar" class="cart-sidebar"><div class="cart-sidebar-header"><h2 class="text-xl font-bold"><i class="fas fa-shopping-cart"></i> Your Cart</h2><button onclick="toggleCartSidebar()" class="text-2xl">&times;</button></div><div id="cart-sidebar-items" class="cart-sidebar-items"></div><div class="cart-sidebar-footer"><div class="flex justify-between font-bold text-lg mb-4"><span>Total:</span><span id="cart-sidebar-total">₹0</span></div><a href="cart.html" class="btn btn-primary w-full bg-green-600 text-white py-2 rounded-lg text-center block">View Cart</a><a href="checkout.html" class="btn btn-success w-full bg-orange-500 text-white py-2 rounded-lg text-center block mt-2">Checkout</a></div></div>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/products.js"></script>
     <script src="assets/js/main.js"></script>
-    
     <script>
-        // Coupon functionality
-        let appliedDiscount = 0;
-        let currentCoupon = null;
-        
-        function applyCoupon() {
-            const code = document.getElementById('coupon-code').value.trim().toUpperCase();
-            const messageDiv = document.getElementById('coupon-message');
-            const subtotal = getCartTotal();
-            
-            if (!code) {
-                messageDiv.innerHTML = '<span class="text-red-500">Please enter a coupon code</span>';
-                return;
-            }
-            
-            if (code === 'SAVE10') {
-                appliedDiscount = subtotal * 0.1;
-                currentCoupon = 'SAVE10';
-                messageDiv.innerHTML = '<span class="text-green-600">✓ Coupon applied! 10% discount</span>';
-                updateCartTotals();
-            } else if (code === 'WELCOME20') {
-                appliedDiscount = subtotal * 0.2;
-                currentCoupon = 'WELCOME20';
-                messageDiv.innerHTML = '<span class="text-green-600">✓ Coupon applied! 20% discount</span>';
-                updateCartTotals();
-            } else {
-                messageDiv.innerHTML = '<span class="text-red-500">Invalid coupon code. Try SAVE10 or WELCOME20</span>';
-            }
-        }
-        
-        function updateCartTotals() {
-            const subtotal = getCartTotal();
-            const discountedSubtotal = subtotal - appliedDiscount;
-            const total = discountedSubtotal + 40;
-            
-            document.getElementById('cart-subtotal').textContent = `₹${discountedSubtotal}`;
-            document.getElementById('cart-total').textContent = `₹${total}`;
-        }
-        
-        // Override renderCartPage to include coupon handling
-        const originalRenderCartPage = renderCartPage;
-        window.renderCartPage = function() {
-            if (originalRenderCartPage) originalRenderCartPage();
-            
-            // Reset coupon when cart changes
-            if (currentCoupon) {
-                const subtotal = getCartTotal();
-                if (currentCoupon === 'SAVE10') {
-                    appliedDiscount = subtotal * 0.1;
-                } else if (currentCoupon === 'WELCOME20') {
-                    appliedDiscount = subtotal * 0.2;
-                }
-                updateCartTotals();
-            } else {
-                const subtotal = getCartTotal();
-                document.getElementById('cart-subtotal').textContent = `₹${subtotal}`;
-                document.getElementById('cart-total').textContent = `₹${subtotal + 40}`;
-            }
-        };
-        
-        // Load recommended products
-        function loadRecommendedProducts() {
-            const container = document.getElementById('recommended-products');
-            if (!container || !productsDatabase) return;
-            
-            // Get 4 random products
-            const shuffled = [...productsDatabase].sort(() => 0.5 - Math.random());
-            const recommended = shuffled.slice(0, 4);
-            
-            container.innerHTML = recommended.map(product => `
-                <div class="bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer transition hover:shadow-md" onclick="location.href='product-detail.html?id=${product.id}'">
-                    <img src="${product.image}" alt="${product.name}" class="w-full h-36 lg:h-40 object-cover">
-                    <div class="p-3">
-                        <div class="flex items-center gap-1 text-sm">
-                            <i class="fa-solid fa-star text-yellow-500"></i>
-                            <span>${product.rating}</span>
-                        </div>
-                        <h3 class="font-semibold text-sm lg:text-base mt-1 truncate">${product.name}</h3>
-                        <div class="flex items-center gap-2 mt-1">
-                            <span class="text-orange-600 font-bold">₹${product.price}</span>
-                            ${product.oldPrice ? `<span class="text-gray-400 line-through text-xs">₹${product.oldPrice}</span>` : ''}
-                        </div>
-                        <button onclick="event.stopPropagation(); addToCart(${product.id}, '${product.name}', ${product.price}, '${product.image}')" class="w-full mt-2 bg-green-600 text-white py-1 rounded-lg text-sm hover:bg-green-700 transition">
-                            Add to Cart
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-        
-        // Initialize when DOM is ready
-        document.addEventListener('DOMContentLoaded', () => {
-            // Wait for productsDatabase
-            const checkProducts = setInterval(() => {
-                if (typeof productsDatabase !== 'undefined' && productsDatabase.length > 0) {
-                    clearInterval(checkProducts);
-                    loadRecommendedProducts();
-                }
-            }, 100);
-            
-            if (typeof AOS !== 'undefined') {
-                AOS.init({ duration: 800, once: true });
-            }
-        });
+        let appliedDiscount = 0, currentCoupon = null;
+        function applyCoupon() { const code = document.getElementById('coupon-code').value.trim().toUpperCase(); const msg = document.getElementById('coupon-message'); const subtotal = getCartTotal(); if (!code) { msg.innerHTML = '<span class="text-red-500">Enter a coupon code</span>'; return; } if (code === 'SAVE10') { appliedDiscount = subtotal * 0.1; currentCoupon = 'SAVE10'; msg.innerHTML = '<span class="text-green-600">✓ 10% discount applied!</span>'; updateCartTotals(); } else if (code === 'WELCOME20') { appliedDiscount = subtotal * 0.2; currentCoupon = 'WELCOME20'; msg.innerHTML = '<span class="text-green-600">✓ 20% discount applied!</span>'; updateCartTotals(); } else { msg.innerHTML = '<span class="text-red-500">Invalid coupon. Try SAVE10 or WELCOME20</span>'; } }
+        function updateCartTotals() { const subtotal = getCartTotal(); const discounted = subtotal - appliedDiscount; const total = discounted + 40; document.getElementById('cart-subtotal').textContent = `₹${discounted}`; document.getElementById('cart-total').textContent = `₹${total}`; }
+        const origRender = window.renderCartPage; window.renderCartPage = function() { if (origRender) origRender(); if (currentCoupon) { const subtotal = getCartTotal(); appliedDiscount = currentCoupon === 'SAVE10' ? subtotal * 0.1 : subtotal * 0.2; updateCartTotals(); } else { const subtotal = getCartTotal(); document.getElementById('cart-subtotal').textContent = `₹${subtotal}`; document.getElementById('cart-total').textContent = `₹${subtotal + 40}`; } };
+        function loadRecommended() { const container = document.getElementById('recommended-products'); if (!container || !productsDatabase) return; const shuffled = [...productsDatabase].sort(() => 0.5 - Math.random()); const rec = shuffled.slice(0, 4); container.innerHTML = rec.map(p => `<div class="bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer transition hover:shadow-md" onclick="location.href='product-detail.html?id=${p.id}'"><img src="${p.image}" class="w-full h-36 lg:h-40 object-cover"><div class="p-3"><div class="flex items-center gap-1 text-sm"><i class="fa-solid fa-star text-yellow-500"></i><span>${p.rating}</span></div><h3 class="font-semibold text-sm lg:text-base mt-1 truncate">${p.name}</h3><div class="flex items-center gap-2 mt-1"><span class="text-orange-600 font-bold">₹${p.price}</span>${p.oldPrice ? `<span class="text-gray-400 line-through text-xs">₹${p.oldPrice}</span>` : ''}</div><button onclick="event.stopPropagation(); addToCart(${p.id}, '${p.name}', ${p.price}, '${p.image}')" class="w-full mt-2 bg-green-600 text-white py-1 rounded-lg text-sm hover:bg-green-700 transition">Add to Cart</button></div></div>`).join(''); }
+        document.addEventListener('DOMContentLoaded', () => { const check = setInterval(() => { if (typeof productsDatabase !== 'undefined' && productsDatabase.length) { clearInterval(check); loadRecommended(); } }, 100); if (typeof AOS !== 'undefined') AOS.init({ duration: 800, once: true }); });
     </script>
 </body>
-
 </html>

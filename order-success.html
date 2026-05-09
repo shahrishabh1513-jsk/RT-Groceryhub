@@ -27,17 +27,9 @@
         }
         
         @keyframes scaleUp {
-            0% {
-                transform: scale(0);
-                opacity: 0;
-            }
-            50% {
-                transform: scale(1.2);
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
         }
         
         .order-card {
@@ -45,35 +37,22 @@
         }
         
         @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .confetti {
             position: fixed;
             width: 10px;
             height: 10px;
-            background-color: #fbbf24;
             position: absolute;
             animation: confetti-fall 3s linear forwards;
             z-index: 1000;
         }
         
         @keyframes confetti-fall {
-            0% {
-                transform: translateY(-100vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
         
         .delivery-timer {
@@ -90,16 +69,21 @@
         }
         
         @keyframes pulse-glow {
-            0%, 100% {
-                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
-            }
-            50% {
-                box-shadow: 0 0 0 20px rgba(34, 197, 94, 0);
-            }
+            0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+            50% { box-shadow: 0 0 0 20px rgba(34, 197, 94, 0); }
         }
         
         .pulse-glow {
             animation: pulse-glow 2s infinite;
+        }
+        
+        .btn-print-bill-order {
+            transition: all 0.3s ease;
+        }
+        
+        .btn-print-bill-order:hover {
+            background: #16a34a;
+            color: white;
         }
     </style>
     <script>
@@ -153,6 +137,13 @@
                                 <p class="text-2xl font-bold text-green-600" id="delivery-time">30-45 minutes</p>
                                 <p class="text-xs text-gray-500">Your order is being prepared</p>
                             </div>
+                        </div>
+                        
+                        <!-- Print Bill Button -->
+                        <div class="mb-6">
+                            <button onclick="printCurrentBill()" class="w-full btn-print-bill-order border border-green-600 text-green-600 py-3 rounded-xl font-semibold hover:bg-green-600 hover:text-white transition flex items-center justify-center gap-2">
+                                <i class="fas fa-print"></i> Print / Download Bill
+                            </button>
                         </div>
                         
                         <!-- What's Next? -->
@@ -235,10 +226,74 @@
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/products.js"></script>
     <script src="assets/js/main.js"></script>
     
     <script>
         let lastOrderData = null;
+        
+        // Print current bill
+        function printCurrentBill() {
+            if (lastOrderData) {
+                const printWindow = window.open('', '_blank');
+                printWindow.document.write(`
+                    <html>
+                    <head>
+                        <title>Order Bill - ${lastOrderData.orderId}</title>
+                        <style>
+                            body { font-family: Arial, sans-serif; padding: 30px; }
+                            .bill-container { max-width: 800px; margin: 0 auto; border: 1px solid #ddd; padding: 30px; border-radius: 10px; }
+                            .header { text-align: center; border-bottom: 2px solid #16a34a; padding-bottom: 20px; margin-bottom: 20px; }
+                            .header h1 { color: #16a34a; margin: 0; }
+                            .order-details { margin-bottom: 20px; }
+                            .order-details table { width: 100%; border-collapse: collapse; }
+                            .order-details td { padding: 8px; }
+                            .items-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+                            .items-table th, .items-table td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+                            .items-table th { background: #16a34a; color: white; }
+                            .total { text-align: right; font-size: 18px; font-weight: bold; margin-top: 20px; }
+                            .footer { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="bill-container">
+                            <div class="header">
+                                <h1>RT GroceryHub</h1>
+                                <p>Fresh Groceries Delivered with Love</p>
+                            </div>
+                            <div class="order-details">
+                                </table>
+                                    <tr><td><strong>Order ID:</strong></td><td>${lastOrderData.orderId}</td></tr>
+                                    <tr><td><strong>Order Date:</strong></td><td>${new Date(lastOrderData.orderDate).toLocaleString()}</td></tr>
+                                    <tr><td><strong>Customer Name:</strong></td><td>${lastOrderData.customer?.name || 'N/A'}</td></tr>
+                                    <tr><td><strong>Phone:</strong></td><td>${lastOrderData.customer?.phone || 'N/A'}</td></tr>
+                                    <tr><td><strong>Address:</strong></td><td>${lastOrderData.customer?.address || 'N/A'}, ${lastOrderData.customer?.city || ''} - ${lastOrderData.customer?.pincode || ''}</td></tr>
+                                </table>
+                            </div>
+                            <table class="items-table">
+                                <thead><tr><th>Item</th><th>Quantity</th><th>Price</th><th>Total</th></tr></thead>
+                                <tbody>
+                                    ${lastOrderData.items.map(item => `<tr><td>${item.name}</td><td>${item.quantity}</td><td>₹${item.price}</td><td>₹${item.price * item.quantity}</td></tr>`).join('')}
+                                </tbody>
+                            </table>
+                            <div class="total">
+                                <p>Grand Total: ₹${lastOrderData.total}</p>
+                                <p>Payment Method: ${lastOrderData.paymentMethod || 'Cash on Delivery'}</p>
+                            </div>
+                            <div class="footer">
+                                <p>Thank you for shopping with RT GroceryHub!</p>
+                                <p>For any queries, contact us at support@rtgroceryhub.com</p>
+                            </div>
+                        </div>
+                        <script>window.print();<\/script>
+                    </body>
+                    </html>
+                `);
+                printWindow.document.close();
+            } else {
+                alert('Order details not available for printing');
+            }
+        }
         
         // Load order details
         function loadOrderDetails() {
@@ -250,14 +305,10 @@
             if (lastOrder) {
                 lastOrderData = lastOrder;
                 
-                // Calculate estimated delivery time
                 const orderTime = new Date(lastOrder.orderDate);
                 const deliveryMinutes = 35;
                 const estimatedTime = new Date(orderTime.getTime() + deliveryMinutes * 60000);
-                const formattedTime = estimatedTime.toLocaleTimeString('en-IN', { 
-                    hour: '2-digit', 
-                    minute: '2-digit' 
-                });
+                const formattedTime = estimatedTime.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
                 
                 document.getElementById('delivery-time').textContent = `${formattedTime} (30-45 min)`;
                 
@@ -281,56 +332,21 @@
                         </div>
                         <div class="flex justify-between items-start pb-2">
                             <span class="text-gray-500">Delivery Address:</span>
-                            <span class="font-medium text-right flex-1 ml-4">${lastOrder.customer.address}, ${lastOrder.customer.city} - ${lastOrder.customer.pincode}</span>
+                            <span class="font-medium text-right flex-1 ml-4">${lastOrder.customer?.address || 'Saved address'}, ${lastOrder.customer?.city || ''} - ${lastOrder.customer?.pincode || ''}</span>
                         </div>
-                        ${lastOrder.couponCode ? `
-                        <div class="flex justify-between items-center pt-2 border-t">
-                            <span class="text-gray-500">Coupon Applied:</span>
-                            <span class="font-medium text-green-600">${lastOrder.couponCode}</span>
-                        </div>
-                        ` : ''}
+                        ${lastOrder.couponCode ? `<div class="flex justify-between items-center pt-2 border-t"><span class="text-gray-500">Coupon Applied:</span><span class="font-medium text-green-600">${lastOrder.couponCode}</span></div>` : ''}
                     </div>
                 `;
-                
-                // Clear lastOrder from localStorage after displaying
-                // But keep for refresh protection - clear after 5 seconds
-                setTimeout(() => {
-                    // Don't clear immediately in case of page refresh
-                    // localStorage.removeItem('lastOrder');
-                }, 5000);
             } else {
-                // Try to get from orders list
                 const orders = JSON.parse(localStorage.getItem('orders')) || [];
                 if (orders.length > 0) {
                     const latestOrder = orders[orders.length - 1];
                     lastOrderData = latestOrder;
-                    
                     container.innerHTML = `
                         <div class="space-y-3">
-                            <div class="flex justify-between items-center pb-2 border-b">
-                                <span class="text-gray-500">Order ID:</span>
-                                <span class="font-mono font-semibold text-green-600">${latestOrder.orderId}</span>
-                            </div>
-                            <div class="flex justify-between items-center pb-2 border-b">
-                                <span class="text-gray-500">Total Amount:</span>
-                                <span class="font-bold text-orange-600 text-lg">₹${latestOrder.total}</span>
-                            </div>
-                            <div class="flex justify-between items-center pb-2 border-b">
-                                <span class="text-gray-500">Payment Method:</span>
-                                <span class="font-medium">${latestOrder.paymentMethod || 'Cash on Delivery'}</span>
-                            </div>
-                            <div class="flex justify-between items-start">
-                                <span class="text-gray-500">Delivery Address:</span>
-                                <span class="font-medium text-right flex-1 ml-4">${latestOrder.customer?.address || 'Saved address'}</span>
-                            </div>
-                        </div>
-                    `;
-                } else {
-                    container.innerHTML = `
-                        <div class="text-center py-4">
-                            <i class="fas fa-receipt text-4xl text-gray-300 mb-2"></i>
-                            <p class="text-gray-500">No recent order found.</p>
-                            <a href="shop.html" class="text-green-600 font-semibold mt-2 inline-block">Start shopping →</a>
+                            <div class="flex justify-between items-center pb-2 border-b"><span class="text-gray-500">Order ID:</span><span class="font-mono font-semibold text-green-600">${latestOrder.orderId}</span></div>
+                            <div class="flex justify-between items-center pb-2 border-b"><span class="text-gray-500">Total Amount:</span><span class="font-bold text-orange-600 text-lg">₹${latestOrder.total}</span></div>
+                            <div class="flex justify-between items-center pb-2 border-b"><span class="text-gray-500">Payment Method:</span><span class="font-medium">${latestOrder.paymentMethod || 'Cash on Delivery'}</span></div>
                         </div>
                     `;
                 }
@@ -351,17 +367,17 @@
         function copyOrderId() {
             if (lastOrderData) {
                 navigator.clipboard.writeText(lastOrderData.orderId).then(() => {
-                    const btn = event.target.closest('button');
-                    const originalIcon = btn.innerHTML;
-                    btn.innerHTML = '<i class="fas fa-check text-green-600 text-xl"></i>';
-                    setTimeout(() => {
-                        btn.innerHTML = originalIcon;
-                    }, 2000);
-                    alert('Order ID copied to clipboard!');
+                    showToast('Order ID copied to clipboard!');
                 });
-            } else {
-                alert('Order ID not available');
             }
+        }
+        
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+            toast.innerHTML = `<i class="fas fa-check-circle mr-2"></i> ${message}`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
         }
         
         // Create confetti effect
@@ -377,10 +393,7 @@
                 confetti.style.animationDelay = Math.random() * 2 + 's';
                 confetti.style.animationDuration = Math.random() * 2 + 2 + 's';
                 document.body.appendChild(confetti);
-                
-                setTimeout(() => {
-                    confetti.remove();
-                }, 4000);
+                setTimeout(() => confetti.remove(), 4000);
             }
         }
         
@@ -388,10 +401,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             loadOrderDetails();
             createConfetti();
-            
-            if (typeof AOS !== 'undefined') {
-                AOS.init({ duration: 800, once: true });
-            }
+            if (typeof AOS !== 'undefined') AOS.init({ duration: 800, once: true });
         });
     </script>
 </body>

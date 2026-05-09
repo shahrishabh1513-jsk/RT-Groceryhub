@@ -40,6 +40,21 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
         }
+        
+        .product-gallery-thumb {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .product-gallery-thumb:hover {
+            transform: scale(1.05);
+            border-color: #16a34a;
+        }
+        
+        .product-gallery-thumb.active {
+            border-color: #16a34a;
+            box-shadow: 0 0 0 2px #16a34a;
+        }
     </style>
     <script>
         tailwind.config = {
@@ -93,7 +108,7 @@
     <!-- Footer Placeholder -->
     <div id="footer-placeholder"></div>
 
-    <!-- Cart Sidebar (Same as main.js) -->
+    <!-- Cart Sidebar -->
     <div id="cart-sidebar" class="cart-sidebar">
         <div class="cart-sidebar-header">
             <h2 class="text-xl font-bold"><i class="fas fa-shopping-cart"></i> Your Cart</h2>
@@ -110,28 +125,36 @@
         </div>
     </div>
 
+    <!-- Quick View Modal -->
+    <div id="quick-view-modal" class="quick-view-modal">
+        <div class="quick-view-content p-6">
+            <div class="flex justify-end mb-2">
+                <button onclick="closeQuickView()" class="text-2xl hover:text-red-500">&times;</button>
+            </div>
+            <div id="quick-view-content"></div>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/products.js"></script>
     <script src="assets/js/main.js"></script>
     
     <script>
-        // Additional product detail functions specific to this page
         let currentProduct = null;
         
-        // Load product details from URL parameter
         function loadProductDetail() {
             const urlParams = new URLSearchParams(window.location.search);
             const productId = parseInt(urlParams.get('id'));
             
-            if (!productsDatabase || productsDatabase.length === 0) {
-                console.error('Products database not loaded');
-                return;
-            }
+            if (!productsDatabase || productsDatabase.length === 0) return;
             
             const product = productsDatabase.find(p => p.id === productId);
             
-            if (product && document.getElementById('product-detail-container')) {
+            if (product) {
                 currentProduct = product;
                 document.getElementById('breadcrumb-product-name').textContent = product.name;
+                
+                const qtyInCart = getItemQuantity(product.id);
                 
                 document.getElementById('product-detail-container').innerHTML = `
                     <div class="flex flex-col lg:flex-row gap-8 lg:gap-12" data-aos="fade-up">
@@ -141,13 +164,7 @@
                                 <img src="${product.image}" alt="${product.name}" id="main-product-image" class="w-full h-80 lg:h-96 object-cover">
                             </div>
                             <div class="flex gap-3 mt-4 justify-center">
-                                <div class="w-20 h-20 rounded-lg overflow-hidden border-2 border-green-500 cursor-pointer" onclick="changeImage('${product.image}')">
-                                    <img src="${product.image}" class="w-full h-full object-cover">
-                                </div>
-                                <div class="w-20 h-20 rounded-lg overflow-hidden border-2 border-gray-200 cursor-pointer hover:border-green-500 transition" onclick="changeImage('${product.image}')">
-                                    <img src="${product.image}" class="w-full h-full object-cover">
-                                </div>
-                                <div class="w-20 h-20 rounded-lg overflow-hidden border-2 border-gray-200 cursor-pointer hover:border-green-500 transition" onclick="changeImage('${product.image}')">
+                                <div class="w-20 h-20 rounded-lg overflow-hidden border-2 border-green-500 cursor-pointer product-gallery-thumb" onclick="changeImage('${product.image}')">
                                     <img src="${product.image}" class="w-full h-full object-cover">
                                 </div>
                             </div>
@@ -158,26 +175,20 @@
                             <div class="bg-white rounded-2xl p-6 shadow-sm">
                                 <h1 class="font-sora text-2xl lg:text-3xl font-bold text-gray-800 mb-2">${product.name}</h1>
                                 
-                                <!-- Rating -->
                                 <div class="flex items-center gap-2 mb-4">
-                                    <div class="flex text-yellow-500">
-                                        ${'★'.repeat(Math.floor(product.rating))}${product.rating % 1 ? '½' : ''}
-                                    </div>
+                                    <div class="flex text-yellow-500">${'★'.repeat(Math.floor(product.rating))}${product.rating % 1 ? '½' : ''}</div>
                                     <span class="text-gray-500">(${product.rating} stars)</span>
                                     <span class="text-green-600 text-sm bg-green-50 px-2 py-1 rounded-full">In Stock</span>
                                 </div>
                                 
-                                <!-- Price -->
                                 <div class="mb-4">
                                     <span class="text-3xl lg:text-4xl font-bold text-orange-600">₹${product.price}</span>
                                     ${product.oldPrice ? `<span class="text-gray-400 line-through text-lg ml-2">₹${product.oldPrice}</span>` : ''}
                                     ${product.oldPrice ? `<span class="bg-green-100 text-green-600 px-2 py-1 rounded-lg text-sm ml-2">${Math.round((1 - product.price/product.oldPrice) * 100)}% OFF</span>` : ''}
                                 </div>
                                 
-                                <!-- Description -->
                                 <p class="text-gray-600 mb-4 leading-relaxed">${product.description || 'Fresh and high quality product directly sourced from farms. 100% organic and chemical free. Premium quality guaranteed.'}</p>
                                 
-                                <!-- Stock Info -->
                                 <div class="flex items-center gap-2 mb-4 text-green-600">
                                     <i class="fas fa-check-circle"></i>
                                     <span>${product.stock} items available</span>
@@ -186,19 +197,33 @@
                                 <!-- Quantity Selector -->
                                 <div class="mb-6">
                                     <label class="block font-semibold mb-2">Quantity:</label>
-                                    <div class="flex items-center gap-3">
-                                        <button onclick="updateProductQty(-1)" class="quantity-btn w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center text-xl">-</button>
-                                        <input type="number" id="product-qty" value="1" min="1" max="${product.stock}" class="w-20 text-center p-2 border border-gray-300 rounded-lg">
-                                        <button onclick="updateProductQty(1)" class="quantity-btn w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center text-xl">+</button>
-                                        <span class="text-gray-500 text-sm">${product.stock} kg/pcs available</span>
-                                    </div>
+                                    ${qtyInCart > 0 ? `
+                                        <div class="flex items-center gap-3">
+                                            <button onclick="updateProductQty(-1)" class="quantity-btn w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center text-xl hover:bg-green-500 hover:text-white">-</button>
+                                            <span id="product-qty-display" class="text-xl font-semibold min-w-[40px] text-center">${qtyInCart}</span>
+                                            <button onclick="updateProductQty(1)" class="quantity-btn w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center text-xl hover:bg-green-500 hover:text-white">+</button>
+                                        </div>
+                                    ` : `
+                                        <div class="flex items-center gap-3">
+                                            <button onclick="updateQtyInput(-1)" class="quantity-btn w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center text-xl">-</button>
+                                            <input type="number" id="product-qty" value="1" min="1" max="${product.stock}" class="w-20 text-center p-2 border border-gray-300 rounded-lg">
+                                            <button onclick="updateQtyInput(1)" class="quantity-btn w-10 h-10 border border-gray-300 rounded-full flex items-center justify-center text-xl">+</button>
+                                            <span class="text-gray-500 text-sm">${product.stock} kg/pcs available</span>
+                                        </div>
+                                    `}
                                 </div>
                                 
                                 <!-- Action Buttons -->
                                 <div class="flex flex-col sm:flex-row gap-3">
-                                    <button onclick="addToCartFromDetail()" class="flex-1 bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition flex items-center justify-center gap-2">
-                                        <i class="fas fa-shopping-cart"></i> Add to Cart
-                                    </button>
+                                    ${qtyInCart > 0 ? `
+                                        <button onclick="viewCart()" class="flex-1 bg-orange-500 text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition flex items-center justify-center gap-2">
+                                            <i class="fas fa-shopping-cart"></i> View in Cart
+                                        </button>
+                                    ` : `
+                                        <button onclick="addToCartFromDetail()" class="flex-1 bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition flex items-center justify-center gap-2">
+                                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                                        </button>
+                                    `}
                                     <button onclick="buyNow()" class="flex-1 bg-orange-500 text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition flex items-center justify-center gap-2">
                                         <i class="fas fa-bolt"></i> Buy Now
                                     </button>
@@ -220,129 +245,79 @@
                     </div>
                 `;
                 
-                // Load related products
                 loadRelatedProducts(product.category, product.id);
-            } else if (!product) {
-                document.getElementById('product-detail-container').innerHTML = `
-                    <div class="text-center py-16">
-                        <i class="fas fa-search text-6xl text-gray-300 mb-4"></i>
-                        <h2 class="text-2xl font-bold text-gray-600">Product Not Found</h2>
-                        <p class="text-gray-500 mt-2">The product you're looking for doesn't exist.</p>
-                        <a href="shop.html" class="inline-block mt-4 bg-green-600 text-white px-6 py-2 rounded-lg">Continue Shopping</a>
-                    </div>
-                `;
+            } else {
+                document.getElementById('product-detail-container').innerHTML = `<div class="text-center py-16"><i class="fas fa-search text-6xl text-gray-300 mb-4"></i><h2 class="text-2xl font-bold text-gray-600">Product Not Found</h2><a href="shop.html" class="inline-block mt-4 bg-green-600 text-white px-6 py-2 rounded-lg">Continue Shopping</a></div>`;
             }
         }
         
-        // Change main image
-        function changeImage(src) {
-            const mainImage = document.getElementById('main-product-image');
-            if (mainImage) {
-                mainImage.src = src;
-            }
-            // Update active thumbnail styling
-            document.querySelectorAll('.thumbnail-img').forEach((thumb, index) => {
-                if (thumb.src === src) {
-                    thumb.parentElement.classList.add('border-green-500');
-                    thumb.parentElement.classList.remove('border-gray-200');
-                } else {
-                    thumb.parentElement.classList.remove('border-green-500');
-                    thumb.parentElement.classList.add('border-gray-200');
-                }
-            });
-        }
-        
-        // Update product quantity
-        function updateProductQty(change) {
+        function updateQtyInput(change) {
             const input = document.getElementById('product-qty');
             if (input) {
                 let newVal = parseInt(input.value) + change;
                 const max = parseInt(input.max) || 99;
-                if (newVal >= 1 && newVal <= max) {
-                    input.value = newVal;
+                if (newVal >= 1 && newVal <= max) input.value = newVal;
+            }
+        }
+        
+        function updateProductQty(change) {
+            if (currentProduct) {
+                const currentQty = getItemQuantity(currentProduct.id);
+                const newQty = currentQty + change;
+                if (newQty <= 0) {
+                    removeFromCart(currentProduct.id);
+                    loadProductDetail();
+                } else if (newQty <= currentProduct.stock) {
+                    updateQuantity(currentProduct.id, change);
+                    document.getElementById('product-qty-display').textContent = newQty;
                 }
             }
         }
         
-        // Add to cart from product detail page
-        function addToCartFromDetail() {
-            if (!currentProduct) return;
-            const qty = parseInt(document.getElementById('product-qty').value);
-            for (let i = 0; i < qty; i++) {
-                addToCart(currentProduct.id, currentProduct.name, currentProduct.price, currentProduct.image);
-            }
+        function viewCart() {
+            toggleCartSidebar();
         }
         
-        // Buy now (add to cart and redirect to checkout)
+        function changeImage(src) {
+            const mainImage = document.getElementById('main-product-image');
+            if (mainImage) mainImage.src = src;
+        }
+        
+        function addToCartFromDetail() {
+            if (!currentProduct) return;
+            const qty = parseInt(document.getElementById('product-qty')?.value || 1);
+            for (let i = 0; i < qty; i++) addToCart(currentProduct.id, currentProduct.name, currentProduct.price, currentProduct.image);
+            loadProductDetail();
+        }
+        
         function buyNow() {
             if (!currentProduct) return;
-            const qty = parseInt(document.getElementById('product-qty').value);
-            for (let i = 0; i < qty; i++) {
-                addToCart(currentProduct.id, currentProduct.name, currentProduct.price, currentProduct.image);
-            }
+            const qty = parseInt(document.getElementById('product-qty')?.value || 1);
+            for (let i = 0; i < qty; i++) addToCart(currentProduct.id, currentProduct.name, currentProduct.price, currentProduct.image);
             window.location.href = 'checkout.html';
         }
         
-        // Load related products (same category)
         function loadRelatedProducts(category, currentProductId) {
             const container = document.getElementById('related-products-grid');
             if (!container) return;
-            
-            const related = productsDatabase
-                .filter(p => p.category === category && p.id !== currentProductId)
-                .slice(0, 4);
-            
-            if (related.length === 0) {
-                // If no related products in same category, show some random products
-                const randomProducts = productsDatabase.filter(p => p.id !== currentProductId).slice(0, 4);
-                renderRelatedProducts(randomProducts, container);
-            } else {
-                renderRelatedProducts(related, container);
-            }
-        }
-        
-        function renderRelatedProducts(products, container) {
-            container.innerHTML = products.map(product => `
+            const related = productsDatabase.filter(p => p.category === category && p.id !== currentProductId).slice(0, 4);
+            const productsToShow = related.length ? related : productsDatabase.filter(p => p.id !== currentProductId).slice(0, 4);
+            container.innerHTML = productsToShow.map(product => `
                 <div class="related-product-card bg-white rounded-xl overflow-hidden shadow-sm cursor-pointer" onclick="location.href='product-detail.html?id=${product.id}'">
                     <img src="${product.image}" alt="${product.name}" class="w-full h-36 lg:h-40 object-cover">
                     <div class="p-3">
-                        <div class="flex items-center gap-1 text-sm">
-                            <i class="fa-solid fa-star text-yellow-500"></i>
-                            <span>${product.rating}</span>
-                        </div>
+                        <div class="flex items-center gap-1 text-sm"><i class="fa-solid fa-star text-yellow-500"></i><span>${product.rating}</span></div>
                         <h3 class="font-semibold text-sm lg:text-base mt-1 truncate">${product.name}</h3>
-                        <div class="flex items-center gap-2 mt-1">
-                            <span class="text-orange-600 font-bold">₹${product.price}</span>
-                            ${product.oldPrice ? `<span class="text-gray-400 line-through text-xs">₹${product.oldPrice}</span>` : ''}
-                        </div>
-                        <button onclick="event.stopPropagation(); addToCart(${product.id}, '${product.name}', ${product.price}, '${product.image}')" class="w-full mt-2 bg-green-600 text-white py-1 rounded-lg text-sm hover:bg-green-700 transition">
-                            Add to Cart
-                        </button>
+                        <div class="flex items-center gap-2 mt-1"><span class="text-orange-600 font-bold">₹${product.price}</span>${product.oldPrice ? `<span class="text-gray-400 line-through text-xs">₹${product.oldPrice}</span>` : ''}</div>
+                        <button onclick="event.stopPropagation(); addToCart(${product.id}, '${product.name}', ${product.price}, '${product.image}')" class="w-full mt-2 bg-green-600 text-white py-1 rounded-lg text-sm hover:bg-green-700 transition">Add to Cart</button>
                     </div>
                 </div>
             `).join('');
         }
         
-        // Override addToCart to also update sidebar
-        const originalAddToCart = window.addToCart;
-        window.addToCart = function(id, name, price, image) {
-            if (originalAddToCart) originalAddToCart(id, name, price, image);
-            if (typeof renderCartSidebar === 'function') renderCartSidebar();
-        };
-        
-        // Initialize when DOM is ready
         document.addEventListener('DOMContentLoaded', () => {
-            // Wait for productsDatabase to be available
-            const checkProducts = setInterval(() => {
-                if (typeof productsDatabase !== 'undefined' && productsDatabase.length > 0) {
-                    clearInterval(checkProducts);
-                    loadProductDetail();
-                }
-            }, 100);
-            
-            if (typeof AOS !== 'undefined') {
-                AOS.init({ duration: 800, once: true });
-            }
+            const checkProducts = setInterval(() => { if (typeof productsDatabase !== 'undefined' && productsDatabase.length > 0) { clearInterval(checkProducts); loadProductDetail(); } }, 100);
+            if (typeof AOS !== 'undefined') AOS.init({ duration: 800, once: true });
         });
     </script>
 </body>

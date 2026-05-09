@@ -34,10 +34,12 @@
         .auth-tab {
             transition: all 0.3s ease;
             position: relative;
+            cursor: pointer;
         }
         
         .auth-tab.active {
             color: #16a34a;
+            font-weight: 600;
         }
         
         .auth-tab.active::after {
@@ -113,6 +115,28 @@
             to {
                 opacity: 1;
                 transform: translateX(0);
+            }
+        }
+        
+        .notification-toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 12px 24px;
+            border-radius: 50px;
+            z-index: 9999;
+            animation: slideInRight 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
             }
         }
     </style>
@@ -404,6 +428,7 @@
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/products.js"></script>
     <script src="assets/js/main.js"></script>
     
     <script>
@@ -445,16 +470,25 @@
         
         // Social login (demo)
         function socialLogin(provider) {
-            alert(`${provider.charAt(0).toUpperCase() + provider.slice(1)} login feature coming soon! Please use email registration for now.`);
+            showNotification(`${provider.charAt(0).toUpperCase() + provider.slice(1)} login feature coming soon! Please use email registration for now.`, 'info');
         }
         
         // Show notification
-        function showAuthNotification(message, isError = false) {
+        function showNotification(message, type = 'success') {
             const notification = document.createElement('div');
-            notification.className = `fixed bottom-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 transition-all ${isError ? 'bg-red-500' : 'bg-green-500'} text-white`;
-            notification.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-check-circle'} mr-2"></i> ${message}`;
+            notification.className = `notification-toast ${type === 'error' ? 'bg-red-500' : type === 'info' ? 'bg-blue-500' : 'bg-green-500'} text-white`;
+            notification.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-triangle' : 'fa-info-circle'} mr-2"></i> ${message}`;
             document.body.appendChild(notification);
             setTimeout(() => notification.remove(), 3000);
+        }
+        
+        // Check redirect after login
+        function checkRedirect() {
+            const redirectUrl = sessionStorage.getItem('redirectAfterLogin');
+            if (redirectUrl) {
+                sessionStorage.removeItem('redirectAfterLogin');
+                window.location.href = redirectUrl;
+            }
         }
         
         // Login functionality
@@ -462,11 +496,11 @@
         if (loginForm) {
             loginForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                const email = document.getElementById('login-email').value;
+                const email = document.getElementById('login-email').value.trim();
                 const password = document.getElementById('login-password').value;
                 
                 if (!email || !password) {
-                    showAuthNotification('Please fill in all fields', true);
+                    showNotification('Please fill in all fields', 'error');
                     return;
                 }
                 
@@ -475,12 +509,15 @@
                 
                 if (user) {
                     localStorage.setItem('currentUser', JSON.stringify(user));
-                    showAuthNotification(`Welcome back, ${user.name}!`);
+                    showNotification(`Welcome back, ${user.name}!`);
                     setTimeout(() => {
-                        window.location.href = 'index.html';
-                    }, 1500);
+                        checkRedirect();
+                        if (!sessionStorage.getItem('redirectAfterLogin')) {
+                            window.location.href = 'shop.html';
+                        }
+                    }, 1000);
                 } else {
-                    showAuthNotification('Invalid email/phone or password. Please try again or register.', true);
+                    showNotification('Invalid email/phone or password. Please try again or register.', 'error');
                 }
             });
         }
@@ -491,46 +528,46 @@
             registerForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 
-                const name = document.getElementById('reg-name').value;
-                const email = document.getElementById('reg-email').value;
-                const phone = document.getElementById('reg-phone').value;
+                const name = document.getElementById('reg-name').value.trim();
+                const email = document.getElementById('reg-email').value.trim();
+                const phone = document.getElementById('reg-phone').value.trim();
                 const password = document.getElementById('reg-password').value;
                 const confirm = document.getElementById('reg-confirm').value;
                 const terms = document.getElementById('terms-checkbox').checked;
                 
                 if (!name || !email || !phone || !password || !confirm) {
-                    showAuthNotification('Please fill in all fields', true);
+                    showNotification('Please fill in all fields', 'error');
                     return;
                 }
                 
                 if (!/^\d{10}$/.test(phone)) {
-                    showAuthNotification('Please enter a valid 10-digit phone number', true);
+                    showNotification('Please enter a valid 10-digit phone number', 'error');
                     return;
                 }
                 
                 if (password.length < 6) {
-                    showAuthNotification('Password must be at least 6 characters', true);
+                    showNotification('Password must be at least 6 characters', 'error');
                     return;
                 }
                 
                 if (password !== confirm) {
-                    showAuthNotification('Passwords do not match!', true);
+                    showNotification('Passwords do not match!', 'error');
                     return;
                 }
                 
                 if (!terms) {
-                    showAuthNotification('Please agree to the Terms of Service and Privacy Policy', true);
+                    showNotification('Please agree to the Terms of Service and Privacy Policy', 'error');
                     return;
                 }
                 
                 const users = JSON.parse(localStorage.getItem('users')) || [];
                 if (users.find(u => u.email === email)) {
-                    showAuthNotification('Email already registered! Please login.', true);
+                    showNotification('Email already registered! Please login.', 'error');
                     return;
                 }
                 
                 if (users.find(u => u.phone === phone)) {
-                    showAuthNotification('Phone number already registered!', true);
+                    showNotification('Phone number already registered!', 'error');
                     return;
                 }
                 
@@ -546,9 +583,12 @@
                 localStorage.setItem('users', JSON.stringify(users));
                 localStorage.setItem('currentUser', JSON.stringify(newUser));
                 
-                showAuthNotification(`Welcome to RT GroceryHub, ${name}! Your account has been created.`);
+                showNotification(`Welcome to RT GroceryHub, ${name}! Your account has been created.`);
                 setTimeout(() => {
-                    window.location.href = 'index.html';
+                    checkRedirect();
+                    if (!sessionStorage.getItem('redirectAfterLogin')) {
+                        window.location.href = 'shop.html';
+                    }
                 }, 1500);
             });
         }
@@ -559,11 +599,11 @@
                 AOS.init({ duration: 800, once: true });
             }
             
-            // Check if already logged in
+            // If already logged in, redirect to shop
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            if (currentUser && window.location.pathname.includes('login.html')) {
-                // Optional: Auto redirect to homepage
-                // window.location.href = 'index.html';
+            const redirectUrl = sessionStorage.getItem('redirectAfterLogin');
+            if (currentUser && redirectUrl) {
+                window.location.href = redirectUrl;
             }
         });
     </script>

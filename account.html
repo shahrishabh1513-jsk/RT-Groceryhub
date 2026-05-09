@@ -25,6 +25,7 @@
         .sidebar-item {
             transition: all 0.3s ease;
             position: relative;
+            cursor: pointer;
         }
         
         .sidebar-item.active {
@@ -76,6 +77,7 @@
         
         .stat-card {
             transition: all 0.3s ease;
+            cursor: pointer;
         }
         
         .stat-card:hover {
@@ -127,6 +129,16 @@
         
         .order-item {
             animation: slideIn 0.3s ease forwards;
+        }
+        
+        .btn-print-bill {
+            transition: all 0.3s ease;
+        }
+        
+        .btn-print-bill:hover {
+            background: #16a34a;
+            color: white;
+            transform: scale(1.05);
         }
     </style>
     <script>
@@ -305,7 +317,7 @@
         <div class="modal-content bg-white rounded-2xl max-w-md w-full mx-4 p-6">
             <div class="flex justify-between items-center mb-4">
                 <h3 class="font-sora text-xl font-bold">Edit Profile</h3>
-                <button onclick="closeModal('edit-profile-modal')" class="text-2xl">&times;</button>
+                <button onclick="closeModal('edit-profile-modal')" class="text-2xl hover:text-red-500">&times;</button>
             </div>
             <form id="edit-profile-form">
                 <div class="mb-4">
@@ -333,7 +345,7 @@
         <div class="modal-content bg-white rounded-2xl max-w-md w-full mx-4 p-6">
             <div class="flex justify-between items-center mb-4">
                 <h3 class="font-sora text-xl font-bold">Add New Address</h3>
-                <button onclick="closeModal('address-modal')" class="text-2xl">&times;</button>
+                <button onclick="closeModal('address-modal')" class="text-2xl hover:text-red-500">&times;</button>
             </div>
             <form id="add-address-form">
                 <div class="mb-4">
@@ -367,6 +379,7 @@
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/products.js"></script>
     <script src="assets/js/main.js"></script>
     
     <script>
@@ -416,12 +429,76 @@
             `;
         }
         
-        // Load orders - FIXED to show orders properly
+        // Print bill function
+        function printBill(orderId) {
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+            const order = orders.find(o => o.orderId === orderId);
+            
+            if (order) {
+                const printWindow = window.open('', '_blank');
+                printWindow.document.write(`
+                    <html>
+                    <head>
+                        <title>Order Bill - ${order.orderId}</title>
+                        <style>
+                            body { font-family: Arial, sans-serif; padding: 30px; }
+                            .bill-container { max-width: 800px; margin: 0 auto; border: 1px solid #ddd; padding: 30px; border-radius: 10px; }
+                            .header { text-align: center; border-bottom: 2px solid #16a34a; padding-bottom: 20px; margin-bottom: 20px; }
+                            .header h1 { color: #16a34a; margin: 0; }
+                            .order-details { margin-bottom: 20px; }
+                            .order-details table { width: 100%; border-collapse: collapse; }
+                            .order-details td { padding: 8px; }
+                            .items-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+                            .items-table th, .items-table td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+                            .items-table th { background: #16a34a; color: white; }
+                            .total { text-align: right; font-size: 18px; font-weight: bold; margin-top: 20px; }
+                            .footer { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="bill-container">
+                            <div class="header">
+                                <h1>RT GroceryHub</h1>
+                                <p>Fresh Groceries Delivered with Love</p>
+                            </div>
+                            <div class="order-details">
+                                <table>
+                                    <tr><td><strong>Order ID:</strong></td><td>${order.orderId}</td></tr>
+                                    <tr><td><strong>Order Date:</strong></td><td>${new Date(order.orderDate).toLocaleString()}</td></tr>
+                                    <tr><td><strong>Customer Name:</strong></td><td>${order.customer?.name || 'N/A'}</td></tr>
+                                    <tr><td><strong>Phone:</strong></td><td>${order.customer?.phone || 'N/A'}</td></tr>
+                                    <tr><td><strong>Address:</strong></td><td>${order.customer?.address || 'N/A'}, ${order.customer?.city || ''} - ${order.customer?.pincode || ''}</td></tr>
+                                </table>
+                            </div>
+                            <table class="items-table">
+                                <thead><tr><th>Item</th><th>Quantity</th><th>Price</th><th>Total</th></tr></thead>
+                                <tbody>
+                                    ${order.items.map(item => `<tr><td>${item.name}</td><td>${item.quantity}</td><td>₹${item.price}</td><td>₹${item.price * item.quantity}</td></tr>`).join('')}
+                                </tbody>
+                            </table>
+                            <div class="total">
+                                <p>Grand Total: ₹${order.total}</p>
+                                <p>Payment Method: ${order.paymentMethod || 'Cash on Delivery'}</p>
+                            </div>
+                            <div class="footer">
+                                <p>Thank you for shopping with RT GroceryHub!</p>
+                                <p>For any queries, contact us at support@rtgroceryhub.com</p>
+                            </div>
+                        </div>
+                        <script>window.print();<\/script>
+                    </body>
+                    </html>
+                `);
+                printWindow.document.close();
+            } else {
+                showNotification('Order not found for printing', 'error');
+            }
+        }
+        
+        // Load orders with print bill button
         function loadOrders() {
             const orders = JSON.parse(localStorage.getItem('orders')) || [];
             const userOrders = orders.filter(order => order.customer && order.customer.email === currentUser.email);
-            
-            console.log('User orders:', userOrders);
             
             document.getElementById('order-count-badge').textContent = userOrders.length;
             
@@ -465,24 +542,22 @@
                     </div>
                     <div class="flex justify-between items-center mt-3 pt-3 border-t">
                         <span class="font-bold">Total: ₹${order.total || 0}</span>
-                        <button onclick="viewOrderDetails('${order.orderId}')" class="text-green-600 text-sm hover:underline">View Details</button>
+                        <div class="flex gap-2">
+                            <button onclick="viewOrderDetails('${order.orderId}')" class="text-green-600 text-sm hover:underline">View Details</button>
+                            <button onclick="printBill('${order.orderId}')" class="btn-print-bill text-gray-500 text-sm hover:text-green-600 px-2 py-1 rounded-lg transition">
+                                <i class="fas fa-print"></i> Print Bill
+                            </button>
+                        </div>
                     </div>
                 </div>
             `).join('');
         }
         
-        // View order details - FIXED
+        // View order details
         function viewOrderDetails(orderId) {
             const orders = JSON.parse(localStorage.getItem('orders')) || [];
             const order = orders.find(o => o.orderId === orderId);
             if (order) {
-                let itemsHtml = order.items.map(item => `
-                    <div class="flex justify-between py-2 border-b">
-                        <span>${item.name} x ${item.quantity}</span>
-                        <span>₹${(item.price || 0) * (item.quantity || 0)}</span>
-                    </div>
-                `).join('');
-                
                 alert(`Order ID: ${order.orderId}\nDate: ${new Date(order.orderDate).toLocaleString()}\n\nItems:\n${order.items.map(i => `${i.name} x ${i.quantity} = ₹${i.price * i.quantity}`).join('\n')}\n\nTotal: ₹${order.total}\nPayment: ${order.paymentMethod}\nStatus: ${order.status || 'Delivered'}`);
             } else {
                 alert('Order details not found');
@@ -526,7 +601,7 @@
             `).join('');
         }
         
-        // Update stats - FIXED
+        // Update stats
         function updateStats() {
             const orders = JSON.parse(localStorage.getItem('orders')) || [];
             const userOrders = orders.filter(order => order.customer && order.customer.email === currentUser.email);
