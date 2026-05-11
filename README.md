@@ -1,11 +1,7 @@
 <h1 align="center">🛒 RT GroceryHub</h1>
 
 <p align="center">
-  <img src="https://cdn-icons-png.flaticon.com/512/3081/3081986.png" width="110"/>
-  &nbsp;&nbsp;&nbsp;
-  <img src="https://cdn-icons-png.flaticon.com/512/3514/3514491.png" width="110"/>
-  &nbsp;&nbsp;&nbsp;
-  <img src="https://cdn-icons-png.flaticon.com/512/1046/1046857.png" width="110"/>
+ <img width="676" height="369" alt="logofooter" src="https://github.com/user-attachments/assets/a1c0d7da-afda-4f3c-b777-48d25c62c97e" />
 </p>
 
 <p align="center">
@@ -125,15 +121,9 @@ RT_GROCERYHUB
 
 # 📸 Website Preview
 
-> Add screenshots of your project here for a more professional GitHub presentation.
+<img width="1841" height="876" alt="day_59_rt_hub_ss1" src="https://github.com/user-attachments/assets/c10eaaae-57a6-4efb-9a06-60b0dec848cc" />
+<img width="1871" height="743" alt="day_59_rt_hub_ss2" src="https://github.com/user-attachments/assets/45c558ba-f6fb-4e97-bb28-e383ddbe9c29" />
 
-Example:
-
-```html
-<p align="center">
-  <img src="YOUR_SCREENSHOT_LINK" width="850"/>
-</p>
-```
 
 ---
 
