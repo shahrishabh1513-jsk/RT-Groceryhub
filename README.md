@@ -1,4 +1,4 @@
-<h1 align="center">🛒 RT GroceryHub</h1>
+
 
 <p align="center">
  <img width="676" height="369" alt="logofooter" src="https://github.com/user-attachments/assets/a1c0d7da-afda-4f3c-b777-48d25c62c97e" />
