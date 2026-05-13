@@ -8,7 +8,10 @@ function initBrandSlider() {
     
     container.innerHTML = allBrands.map(brand => `
         <div class="brand-item">
-            <img src="${brand.logo}" alt="${brand.name}" onerror="this.src='https://via.placeholder.com/80?text=${brand.name.charAt(0)}'">
+            <div class="brand-logo-wrapper">
+                <img src="${brand.logo}" alt="${brand.name}" 
+                     onerror="this.src='https://via.placeholder.com/80?text=${brand.name.charAt(0)}'">
+            </div>
             <p>${brand.name}</p>
         </div>
     `).join('');

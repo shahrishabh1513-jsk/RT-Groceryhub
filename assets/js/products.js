@@ -71,14 +71,14 @@ const productsDatabase = [
 
 // Brand data for auto-slider
 const brands = [
-    { name: "Amul", logo: "https://logo.clearbit.com/amul.com" },
-    { name: "Nestle", logo: "https://logo.clearbit.com/nestle.com" },
-    { name: "Britannia", logo: "https://logo.clearbit.com/britannia.co.in" },
-    { name: "Patanjali", logo: "https://logo.clearbit.com/patanjaliayurved.net" },
-    { name: "Tata Sampann", logo: "https://logo.clearbit.com/tata.com" },
-    { name: "Fortune", logo: "https://logo.clearbit.com/fortune.com" },
-    { name: "Daawat", logo: "https://logo.clearbit.com/daawat.com" },
-    { name: "India Gate", logo: "https://logo.clearbit.com/indiagate.com" }
+    { name: "Amul", logo: "assets/Brand_logo/Amul.jpg" },
+    { name: "Nestle", logo: "assets/Brand_logo/NESTLE.jpg" },
+    { name: "Britannia", logo: "assets/Brand_logo/BRITANNIA.jpg" },
+    { name: "Patanjali", logo: "assets/Brand_logo/PATANJALI.jpg" },
+    { name: "Tata Sampann", logo: "assets/Brand_logo/TataSampann.jpg" },
+    { name: "Fortune", logo: "assets/Brand_logo/Fortune.jpg" },
+    { name: "Daawat", logo: "assets/Brand_logo/Daawat.png" },
+    { name: "India Gate", logo: "assets/Brand_logo/India Gate.png" }
 ];
 
 function getAllProducts() {
