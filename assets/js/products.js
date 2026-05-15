@@ -35,16 +35,14 @@ const productsDatabase = [
     { id: 30, name: "Kiwi", category: "fruits", price: 100, oldPrice: 135, image: "./assets/images/Fruits/Kiwi.png", rating: 4.8, stock: 50, description: "Tangy kiwi rich in Vitamin C and fiber." },
 
     // Grains 🌾
-    { id: 31, name: "Corn (Maize)", category: "grains", price: 45, oldPrice: 60, image: "https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=300", rating: 4.5, stock: 100, description: "Fresh maize for snacks and healthy meals." },
-    { id: 32, name: "Wheat", category: "grains", price: 40, oldPrice: 55, image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=300", rating: 4.6, stock: 200, description: "Premium quality wheat grains for atta." },
-    { id: 33, name: "Oats", category: "grains", price: 120, oldPrice: 160, image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300", rating: 4.8, stock: 150, description: "Healthy oats for a nutritious breakfast." },
-    { id: 34, name: "Basmati Rice", category: "grains", price: 90, oldPrice: 120, image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300", rating: 4.9, stock: 120, description: "Aromatic long grain basmati rice for biryani." },
-    { id: 35, name: "Regular Rice", category: "grains", price: 55, oldPrice: 75, image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300", rating: 4.7, stock: 200, description: "Daily use rice for everyday meals." },
-    { id: 36, name: "Bajri", category: "grains", price: 50, oldPrice: 65, image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=300", rating: 4.5, stock: 100, description: "Nutritious pearl millet for rotis." },
-    { id: 37, name: "Jowar", category: "grains", price: 45, oldPrice: 60, image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=300", rating: 4.6, stock: 90, description: "Healthy sorghum grain for gluten-free diet." },
-    { id: 38, name: "Barley", category: "grains", price: 70, oldPrice: 90, image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=300", rating: 4.7, stock: 85, description: "Fiber-rich healthy grain for soups." },
-    { id: 39, name: "Makai", category: "grains", price: 45, oldPrice: 60, image: "https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=300", rating: 4.5, stock: 95, description: "Fresh corn grain for cooking." },
-
+    { id: 31, name: "Corn (Maize)", category: "grains", price: 45, oldPrice: 60, image: "./assets/images/Grains & Rice/Corn.png", rating: 4.5, stock: 100, description: "Fresh maize for snacks and healthy meals." },
+    { id: 32, name: "Wheat", category: "grains", price: 40, oldPrice: 55, image: "./assets/images/Grains & Rice/Wheat.png", rating: 4.6, stock: 200, description: "Premium quality wheat grains for atta." },
+    { id: 33, name: "Oats", category: "grains", price: 120, oldPrice: 160, image: "./assets/images/Grains & Rice/Oats.png", rating: 4.8, stock: 150, description: "Healthy oats for a nutritious breakfast." },
+    { id: 34, name: "Basmati Rice", category: "grains", price: 90, oldPrice: 120, image: "./assets/images/Grains & Rice/Basmati Rice.png", rating: 4.9, stock: 120, description: "Aromatic long grain basmati rice for biryani." },
+    { id: 35, name: "Regular Rice", category: "grains", price: 55, oldPrice: 75, image: "./assets/images/Grains & Rice/Regular Rice.png", rating: 4.7, stock: 200, description: "Daily use rice for everyday meals." },
+    { id: 36, name: "Bajri", category: "grains", price: 50, oldPrice: 65, image: "./assets/images/Grains & Rice/Bajri.png", rating: 4.5, stock: 100, description: "Nutritious pearl millet for rotis." },
+    { id: 37, name: "Jowar", category: "grains", price: 45, oldPrice: 60, image: "./assets/images/Grains & Rice/Jowar.png", rating: 4.6, stock: 90, description: "Healthy sorghum grain for gluten-free diet." },
+   
     // Oils 🛢️
     { id: 40, name: "Coconut Oil", category: "oils", price: 220, oldPrice: 280, image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300", rating: 4.8, stock: 80, description: "Pure coconut oil for cooking and hair care." },
     { id: 41, name: "Soybean Oil", category: "oils", price: 140, oldPrice: 180, image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300", rating: 4.5, stock: 150, description: "Healthy soybean cooking oil for daily use." },
