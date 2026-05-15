@@ -29,10 +29,10 @@ const productsDatabase = [
     { id: 24, name: "Blueberry", category: "fruits", price: 220, oldPrice: 280, image: "./assets/images/Fruits/Blueberry.png", rating: 4.9, stock: 25, description: "Premium blueberries rich in antioxidants." },
     { id: 25, name: "Watermelon", category: "fruits", price: 90, oldPrice: 120, image: "./assets/images/Fruits/Watermelon.png", rating: 4.7, stock: 60, description: "Sweet and refreshing watermelon, perfect for summer." },
     { id: 26, name: "Pineapple", category: "fruits", price: 80, oldPrice: 110, image: "./assets/images/Fruits/Pineapple.png", rating: 4.6, stock: 55, description: "Tropical fruit with sweet and juicy taste." },
-    { id: 27, name: "Strawberry", category: "fruits", price: 140, oldPrice: 180, image: "./assets/images/Fruits/", rating: 4.8, stock: 45, description: "Fresh strawberries with rich flavor and aroma." },
-    { id: 28, name: "Avocado", category: "fruits", price: 120, oldPrice: 160, image: "./assets/images/Fruits/", rating: 4.8, stock: 40, description: "Creamy avocado for healthy meals and salads." },
-    { id: 29, name: "Dragon Fruit", category: "fruits", price: 110, oldPrice: 150, image: "./assets/images/Fruits/", rating: 4.7, stock: 35, description: "Exotic fruit rich in nutrients and antioxidants." },
-    { id: 30, name: "Kiwi", category: "fruits", price: 100, oldPrice: 135, image: "./assets/images/Fruits/", rating: 4.8, stock: 50, description: "Tangy kiwi rich in Vitamin C and fiber." },
+    { id: 27, name: "Strawberry", category: "fruits", price: 140, oldPrice: 180, image: "./assets/images/Fruits/Strawberry.png", rating: 4.8, stock: 45, description: "Fresh strawberries with rich flavor and aroma." },
+    { id: 28, name: "Avocado", category: "fruits", price: 120, oldPrice: 160, image: "./assets/images/Fruits/Avocado.png", rating: 4.8, stock: 40, description: "Creamy avocado for healthy meals and salads." },
+    { id: 29, name: "Dragon Fruit", category: "fruits", price: 110, oldPrice: 150, image: "./assets/images/Fruits/Dragon Fruit.png", rating: 4.7, stock: 35, description: "Exotic fruit rich in nutrients and antioxidants." },
+    { id: 30, name: "Kiwi", category: "fruits", price: 100, oldPrice: 135, image: "./assets/images/Fruits/Kiwi.png", rating: 4.8, stock: 50, description: "Tangy kiwi rich in Vitamin C and fiber." },
 
     // Grains 🌾
     { id: 31, name: "Corn (Maize)", category: "grains", price: 45, oldPrice: 60, image: "https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=300", rating: 4.5, stock: 100, description: "Fresh maize for snacks and healthy meals." },
