@@ -44,7 +44,7 @@ const productsDatabase = [
     { id: 37, name: "Jowar", category: "grains", price: 45, oldPrice: 60, image: "./assets/images/Grains & Rice/Jowar.png", rating: 4.6, stock: 90, description: "Healthy sorghum grain for gluten-free diet." },
    
     // Oils 🛢️
-    { id: 40, name: "Coconut Oil", category: "oils", price: 220, oldPrice: 280, image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300", rating: 4.8, stock: 80, description: "Pure coconut oil for cooking and hair care." },
+    { id: 40, name: "Coconut Oil", category: "oils", price: 220, oldPrice: 280, image: "./assets/images/oil/Coconut Oil.png", rating: 4.8, stock: 80, description: "Pure coconut oil for cooking and hair care." },
     { id: 41, name: "Soybean Oil", category: "oils", price: 140, oldPrice: 180, image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300", rating: 4.5, stock: 150, description: "Healthy soybean cooking oil for daily use." },
     { id: 42, name: "Rice Bran Oil", category: "oils", price: 170, oldPrice: 220, image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300", rating: 4.6, stock: 100, description: "Light and healthy rice bran oil." },
     { id: 43, name: "Sunflower Oil", category: "oils", price: 160, oldPrice: 210, image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300", rating: 4.5, stock: 120, description: "Popular daily cooking oil." },
