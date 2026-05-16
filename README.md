@@ -126,6 +126,7 @@ RT_GROCERYHUB
 # 📸 Website Preview
 
 <img width="1841" height="876" alt="day_59_rt_hub_ss1" src="https://github.com/user-attachments/assets/c10eaaae-57a6-4efb-9a06-60b0dec848cc" />
+<img width="1719" height="464" alt="day_59_rt_hub_ss3" src="https://github.com/user-attachments/assets/ba544fba-8539-4501-aaa7-7dd32afdcadd" />
 <img width="1871" height="743" alt="day_59_rt_hub_ss2" src="https://github.com/user-attachments/assets/45c558ba-f6fb-4e97-bb28-e383ddbe9c29" />
 
 
