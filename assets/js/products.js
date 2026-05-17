@@ -45,8 +45,8 @@ const productsDatabase = [
    
     // Oils 🛢️
     { id: 40, name: "Coconut Oil", category: "oils", price: 220, oldPrice: 280, image: "./assets/images/oil/Coconut Oil.png", rating: 4.8, stock: 80, description: "Pure coconut oil for cooking and hair care." },
-    { id: 41, name: "Soybean Oil", category: "oils", price: 140, oldPrice: 180, image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300", rating: 4.5, stock: 150, description: "Healthy soybean cooking oil for daily use." },
-    { id: 42, name: "Rice Bran Oil", category: "oils", price: 170, oldPrice: 220, image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300", rating: 4.6, stock: 100, description: "Light and healthy rice bran oil." },
+    { id: 41, name: "Soybean Oil", category: "oils", price: 140, oldPrice: 180, image: "./assets/images/oil/Soybean Oil.png", rating: 4.5, stock: 150, description: "Healthy soybean cooking oil for daily use." },
+    { id: 42, name: "Rice Bran Oil", category: "oils", price: 170, oldPrice: 220, image: "./assets/images/oil/Rice Bran Oil.png", rating: 4.6, stock: 100, description: "Light and healthy rice bran oil." },
     { id: 43, name: "Sunflower Oil", category: "oils", price: 160, oldPrice: 210, image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300", rating: 4.5, stock: 120, description: "Popular daily cooking oil." },
     { id: 44, name: "Mustard Oil", category: "oils", price: 190, oldPrice: 250, image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300", rating: 4.7, stock: 90, description: "Strong flavored mustard oil for authentic taste." },
     { id: 45, name: "Olive Oil", category: "oils", price: 450, oldPrice: 600, image: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300", rating: 4.9, stock: 60, description: "Premium olive oil for healthy cooking." },
