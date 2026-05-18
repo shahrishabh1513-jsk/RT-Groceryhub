@@ -75,6 +75,55 @@
             background: #16a34a;
             color: white;
         }
+        
+        .product-card {
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .shop-hero {
+            background: linear-gradient(135deg, #1e8a3e 0%, #166534 50%, #14532d 100%);
+            position: relative;
+        }
+        
+        .quick-view-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quick-view-modal.active {
+            display: flex;
+        }
+        
+        .quick-view-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .product-card {
+            animation: fadeIn 0.4s ease forwards;
+        }
     </style>
     <script>
         tailwind.config = {
@@ -106,11 +155,12 @@
                 <h1 class="font-sora text-4xl lg:text-6xl font-bold mb-4">
                     Shop Fresh <span class="text-yellow-300">Groceries</span>
                 </h1>
-                <p class="font-poppins text-lg lg:text-xl max-w-2xl mx-auto">Discover the finest quality fruits, vegetables, spices, and more at unbeatable prices!</p>
-                <div class="flex gap-3 justify-center mt-6">
+                <p class="font-poppins text-lg lg:text-xl max-w-2xl mx-auto">Discover the finest quality fruits, vegetables, spices, dairy products, and more at unbeatable prices!</p>
+                <div class="flex flex-wrap gap-3 justify-center mt-6">
                     <span class="px-3 py-1 bg-white/20 rounded-full text-sm"><i class="fas fa-leaf"></i> 100% Fresh</span>
                     <span class="px-3 py-1 bg-white/20 rounded-full text-sm"><i class="fas fa-truck"></i> Free Delivery</span>
                     <span class="px-3 py-1 bg-white/20 rounded-full text-sm"><i class="fas fa-tag"></i> Best Prices</span>
+                    <span class="px-3 py-1 bg-white/20 rounded-full text-sm"><i class="fas fa-clock"></i> 30 Min Delivery</span>
                 </div>
             </div>
             <!-- Background Icons -->
@@ -120,6 +170,8 @@
                 <i class="fas fa-pepper-hot text-5xl absolute top-1/2 left-1/4 text-white/10"></i>
                 <i class="fas fa-cheese text-6xl absolute bottom-20 left-40 text-white/10"></i>
                 <i class="fas fa-wheat-alt text-5xl absolute top-40 right-32 text-white/10"></i>
+                <i class="fas fa-ice-cream text-6xl absolute top-20 right-10 text-white/10"></i>
+                <i class="fas fa-milk text-5xl absolute bottom-40 right-1/4 text-white/10"></i>
             </div>
         </section>
 
@@ -157,27 +209,31 @@
                         <div class="space-y-2">
                             <label class="category-filter-item flex items-center gap-2 cursor-pointer p-2 rounded-lg hover:bg-green-50">
                                 <input type="radio" name="category" value="all" class="category-filter" checked> 
-                                <span>📦 All Products</span>
+                                <span>📦 All Products <span class="text-xs text-gray-400 ml-1">(150+ items)</span></span>
                             </label>
                             <label class="category-filter-item flex items-center gap-2 cursor-pointer p-2 rounded-lg hover:bg-green-50">
                                 <input type="radio" name="category" value="fruits" class="category-filter"> 
-                                <span>🍎 Fruits</span>
+                                <span>🍎 Fruits <span class="text-xs text-gray-400">(15 items)</span></span>
                             </label>
                             <label class="category-filter-item flex items-center gap-2 cursor-pointer p-2 rounded-lg hover:bg-green-50">
                                 <input type="radio" name="category" value="vegetables" class="category-filter"> 
-                                <span>🥬 Vegetables</span>
+                                <span>🥬 Vegetables <span class="text-xs text-gray-400">(15 items)</span></span>
                             </label>
                             <label class="category-filter-item flex items-center gap-2 cursor-pointer p-2 rounded-lg hover:bg-green-50">
                                 <input type="radio" name="category" value="grains" class="category-filter"> 
-                                <span>🌾 Grains & Rice</span>
+                                <span>🌾 Grains & Rice <span class="text-xs text-gray-400">(7 items)</span></span>
                             </label>
                             <label class="category-filter-item flex items-center gap-2 cursor-pointer p-2 rounded-lg hover:bg-green-50">
                                 <input type="radio" name="category" value="spices" class="category-filter"> 
-                                <span>🌶️ Spices</span>
+                                <span>🌶️ Spices <span class="text-xs text-gray-400">(13 items)</span></span>
                             </label>
                             <label class="category-filter-item flex items-center gap-2 cursor-pointer p-2 rounded-lg hover:bg-green-50">
                                 <input type="radio" name="category" value="oils" class="category-filter"> 
-                                <span>🛢️ Oils</span>
+                                <span>🛢️ Oils <span class="text-xs text-gray-400">(6 items)</span></span>
+                            </label>
+                            <label class="category-filter-item flex items-center gap-2 cursor-pointer p-2 rounded-lg hover:bg-green-50">
+                                <input type="radio" name="category" value="dairy" class="category-filter"> 
+                                <span>🥛 Dairy & Sweets <span class="text-xs text-gray-400">(50+ items)</span></span>
                             </label>
                         </div>
                     </div>
@@ -187,8 +243,19 @@
                         <label class="font-semibold block mb-2"><i class="fas fa-rupee-sign"></i> Price Range</label>
                         <div class="flex gap-2">
                             <input type="number" id="min-price" placeholder="Min" value="0" class="w-1/2 p-2 border border-gray-200 rounded-lg">
-                            <input type="number" id="max-price" placeholder="Max" value="1000" class="w-1/2 p-2 border border-gray-200 rounded-lg">
+                            <input type="number" id="max-price" placeholder="Max" value="500" class="w-1/2 p-2 border border-gray-200 rounded-lg">
                         </div>
+                    </div>
+                    
+                    <!-- Rating Filter -->
+                    <div class="mb-6">
+                        <label class="font-semibold block mb-2"><i class="fas fa-star text-yellow-500"></i> Minimum Rating</label>
+                        <select id="rating-filter" class="w-full p-2 border border-gray-200 rounded-lg">
+                            <option value="0">All Ratings</option>
+                            <option value="4.5">4.5 & above ⭐</option>
+                            <option value="4.0">4.0 & above ⭐</option>
+                            <option value="3.5">3.5 & above ⭐</option>
+                        </select>
                     </div>
                     
                     <!-- Reset Button -->
@@ -202,18 +269,30 @@
                     <!-- Products Header -->
                     <div class="flex justify-between items-center mb-6 flex-wrap gap-4">
                         <p id="products-count" class="text-gray-500">Showing 0 products</p>
-                        <select id="sort-select" class="p-2 border border-gray-200 rounded-lg bg-white">
-                            <option value="default">Sort by: Default</option>
-                            <option value="price-low">Price: Low to High</option>
-                            <option value="price-high">Price: High to Low</option>
-                            <option value="rating">Top Rated</option>
-                            <option value="name">Name: A to Z</option>
-                        </select>
+                        <div class="flex gap-3">
+                            <select id="sort-select" class="p-2 border border-gray-200 rounded-lg bg-white">
+                                <option value="default">Sort by: Default</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="rating">Top Rated</option>
+                                <option value="name">Name: A to Z</option>
+                            </select>
+                            <button onclick="toggleView()" class="p-2 border border-gray-200 rounded-lg hover:bg-gray-50">
+                                <i id="view-icon" class="fas fa-th-large"></i>
+                            </button>
+                        </div>
                     </div>
                     
                     <!-- Products Grid Container -->
                     <div id="shop-products-grid" class="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
                         <!-- Products loaded via JS -->
+                    </div>
+                    
+                    <!-- Load More Button -->
+                    <div class="text-center mt-8" id="load-more-container">
+                        <button id="load-more-btn" class="px-6 py-2 border border-green-600 text-green-600 rounded-lg hover:bg-green-600 hover:text-white transition">
+                            Load More Products
+                        </button>
                     </div>
                 </div>
             </div>
@@ -255,6 +334,16 @@
     <script src="assets/js/main.js"></script>
     
     <script>
+        let currentProducts = [];
+        let displayedCount = 12;
+        let currentView = 'grid';
+        let currentCategory = 'all';
+        let currentSort = 'default';
+        let currentMinPrice = 0;
+        let currentMaxPrice = 500;
+        let currentRating = 0;
+        let currentSearch = '';
+        
         function toggleMobileFilter() {
             const sidebar = document.getElementById('filter-sidebar');
             const overlay = document.getElementById('filter-overlay');
@@ -262,12 +351,279 @@
             overlay.classList.toggle('open');
         }
         
-        // Check authentication for shop access
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (!currentUser && window.location.pathname.includes('shop.html')) {
-            // Don't redirect immediately - let them view but prompt on add to cart?
-            // Actually we already have protection on the shop link from header
+        function toggleView() {
+            const grid = document.getElementById('shop-products-grid');
+            const icon = document.getElementById('view-icon');
+            if (currentView === 'grid') {
+                grid.classList.remove('grid-cols-2', 'lg:grid-cols-3');
+                grid.classList.add('flex', 'flex-col');
+                icon.classList.remove('fa-th-large');
+                icon.classList.add('fa-list');
+                currentView = 'list';
+            } else {
+                grid.classList.remove('flex', 'flex-col');
+                grid.classList.add('grid', 'grid-cols-2', 'lg:grid-cols-3');
+                icon.classList.remove('fa-list');
+                icon.classList.add('fa-th-large');
+                currentView = 'grid';
+            }
         }
+        
+        function filterProducts() {
+            let filtered = [...productsDatabase];
+            
+            // Category filter
+            if (currentCategory !== 'all') {
+                filtered = filtered.filter(p => p.category === currentCategory);
+            }
+            
+            // Search filter
+            if (currentSearch) {
+                const query = currentSearch.toLowerCase();
+                filtered = filtered.filter(p => p.name.toLowerCase().includes(query));
+            }
+            
+            // Price filter
+            filtered = filtered.filter(p => p.price >= currentMinPrice && p.price <= currentMaxPrice);
+            
+            // Rating filter
+            if (currentRating > 0) {
+                filtered = filtered.filter(p => p.rating >= currentRating);
+            }
+            
+            // Sort
+            filtered = sortProducts(filtered, currentSort);
+            
+            currentProducts = filtered;
+            document.getElementById('products-count').textContent = `Showing ${filtered.length} products`;
+            
+            // Reset displayed count and render
+            displayedCount = 12;
+            renderProducts();
+        }
+        
+        function renderProducts() {
+            const container = document.getElementById('shop-products-grid');
+            const productsToShow = currentProducts.slice(0, displayedCount);
+            const hasMore = displayedCount < currentProducts.length;
+            
+            document.getElementById('load-more-container').style.display = hasMore ? 'block' : 'none';
+            
+            if (productsToShow.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-12">
+                        <i class="fas fa-search text-5xl text-gray-300 mb-3"></i>
+                        <p class="text-gray-500">No products found matching your criteria</p>
+                        <button onclick="resetFilters()" class="mt-3 text-green-600 font-semibold">Reset Filters →</button>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = productsToShow.map(product => `
+                <div class="product-card bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+                    <div class="relative">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover cursor-pointer" onclick="quickView(${product.id})">
+                        ${product.oldPrice ? `
+                            <div class="absolute top-2 left-2 bg-orange-500 text-white text-xs px-2 py-1 rounded-full">
+                                ${Math.round((1 - product.price/product.oldPrice) * 100)}% OFF
+                            </div>
+                        ` : ''}
+                        <button onclick="addToWishlist(${product.id}, '${product.name}', ${product.price}, '${product.image}')" class="absolute top-2 right-2 bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-md hover:text-red-500 transition">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-1 mb-1">
+                            <div class="flex text-yellow-500 text-sm">
+                                ${'★'.repeat(Math.floor(product.rating))}${product.rating % 1 ? '½' : ''}
+                            </div>
+                            <span class="text-xs text-gray-400">(${product.rating})</span>
+                        </div>
+                        <h3 class="font-semibold text-lg text-gray-800 mb-1 line-clamp-1">${product.name}</h3>
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-orange-600 font-bold text-xl">₹${product.price}</span>
+                            ${product.oldPrice ? `<span class="text-gray-400 line-through text-sm">₹${product.oldPrice}</span>` : ''}
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-gray-500 mb-3">
+                            <i class="fas fa-box"></i> ${product.stock} left
+                        </div>
+                        <button onclick="addToCart(${product.id}, '${product.name}', ${product.price}, '${product.image}')" class="w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition flex items-center justify-center gap-2">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function quickView(productId) {
+            const product = getProductById(productId);
+            if (product) {
+                const modal = document.getElementById('quick-view-modal');
+                const content = document.getElementById('quick-view-content');
+                content.innerHTML = `
+                    <div class="flex flex-col lg:flex-row gap-6">
+                        <div class="lg:w-1/2">
+                            <img src="${product.image}" alt="${product.name}" class="w-full rounded-xl">
+                        </div>
+                        <div class="lg:w-1/2">
+                            <h2 class="text-2xl font-bold text-gray-800">${product.name}</h2>
+                            <div class="flex items-center gap-2 mt-2">
+                                <div class="flex text-yellow-500">
+                                    ${'★'.repeat(Math.floor(product.rating))}${product.rating % 1 ? '½' : ''}
+                                </div>
+                                <span class="text-gray-500">(${product.rating})</span>
+                            </div>
+                            <div class="mt-3">
+                                <span class="text-3xl font-bold text-orange-600">₹${product.price}</span>
+                                ${product.oldPrice ? `<span class="text-gray-400 line-through ml-2">₹${product.oldPrice}</span>` : ''}
+                            </div>
+                            <p class="text-gray-600 mt-3">${product.description}</p>
+                            <div class="mt-3 flex items-center gap-2">
+                                <i class="fas fa-check-circle text-green-600"></i>
+                                <span class="text-green-600">In Stock (${product.stock} items left)</span>
+                            </div>
+                            <div class="flex items-center gap-3 mt-4">
+                                <div class="flex items-center border rounded-lg">
+                                    <button onclick="changeQty(-1)" class="px-3 py-1 text-xl">-</button>
+                                    <input type="number" id="quick-qty" value="1" min="1" max="${product.stock}" class="w-12 text-center border-x">
+                                    <button onclick="changeQty(1)" class="px-3 py-1 text-xl">+</button>
+                                </div>
+                                <button onclick="addToCartFromQuick(${product.id}, '${product.name}', ${product.price}, '${product.image}')" class="flex-1 bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                modal.classList.add('active');
+            }
+        }
+        
+        function changeQty(change) {
+            const input = document.getElementById('quick-qty');
+            let val = parseInt(input.value) + change;
+            if (val >= 1) input.value = val;
+        }
+        
+        function addToCartFromQuick(id, name, price, image) {
+            const qty = parseInt(document.getElementById('quick-qty').value);
+            for (let i = 0; i < qty; i++) {
+                addToCart(id, name, price, image);
+            }
+            closeQuickView();
+        }
+        
+        function addToWishlist(id, name, price, image) {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (!currentUser) {
+                alert('Please login to add items to wishlist');
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            let wishlist = JSON.parse(localStorage.getItem(`wishlist_${currentUser.email}`)) || [];
+            if (!wishlist.find(item => item.id === id)) {
+                wishlist.push({ id, name, price, image });
+                localStorage.setItem(`wishlist_${currentUser.email}`, JSON.stringify(wishlist));
+                showNotification('Added to wishlist!');
+            } else {
+                showNotification('Item already in wishlist!');
+            }
+        }
+        
+        function closeQuickView() {
+            document.getElementById('quick-view-modal').classList.remove('active');
+        }
+        
+        function loadMore() {
+            displayedCount += 12;
+            renderProducts();
+        }
+        
+        function resetFilters() {
+            currentCategory = 'all';
+            currentSort = 'default';
+            currentMinPrice = 0;
+            currentMaxPrice = 500;
+            currentRating = 0;
+            currentSearch = '';
+            
+            document.querySelectorAll('.category-filter').forEach(radio => {
+                radio.checked = radio.value === 'all';
+            });
+            document.getElementById('search-input').value = '';
+            document.getElementById('min-price').value = 0;
+            document.getElementById('max-price').value = 500;
+            document.getElementById('rating-filter').value = 0;
+            document.getElementById('sort-select').value = 'default';
+            
+            filterProducts();
+        }
+        
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+            notification.innerHTML = message;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 2000);
+        }
+        
+        // Event Listeners
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            currentSearch = e.target.value;
+            filterProducts();
+        });
+        
+        document.getElementById('min-price').addEventListener('input', (e) => {
+            currentMinPrice = parseInt(e.target.value) || 0;
+            filterProducts();
+        });
+        
+        document.getElementById('max-price').addEventListener('input', (e) => {
+            currentMaxPrice = parseInt(e.target.value) || 500;
+            filterProducts();
+        });
+        
+        document.getElementById('rating-filter').addEventListener('change', (e) => {
+            currentRating = parseFloat(e.target.value);
+            filterProducts();
+        });
+        
+        document.getElementById('sort-select').addEventListener('change', (e) => {
+            currentSort = e.target.value;
+            filterProducts();
+        });
+        
+        document.querySelectorAll('.category-filter').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    currentCategory = e.target.value;
+                    filterProducts();
+                }
+            });
+        });
+        
+        document.getElementById('reset-filters').addEventListener('click', resetFilters);
+        document.getElementById('load-more-btn').addEventListener('click', loadMore);
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            filterProducts();
+            if (typeof AOS !== 'undefined') {
+                AOS.init({ duration: 800, once: true });
+            }
+        });
+        
+        // Make functions global for onclick handlers
+        window.toggleMobileFilter = toggleMobileFilter;
+        window.toggleView = toggleView;
+        window.quickView = quickView;
+        window.closeQuickView = closeQuickView;
+        window.changeQty = changeQty;
+        window.addToCartFromQuick = addToCartFromQuick;
+        window.addToWishlist = addToWishlist;
+        window.resetFilters = resetFilters;
     </script>
 </body>
 

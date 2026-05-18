@@ -64,7 +64,72 @@ const productsDatabase = [
     { id: 55, name: "Saffron", category: "spices", price: 250, oldPrice: 350, image: "https://images.unsplash.com/photo-1596040033229-a9821a540eb3?w=300", rating: 4.9, stock: 30, description: "Premium saffron strands for desserts and biryani." },
     { id: 56, name: "Black Pepper", category: "spices", price: 70, oldPrice: 95, image: "https://images.unsplash.com/photo-1532336414038-cf19250c5757?w=300", rating: 4.7, stock: 120, description: "Classic spicy pepper for seasoning." },
     { id: 57, name: "Fennel Seeds", category: "spices", price: 35, oldPrice: 50, image: "https://images.unsplash.com/photo-1596040033229-a9821a540eb3?w=300", rating: 4.6, stock: 140, description: "Sweet fennel seeds for mouth freshener." },
-    { id: 58, name: "Nigella Seeds", category: "spices", price: 40, oldPrice: 55, image: "https://images.unsplash.com/photo-1596040033229-a9821a540eb3?w=300", rating: 4.5, stock: 130, description: "Healthy aromatic seeds (kalonji)." }
+    { id: 58, name: "Nigella Seeds", category: "spices", price: 40, oldPrice: 55, image: "https://images.unsplash.com/photo-1596040033229-a9821a540eb3?w=300", rating: 4.5, stock: 130, description: "Healthy aromatic seeds (kalonji)." },
+
+    // ========== DAIRY PRODUCTS 🥛🧀🧈🍦 ==========
+    
+    // Milk Products 🥛
+    { id: 100, name: "Fresh Cow Milk", category: "dairy", price: 60, oldPrice: 75, image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=300", rating: 4.9, stock: 200, description: "Fresh pasteurized cow milk, rich in calcium and protein. 1 liter pack." },
+    { id: 101, name: "Organic A2 Milk", category: "dairy", price: 90, oldPrice: 120, image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=300", rating: 4.9, stock: 100, description: "Premium A2 Desi cow milk, easily digestible and nutrient-rich. 1 liter." },
+    { id: 102, name: "Full Cream Milk", category: "dairy", price: 70, oldPrice: 85, image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=300", rating: 4.8, stock: 150, description: "Rich and creamy full cream milk perfect for tea, coffee, and desserts." },
+    { id: 103, name: "Toned Milk", category: "dairy", price: 55, oldPrice: 70, image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=300", rating: 4.7, stock: 180, description: "Low-fat toned milk for health-conscious families. 1 liter pack." },
+    { id: 104, name: "Skimmed Milk", category: "dairy", price: 50, oldPrice: 65, image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=300", rating: 4.6, stock: 120, description: "Zero-fat skimmed milk ideal for weight management." },
+    { id: 105, name: "Flavored Milk - Chocolate", category: "dairy", price: 35, oldPrice: 45, image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=300", rating: 4.8, stock: 200, description: "Delicious chocolate flavored milk, kids' favorite." },
+    { id: 106, name: "Flavored Milk - Strawberry", category: "dairy", price: 35, oldPrice: 45, image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=300", rating: 4.8, stock: 200, description: "Sweet strawberry flavored milk, perfect for breakfast." },
+    { id: 107, name: "Badam Milk", category: "dairy", price: 45, oldPrice: 60, image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=300", rating: 4.9, stock: 150, description: "Premium almond flavored milk with real almond pieces." },
+    
+    // Curd & Yogurt 🥄
+    { id: 108, name: "Fresh Curd", category: "dairy", price: 45, oldPrice: 60, image: "https://images.unsplash.com/photo-1550583724-c2692d22c3b7?w=300", rating: 4.8, stock: 200, description: "Creamy and fresh curd made from cow's milk. 500g pack." },
+    { id: 109, name: "Greek Yogurt", category: "dairy", price: 95, oldPrice: 130, image: "https://images.unsplash.com/photo-1488477181946-6428a0291779?w=300", rating: 4.9, stock: 100, description: "Thick and creamy Greek yogurt, high in protein. 400g pack." },
+    { id: 110, name: "Flavored Yogurt - Mango", category: "dairy", price: 50, oldPrice: 70, image: "https://images.unsplash.com/photo-1488477181946-6428a0291779?w=300", rating: 4.8, stock: 150, description: "Delicious mango flavored yogurt cup." },
+    { id: 111, name: "Flavored Yogurt - Mixed Berry", category: "dairy", price: 50, oldPrice: 70, image: "https://images.unsplash.com/photo-1488477181946-6428a0291779?w=300", rating: 4.8, stock: 150, description: "Mixed berry yogurt with real fruit pieces." },
+    { id: 112, name: "Probiotic Drink", category: "dairy", price: 40, oldPrice: 55, image: "https://images.unsplash.com/photo-1550583724-c2692d22c3b7?w=300", rating: 4.7, stock: 180, description: "Healthy probiotic drink for gut health. 200ml bottle." },
+    
+    // Butter 🧈
+    { id: 113, name: "Salted Butter", category: "dairy", price: 55, oldPrice: 75, image: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=300", rating: 4.8, stock: 150, description: "Creamy salted butter perfect for toast and cooking. 100g pack." },
+    { id: 114, name: "Unsalted Butter", category: "dairy", price: 55, oldPrice: 75, image: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=300", rating: 4.8, stock: 150, description: "Pure unsalted butter for baking and cooking." },
+    { id: 115, name: "Garlic Butter", category: "dairy", price: 65, oldPrice: 85, image: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=300", rating: 4.9, stock: 100, description: "Flavored garlic butter for garlic bread and pasta." },
+    { id: 116, name: "White Butter", category: "dairy", price: 70, oldPrice: 95, image: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=300", rating: 4.8, stock: 80, description: "Traditional homemade style white butter. 200g pack." },
+    { id: 117, name: "Amul Butter", category: "dairy", price: 60, oldPrice: 80, image: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=300", rating: 4.9, stock: 200, description: "Classic Amul butter - India's favorite!" },
+    
+    // Cheese 🧀
+    { id: 118, name: "Cheddar Cheese", category: "dairy", price: 120, oldPrice: 160, image: "https://images.unsplash.com/photo-1529928520614-7c76e2d99740?w=300", rating: 4.8, stock: 120, description: "Aged cheddar cheese block, perfect for sandwiches and pasta. 200g." },
+    { id: 119, name: "Mozzarella Cheese", category: "dairy", price: 140, oldPrice: 180, image: "https://images.unsplash.com/photo-1529928520614-7c76e2d99740?w=300", rating: 4.9, stock: 100, description: "Stretchy mozzarella cheese for pizzas and pasta." },
+    { id: 120, name: "Processed Cheese Slices", category: "dairy", price: 80, oldPrice: 110, image: "https://images.unsplash.com/photo-1529928520614-7c76e2d99740?w=300", rating: 4.7, stock: 200, description: "Convenient cheese slices for burgers and sandwiches." },
+    { id: 121, name: "Cream Cheese", category: "dairy", price: 100, oldPrice: 135, image: "https://images.unsplash.com/photo-1529928520614-7c76e2d99740?w=300", rating: 4.8, stock: 90, description: "Smooth and creamy spreadable cheese. 200g pack." },
+    { id: 122, name: "Gouda Cheese", category: "dairy", price: 160, oldPrice: 210, image: "https://images.unsplash.com/photo-1529928520614-7c76e2d99740?w=300", rating: 4.9, stock: 70, description: "Premium Dutch Gouda cheese with nutty flavor." },
+    { id: 123, name: "Paneer (Cottage Cheese)", category: "dairy", price: 180, oldPrice: 220, image: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=300", rating: 4.9, stock: 150, description: "Fresh, soft paneer for Indian dishes like palak paneer." },
+    { id: 124, name: "Cheese Spread - Garlic & Herb", category: "dairy", price: 85, oldPrice: 115, image: "https://images.unsplash.com/photo-1529928520614-7c76e2d99740?w=300", rating: 4.7, stock: 100, description: "Flavored cheese spread for bread and crackers." },
+    { id: 125, name: "Grated Parmesan Cheese", category: "dairy", price: 150, oldPrice: 200, image: "https://images.unsplash.com/photo-1529928520614-7c76e2d99740?w=300", rating: 4.8, stock: 80, description: "Authentic grated Parmesan for pasta and salads." },
+    
+    // Ice Cream 🍦
+    { id: 126, name: "Vanilla Ice Cream", category: "dairy", price: 120, oldPrice: 160, image: "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=300", rating: 4.8, stock: 150, description: "Classic creamy vanilla ice cream. 1 liter tub." },
+    { id: 127, name: "Chocolate Ice Cream", category: "dairy", price: 130, oldPrice: 170, image: "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=300", rating: 4.9, stock: 140, description: "Rich chocolate ice cream with deep cocoa flavor." },
+    { id: 128, name: "Strawberry Ice Cream", category: "dairy", price: 130, oldPrice: 170, image: "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=300", rating: 4.8, stock: 140, description: "Fresh strawberry ice cream with real fruit pieces." },
+    { id: 129, name: "Mango Ice Cream", category: "dairy", price: 140, oldPrice: 180, image: "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=300", rating: 4.9, stock: 120, description: "Tropical mango ice cream with real Alphonso mangoes." },
+    { id: 130, name: "Butterscotch Ice Cream", category: "dairy", price: 140, oldPrice: 180, image: "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=300", rating: 4.8, stock: 120, description: "Caramel butterscotch ice cream with crunchy bits." },
+    { id: 131, name: "Chocolate Chip Cookie Dough", category: "dairy", price: 160, oldPrice: 210, image: "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=300", rating: 4.9, stock: 100, description: "Cookie dough pieces in vanilla ice cream." },
+    { id: 132, name: "Kulfi (Malai)", category: "dairy", price: 60, oldPrice: 80, image: "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=300", rating: 4.9, stock: 200, description: "Traditional Indian malai kulfi on a stick." },
+    { id: 133, name: "Kesar Pista Kulfi", category: "dairy", price: 70, oldPrice: 95, image: "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=300", rating: 4.9, stock: 180, description: "Saffron and pistachio flavored kulfi." },
+    { id: 134, name: "Ice Cream Cone - Vanilla", category: "dairy", price: 40, oldPrice: 55, image: "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=300", rating: 4.7, stock: 300, description: "Ready-to-eat vanilla ice cream cone." },
+    { id: 135, name: "Ice Cream Cone - Chocolate", category: "dairy", price: 40, oldPrice: 55, image: "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=300", rating: 4.7, stock: 300, description: "Ready-to-eat chocolate ice cream cone." },
+    { id: 136, name: "Sugar-Free Ice Cream", category: "dairy", price: 150, oldPrice: 190, image: "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=300", rating: 4.6, stock: 80, description: "Diabetic-friendly sugar-free vanilla ice cream." },
+    
+    // Candy & Chocolates 🍬
+    { id: 137, name: "Mixed Fruit Candies", category: "dairy", price: 30, oldPrice: 45, image: "https://images.unsplash.com/photo-1581798459219-318e76aecc7b?w=300", rating: 4.6, stock: 500, description: "Assorted fruit-flavored hard candies." },
+    { id: 138, name: "Milk Chocolate Bar", category: "dairy", price: 50, oldPrice: 70, image: "https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=300", rating: 4.8, stock: 300, description: "Creamy milk chocolate bar. 50g." },
+    { id: 139, name: "Dark Chocolate (70% Cocoa)", category: "dairy", price: 80, oldPrice: 110, image: "https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=300", rating: 4.9, stock: 200, description: "Rich dark chocolate with antioxidants. 50g." },
+    { id: 140, name: "White Chocolate Bar", category: "dairy", price: 60, oldPrice: 85, image: "https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=300", rating: 4.7, stock: 250, description: "Sweet and creamy white chocolate bar." },
+    { id: 141, name: "Chocolate Truffles", category: "dairy", price: 120, oldPrice: 160, image: "https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=300", rating: 4.9, stock: 150, description: "Premium assorted chocolate truffles. 150g pack." },
+    { id: 142, name: "Gummy Bears", category: "dairy", price: 40, oldPrice: 60, image: "https://images.unsplash.com/photo-1581798459219-318e76aecc7b?w=300", rating: 4.7, stock: 400, description: "Soft and chewy gummy bear candies." },
+    { id: 143, name: "Sour Candy Strips", category: "dairy", price: 35, oldPrice: 50, image: "https://images.unsplash.com/photo-1581798459219-318e76aecc7b?w=300", rating: 4.6, stock: 350, description: "Tangy sour candy strips in assorted flavors." },
+    { id: 144, name: "Chocolate Fudge", category: "dairy", price: 90, oldPrice: 120, image: "https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=300", rating: 4.8, stock: 180, description: "Soft and gooey chocolate fudge pieces." },
+    { id: 145, name: "Lollipops (Assorted)", category: "dairy", price: 25, oldPrice: 40, image: "https://images.unsplash.com/photo-1581798459219-318e76aecc7b?w=300", rating: 4.5, stock: 600, description: "Colorful assorted flavor lollipops." },
+    { id: 146, name: "Toffee (Eclairs)", category: "dairy", price: 30, oldPrice: 45, image: "https://images.unsplash.com/photo-1581798459219-318e76aecc7b?w=300", rating: 4.7, stock: 500, description: "Creamy caramel toffee candies." },
+    { id: 147, name: "Hazelnut Chocolate", category: "dairy", price: 100, oldPrice: 140, image: "https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=300", rating: 4.9, stock: 120, description: "Smooth chocolate with whole hazelnuts." },
+    { id: 148, name: "Mint Chocolate Bar", category: "dairy", price: 55, oldPrice: 75, image: "https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=300", rating: 4.8, stock: 200, description: "Refreshing mint flavored chocolate bar." },
+    { id: 149, name: "Assorted Candy Jar", category: "dairy", price: 150, oldPrice: 200, image: "https://images.unsplash.com/photo-1581798459219-318e76aecc7b?w=300", rating: 4.8, stock: 100, description: "Party pack with assorted candies. 500g jar." },
+    { id: 150, name: "Caramel Popcorn", category: "dairy", price: 80, oldPrice: 110, image: "https://images.unsplash.com/photo-1581798459219-318e76aecc7b?w=300", rating: 4.8, stock: 150, description: "Sweet caramel coated popcorn." }
 ];
 
 // Brand data for auto-slider
@@ -117,4 +182,40 @@ function sortProducts(products, sortType) {
         default:
             return sorted;
     }
+}
+
+// Get dairy products specifically
+function getDairyProducts() {
+    return productsDatabase.filter(p => p.category === 'dairy');
+}
+
+// Get milk products
+function getMilkProducts() {
+    return productsDatabase.filter(p => p.category === 'dairy' && 
+        (p.name.includes("Milk") || p.name.includes("Curd") || p.name.includes("Yogurt")));
+}
+
+// Get cheese products
+function getCheeseProducts() {
+    return productsDatabase.filter(p => p.category === 'dairy' && 
+        (p.name.includes("Cheese") || p.name.includes("Paneer")));
+}
+
+// Get butter products
+function getButterProducts() {
+    return productsDatabase.filter(p => p.category === 'dairy' && p.name.includes("Butter"));
+}
+
+// Get ice cream products
+function getIceCreamProducts() {
+    return productsDatabase.filter(p => p.category === 'dairy' && 
+        (p.name.includes("Ice Cream") || p.name.includes("Kulfi") || p.name.includes("Cone")));
+}
+
+// Get candy and chocolate products
+function getCandyProducts() {
+    return productsDatabase.filter(p => p.category === 'dairy' && 
+        (p.name.includes("Chocolate") || p.name.includes("Candy") || p.name.includes("Toffee") || 
+         p.name.includes("Gummy") || p.name.includes("Lollipop") || p.name.includes("Fudge") || 
+         p.name.includes("Popcorn")));
 }
