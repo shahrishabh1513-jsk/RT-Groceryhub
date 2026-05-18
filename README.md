@@ -79,7 +79,13 @@ RT_GROCERYHUB
 │   │   └── style.css
 │   │
 │   ├── images
-│   │
+│   │   ├── Dairy
+│   │   ├── Fruits
+│   │   └── Grains & Rice
+│   │   ├── Spices
+│   │   ├── Vegetables
+│   │   └── oil
+|   |
 │   └── js
 │       ├── brand-slider.js
 │       ├── main.js
