@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product — GreenBasket</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+.product-layout { display:grid; grid-template-columns:1fr 1fr; gap:56px; padding:48px 0; align-items:start; }
+.product-gallery { position:sticky; top:88px; }
+.gallery-main { border-radius:var(--radius-xl); overflow:hidden; aspect-ratio:1; background:var(--gray-50); margin-bottom:12px; cursor:zoom-in; }
+.gallery-main img { width:100%; height:100%; object-fit:cover; transition:transform .4s ease; }
+.gallery-main:hover img { transform:scale(1.05); }
+.gallery-thumbs { display:flex; gap:10px; }
+.thumb { width:72px; height:72px; border-radius:10px; overflow:hidden; border:2px solid var(--gray-200); cursor:pointer; transition:var(--transition); }
+.thumb:hover, .thumb.active { border-color:var(--green-600); }
+.thumb img { width:100%; height:100%; object-fit:cover; }
+
+/* Product info */
+.product-info {}
+.product-brand-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+.product-brand { font-size:.8rem; font-weight:700; color:var(--green-600); text-transform:uppercase; letter-spacing:1px; background:var(--green-50); padding:3px 12px; border-radius:50px; }
+.product-title { font-size:1.75rem; font-weight:800; color:var(--gray-900); margin:10px 0 12px; line-height:1.2; }
+.product-rating-row { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.product-rating-row .stars { font-size:1rem; }
+.product-rating-val { font-weight:700; }
+.product-reviews { color:var(--gray-400); font-size:.85rem; }
+.product-price-row { display:flex; align-items:center; gap:14px; margin-bottom:24px; padding:18px; background:linear-gradient(135deg,var(--green-50),var(--white)); border-radius:var(--radius-lg); border:1.5px solid var(--green-100); }
+.product-price { font-size:2rem; font-weight:900; color:var(--gray-900); }
+.product-oldprice { font-size:1.1rem; color:var(--gray-400); text-decoration:line-through; }
+.product-disc { background:var(--red); color:#fff; border-radius:8px; padding:4px 10px; font-size:.78rem; font-weight:800; }
+.product-unit { font-size:.82rem; color:var(--gray-500); background:var(--gray-100); padding:3px 10px; border-radius:50px; }
+
+/* Quantity selector */
+.qty-selector { display:flex; align-items:center; gap:0; border:2px solid var(--gray-200); border-radius:12px; overflow:hidden; width:140px; }
+.qty-btn { width:44px; height:44px; font-size:1.3rem; font-weight:700; color:var(--gray-700); background:var(--gray-50); transition:var(--transition); flex-shrink:0; border:none; cursor:pointer; }
+.qty-btn:hover { background:var(--green-600); color:#fff; }
+.qty-input { flex:1; text-align:center; font-size:1rem; font-weight:700; border:none; outline:none; height:44px; }
+
+.add-row { display:flex; gap:12px; margin-top:20px; flex-wrap:wrap; }
+.add-row .btn { flex:1; min-width:180px; justify-content:center; }
+
+/* Tags / badges */
+.product-tags { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0; }
+.product-tag { background:var(--gray-100); border-radius:50px; padding:4px 14px; font-size:.78rem; color:var(--gray-600); font-weight:500; }
+
+/* Delivery info */
+.delivery-box { background:var(--gray-50); border:1.5px solid var(--gray-200); border-radius:var(--radius-lg); padding:16px 20px; margin:20px 0; }
+.delivery-row { display:flex; align-items:center; gap:12px; font-size:.87rem; padding:6px 0; }
+.delivery-row i { color:var(--green-600); width:20px; text-align:center; }
+
+/* Description tabs */
+.product-tabs { margin-top:60px; }
+.tab-content { line-height:1.8; color:var(--gray-600); font-size:.92rem; }
+.tab-content h4 { color:var(--gray-800); font-weight:700; margin:16px 0 8px; }
+.tab-content ul { padding-left:20px; margin:10px 0; }
+.tab-content ul li { margin-bottom:6px; }
+.nutrition-table { width:100%; border-collapse:collapse; margin-top:12px; }
+.nutrition-table th { background:var(--green-600); color:#fff; padding:10px 14px; text-align:left; font-size:.85rem; }
+.nutrition-table td { padding:9px 14px; border-bottom:1px solid var(--gray-100); font-size:.85rem; }
+.nutrition-table tr:nth-child(even) td { background:var(--gray-50); }
+
+/* Reviews */
+.reviews-section { margin-top:16px; }
+.review-summary { display:flex; gap:32px; align-items:center; background:var(--gray-50); border-radius:var(--radius-lg); padding:24px; margin-bottom:24px; }
+.review-big { text-align:center; }
+.review-big .num { font-size:3.5rem; font-weight:900; color:var(--gray-900); line-height:1; }
+.review-big .stars { font-size:1.2rem; }
+.review-big small { font-size:.78rem; color:var(--gray-400); }
+.review-bars { flex:1; }
+.review-bar { display:flex; align-items:center; gap:10px; margin-bottom:8px; font-size:.82rem; }
+.review-bar__track { flex:1; height:7px; background:var(--gray-200); border-radius:4px; overflow:hidden; }
+.review-bar__fill  { height:100%; background:linear-gradient(90deg,var(--green-500),var(--green-300)); border-radius:4px; }
+.review-card { border-radius:var(--radius-lg); border:1.5px solid var(--gray-100); padding:20px; margin-bottom:16px; transition:var(--transition); }
+.review-card:hover { box-shadow:var(--shadow); }
+.review-card__header { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+.reviewer { display:flex; align-items:center; gap:10px; }
+.reviewer-avatar { width:38px; height:38px; border-radius:50%; background:var(--green-600); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.9rem; }
+.reviewer strong { display:block; font-size:.88rem; }
+.reviewer small { color:var(--gray-400); font-size:.75rem; }
+.review-card p { font-size:.87rem; color:var(--gray-600); line-height:1.7; }
+.review-helpful { font-size:.78rem; color:var(--gray-400); margin-top:10px; }
+.review-helpful button { color:var(--green-600); font-weight:600; font-size:.78rem; }
+
+/* Related */
+.related-section { padding:60px 0; background:var(--gray-50); }
+
+@media(max-width:900px){ .product-layout{ grid-template-columns:1fr; gap:28px; } .product-gallery{ position:static; } }
+@media(max-width:480px){ .add-row{ flex-direction:column; } .review-summary{ flex-direction:column; } }
+</style>
+</head>
+<body>
+<div id="page-progress"></div>
+
+<nav class="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">🌿 Green<span>Basket</span></a>
+    <div class="navbar__search">
+      <span class="navbar__search-icon"><i class="fas fa-search"></i></span>
+      <input type="text" placeholder="Search products…">
+      <div class="navbar__search-results"></div>
+    </div>
+    <nav class="navbar__nav">
+      <a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+    </nav>
+    <div class="navbar__actions">
+      <a href="account.html" class="navbar__cart-btn"><i class="far fa-user"></i></a>
+      <button class="navbar__cart-btn" data-open-cart>
+        <i class="fas fa-shopping-basket"></i>
+        <span class="cart-badge" style="display:none">0</span>
+      </button>
+      <button class="navbar__hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html"><i class="fas fa-home fa-fw"></i> Home</a>
+  <a href="shop.html"><i class="fas fa-store fa-fw"></i> Shop</a>
+  <a href="account.html"><i class="fas fa-user fa-fw"></i> Account</a>
+</div>
+
+<!-- Breadcrumb -->
+<div style="background:var(--gray-50);border-bottom:1px solid var(--gray-100);padding:10px 0">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span class="sep"><i class="fas fa-chevron-right" style="font-size:.6rem"></i></span>
+      <a href="shop.html">Shop</a><span class="sep"><i class="fas fa-chevron-right" style="font-size:.6rem"></i></span>
+      <span id="bc-name">Product</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="product-layout" id="product-layout">
+    <div style="text-align:center;padding:80px;color:var(--gray-400);grid-column:span 2">
+      <i class="fas fa-spinner fa-spin fa-2x"></i><p style="margin-top:12px">Loading product…</p>
+    </div>
+  </div>
+</div>
+
+<!-- Related Products -->
+<section class="related-section">
+  <div class="container">
+    <div class="section-header" data-aos>
+      <span class="section-header__eyebrow">You May Also Like</span>
+      <h2>Related Products</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="grid-4" id="related-grid"></div>
+  </div>
+</section>
+
+<!-- Cart Drawer -->
+<div id="cart-overlay" class="cart-overlay"></div>
+<div id="cart-drawer" class="cart-drawer">
+  <div class="cart-drawer__head">
+    <h2>🛒 Your Cart <span id="drawer-items-count" style="font-size:.8rem;color:var(--gray-400);font-weight:400"></span></h2>
+    <button id="cart-close" class="cart-drawer__close"><i class="fas fa-times"></i></button>
+  </div>
+  <div id="cart-drawer-items" class="cart-drawer__items"></div>
+  <div id="cart-drawer-empty" class="cart-drawer__empty hidden"><i class="fas fa-shopping-basket"></i><p>Your basket is empty.</p></div>
+  <div id="cart-drawer-foot" class="cart-drawer__foot hidden">
+    <div class="cart-drawer__coupon"><input type="text" id="coupon-input" placeholder="Coupon code"><button id="apply-coupon">Apply</button></div>
+    <div id="coupon-msg" class="coupon-msg"></div>
+    <table class="cart-drawer__totals" style="width:100%;border-collapse:collapse">
+      <tr><td>Subtotal</td><td id="drawer-subtotal">₹0</td></tr>
+      <tr><td>Delivery</td><td id="drawer-delivery">₹49</td></tr>
+      <tr class="total-row"><td>Total</td><td id="drawer-total">₹0</td></tr>
+    </table>
+    <a href="checkout.html" class="btn btn-primary" onclick="closeCartDrawer()"><i class="fas fa-lock"></i> Checkout</a>
+  </div>
+</div>
+
+<button class="scroll-top"><i class="fas fa-chevron-up"></i></button>
+
+<script src="assets/js/products.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+const pid = parseInt(new URLSearchParams(location.search).get("id"));
+const p   = PRODUCTS.find(x => x.id === pid);
+
+if (!p) {
+  document.getElementById("product-layout").innerHTML =
+    `<div style="text-align:center;padding:80px;grid-column:span 2">
+      <i class="fas fa-exclamation-circle fa-3x" style="color:var(--gray-300)"></i>
+      <h2 style="margin:20px 0 12px;color:var(--gray-600)">Product Not Found</h2>
+      <a href="shop.html" class="btn btn-primary">← Back to Shop</a>
+    </div>`;
+} else {
+  document.title = `${p.name} — GreenBasket`;
+  document.getElementById("bc-name").textContent = p.name;
+
+  const disc    = discPct(p);
+  const inWish  = getWishlist().includes(p.id);
+  const thumbImgs = [p.image, p.image, p.image]; // real site would have multiple
+
+  document.getElementById("product-layout").innerHTML = `
+    <!-- Gallery -->
+    <div class="product-gallery" data-aos="fade-right">
+      <div class="gallery-main" id="gallery-main">
+        <img id="main-img" src="${p.image}" alt="${p.name}"
+             onerror="this.src='https://placehold.co/600x600/dcfce7/16a34a?text=${encodeURIComponent(p.name)}'">
+      </div>
+      <div class="gallery-thumbs">
+        ${thumbImgs.map((img,i)=>`
+          <div class="thumb${i===0?' active':''}" onclick="setMainImg('${img}',this)">
+            <img src="${img}" alt="${p.name}" onerror="this.src='https://placehold.co/72x72/dcfce7/16a34a?text=GB'">
+          </div>`).join("")}
+      </div>
+    </div>
+
+    <!-- Info -->
+    <div class="product-info" data-aos="fade-left">
+      <div class="product-brand-row">
+        <span class="product-brand">${p.brand}</span>
+        <span class="product-tag" style="background:${p.stock>20?'var(--green-50)':'#fef9c3'};color:${p.stock>20?'var(--green-700)':'#854d0e'}">
+          ${p.stock>20?'✓ In Stock':'⚠ Low Stock'}
+        </span>
+      </div>
+
+      <h1 class="product-title">${p.name}</h1>
+
+      <div class="product-rating-row">
+        <div class="stars">${starHTML(p.rating)}</div>
+        <span class="product-rating-val">${p.rating}</span>
+        <a href="#reviews" class="product-reviews">${p.reviews.toLocaleString()} reviews</a>
+        <span style="color:var(--gray-300)">|</span>
+        <span style="font-size:.83rem;color:var(--green-600);font-weight:600">🏷 ${p.unit}</span>
+      </div>
+
+      <div class="product-price-row">
+        <span class="product-price">${fmt(p.price)}</span>
+        ${p.oldPrice ? `<span class="product-oldprice">${fmt(p.oldPrice)}</span>` : ""}
+        ${disc > 0  ? `<span class="product-disc">SAVE ${disc}%</span>` : ""}
+      </div>
+
+      <p style="color:var(--gray-600);line-height:1.75;font-size:.92rem;margin-bottom:20px">${p.description}</p>
+
+      ${p.badge ? `<div class="product-tags"><span class="product-tag" style="background:var(--green-50);color:var(--green-700);border:1px solid var(--green-200)">✓ ${p.badge}</span></div>` : ""}
+
+      <!-- Qty + Add -->
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:4px;flex-wrap:wrap">
+        <div class="qty-selector">
+          <button class="qty-btn" id="qty-minus" onclick="changeQty(-1)">−</button>
+          <input class="qty-input" id="qty-input" type="number" value="1" min="1" max="${p.stock}" readonly>
+          <button class="qty-btn" id="qty-plus"  onclick="changeQty(1)">+</button>
+        </div>
+        <span style="font-size:.8rem;color:var(--gray-400)">${p.stock} units available</span>
+      </div>
+
+      <div class="add-row">
+        <button class="btn btn-primary" id="atc-btn" onclick="handleAddToCart()">
+          <i class="fas fa-shopping-basket"></i> Add to Cart
+        </button>
+        <button class="btn btn-orange" onclick="buyNow()">
+          <i class="fas fa-bolt"></i> Buy Now
+        </button>
+        <button class="btn btn-secondary btn-icon wish-btn${inWish?' active':''}" data-id="${p.id}"
+                style="padding:12px;border-radius:12px;min-width:48px"
+                title="${inWish?'Remove from':'Add to'} Wishlist">
+          <i class="${inWish?'fas':'far'} fa-heart" style="font-size:1rem"></i>
+        </button>
+      </div>
+
+      <!-- Delivery info -->
+      <div class="delivery-box">
+        <div class="delivery-row"><i class="fas fa-truck-fast"></i><span><strong>Express Delivery</strong> — 30–45 minutes to your door</span></div>
+        <div class="delivery-row"><i class="fas fa-shield-halved"></i><span><strong>Freshness Guarantee</strong> — 100% refund if not fresh</span></div>
+        <div class="delivery-row"><i class="fas fa-rotate-left"></i><span><strong>Easy Returns</strong> — Hassle-free return within 24 hours</span></div>
+        <div class="delivery-row"><i class="fas fa-lock"></i><span><strong>Secure Checkout</strong> — Razorpay encrypted payments</span></div>
+      </div>
+
+      <!-- Share -->
+      <div style="display:flex;align-items:center;gap:10px;margin-top:8px">
+        <span style="font-size:.82rem;color:var(--gray-500);font-weight:600">Share:</span>
+        <button onclick="navigator.clipboard.writeText(location.href);showToast('Link copied!')" style="color:var(--gray-400);font-size:.9rem;padding:6px 10px;background:var(--gray-100);border-radius:8px"><i class="fas fa-link"></i></button>
+        <a href="https://wa.me/?text=Check this out: ${encodeURIComponent(p.name + ' on GreenBasket - ' + location.href)}" target="_blank" style="color:var(--gray-400);font-size:.9rem;padding:6px 10px;background:var(--gray-100);border-radius:8px"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>`;
+
+  // ── Product Tabs ──
+  const tabsHTML = `
+    <div class="product-tabs">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="desc">Description</button>
+        <button class="tab-btn" data-tab="nutrition">Nutrition</button>
+        <button class="tab-btn" data-tab="reviews" id="review-tab-btn">Reviews (${p.reviews.toLocaleString()})</button>
+      </div>
+
+      <div class="tab-panel active" id="tab-desc">
+        <div class="tab-content">
+          <p>${p.description}</p>
+          <h4>Key Highlights</h4>
+          <ul>
+            <li>Sourced directly from certified farms and trusted suppliers</li>
+            <li>No artificial preservatives or additives</li>
+            <li>Packed under hygienic conditions, sealed for freshness</li>
+            <li>Best before: 5–7 days from delivery date (for produce)</li>
+          </ul>
+          <h4>Storage Instructions</h4>
+          <p>Store in a cool, dry place. Refrigerate after opening. Consume within the indicated best-before period.</p>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-nutrition">
+        <div class="tab-content">
+          <p style="margin-bottom:14px">Approximate nutritional values per 100g serving:</p>
+          <table class="nutrition-table">
+            <thead><tr><th>Nutrient</th><th>Per 100g</th><th>% Daily Value*</th></tr></thead>
+            <tbody>
+              <tr><td>Energy</td><td>85 kcal</td><td>4%</td></tr>
+              <tr><td>Protein</td><td>2.3 g</td><td>5%</td></tr>
+              <tr><td>Total Fat</td><td>0.4 g</td><td>1%</td></tr>
+              <tr><td>Saturated Fat</td><td>0.1 g</td><td>0.5%</td></tr>
+              <tr><td>Carbohydrates</td><td>18 g</td><td>7%</td></tr>
+              <tr><td>Dietary Fibre</td><td>2.8 g</td><td>11%</td></tr>
+              <tr><td>Sugars</td><td>4.2 g</td><td>—</td></tr>
+              <tr><td>Sodium</td><td>12 mg</td><td>0.5%</td></tr>
+              <tr><td>Vitamin C</td><td>18 mg</td><td>20%</td></tr>
+              <tr><td>Iron</td><td>0.8 mg</td><td>4%</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:.75rem;color:var(--gray-400);margin-top:10px">*Percent Daily Values are based on a 2000 kcal diet. Values may vary by batch.</p>
+        </div>
+      </div>
+
+      <div class="tab-panel reviews-section" id="tab-reviews" id="reviews">
+        <div class="review-summary">
+          <div class="review-big">
+            <div class="num">${p.rating}</div>
+            <div class="stars">${starHTML(p.rating)}</div>
+            <small>${p.reviews.toLocaleString()} ratings</small>
+          </div>
+          <div class="review-bars">
+            ${[[5,72],[4,18],[3,6],[2,2],[1,2]].map(([s,pct])=>`
+              <div class="review-bar">
+                <span style="width:14px;text-align:right;font-size:.8rem">${s}★</span>
+                <div class="review-bar__track"><div class="review-bar__fill" style="width:${pct}%"></div></div>
+                <span style="font-size:.78rem;color:var(--gray-400);width:28px">${pct}%</span>
+              </div>`).join("")}
+          </div>
+        </div>
+        <div id="reviews-list"></div>
+      </div>
+    </div>`;
+
+  document.querySelector(".container").insertAdjacentHTML("beforeend", tabsHTML);
+
+  // Render fake reviews
+  const reviewsData = [
+    { name:"Priya S.", date:"12 Jan 2025", rating:5, text:"Absolutely fresh and delivered so fast! The packaging was eco-friendly too. Will definitely order again." },
+    { name:"Rahul M.", date:"8 Jan 2025",  rating:5, text:"Quality is top-notch. Much better than what I get at the local supermarket. Highly recommend!" },
+    { name:"Anjali B.", date:"3 Jan 2025", rating:4, text:"Very fresh produce. Delivery was quick. One item was slightly smaller than expected but overall great experience." },
+    { name:"Kartik R.", date:"28 Dec 2024",rating:5, text:"GreenBasket has become my go-to for fresh groceries. This product especially is consistently excellent." },
+  ];
+  document.getElementById("reviews-list").innerHTML = reviewsData.map(r=>`
+    <div class="review-card">
+      <div class="review-card__header">
+        <div class="reviewer">
+          <div class="reviewer-avatar">${r.name.charAt(0)}</div>
+          <div><strong>${r.name}</strong><small>${r.date}</small></div>
+        </div>
+        <div class="stars" style="font-size:.85rem">${starHTML(r.rating)}</div>
+      </div>
+      <p>${r.text}</p>
+      <div class="review-helpful">Was this helpful? <button>Yes (${Math.floor(Math.random()*20+5)})</button> · <button>No</button></div>
+    </div>`).join("");
+
+  // Tabs logic
+  document.querySelectorAll(".tab-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+      document.querySelectorAll(".tab-panel").forEach(p=>p.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById("tab-"+btn.dataset.tab).classList.add("active");
+    });
+  });
+
+  // Related products
+  const related = PRODUCTS.filter(x => x.category === p.category && x.id !== p.id).slice(0,4);
+  const relGrid = document.getElementById("related-grid");
+  if(relGrid) relGrid.innerHTML = related.map(rp => {
+    const rd = discPct(rp);
+    return `<div class="product-card" data-aos>
+      <div class="product-card__img-wrap">
+        <img class="product-card__img" src="${rp.image}" alt="${rp.name}" loading="lazy"
+             onclick="location.href='product.html?id=${rp.id}'"
+             onerror="this.src='https://placehold.co/400x300/dcfce7/16a34a?text=GB'">
+        ${rp.badge?`<div class="product-card__badge">${rp.badge}</div>`:""}
+        ${rd>0?`<div class="product-card__disc">-${rd}%</div>`:""}
+        <button class="product-card__wish wish-btn" data-id="${rp.id}"><i class="far fa-heart"></i></button>
+      </div>
+      <div class="product-card__body">
+        <div class="product-card__brand">${rp.brand}</div>
+        <div class="product-card__name" onclick="location.href='product.html?id=${rp.id}'" style="cursor:pointer">${rp.name}</div>
+        <div class="product-card__meta">
+          <div class="product-card__stars">${starHTML(rp.rating)}</div>
+          <span>${rp.rating}</span>
+        </div>
+        <div class="product-card__price">
+          <span class="current">${fmt(rp.price)}</span>
+          ${rp.oldPrice?`<span class="old">${fmt(rp.oldPrice)}</span>`:""}
+        </div>
+        <button class="product-card__btn" onclick="addToCart(${rp.id});this.innerHTML='<i class=\\'fas fa-check\\'></i> Added!';setTimeout(()=>this.innerHTML='<i class=\\'fas fa-shopping-basket\\'></i> Add to Cart',1500)">
+          <i class="fas fa-shopping-basket"></i> Add to Cart
+        </button>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+// ── Qty helpers ──
+let qty = 1;
+function changeQty(d) {
+  qty = Math.max(1, Math.min((p?.stock||99), qty + d));
+  document.getElementById("qty-input").value = qty;
+}
+function handleAddToCart() {
+  const btn = document.getElementById("atc-btn");
+  addToCart(p.id, qty);
+  btn.innerHTML = '<i class="fas fa-check"></i> Added to Cart!';
+  btn.style.background = 'var(--green-700)';
+  setTimeout(()=>{ btn.innerHTML='<i class="fas fa-shopping-basket"></i> Add to Cart'; btn.style.background=''; }, 2000);
+  openCartDrawer();
+}
+function buyNow() {
+  addToCart(p.id, qty);
+  location.href = 'checkout.html';
+}
+function setMainImg(src, thumb) {
+  document.getElementById("main-img").src = src;
+  document.querySelectorAll(".thumb").forEach(t=>t.classList.remove("active"));
+  thumb.classList.add("active");
+}
+function initAOS(){
+  const io=new IntersectionObserver(e=>e.forEach(x=>{ if(x.isIntersecting) x.target.classList.add("aos-animate"); }),{threshold:.1});
+  document.querySelectorAll("[data-aos]:not(.aos-animate)").forEach(el=>io.observe(el));
+}
+initAOS();
+</script>
+</body>
+</html>

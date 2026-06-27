@@ -1,307 +1,551 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RT GroceryHub - Fresh Grocery Store</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <!-- DaisyUI + TailwindCSS -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/d18f75e53f.js" crossorigin="anonymous"></script>
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <style>
-        @keyframes pulse-scale {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.4); }
-        }
-        .animate-pulse-scale {
-            animation: pulse-scale 1.5s infinite ease-in-out;
-        }
-        .font-sora { font-family: "Sora", serif; }
-        .font-poppins { font-family: "Poppins", serif; }
-        
-        .hero-section {
-            background: linear-gradient(135deg, #f8faf6 0%, #ffffff 100%);
-        }
-        
-        .btn-cart-header {
-            transition: all 0.3s ease;
-        }
-        
-        .btn-cart-header:hover {
-            transform: scale(1.05);
-        }
-    </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'btn-primary': '#16a34a',
-                        'primary-green': '#179800',
-                        'accent-orange': '#FF8C42',
-                    }
-                }
-            }
-        }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GreenBasket — Fresh Groceries Delivered</title>
+<meta name="description" content="Shop fresh organic produce, premium pantry staples and artisan foods from 40+ curated brands. Delivered in 30 minutes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+/* ── Hero layout ── */
+.hero__grid{ display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:60px; padding:60px 0; }
+.hero__image{ position:relative; }
+.hero__img-main{ width:100%; max-width:520px; margin:0 auto; border-radius:28px; object-fit:cover; height:500px; box-shadow:0 32px 80px rgba(0,0,0,.35); animation:floatY 5s ease-in-out infinite; }
+.hero__badge{ background:rgba(255,255,255,.95); border-radius:16px; padding:12px 18px; box-shadow:0 8px 24px rgba(0,0,0,.15); display:flex; align-items:center; gap:10px; width:max-content; }
+.hero__badge-b1{ position:absolute; bottom:60px; left:-30px; animation:floatY 3.5s ease-in-out infinite; }
+.hero__badge-b2{ position:absolute; top:40px; right:-20px; animation:floatY 4.5s 0.8s ease-in-out infinite; }
+.hero__badge-b3{ position:absolute; bottom:180px; right:-40px; animation:floatY 4s 1.6s ease-in-out infinite; }
+.hero__stat{ font-size:.8rem; }
+.hero__stat strong{ display:block; font-size:1.1rem; font-weight:800; color:var(--green-700); }
+
+/* ── Category grid ── */
+.cat-grid{ display:grid; grid-template-columns:repeat(6,1fr); gap:16px; }
+.cat-card{ background:var(--white); border-radius:var(--radius-lg); padding:20px 12px; text-align:center; cursor:pointer; transition:var(--transition); border:1.5px solid var(--gray-100); box-shadow:var(--shadow-sm); }
+.cat-card:hover{ transform:translateY(-6px) scale(1.03); box-shadow:var(--shadow-lg); border-color:var(--green-200); }
+.cat-card:hover .cat-card__icon{ background:var(--green-600); }
+.cat-card__icon{ width:54px; height:54px; border-radius:16px; background:var(--green-50); display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-size:1.4rem; transition:var(--transition); }
+.cat-card__name{ font-weight:600; font-size:.8rem; color:var(--gray-700); }
+.cat-card__count{ font-size:.7rem; color:var(--gray-400); margin-top:3px; }
+
+/* ── Offer strip ── */
+.offer-strip{ background:linear-gradient(135deg,var(--green-800),var(--green-600)); border-radius:var(--radius-xl); padding:24px 32px; color:#fff; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.offer-strip__text h3{ font-size:1.4rem; margin-bottom:4px; }
+.offer-strip__text p{ font-size:.87rem; opacity:.85; }
+.offer-strip__coupon{ background:rgba(255,255,255,.15); border:2px dashed rgba(255,255,255,.4); border-radius:10px; padding:10px 20px; font-size:1.1rem; font-weight:800; letter-spacing:2px; }
+.offer-strip__timer{ display:flex; gap:10px; }
+.timer-box{ background:rgba(255,255,255,.15); border-radius:10px; padding:10px 14px; text-align:center; }
+.timer-box span{ display:block; font-size:1.3rem; font-weight:800; line-height:1; }
+.timer-box small{ font-size:.65rem; opacity:.7; text-transform:uppercase; letter-spacing:.5px; }
+
+/* ── Brand strip ── */
+.brands-strip{ overflow:hidden; background:var(--gray-50); padding:32px 0; }
+.brands-track{ display:flex; gap:40px; animation:marquee 25s linear infinite; width:max-content; }
+.brands-track:hover{ animation-play-state:paused; }
+@keyframes marquee{ 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.brand-chip{ background:var(--white); border-radius:12px; padding:14px 28px; font-weight:700; font-size:.85rem; color:var(--gray-500); box-shadow:var(--shadow-sm); white-space:nowrap; transition:var(--transition); border:1.5px solid var(--gray-100); }
+.brand-chip:hover{ color:var(--green-700); border-color:var(--green-200); transform:translateY(-2px); }
+
+/* ── Features ── */
+.features-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+
+/* ── Promo banners ── */
+.promo-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.promo-card{ border-radius:var(--radius-xl); overflow:hidden; position:relative; height:220px; cursor:pointer; }
+.promo-card img{ width:100%; height:100%; object-fit:cover; transition:transform .5s; }
+.promo-card:hover img{ transform:scale(1.05); }
+.promo-card__overlay{ position:absolute; inset:0; background:linear-gradient(90deg,rgba(10,61,26,.8) 0%,transparent 70%); }
+.promo-card__content{ position:absolute; bottom:0; left:0; padding:24px; color:#fff; }
+.promo-card__tag{ background:var(--orange); border-radius:6px; padding:2px 10px; font-size:.7rem; font-weight:700; letter-spacing:.5px; display:inline-block; margin-bottom:8px; }
+
+/* ── Testimonials ── */
+.test-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+
+/* ── App download section ── */
+.app-section{ background:linear-gradient(135deg,#0a3d1a 0%,#16a34a 100%); border-radius:var(--radius-xl); padding:60px; display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
+.app-section h2{ color:#fff; margin-bottom:16px; }
+.app-section p{ color:rgba(255,255,255,.8); margin-bottom:28px; line-height:1.7; }
+.app-badges{ display:flex; gap:14px; flex-wrap:wrap; }
+.app-badge{ background:rgba(255,255,255,.1); border:1.5px solid rgba(255,255,255,.25); border-radius:12px; padding:10px 20px; color:#fff; display:flex; align-items:center; gap:10px; font-size:.87rem; font-weight:600; backdrop-filter:blur(8px); transition:var(--transition); }
+.app-badge:hover{ background:rgba(255,255,255,.2); }
+.app-img{ width:100%; max-width:360px; float:right; border-radius:20px; box-shadow:0 24px 60px rgba(0,0,0,.4); }
+
+@media(max-width:1024px){ .cat-grid{ grid-template-columns:repeat(4,1fr); } .features-grid{ grid-template-columns:repeat(2,1fr); } }
+@media(max-width:768px){ .hero__grid{ grid-template-columns:1fr; gap:32px; } .hero__image{ order:-1; } .cat-grid{ grid-template-columns:repeat(3,1fr); } .promo-grid{ grid-template-columns:1fr; } .test-grid{ grid-template-columns:1fr; } .app-section{ grid-template-columns:1fr; padding:36px 24px; } .app-img{ display:none; } .offer-strip{ flex-direction:column; text-align:center; } }
+@media(max-width:480px){ .cat-grid{ grid-template-columns:repeat(2,1fr); } }
+</style>
 </head>
+<body>
+<div id="page-progress"></div>
 
-<body class="bg-[#fffffe]">
-
-    <!-- Header Placeholder -->
-    <div id="header-placeholder"></div>
-
-    <main>
-        <!-- Hero Section with Shop Button -->
-        <section class="hero-section w-full mx-auto pb-16">
-            <div class="flex items-center justify-center w-64 h-64 mx-auto pt-8">
-                <img src="assets/images/vegetable-busket.png" alt="Grocery Icon" class="w-full h-full object-contain animate-pulse-scale" onerror="this.src='https://via.placeholder.com/200'">
-            </div>
-            <div class="hero">
-                <div class="flex flex-col items-center text-center">
-                    <h1 class="font-sora text-3xl px-4 lg:text-6xl font-semibold leading-10 mt-10 mb-6">
-                        Freshness <span class="text-green-600">You Can <br> Count</span> On, Prices You'll Love!
-                    </h1>
-                    <p class="font-sora lg:text-xl text-center mb-8 px-4 text-gray-600">
-                        Shop your daily essentials at unbeatable prices. From fresh produce to pantry <br> staples, we've got you covered every day!
-                    </p>
-                    <div class="flex gap-4 justify-center">
-                        <button onclick="redirectToShop()" class="btn-shop-now">
-                            <i class="fas fa-store"></i> Shop Now
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                        <button onclick="toggleCartSidebar()" class="btn-cart-header bg-white border-2 border-green-600 text-green-600 px-6 py-3 rounded-full font-semibold hover:bg-green-600 hover:text-white transition flex items-center gap-2">
-                            <i class="fas fa-shopping-cart"></i> View Cart
-                            <span id="hero-cart-count" class="bg-orange-500 text-white text-xs rounded-full px-2 py-0.5">0</span>
-                        </button>
-                    </div>
-                    <img src="https://i.imgur.com/WkYwX8R.png" alt="Fresh Vegetables" class="w-full mt-8" onerror="this.style.display='none'">
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section class="py-12 px-4 lg:px-20">
-            <h1 class="font-sora font-semibold text-3xl lg:text-4xl text-left text-green-600 mb-8">Services</h1>
-            <div class="flex flex-col lg:flex-row gap-6">
-                <div class="w-full lg:w-96 h-auto p-8 bg-[#EFEBE3] rounded-lg" data-aos="fade-up">
-                    <div class="flex justify-center">
-                        <div class="w-32 h-32 bg-white rounded-full flex items-center justify-center">
-                            <img src="assets/images/24-hours.png" alt="24/7 Service" class="w-20 h-20 object-contain">
-                        </div>
-                    </div>
-                    <h3 class="text-2xl font-sora font-semibold mt-4 text-center">24/7 Services</h3>
-                    <p class="lg:text-xl font-sora mt-2 text-center text-gray-600">Get fresh fruits and vegetables anytime with our reliable, round-the-clock service.</p>
-                </div>
-                <div class="w-full lg:w-96 h-auto p-8 bg-[#EFEBE3] rounded-lg" data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex justify-center">
-                        <div class="w-32 h-32 bg-white rounded-full flex items-center justify-center">
-                            <img src="assets/images/delivery.png" alt="Fast Delivery" class="w-20 h-20 object-contain">
-                        </div>
-                    </div>
-                    <h3 class="text-2xl font-sora font-semibold mt-4 text-center">Fast Delivery</h3>
-                    <p class="lg:text-xl font-sora mt-2 text-center text-gray-600">Enjoy quick, hassle-free delivery ensuring farm-fresh produce reaches you.</p>
-                </div>
-                <div class="w-full lg:w-96 h-auto p-8 bg-[#EFEBE3] rounded-lg" data-aos="fade-up" data-aos-delay="200">
-                    <div class="flex justify-center">
-                        <div class="w-32 h-32 bg-white rounded-full flex items-center justify-center">
-                            <img src="assets/images/label.png" alt="Healthy Products" class="w-20 h-20 object-contain">
-                        </div>
-                    </div>
-                    <h3 class="text-2xl font-sora font-semibold mt-4 text-center">Healthy Products</h3>
-                    <p class="lg:text-xl font-sora mt-2 text-center text-gray-600">We provide fresh, organic, and nutrient-rich fruits and vegetables.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Popular Products Section with Add to Cart -->
-        <section class="px-4 lg:px-20 py-16 bg-[#EFEBE3]">
-            <h1 class="font-sora font-semibold text-3xl lg:text-4xl text-left text-green-600 mb-8">Popular Products</h1>
-            <div class="grid lg:grid-cols-3 gap-6">
-                <!-- Big Offer Card -->
-                <div class="relative w-full lg:w-[370px] h-[335px] bg-gradient-to-br from-[#67ce4c] to-[#e6fae2] rounded-lg" data-aos="fade-right">
-                    <h3 class="font-sora text-white text-4xl font-bold mt-8 mb-4 pl-4">30% Off</h3>
-                    <p class="font-sora mb-4 pl-4 text-white">Discover a world of Organic and Fresh <br> Fruits and Vegetables.</p>
-                    <button onclick="redirectToShop()" class="font-sora bg-white font-semibold ml-4 pl-6 pr-6 pt-2 pb-2 rounded-lg text-green-600 hover:bg-green-600 hover:text-white transition">Shop Now</button>
-                    <img class="w-60 absolute bottom-0 right-0" src="assets/images/vegetable-offer.png" alt="Offer">
-                </div>
-                <!-- Product Grid -->
-                <div class="lg:col-span-2">
-                    <div class="grid grid-cols-2 lg:grid-cols-3 gap-4" id="popular-products-grid">
-                        <!-- Products loaded via JS -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Brand Auto-Slider Section -->
-        <section class="brand-slider-container py-12">
-            <div class="text-center mb-8" data-aos="fade-up">
-                <h2 class="font-sora text-3xl font-bold text-gray-800">Our <span class="text-green-600">Trusted Brands</span></h2>
-                <div class="w-20 h-1 bg-green-500 mx-auto rounded-full mt-3"></div>
-                <p class="text-gray-500 mt-2">Partnering with the best brands for quality products</p>
-            </div>
-            <div class="overflow-hidden">
-                <div id="brand-slider" class="brand-slider"></div>
-            </div>
-        </section>
-
-        <!-- Deals & Offers Section -->
-        <section class="py-16 px-4 lg:px-20 bg-gradient-to-b from-white to-gray-50">
-            <div class="text-center mb-12" data-aos="fade-up">
-                <span class="text-green-600 font-semibold text-sm uppercase tracking-wider">Limited Time Deals</span>
-                <h1 class="font-sora font-semibold text-3xl lg:text-4xl text-center text-gray-800 mt-2">Arrivals & <span class="text-green-600">Offers</span></h1>
-                <div class="w-20 h-1 bg-green-500 mx-auto rounded-full mt-3"></div>
-                <p class="text-gray-500 mt-3">Grab the best deals on fresh arrivals before they're gone!</p>
-            </div>
-
-            <div class="flex flex-col lg:flex-row justify-center items-center gap-6 max-w-7xl mx-auto">
-                <!-- Card 1 - Green Theme -->
-                <div class="w-full lg:w-[380px] h-80 flex justify-between items-center bg-gradient-to-br from-green-700 to-green-500 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="pl-6 z-10 relative">
-                        <img src="assets/images/Daawat.png" alt="Daawat" class="w-12 h-12 object-contain mb-2">
-                        <h3 class="text-white/80 text-sm font-semibold mb-1">Daawat Basmati</h3>
-                        <h2 class="text-white text-2xl font-bold">UP to <span class="text-yellow-300 text-3xl">20% OFF</span></h2>
-                        <button onclick="redirectToShop()" class="mt-4 px-5 py-2 rounded-full bg-white text-green-700 text-sm font-semibold hover:bg-green-50 transition-all duration-300 shadow-md flex items-center gap-2 group-hover:gap-3">
-                            Shop Now <i class="fas fa-arrow-right text-xs"></i>
-                        </button>
-                    </div>
-                    <div class="pr-4 relative">
-                        <img src="assets/images/Dawat.jpg" alt="Daawat Rice" class="h-56 w-auto object-contain drop-shadow-2xl group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                </div>
-
-                <!-- Card 2 - Orange Theme -->
-                <div class="w-full lg:w-[380px] h-80 flex justify-between items-center bg-gradient-to-br from-orange-600 to-orange-400 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="pl-6 z-10 relative">
-                        <h3 class="text-white/80 text-sm font-semibold mb-1">India Gate Basmati</h3>
-                        <h2 class="text-white text-2xl font-bold">UP to <span class="text-yellow-300 text-3xl">30% OFF</span></h2>
-                        <button onclick="redirectToShop()" class="mt-4 px-5 py-2 rounded-full bg-white text-orange-600 text-sm font-semibold hover:bg-orange-50 transition-all duration-300 shadow-md flex items-center gap-2 group-hover:gap-3">
-                            Shop Now <i class="fas fa-arrow-right text-xs"></i>
-                        </button>
-                    </div>
-                    <div class="pr-4 relative">
-                        <img src="assets/images/India Gate.png" alt="India Gate Rice" class="h-56 w-auto object-contain drop-shadow-2xl group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                </div>
-
-                <!-- Card 3 - Red Theme -->
-                <div class="w-full lg:w-[380px] h-80 flex justify-between items-center bg-gradient-to-br from-red-700 to-red-500 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden group" data-aos="fade-up" data-aos-delay="300">
-                    <div class="pl-6 z-10 relative">
-                        <h3 class="text-white/80 text-sm font-semibold mb-1">Fortune Products</h3>
-                        <h2 class="text-white text-2xl font-bold">UP to <span class="text-yellow-300 text-3xl">40% OFF</span></h2>
-                        <button onclick="redirectToShop()" class="mt-4 px-5 py-2 rounded-full bg-white text-red-600 text-sm font-semibold hover:bg-red-50 transition-all duration-300 shadow-md flex items-center gap-2 group-hover:gap-3">
-                            Shop Now <i class="fas fa-arrow-right text-xs"></i>
-                        </button>
-                    </div>
-                    <div class="pr-4 relative">
-                        <img src="assets/images/Fortune-product.png" alt="Fortune Product" class="h-56 w-auto object-contain drop-shadow-2xl group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ Section -->
-        <section class="w-[90%] mx-auto py-16 text-center">
-            <h1 class="font-sora text-3xl lg:text-5xl font-extrabold mb-6 text-green-600">Frequently Asked Questions</h1>
-            <p class="font-poppins text-lg lg:text-xl mb-12 text-gray-600">Got questions? We've got answers! Discover quick solutions for a seamless shopping experience.</p>
-            <div class="flex flex-col-reverse lg:flex-row gap-8">
-                <div class="lg:w-1/2" data-aos="fade-right">
-                    <div class="collapse collapse-plus bg-green-100 mb-4 rounded-lg">
-                        <input type="radio" name="accordion" />
-                        <div class="collapse-title text-xl font-sora font-bold">1. How do I place an order online?</div>
-                        <div class="collapse-content"><p>Placing an order is simple! Browse our catalog, add items to cart, and proceed to checkout. We offer multiple payment options including credit/debit cards, digital wallets, and secure online banking.</p></div>
-                    </div>
-                    <div class="collapse collapse-plus bg-green-100 mb-4 rounded-lg">
-                        <input type="radio" name="accordion" />
-                        <div class="collapse-title text-xl font-sora font-bold">2. What delivery options are available?</div>
-                        <div class="collapse-content"><p>We offer Same-Day Delivery (order before cutoff), Scheduled Delivery (choose a convenient time slot), and Express Delivery for urgent orders. Delivery times vary by location.</p></div>
-                    </div>
-                    <div class="collapse collapse-plus bg-green-100 mb-4 rounded-lg">
-                        <input type="radio" name="accordion" />
-                        <div class="collapse-title text-xl font-sora font-bold">3. How do I track my order?</div>
-                        <div class="collapse-content"><p>After order confirmation, you'll receive an email/SMS with a tracking link. You can also log into your account and view "My Orders" section for real-time updates.</p></div>
-                    </div>
-                    <div class="collapse collapse-plus bg-green-100 rounded-lg">
-                        <input type="radio" name="accordion" />
-                        <div class="collapse-title text-xl font-sora font-bold">4. What is your return and refund policy?</div>
-                        <div class="collapse-content"><p>If you receive damaged or incorrect items, contact us within 48 hours of delivery. We'll arrange for replacement, refund, or credit as per your preference.</p></div>
-                    </div>
-                </div>
-                <div class="lg:w-1/2 flex justify-center" data-aos="fade-left">
-                    <img src="https://i.imgur.com/4QZ7qV0.png" alt="FAQ" class="w-80">
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer Placeholder -->
-    <div id="footer-placeholder"></div>
-
-    <!-- Cart Sidebar -->
-    <div id="cart-sidebar" class="cart-sidebar">
-        <div class="cart-sidebar-header">
-            <h2 class="text-xl font-bold"><i class="fas fa-shopping-cart"></i> Your Cart</h2>
-            <button onclick="toggleCartSidebar()" class="text-2xl">&times;</button>
-        </div>
-        <div id="cart-sidebar-items" class="cart-sidebar-items"></div>
-        <div class="cart-sidebar-footer">
-            <div class="flex justify-between font-bold text-lg mb-4">
-                <span>Total:</span>
-                <span id="cart-sidebar-total">₹0</span>
-            </div>
-            <a href="cart.html" class="btn btn-primary w-full bg-green-600 text-white py-2 rounded-lg text-center block">View Cart</a>
-            <a href="checkout.html" class="btn btn-success w-full bg-orange-500 text-white py-2 rounded-lg text-center block mt-2">Checkout</a>
-        </div>
+<!-- ── Navbar ── -->
+<nav class="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">🌿 Green<span>Basket</span></a>
+    <div class="navbar__search">
+      <span class="navbar__search-icon"><i class="fas fa-search"></i></span>
+      <input type="text" placeholder="Search fresh produce, brands…">
+      <div class="navbar__search-results"></div>
     </div>
-
-    <!-- Quick View Modal -->
-    <div id="quick-view-modal" class="quick-view-modal">
-        <div class="quick-view-content p-6">
-            <div class="flex justify-end mb-2">
-                <button onclick="closeQuickView()" class="text-2xl hover:text-red-500">&times;</button>
-            </div>
-            <div id="quick-view-content"></div>
-        </div>
+    <nav class="navbar__nav">
+      <a href="index.html" class="active">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="navbar__actions">
+      <a href="wishlist.html" class="navbar__cart-btn" title="Wishlist"><i class="far fa-heart"></i></a>
+      <a href="account.html" class="navbar__cart-btn" title="Account"><i class="far fa-user"></i></a>
+      <button class="navbar__cart-btn" data-open-cart title="Cart">
+        <i class="fas fa-shopping-basket"></i>
+        <span class="cart-badge" style="display:none">0</span>
+      </button>
+      <button class="navbar__hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </div>
+</nav>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="assets/js/products.js"></script>
-    <script src="assets/js/brand-slider.js"></script>
-    <script src="assets/js/main.js"></script>
-    
-    <script>
-        function redirectToShop() {
-            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            if (!currentUser) {
-                sessionStorage.setItem('redirectAfterLogin', 'shop.html');
-                window.location.href = 'login.html';
-            } else {
-                window.location.href = 'shop.html';
-            }
-        }
-        
-        // Update cart count in hero
-        function updateHeroCartCount() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const total = cart.reduce((sum, item) => sum + item.quantity, 0);
-            const heroCount = document.getElementById('hero-cart-count');
-            if (heroCount) heroCount.textContent = total;
-        }
-        
-        setInterval(updateHeroCartCount, 500);
-        updateHeroCartCount();
-    </script>
+<!-- Mobile Menu -->
+<div class="mobile-menu">
+  <div class="mobile-search"><input type="text" placeholder="Search…"></div>
+  <a href="index.html"><i class="fas fa-home fa-fw"></i> Home</a>
+  <a href="shop.html"><i class="fas fa-store fa-fw"></i> Shop</a>
+  <a href="about.html"><i class="fas fa-info-circle fa-fw"></i> About</a>
+  <a href="contact.html"><i class="fas fa-envelope fa-fw"></i> Contact</a>
+  <a href="account.html"><i class="fas fa-user fa-fw"></i> My Account</a>
+  <a href="wishlist.html"><i class="far fa-heart fa-fw"></i> Wishlist</a>
+</div>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero__grid">
+      <div class="hero__content" data-aos>
+        <div class="hero__eyebrow">
+          <span>🌿</span> 100% Organic &amp; Natural
+          <span style="background:rgba(255,255,255,.25);border-radius:50px;padding:2px 10px;font-size:.7rem;">New Arrivals</span>
+        </div>
+        <h1>Fresh From <em>Farm to Table</em> in 30 Minutes</h1>
+        <p>Discover 200+ curated groceries from trusted brands. Organic produce, artisan foods, premium pantry—all delivered lightning-fast.</p>
+        <div class="hero__buttons">
+          <a href="shop.html" class="btn btn-orange"><i class="fas fa-shopping-basket"></i> Shop Now</a>
+          <a href="about.html" class="btn btn-ghost"><i class="fas fa-play-circle"></i> How It Works</a>
+        </div>
+        <div style="display:flex;gap:32px;margin-top:40px">
+          <div><strong style="display:block;color:#fde68a;font-size:1.4rem;font-weight:800">50K+</strong><span style="font-size:.8rem;opacity:.75">Happy Customers</span></div>
+          <div style="width:1px;background:rgba(255,255,255,.2)"></div>
+          <div><strong style="display:block;color:#fde68a;font-size:1.4rem;font-weight:800">200+</strong><span style="font-size:.8rem;opacity:.75">Products</span></div>
+          <div style="width:1px;background:rgba(255,255,255,.2)"></div>
+          <div><strong style="display:block;color:#fde68a;font-size:1.4rem;font-weight:800">30 min</strong><span style="font-size:.8rem;opacity:.75">Avg. Delivery</span></div>
+        </div>
+      </div>
+      <div class="hero__image" data-aos="fade-left" data-aos-delay="150">
+        <img class="hero__img-main" src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?w=600&q=80" alt="Fresh groceries" onerror="this.src='https://placehold.co/520x500/dcfce7/16a34a?text=Fresh+Groceries'">
+        <div class="hero__badge hero__badge-b1">
+          <span style="font-size:1.8rem">🥦</span>
+          <div class="hero__stat"><strong>100%</strong>Organic</div>
+        </div>
+        <div class="hero__badge hero__badge-b2">
+          <span style="font-size:1.8rem">⚡</span>
+          <div class="hero__stat"><strong>30 min</strong>Delivery</div>
+        </div>
+        <div class="hero__badge hero__badge-b3">
+          <span style="font-size:1.8rem">⭐</span>
+          <div class="hero__stat"><strong>4.9/5</strong>Rating</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Brands Strip ── -->
+<div class="brands-strip">
+  <div class="brands-track" id="brands-track">
+    <!-- duplicated by JS -->
+  </div>
+</div>
+
+<!-- ── Features ── -->
+<section class="section-sm" style="background:var(--gray-50)">
+  <div class="container">
+    <div class="features-grid">
+      <div class="feat-card" data-aos>
+        <div class="feat-card__icon"><i class="fas fa-truck-fast" style="color:var(--green-600);font-size:1.4rem"></i></div>
+        <h3>30-Minute Delivery</h3>
+        <p>Lightning-fast delivery from our dark stores. Track your order live in the app.</p>
+      </div>
+      <div class="feat-card" data-aos data-aos-delay="80">
+        <div class="feat-card__icon"><i class="fas fa-leaf" style="color:var(--green-600);font-size:1.4rem"></i></div>
+        <h3>Certified Organic</h3>
+        <p>All produce is third-party certified. We partner only with ethical farms.</p>
+      </div>
+      <div class="feat-card" data-aos data-aos-delay="160">
+        <div class="feat-card__icon"><i class="fas fa-shield-halved" style="color:var(--green-600);font-size:1.4rem"></i></div>
+        <h3>Freshness Guarantee</h3>
+        <p>Not fresh? We replace it instantly or give a full refund. No questions asked.</p>
+      </div>
+      <div class="feat-card" data-aos data-aos-delay="240">
+        <div class="feat-card__icon"><i class="fas fa-lock" style="color:var(--green-600);font-size:1.4rem"></i></div>
+        <h3>Secure Payments</h3>
+        <p>Powered by Razorpay — Cards, UPI, Wallets, NetBanking all accepted safely.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Shop by Category ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header" data-aos>
+      <span class="section-header__eyebrow">Browse Aisles</span>
+      <h2>Shop by Category</h2>
+      <p>From crisp vegetables to premium supplements — find everything your home needs.</p>
+      <div class="section-divider"></div>
+    </div>
+    <div class="cat-grid" id="cat-grid"></div>
+  </div>
+</section>
+
+<!-- ── Offer Strip + Timer ── -->
+<section class="section-sm">
+  <div class="container">
+    <div class="offer-strip" data-aos>
+      <div class="offer-strip__text">
+        <h3>🎉 Weekend Mega Sale — Up to 40% Off</h3>
+        <p>Use code <strong>FRESH20</strong> at checkout. Valid on orders above ₹499.</p>
+      </div>
+      <div class="offer-strip__coupon">FRESH20</div>
+      <div class="offer-strip__timer">
+        <div class="timer-box"><span id="timer-h">--</span><small>Hours</small></div>
+        <div class="timer-box"><span id="timer-m">--</span><small>Mins</small></div>
+        <div class="timer-box"><span id="timer-s">--</span><small>Secs</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Featured Products ── -->
+<section class="section" style="background:var(--gray-50)">
+  <div class="container">
+    <div class="section-header" data-aos>
+      <span class="section-header__eyebrow">Handpicked for You</span>
+      <h2>Featured Products</h2>
+      <p>Our top picks from this week's freshest arrivals and best sellers.</p>
+      <div class="section-divider"></div>
+    </div>
+    <!-- Category pills -->
+    <div class="cat-pills" id="featured-pills"></div>
+    <div class="grid-4" id="featured-products"></div>
+    <div style="text-align:center;margin-top:40px" data-aos>
+      <a href="shop.html" class="btn btn-secondary">View All Products <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Promo Banners ── -->
+<section class="section">
+  <div class="container">
+    <div class="promo-grid">
+      <div class="promo-card" onclick="location.href='shop.html?cat=fruits'" data-aos>
+        <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=700&q=80" alt="Fruits" onerror="this.src='https://placehold.co/600x220/dcfce7/16a34a?text=Fruits'">
+        <div class="promo-card__overlay"></div>
+        <div class="promo-card__content">
+          <span class="promo-card__tag">SEASONAL SPECIAL</span>
+          <h3 style="font-size:1.3rem;margin-bottom:4px">Exotic Fruits</h3>
+          <p style="font-size:.85rem;opacity:.85;margin-bottom:12px">Dragon fruit, figs, kiwi & more</p>
+          <span class="btn btn-ghost btn-sm">Shop Now <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </div>
+      <div class="promo-card" onclick="location.href='shop.html?cat=dairy'" data-aos data-aos-delay="120">
+        <img src="https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=700&q=80" alt="Dairy" onerror="this.src='https://placehold.co/600x220/dcfce7/16a34a?text=Dairy'">
+        <div class="promo-card__overlay"></div>
+        <div class="promo-card__content">
+          <span class="promo-card__tag">NEW IN</span>
+          <h3 style="font-size:1.3rem;margin-bottom:4px">Artisan Dairy</h3>
+          <p style="font-size:.85rem;opacity:.85;margin-bottom:12px">Aged cheeses, fresh yogurt & A2 milk</p>
+          <span class="btn btn-ghost btn-sm">Shop Now <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Best Sellers ── -->
+<section class="section" style="background:var(--gray-50)">
+  <div class="container">
+    <div class="section-header" data-aos>
+      <span class="section-header__eyebrow">Customer Favourites</span>
+      <h2>Best Sellers This Week</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="grid-4" id="best-sellers"></div>
+  </div>
+</section>
+
+<!-- ── Testimonials ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-header" data-aos>
+      <span class="section-header__eyebrow">What People Say</span>
+      <h2>Loved by 50,000+ Customers</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="test-grid">
+      <div class="testimonial-card" data-aos>
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p>"The mangoes from KonkanKing are absolutely divine. Arrived perfectly ripe, packaged beautifully. GreenBasket is now my go-to for premium fruits!"</p>
+        <div class="testimonial-card__author">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="Priya" onerror="this.src='https://placehold.co/44x44/dcfce7/16a34a?text=P'">
+          <div><strong>Priya Sharma</strong><span>Mumbai, Maharashtra</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card" data-aos data-aos-delay="100">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p>"I switched to GreenBasket for my weekly groceries and never looked back. The sourdough from ArtisanBread is hands-down the best I've had."</p>
+        <div class="testimonial-card__author">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Rahul" onerror="this.src='https://placehold.co/44x44/dcfce7/16a34a?text=R'">
+          <div><strong>Rahul Mehta</strong><span>Bengaluru, Karnataka</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card" data-aos data-aos-delay="200">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p>"Delivery in under 25 minutes! The produce is always fresh and the packaging is eco-friendly. Exactly what I was looking for."</p>
+        <div class="testimonial-card__author">
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" alt="Anjali" onerror="this.src='https://placehold.co/44x44/dcfce7/16a34a?text=A'">
+          <div><strong>Anjali Bose</strong><span>Kolkata, West Bengal</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── App Download Section ── -->
+<section class="section">
+  <div class="container">
+    <div class="app-section" data-aos>
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);border-radius:50px;padding:6px 16px;margin-bottom:16px;font-size:.8rem;color:#fde68a;font-weight:600">📱 Available on iOS & Android</div>
+        <h2>Get the App — Shop Even Faster</h2>
+        <p>Scan the QR code or download from the App Store. Get ₹100 off your first app order with code <strong style="color:#fde68a">APP100</strong>.</p>
+        <div class="app-badges">
+          <div class="app-badge"><i class="fab fa-apple fa-lg"></i><div><small style="opacity:.7;display:block;font-size:.68rem">Download on the</small>App Store</div></div>
+          <div class="app-badge"><i class="fab fa-google-play fa-lg"></i><div><small style="opacity:.7;display:block;font-size:.68rem">Get it on</small>Google Play</div></div>
+        </div>
+      </div>
+      <div style="text-align:right">
+        <img class="app-img" src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="App" onerror="this.src='https://placehold.co/360x280/0a3d1a/fde68a?text=GreenBasket+App'">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo">🌿 Green<span>Basket</span></div>
+        <p class="footer__desc">India's freshest online grocery store. We partner directly with farms so you get the best quality at honest prices — delivered in 30 minutes.</p>
+        <div class="footer__social">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="shop.html">Shop All</a></li>
+          <li><a href="shop.html?cat=vegetables">Vegetables</a></li>
+          <li><a href="shop.html?cat=fruits">Fruits</a></li>
+          <li><a href="shop.html?cat=dairy">Dairy & Eggs</a></li>
+          <li><a href="shop.html?cat=bakery">Bakery</a></li>
+          <li><a href="shop.html?cat=meat">Meat & Seafood</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Help &amp; Support</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Delivery Info</a></li>
+          <li><a href="#">Return Policy</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get in Touch</h4>
+        <ul class="footer__contact">
+          <li><i class="fas fa-map-marker-alt"></i><span>42, Green Valley, Bandra West, Mumbai — 400050</span></li>
+          <li><i class="fas fa-phone"></i><span>+91 98765 43210</span></li>
+          <li><i class="fas fa-envelope"></i><span>hello@greenbasket.in</span></li>
+          <li><i class="fas fa-clock"></i><span>Mon–Sun, 6 AM – 11 PM</span></li>
+        </ul>
+        <h4 style="margin-top:20px">Newsletter</h4>
+        <form class="newsletter-form" style="margin-top:8px">
+          <input type="email" class="footer__newsletter" placeholder="Your email address" style="width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);color:#fff;font-size:.85rem;margin-bottom:8px">
+          <button type="submit" style="width:100%;padding:10px;border-radius:10px;background:var(--green-600);color:#fff;font-weight:700;font-size:.87rem;border:none;cursor:pointer;transition:var(--transition)">Subscribe <i class="fas fa-arrow-right"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(255,255,255,.07);padding:20px 0">
+    <div class="container footer__bottom">
+      <span>© 2025 GreenBasket. Made with 💚 in India.</span>
+      <div style="display:flex;gap:16px;align-items:center;font-size:.78rem;opacity:.5">
+        <span>Secured by Razorpay</span>
+        <i class="fab fa-cc-visa fa-lg"></i>
+        <i class="fab fa-cc-mastercard fa-lg"></i>
+        <i class="fas fa-mobile-screen-button fa-lg" title="UPI"></i>
+        <i class="fas fa-wallet fa-lg" title="Wallets"></i>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── Cart Drawer ── -->
+<div id="cart-overlay" class="cart-overlay"></div>
+<div id="cart-drawer" class="cart-drawer">
+  <div class="cart-drawer__head">
+    <h2>🛒 Your Cart <span id="drawer-items-count" style="font-size:.8rem;color:var(--gray-400);font-weight:400"></span></h2>
+    <button id="cart-close" class="cart-drawer__close"><i class="fas fa-times"></i></button>
+  </div>
+  <div id="cart-drawer-items" class="cart-drawer__items"></div>
+  <div id="cart-drawer-empty" class="cart-drawer__empty hidden">
+    <i class="fas fa-shopping-basket"></i>
+    <p>Your basket is empty.<br>Add some fresh goodies!</p>
+    <a href="shop.html" class="btn btn-primary btn-sm" onclick="closeCartDrawer()">Start Shopping</a>
+  </div>
+  <div id="cart-drawer-foot" class="cart-drawer__foot hidden">
+    <div class="cart-drawer__coupon">
+      <input type="text" id="coupon-input" placeholder="Coupon code (e.g. FRESH20)">
+      <button id="apply-coupon">Apply</button>
+    </div>
+    <div id="coupon-msg" class="coupon-msg"></div>
+    <table class="cart-drawer__totals" style="width:100%;border-collapse:collapse">
+      <tr><td>Subtotal</td><td id="drawer-subtotal">₹0</td></tr>
+      <tr><td>Discount</td><td id="drawer-discount" style="color:var(--green-600)">—</td></tr>
+      <tr><td>Delivery <span style="font-size:.72rem;color:var(--gray-400)">(free above ₹499)</span></td><td id="drawer-delivery">₹49</td></tr>
+      <tr class="total-row"><td>Total</td><td id="drawer-total">₹0</td></tr>
+    </table>
+    <a href="checkout.html" class="btn btn-primary" onclick="closeCartDrawer()"><i class="fas fa-lock"></i> Secure Checkout</a>
+  </div>
+</div>
+
+<!-- ── Quick View Modal ── -->
+<div id="qv-overlay" class="modal-overlay">
+  <div class="modal-box" style="position:relative">
+    <button class="modal-close" onclick="document.getElementById('qv-overlay').classList.remove('open')"><i class="fas fa-times"></i></button>
+    <div id="qv-content"></div>
+  </div>
+</div>
+
+<!-- ── Scroll Top ── -->
+<button class="scroll-top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+<script src="assets/js/products.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+// ── Build Brand strip ──
+const BRANDS = ["NatureFresh","FarmDirect","SunRipe","GreenFarm","KonkanKing","HillBerry","VineVault","ArtisanBread","LaPatisserie","BrewCraft","ZenLeaf","OceanPrime","PeakPower","CocoaBliss","OliveEstate","BeeCraft","MilkyWay","CheeseHouse","GlowLab","CleanCo"];
+const track = document.getElementById("brands-track");
+if(track){ const list = [...BRANDS,...BRANDS]; track.innerHTML = list.map(b=>`<div class="brand-chip">✓ ${b}</div>`).join(""); }
+
+// ── Category Grid ──
+const catGrid = document.getElementById("cat-grid");
+if(catGrid){ CATEGORIES.filter(c=>c.key!=="all").forEach(c=>{ const el=document.createElement("div"); el.className="cat-card"; el.onclick=()=>location.href=`shop.html?cat=${c.key}`; el.innerHTML=`<div class="cat-card__icon">${c.icon}</div><div class="cat-card__name">${c.label}</div><div class="cat-card__count">${c.count} items</div>`; catGrid.appendChild(el); }); }
+
+// ── Featured products with pill filter ──
+const FEATURED_CATS = ["all","vegetables","fruits","dairy","bakery","snacks"];
+const pillsEl = document.getElementById("featured-pills");
+const productsEl = document.getElementById("featured-products");
+let activeCat = "all";
+
+function renderFeatured(cat){
+  if(!productsEl) return;
+  const list = (cat==="all" ? PRODUCTS : PRODUCTS.filter(p=>p.category===cat))
+    .sort((a,b)=>b.reviews-a.reviews).slice(0,8);
+  productsEl.innerHTML = list.map(p=>productCardHTML(p)).join("");
+  syncWish();
+}
+
+if(pillsEl){
+  FEATURED_CATS.forEach(k=>{
+    const cat = CATEGORIES.find(c=>c.key===k)||{key:"all",label:"All",icon:"🛒"};
+    const btn=document.createElement("button"); btn.className="cat-pill"+(k==="all"?" active":""); btn.textContent=`${cat.icon} ${cat.label}`;
+    btn.onclick=()=>{ document.querySelectorAll("#featured-pills .cat-pill").forEach(b=>b.classList.remove("active")); btn.classList.add("active"); renderFeatured(k); };
+    pillsEl.appendChild(btn);
+  });
+  renderFeatured("all");
+}
+
+// ── Best Sellers ──
+const bsEl = document.getElementById("best-sellers");
+if(bsEl){ bsEl.innerHTML = PRODUCTS.sort((a,b)=>b.reviews-a.reviews).slice(0,4).map(p=>productCardHTML(p)).join(""); syncWish(); }
+
+// ── Product Card HTML ──
+function productCardHTML(p){
+  const disc = discPct(p);
+  const wish = getWishlist();
+  return `
+  <div class="product-card" data-aos>
+    <div class="product-card__img-wrap">
+      <img class="product-card__img" src="${p.image}" alt="${p.name}" loading="lazy"
+           onerror="this.src='https://placehold.co/400x300/dcfce7/16a34a?text=${encodeURIComponent(p.name)}'">
+      ${p.badge?`<div class="product-card__badge${p.badge==='Popular'?' product-card__badge--orange':''}">${p.badge}</div>`:""}
+      ${disc>0?`<div class="product-card__disc">-${disc}%</div>`:""}
+      <button class="product-card__wish wish-btn ${wish.includes(p.id)?'active':''}" data-id="${p.id}">
+        <i class="${wish.includes(p.id)?'fas':'far'} fa-heart"></i>
+      </button>
+    </div>
+    <div class="product-card__body">
+      <div class="product-card__brand">${p.brand}</div>
+      <div class="product-card__name">${p.name}</div>
+      <div class="product-card__meta">
+        <div class="product-card__stars">${starHTML(p.rating)}</div>
+        <span>${p.rating}</span><span style="color:var(--gray-300)">|</span>
+        <span>${p.reviews.toLocaleString()} reviews</span>
+        <span style="margin-left:auto;font-size:.73rem;background:var(--gray-100);padding:2px 8px;border-radius:50px">${p.unit}</span>
+      </div>
+      <div class="product-card__price">
+        <span class="current">${fmt(p.price)}</span>
+        ${p.oldPrice?`<span class="old">${fmt(p.oldPrice)}</span>`:""}
+      </div>
+      <button class="product-card__btn" onclick="addToCart(${p.id});this.innerHTML='<i class=\'fas fa-check\'></i> Added!';setTimeout(()=>this.innerHTML='<i class=\'fas fa-shopping-basket\'></i> Add to Cart',1500)">
+        <i class="fas fa-shopping-basket"></i> Add to Cart
+      </button>
+    </div>
+  </div>`;
+}
+
+function syncWish(){
+  const wish = getWishlist();
+  document.querySelectorAll(".wish-btn").forEach(btn=>{
+    const id=parseInt(btn.dataset.id);
+    btn.classList.toggle("active",wish.includes(id));
+    btn.innerHTML=`<i class="${wish.includes(id)?'fas':'far'} fa-heart"></i>`;
+  });
+}
+
+// ── Countdown Timer (end of day) ──
+function startTimer(){
+  const end = new Date(); end.setHours(23,59,59,0);
+  setInterval(()=>{
+    const diff = end - new Date();
+    if(diff<=0) return;
+    document.getElementById("timer-h").textContent = String(Math.floor(diff/3600000)).padStart(2,"0");
+    document.getElementById("timer-m").textContent = String(Math.floor((diff%3600000)/60000)).padStart(2,"0");
+    document.getElementById("timer-s").textContent = String(Math.floor((diff%60000)/1000)).padStart(2,"0");
+  },1000);
+}
+startTimer();
+</script>
 </body>
-
 </html>

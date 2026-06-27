@@ -1,629 +1,445 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - RT GroceryHub</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <!-- DaisyUI + TailwindCSS -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/d18f75e53f.js" crossorigin="anonymous"></script>
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <style>
-        .font-sora { font-family: "Sora", serif; }
-        .font-poppins { font-family: "Poppins", serif; }
-        
-        .contact-card {
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .contact-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .contact-card:hover .contact-icon {
-            background: #16a34a;
-        }
-        
-        .contact-card:hover .contact-icon i {
-            color: white;
-            transform: scale(1.1);
-        }
-        
-        .contact-icon {
-            transition: all 0.3s ease;
-        }
-        
-        .contact-icon i {
-            transition: all 0.3s ease;
-        }
-        
-        .form-input {
-            transition: all 0.3s ease;
-        }
-        
-        .form-input:focus {
-            outline: none;
-            border-color: #16a34a;
-            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
-        }
-        
-        .social-icon-contact {
-            transition: all 0.3s ease;
-            width: 42px;
-            height: 42px;
-            background: #f3f4f6;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #4b5563;
-            text-decoration: none;
-        }
-        
-        .social-icon-contact:hover {
-            transform: translateY(-5px);
-            background: #16a34a;
-            color: white;
-        }
-        
-        .map-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        
-        .map-container:hover {
-            transform: scale(1.02);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-        
-        .map-container iframe {
-            transition: all 0.5s ease;
-        }
-        
-        .map-container:hover iframe {
-            filter: brightness(1.02);
-        }
-        
-        .faq-item-contact {
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: 1px solid #e5e7eb;
-        }
-        
-        .faq-item-contact:hover {
-            background: #f0fdf4;
-            transform: translateX(5px);
-            border-color: #16a34a;
-        }
-        
-        .faq-item-contact details summary {
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-        
-        .faq-item-contact:hover details summary {
-            color: #16a34a;
-        }
-        
-        .faq-item-contact details summary::-webkit-details-marker {
-            color: #16a34a;
-        }
-        
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-        
-        .error-shake {
-            animation: shake 0.3s ease-in-out;
-            border-color: #ef4444 !important;
-            background-color: #fef2f2;
-        }
-        
-        .live-chat-btn {
-            background: linear-gradient(135deg, #16a34a, #15803d);
-            transition: all 0.3s ease;
-        }
-        
-        .live-chat-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(22, 163, 74, 0.3);
-        }
-        
-        .store-timing-item {
-            transition: all 0.2s ease;
-        }
-        
-        .store-timing-item:hover {
-            padding-left: 8px;
-            color: #16a34a;
-        }
-        
-        .floating-whatsapp {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background: #25D366;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 28px;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-            z-index: 100;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .floating-whatsapp:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
-        }
-        
-        @keyframes pulse-whatsapp {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-        
-        .floating-whatsapp {
-            animation: pulse-whatsapp 2s infinite;
-        }
-    </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'btn-primary': '#16a34a',
-                        'primary-green': '#179800',
-                        'accent-orange': '#FF8C42',
-                    }
-                }
-            }
-        }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — GreenBasket</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+/* Contact layout */
+.contact-grid { display:grid; grid-template-columns:1fr 1.4fr; gap:48px; align-items:start; padding:64px 0; }
+
+/* Info cards */
+.contact-info-card {
+  background:linear-gradient(135deg,#0a3d1a,#16a34a); border-radius:var(--radius-xl);
+  padding:40px 32px; color:#fff; position:relative; overflow:hidden;
+}
+.contact-info-card::before {
+  content:''; position:absolute; bottom:-40px; right:-40px;
+  width:200px; height:200px; border-radius:50%; background:rgba(255,255,255,.06);
+}
+.contact-info-card::after {
+  content:''; position:absolute; top:-60px; left:-60px;
+  width:180px; height:180px; border-radius:50%; background:rgba(255,255,255,.04);
+}
+.contact-info-card h2 { font-size:1.6rem; margin-bottom:12px; }
+.contact-info-card > p { opacity:.8; line-height:1.7; margin-bottom:32px; font-size:.92rem; }
+.contact-items { display:flex; flex-direction:column; gap:20px; position:relative; z-index:1; }
+.contact-item { display:flex; gap:16px; align-items:flex-start; }
+.contact-item__icon {
+  width:46px; height:46px; border-radius:12px; background:rgba(255,255,255,.15);
+  backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.2);
+  display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0;
+}
+.contact-item__text strong { display:block; font-size:.9rem; font-weight:700; margin-bottom:3px; }
+.contact-item__text span  { font-size:.82rem; opacity:.75; line-height:1.5; }
+
+.social-connect { margin-top:36px; padding-top:28px; border-top:1px solid rgba(255,255,255,.15); }
+.social-connect h4 { font-size:.85rem; font-weight:600; opacity:.75; margin-bottom:14px; text-transform:uppercase; letter-spacing:1px; }
+.contact-social { display:flex; gap:10px; }
+.contact-social a {
+  width:40px; height:40px; border-radius:10px; background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.2); display:flex; align-items:center; justify-content:center;
+  color:#fff; font-size:.95rem; transition:var(--transition);
+}
+.contact-social a:hover { background:rgba(255,255,255,.25); transform:translateY(-3px); }
+
+/* Hours table */
+.hours-table { width:100%; margin-top:20px; }
+.hours-row { display:flex; justify-content:space-between; padding:8px 0; font-size:.83rem; border-bottom:1px solid rgba(255,255,255,.1); }
+.hours-row:last-child { border-bottom:none; }
+.hours-row span:first-child { opacity:.7; }
+.hours-row span:last-child  { font-weight:600; }
+.dot-open  { display:inline-block; width:8px; height:8px; border-radius:50%; background:#4ade80; margin-right:6px; animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+/* Form card */
+.form-card { background:var(--white); border-radius:var(--radius-xl); padding:40px; box-shadow:var(--shadow); border:1.5px solid var(--gray-100); }
+.form-card h2 { font-size:1.4rem; margin-bottom:6px; }
+.form-card > p { color:var(--gray-500); font-size:.87rem; margin-bottom:28px; }
+.subject-pills { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; }
+.subject-pill { padding:6px 16px; border-radius:50px; font-size:.78rem; font-weight:600; background:var(--gray-100); color:var(--gray-600); cursor:pointer; transition:var(--transition); border:2px solid transparent; }
+.subject-pill:hover { border-color:var(--green-200); color:var(--green-700); }
+.subject-pill.active { background:var(--green-600); color:#fff; border-color:var(--green-600); }
+
+.char-count { font-size:.73rem; color:var(--gray-400); text-align:right; margin-top:4px; }
+.form-footer { display:flex; align-items:center; justify-content:space-between; margin-top:20px; flex-wrap:wrap; gap:12px; }
+.form-footer .privacy { font-size:.76rem; color:var(--gray-400); display:flex; align-items:center; gap:6px; }
+.form-footer .privacy i { color:var(--green-600); }
+
+/* Success message */
+.success-msg { background:var(--green-50); border:1.5px solid var(--green-200); border-radius:var(--radius-lg); padding:20px; text-align:center; display:none; }
+.success-msg i { font-size:2.5rem; color:var(--green-600); margin-bottom:12px; }
+.success-msg h3 { color:var(--green-800); margin-bottom:6px; }
+.success-msg p  { color:var(--green-700); font-size:.87rem; }
+
+/* FAQ */
+.faq-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; }
+.faq-item { border-bottom:1px solid var(--gray-100); }
+.faq-item:nth-child(odd) { border-right:1px solid var(--gray-100); padding-right:32px; }
+.faq-item:nth-child(even){ padding-left:32px; }
+.faq-question {
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:18px 0; cursor:pointer; font-weight:600; font-size:.9rem; color:var(--gray-800);
+  transition:color var(--transition);
+}
+.faq-question:hover { color:var(--green-700); }
+.faq-question i { color:var(--green-600); font-size:.8rem; flex-shrink:0; transition:transform var(--transition); }
+.faq-item.open .faq-question i { transform:rotate(45deg); }
+.faq-answer { font-size:.85rem; color:var(--gray-600); line-height:1.75; max-height:0; overflow:hidden; transition:max-height .35s ease, padding .35s ease; }
+.faq-item.open .faq-answer { max-height:300px; padding-bottom:16px; }
+
+/* Map section */
+.map-wrap { border-radius:var(--radius-xl); overflow:hidden; box-shadow:var(--shadow); height:320px; position:relative; border:1.5px solid var(--gray-100); background:var(--gray-50); display:flex; align-items:center; justify-content:center; }
+.map-placeholder { text-align:center; color:var(--gray-400); }
+.map-placeholder i { font-size:3rem; color:var(--green-200); margin-bottom:16px; }
+
+/* WhatsApp float */
+.wa-float {
+  position:fixed; bottom:28px; right:80px; z-index:800;
+  width:52px; height:52px; border-radius:50%;
+  background:#25D366; color:#fff; font-size:1.6rem;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 6px 20px rgba(37,211,102,.4); transition:var(--transition);
+  animation:floatY 3s ease-in-out infinite;
+}
+.wa-float:hover { transform:scale(1.1) translateY(-4px); box-shadow:0 10px 28px rgba(37,211,102,.5); }
+
+@media(max-width:900px){ .contact-grid{grid-template-columns:1fr;} .faq-grid{grid-template-columns:1fr;} .faq-item:nth-child(odd){border-right:none;padding-right:0;} .faq-item:nth-child(even){padding-left:0;} }
+@media(max-width:480px){ .form-card{padding:24px 18px;} .contact-info-card{padding:28px 20px;} }
+</style>
 </head>
+<body>
+<div id="page-progress"></div>
 
-<body class="bg-[#fffffe]">
+<!-- WhatsApp Float -->
+<a href="https://wa.me/919876543210?text=Hi GreenBasket! I need help with my order." class="wa-float" target="_blank" title="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
 
-    <!-- Header Placeholder -->
-    <div id="header-placeholder"></div>
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">🌿 Green<span>Basket</span></a>
+    <div class="navbar__search">
+      <span class="navbar__search-icon"><i class="fas fa-search"></i></span>
+      <input type="text" placeholder="Search products…">
+      <div class="navbar__search-results"></div>
+    </div>
+    <nav class="navbar__nav">
+      <a href="index.html">Home</a><a href="shop.html">Shop</a>
+      <a href="about.html">About</a><a href="contact.html" class="active">Contact</a>
+    </nav>
+    <div class="navbar__actions">
+      <a href="account.html" class="navbar__cart-btn"><i class="far fa-user"></i></a>
+      <button class="navbar__cart-btn" data-open-cart>
+        <i class="fas fa-shopping-basket"></i>
+        <span class="cart-badge" style="display:none">0</span>
+      </button>
+      <button class="navbar__hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html"><i class="fas fa-home fa-fw"></i> Home</a>
+  <a href="shop.html"><i class="fas fa-store fa-fw"></i> Shop</a>
+  <a href="about.html"><i class="fas fa-info-circle fa-fw"></i> About</a>
+  <a href="contact.html"><i class="fas fa-envelope fa-fw"></i> Contact</a>
+  <a href="account.html"><i class="fas fa-user fa-fw"></i> Account</a>
+</div>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/919876543210?text=Hello%20RT%20GroceryHub%2C%20I%20need%20assistance" 
-       target="_blank" 
-       class="floating-whatsapp"
-       aria-label="Chat on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+<!-- Hero -->
+<div class="page-hero">
+  <div class="page-hero__content container">
+    <h1>Get in Touch</h1>
+    <p>We're here to help · Avg. response time: under 2 hours</p>
+  </div>
+</div>
 
-    <main>
-        <!-- Contact Header -->
-        <section class="w-full bg-gradient-to-r from-green-700 to-green-500 py-16 lg:py-20 text-white">
-            <div class="container mx-auto px-4 lg:px-20 text-center" data-aos="fade-down">
-                <div class="inline-block p-4 bg-white/20 rounded-full mb-4">
-                    <i class="fas fa-headset text-3xl"></i>
-                </div>
-                <h1 class="font-sora text-3xl lg:text-5xl font-bold mb-4">
-                    Contact Us
-                </h1>
-                <p class="font-poppins text-base lg:text-lg max-w-2xl mx-auto">We'd love to hear from you! Get in touch with our support team</p>
+<div class="container">
+  <div class="contact-grid">
+    <!-- LEFT: Info -->
+    <div data-aos="fade-right">
+      <div class="contact-info-card">
+        <h2>Let's Talk Groceries 🌿</h2>
+        <p>Have a question, feedback or just want to say hi? Our team is available 7 days a week to help you with anything.</p>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="contact-item__icon"><i class="fas fa-phone"></i></div>
+            <div class="contact-item__text">
+              <strong>Call Us</strong>
+              <span>+91 98765 43210<br>+91 98765 43211 (WhatsApp)</span>
             </div>
-        </section>
-
-        <!-- Contact Info Section -->
-        <section class="container mx-auto px-4 lg:px-20 py-16">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
-                <!-- Phone Card -->
-                <div class="contact-card bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100" data-aos="fade-up">
-                    <div class="contact-icon w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 transition-all">
-                        <i class="fas fa-phone-alt text-2xl text-green-600"></i>
-                    </div>
-                    <h3 class="font-sora font-bold text-xl mb-2">Phone Support</h3>
-                    <p class="text-gray-500 mb-1">+91 98765 43210</p>
-                    <p class="text-gray-500 mb-3">+91 98765 43211</p>
-                    <p class="text-sm text-green-600 font-semibold">Mon-Sat, 9AM - 8PM</p>
-                    <a href="tel:+919876543210" class="inline-block mt-3 text-green-600 text-sm hover:underline">Call Now →</a>
-                </div>
-                
-                <!-- Email Card -->
-                <div class="contact-card bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="100">
-                    <div class="contact-icon w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-envelope text-2xl text-green-600"></i>
-                    </div>
-                    <h3 class="font-sora font-bold text-xl mb-2">Email Us</h3>
-                    <p class="text-gray-500 mb-1">support@rtgroceryhub.com</p>
-                    <p class="text-gray-500 mb-3">careers@rtgroceryhub.com</p>
-                    <p class="text-sm text-green-600 font-semibold">24/7 Email Support</p>
-                    <a href="mailto:support@rtgroceryhub.com" class="inline-block mt-3 text-green-600 text-sm hover:underline">Send Email →</a>
-                </div>
-                
-                <!-- Location Card -->
-                <div class="contact-card bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-100" data-aos="fade-up" data-aos-delay="200">
-                    <div class="contact-icon w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-map-marker-alt text-2xl text-green-600"></i>
-                    </div>
-                    <h3 class="font-sora font-bold text-xl mb-2">Visit Our Store</h3>
-                    <p class="text-gray-500 mb-1">Subhanpura Main Road</p>
-                    <p class="text-gray-500 mb-3">Vadodara, Gujarat - 390023</p>
-                    <a href="https://maps.app.goo.gl/dGYiFHZQYqQCbea29" target="_blank" class="text-sm text-green-600 font-semibold hover:underline inline-flex items-center gap-1">
-                        Get Directions <i class="fas fa-external-link-alt text-xs"></i>
-                    </a>
-                </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item__icon"><i class="fas fa-envelope"></i></div>
+            <div class="contact-item__text">
+              <strong>Email Us</strong>
+              <span>hello@greenbasket.in<br>support@greenbasket.in</span>
             </div>
-
-            <!-- Contact Form & Map -->
-            <div class="flex flex-col lg:flex-row gap-8">
-                <!-- Contact Form -->
-                <div class="lg:w-1/2" data-aos="fade-right">
-                    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 lg:p-8 hover:shadow-md transition-all duration-300">
-                        <div class="mb-6">
-                            <div class="flex items-center gap-2 mb-2">
-                                <i class="fas fa-pen-alt text-green-600 text-xl"></i>
-                                <h2 class="font-sora text-2xl font-bold text-gray-800">Send us a Message</h2>
-                            </div>
-                            <div class="w-16 h-1 bg-green-500 rounded-full mt-2"></div>
-                            <p class="text-gray-500 mt-3">Fill out the form below and we'll get back to you within 24 hours.</p>
-                        </div>
-                        
-                        <form id="contact-form">
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">
-                                        <i class="fas fa-user text-green-600 mr-1"></i> Your Name <span class="text-red-500">*</span>
-                                    </label>
-                                    <input type="text" id="contact-name" placeholder="Enter your name" required 
-                                           class="form-input w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 transition">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-semibold text-gray-700 mb-2">
-                                        <i class="fas fa-envelope text-green-600 mr-1"></i> Email Address <span class="text-red-500">*</span>
-                                    </label>
-                                    <input type="email" id="contact-email" placeholder="your@email.com" required 
-                                           class="form-input w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 transition">
-                                </div>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">
-                                    <i class="fas fa-phone text-green-600 mr-1"></i> Phone Number
-                                </label>
-                                <input type="tel" id="contact-phone" placeholder="10-digit mobile number" 
-                                       class="form-input w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 transition">
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">
-                                    <i class="fas fa-tag text-green-600 mr-1"></i> Subject <span class="text-red-500">*</span>
-                                </label>
-                                <select id="contact-subject" required class="form-input w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 transition bg-white">
-                                    <option value="">Select a subject</option>
-                                    <option value="order">🛒 Order Related Issue</option>
-                                    <option value="delivery">🚚 Delivery Question</option>
-                                    <option value="product">🥬 Product Quality</option>
-                                    <option value="feedback">💡 Feedback & Suggestions</option>
-                                    <option value="other">📞 Other</option>
-                                </select>
-                            </div>
-                            
-                            <div class="mb-6">
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">
-                                    <i class="fas fa-comment text-green-600 mr-1"></i> Message <span class="text-red-500">*</span>
-                                </label>
-                                <textarea id="contact-message" rows="5" placeholder="Tell us how we can help..." required 
-                                          class="form-input w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 transition resize-none"></textarea>
-                            </div>
-                            
-                            <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition flex items-center justify-center gap-2 group">
-                                <i class="fas fa-paper-plane group-hover:translate-x-1 transition"></i> Send Message
-                            </button>
-                            
-                            <p class="text-xs text-gray-400 text-center mt-4">
-                                <i class="fas fa-lock mr-1"></i> Your information is safe with us
-                            </p>
-                        </form>
-                    </div>
-                </div>
-                
-                <!-- Map & Info -->
-                <div class="lg:w-1/2" data-aos="fade-left">
-                    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 lg:p-8 hover:shadow-md transition-all duration-300">
-                        <div class="flex items-center gap-2 mb-4">
-                            <i class="fas fa-map-marked-alt text-green-600 text-xl"></i>
-                            <h2 class="font-sora text-2xl font-bold text-gray-800">Find Us Here</h2>
-                        </div>
-                        <div class="w-16 h-1 bg-green-500 rounded-full mb-6"></div>
-                        
-                        <!-- Google Map - Subhanpura, Vadodara (Exact Location) -->
-                        <div class="map-container mb-6">
-                            <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.319812428626!2d73.19370677496327!3d22.309340545080967!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc5545d9510e1%3A0x63bdfb1af9a5dad1!2sSubhanpura%2C%20Vadodara%2C%20Gujarat%20390023!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
-                                width="100%" 
-                                height="280" 
-                                style="border:0; border-radius: 0.75rem;" 
-                                allowfullscreen="" 
-                                loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"
-                                title="RT GroceryHub Store Location">
-                            </iframe>
-                        </div>
-                        
-                        <!-- Store Address Details -->
-                        <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 mb-6 transition-all hover:shadow-md">
-                            <h3 class="font-semibold text-gray-800 mb-2">
-                                <i class="fas fa-store text-green-600 mr-2"></i> Our Store Location
-                            </h3>
-                            <p class="text-gray-600 text-sm flex items-start gap-2">
-                                <i class="fas fa-location-dot text-green-500 mt-1"></i>
-                                <span>Subhanpura Main Road, Near SBI Bank,<br>Vadodara, Gujarat - 390023</span>
-                            </p>
-                            <div class="mt-3 flex gap-3">
-                                <a href="https://maps.app.goo.gl/dGYiFHZQYqQCbea29" target="_blank" class="text-xs bg-green-600 text-white px-3 py-1 rounded-full hover:bg-green-700 transition">
-                                    <i class="fas fa-directions"></i> Get Directions
-                                </a>
-                                <button onclick="copyAddress()" class="text-xs border border-green-600 text-green-600 px-3 py-1 rounded-full hover:bg-green-600 hover:text-white transition">
-                                    <i class="fas fa-copy"></i> Copy Address
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Business Hours -->
-                        <div class="mb-6">
-                            <h3 class="font-semibold text-gray-800 mb-3">
-                                <i class="fas fa-clock text-green-600 mr-2"></i> Business Hours
-                            </h3>
-                            <div class="space-y-2 text-gray-600">
-                                <div class="store-timing-item flex justify-between pb-2 border-b border-gray-100">
-                                    <span><i class="far fa-calendar-alt text-green-500 mr-2"></i> Monday - Saturday:</span>
-                                    <span class="font-medium">9:00 AM - 8:00 PM</span>
-                                </div>
-                                <div class="store-timing-item flex justify-between pb-2 border-b border-gray-100">
-                                    <span><i class="fas fa-sun text-green-500 mr-2"></i> Sunday:</span>
-                                    <span class="font-medium">10:00 AM - 6:00 PM</span>
-                                </div>
-                                <div class="store-timing-item flex justify-between">
-                                    <span><i class="fas fa-headset text-green-500 mr-2"></i> Customer Support:</span>
-                                    <span class="font-medium text-green-600">24/7 Available</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Social Media -->
-                        <div>
-                            <h3 class="font-semibold text-gray-800 mb-3">
-                                <i class="fas fa-share-alt text-green-600 mr-2"></i> Connect With Us
-                            </h3>
-                            <div class="flex flex-wrap gap-3">
-                                <a href="#" class="social-icon-contact"><i class="fab fa-facebook-f text-xl"></i></a>
-                                <a href="#" class="social-icon-contact"><i class="fab fa-instagram text-xl"></i></a>
-                                <a href="#" class="social-icon-contact"><i class="fab fa-twitter text-xl"></i></a>
-                                <a href="#" class="social-icon-contact"><i class="fab fa-linkedin-in text-xl"></i></a>
-                                <a href="#" class="social-icon-contact"><i class="fab fa-youtube text-xl"></i></a>
-                                <a href="https://wa.me/919876543210" target="_blank" class="social-icon-contact"><i class="fab fa-whatsapp text-xl"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item__icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="contact-item__text">
+              <strong>Head Office</strong>
+              <span>42, Green Valley, Bandra West<br>Mumbai, Maharashtra — 400050</span>
             </div>
-        </section>
-
-        <!-- FAQ Section -->
-        <section class="bg-gray-50 py-16">
-            <div class="container mx-auto px-4 lg:px-20">
-                <div class="text-center mb-12" data-aos="fade-up">
-                    <span class="text-green-600 font-semibold text-sm uppercase tracking-wider">FAQ</span>
-                    <h2 class="font-sora text-3xl lg:text-4xl font-bold text-gray-800 mt-2">Frequently Asked Questions</h2>
-                    <div class="w-20 h-1 bg-green-500 mx-auto rounded-full mt-4"></div>
-                    <p class="text-gray-500 mt-4 max-w-2xl mx-auto">Find quick answers to common questions about our services</p>
-                </div>
-                
-                <div class="max-w-3xl mx-auto">
-                    <div class="faq-item-contact bg-white rounded-xl p-5 mb-4 shadow-sm" data-aos="fade-up">
-                        <details>
-                            <summary class="font-semibold text-gray-800 cursor-pointer">🛒 How do I place an order online?</summary>
-                            <p class="text-gray-600 mt-3 pl-4 border-l-2 border-green-500">Placing an order is simple! Browse our catalog by category or use the search bar to find specific items. Add your chosen products to the cart, review your order, and proceed to checkout. We offer multiple payment options including credit/debit cards, digital wallets, and Cash on Delivery.</p>
-                        </details>
-                    </div>
-                    
-                    <div class="faq-item-contact bg-white rounded-xl p-5 mb-4 shadow-sm" data-aos="fade-up" data-aos-delay="100">
-                        <details>
-                            <summary class="font-semibold text-gray-800 cursor-pointer">🚚 What delivery options are available?</summary>
-                            <p class="text-gray-600 mt-3 pl-4 border-l-2 border-green-500">We offer Same-Day Delivery (order before 2 PM), Scheduled Delivery (choose a convenient time slot), and Express 30-Minute Delivery for urgent orders. Delivery charges may vary based on your location and order value. Orders above ₹499 get free delivery!</p>
-                        </details>
-                    </div>
-                    
-                    <div class="faq-item-contact bg-white rounded-xl p-5 mb-4 shadow-sm" data-aos="fade-up" data-aos-delay="200">
-                        <details>
-                            <summary class="font-semibold text-gray-800 cursor-pointer">📍 Do you deliver to my area?</summary>
-                            <p class="text-gray-600 mt-3 pl-4 border-l-2 border-green-500">We currently deliver across Vadodara city including Subhanpura, Alkapuri, Fatehgunj, Karelibaug, and surrounding areas. Enter your PIN code on the website or app to check if we deliver to your location. We're constantly expanding our delivery network!</p>
-                        </details>
-                    </div>
-                    
-                    <div class="faq-item-contact bg-white rounded-xl p-5 mb-4 shadow-sm" data-aos="fade-up" data-aos-delay="300">
-                        <details>
-                            <summary class="font-semibold text-gray-800 cursor-pointer">📦 How do I track my order?</summary>
-                            <p class="text-gray-600 mt-3 pl-4 border-l-2 border-green-500">After your order is confirmed, you'll receive an email and/or SMS with a tracking link. Simply click the link to view real-time updates on your delivery status. You can also log into your account and access the "My Orders" section for tracking details.</p>
-                        </details>
-                    </div>
-                    
-                    <div class="faq-item-contact bg-white rounded-xl p-5 mb-4 shadow-sm" data-aos="fade-up" data-aos-delay="400">
-                        <details>
-                            <summary class="font-semibold text-gray-800 cursor-pointer">🔄 What is your return and refund policy?</summary>
-                            <p class="text-gray-600 mt-3 pl-4 border-l-2 border-green-500">If you receive damaged, expired, or incorrect items, please contact our customer service team within 48 hours of delivery. We will arrange for a replacement, refund, or credit according to your preference. We aim to resolve all issues within 24 hours.</p>
-                        </details>
-                    </div>
-                </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item__icon"><i class="fas fa-clock"></i></div>
+            <div class="contact-item__text">
+              <strong>Business Hours</strong>
+              <span><span class="dot-open"></span>Open now · 6 AM – 11 PM, 7 days</span>
             </div>
-        </section>
-
-        <!-- Live Chat CTA -->
-        <section class="container mx-auto px-4 lg:px-20 py-16 text-center">
-            <div class="bg-gradient-to-r from-green-600 to-green-500 rounded-2xl p-8 lg:p-12 text-white" data-aos="zoom-in">
-                <i class="fas fa-comments text-5xl mb-4"></i>
-                <h2 class="font-sora text-2xl lg:text-3xl font-bold mb-3">Need Immediate Assistance?</h2>
-                <p class="text-green-100 mb-6 max-w-lg mx-auto">Our customer support team is available 24/7 to help you with any queries</p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button onclick="startLiveChat()" class="live-chat-btn bg-white text-green-600 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition inline-flex items-center gap-2 justify-center shadow-lg">
-                        <i class="fas fa-comment-dots"></i> Start Live Chat
-                    </button>
-                    <a href="tel:+919876543210" class="border-2 border-white text-white px-8 py-3 rounded-xl font-semibold hover:bg-white hover:text-green-600 transition inline-flex items-center gap-2 justify-center">
-                        <i class="fas fa-phone-alt"></i> Call Now
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer Placeholder -->
-    <div id="footer-placeholder"></div>
-
-    <!-- Cart Sidebar -->
-    <div id="cart-sidebar" class="cart-sidebar">
-        <div class="cart-sidebar-header">
-            <h2 class="text-xl font-bold"><i class="fas fa-shopping-cart"></i> Your Cart</h2>
-            <button onclick="toggleCartSidebar()" class="text-2xl">&times;</button>
+          </div>
         </div>
-        <div id="cart-sidebar-items" class="cart-sidebar-items"></div>
-        <div class="cart-sidebar-footer">
-            <div class="flex justify-between font-bold text-lg mb-4">
-                <span>Total:</span>
-                <span id="cart-sidebar-total">₹0</span>
-            </div>
-            <a href="cart.html" class="btn btn-primary w-full bg-green-600 text-white py-2 rounded-lg text-center block">View Cart</a>
-            <a href="checkout.html" class="btn btn-success w-full bg-orange-500 text-white py-2 rounded-lg text-center block mt-2">Checkout</a>
+
+        <table class="hours-table">
+          <div class="hours-row"><span>Monday – Friday</span><span>6:00 AM – 11:00 PM</span></div>
+          <div class="hours-row"><span>Saturday</span><span>7:00 AM – 10:00 PM</span></div>
+          <div class="hours-row"><span>Sunday</span><span>8:00 AM – 9:00 PM</span></div>
+          <div class="hours-row"><span>Public Holidays</span><span>9:00 AM – 8:00 PM</span></div>
+        </table>
+
+        <div class="social-connect">
+          <h4>Follow Us</h4>
+          <div class="contact-social">
+            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
         </div>
+      </div>
     </div>
 
-    <!-- Quick View Modal -->
-    <div id="quick-view-modal" class="quick-view-modal">
-        <div class="quick-view-content p-6">
-            <div class="flex justify-end mb-2">
-                <button onclick="closeQuickView()" class="text-2xl hover:text-red-500">&times;</button>
-            </div>
-            <div id="quick-view-content"></div>
-        </div>
-    </div>
+    <!-- RIGHT: Form -->
+    <div data-aos="fade-left" data-aos-delay="100">
+      <div class="form-card">
+        <h2>Send Us a Message</h2>
+        <p>Fill in the form below and we'll get back to you within 2 hours.</p>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="assets/js/products.js"></script>
-    <script src="assets/js/main.js"></script>
-    
-    <script>
-        // Auto-fill user data if logged in
-        function autoFillUserData() {
-            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            if (currentUser) {
-                const nameInput = document.getElementById('contact-name');
-                const emailInput = document.getElementById('contact-email');
-                const phoneInput = document.getElementById('contact-phone');
-                
-                if (nameInput && !nameInput.value) nameInput.value = currentUser.name || '';
-                if (emailInput && !emailInput.value) emailInput.value = currentUser.email || '';
-                if (phoneInput && !phoneInput.value) phoneInput.value = currentUser.phone || '';
-            }
-        }
-        
-        // Form validation with shake effect
-        function validateAndShake(field) {
-            if (field && !field.value.trim()) {
-                field.classList.add('error-shake');
-                setTimeout(() => field.classList.remove('error-shake'), 500);
-                return false;
-            }
-            return true;
-        }
-        
-        // Copy address to clipboard
-        function copyAddress() {
-            const address = "Subhanpura Main Road, Near SBI Bank, Vadodara, Gujarat - 390023";
-            navigator.clipboard.writeText(address).then(() => {
-                showNotification('📍 Store address copied to clipboard!', 'success');
-            }).catch(() => {
-                showNotification('Failed to copy address', 'error');
-            });
-        }
-        
-        // Show notification function
-        function showNotification(message, type = 'success') {
-            const notification = document.createElement('div');
-            notification.className = `fixed bottom-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 transition-all ${type === 'error' ? 'bg-red-500' : 'bg-green-500'} text-white`;
-            notification.innerHTML = `<i class="fas ${type === 'error' ? 'fa-exclamation-triangle' : 'fa-check-circle'} mr-2"></i> ${message}`;
-            document.body.appendChild(notification);
-            setTimeout(() => notification.remove(), 3000);
-        }
-        
-        // Contact form submission
-        const contactForm = document.getElementById('contact-form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                
-                const name = document.getElementById('contact-name');
-                const email = document.getElementById('contact-email');
-                const subject = document.getElementById('contact-subject');
-                const message = document.getElementById('contact-message');
-                
-                let isValid = true;
-                if (!validateAndShake(name)) isValid = false;
-                if (!validateAndShake(email)) isValid = false;
-                if (!validateAndShake(subject)) isValid = false;
-                if (!validateAndShake(message)) isValid = false;
-                
-                if (isValid) {
-                    // Save to localStorage for demo
-                    const contactMessages = JSON.parse(localStorage.getItem('contact_messages')) || [];
-                    contactMessages.push({
-                        name: name.value,
-                        email: email.value,
-                        phone: document.getElementById('contact-phone').value,
-                        subject: subject.options[subject.selectedIndex]?.text || subject.value,
-                        message: message.value,
-                        date: new Date().toISOString()
-                    });
-                    localStorage.setItem('contact_messages', JSON.stringify(contactMessages));
-                    
-                    showNotification(`Thank you ${name.value}! We'll get back to you soon.`);
-                    contactForm.reset();
-                    autoFillUserData(); // Refill user data if available
-                } else {
-                    showNotification('Please fill all required fields', 'error');
-                }
-            });
-        }
-        
-        // Live chat function
-        function startLiveChat() {
-            window.open('https://wa.me/919876543210?text=Hello%20RT%20GroceryHub%2C%20I%20need%20assistance%20with%20my%20order', '_blank');
-        }
-        
-        // Initialize AOS and auto-fill
-        document.addEventListener('DOMContentLoaded', () => {
-            if (typeof AOS !== 'undefined') {
-                AOS.init({ duration: 800, once: true });
-            }
-            autoFillUserData();
-        });
-    </script>
+        <!-- Subject pills -->
+        <div class="subject-pills" id="subject-pills">
+          <div class="subject-pill active" data-subject="General Enquiry">💬 General Enquiry</div>
+          <div class="subject-pill" data-subject="Order Issue">📦 Order Issue</div>
+          <div class="subject-pill" data-subject="Delivery Problem">🚚 Delivery</div>
+          <div class="subject-pill" data-subject="Product Quality">🌿 Product Quality</div>
+          <div class="subject-pill" data-subject="Refund & Return">💰 Refund</div>
+          <div class="subject-pill" data-subject="Partnership">🤝 Partnership</div>
+        </div>
+
+        <div id="contact-form">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:0">
+            <div class="form-group">
+              <label class="form-label">First Name <span class="req">*</span></label>
+              <input type="text" id="c-fname" class="form-input" placeholder="Aarav">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last Name <span class="req">*</span></label>
+              <input type="text" id="c-lname" class="form-input" placeholder="Sharma">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address <span class="req">*</span></label>
+            <input type="email" id="c-email" class="form-input" placeholder="aarav@email.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number</label>
+            <input type="tel" id="c-phone" class="form-input" placeholder="+91 98765 43210">
+          </div>
+          <div class="form-group" id="order-id-group" style="display:none">
+            <label class="form-label">Order ID <span style="font-weight:400;color:var(--gray-400)">(Optional — speeds up resolution)</span></label>
+            <input type="text" id="c-orderid" class="form-input" placeholder="e.g. GB1700000000000">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Your Message <span class="req">*</span></label>
+            <textarea id="c-message" class="form-input" placeholder="Tell us how we can help…" maxlength="1000" oninput="document.getElementById('c-count').textContent=this.value.length" style="min-height:120px"></textarea>
+            <div class="char-count"><span id="c-count">0</span>/1000</div>
+          </div>
+          <div class="form-group">
+            <label style="display:flex;align-items:flex-start;gap:8px;font-size:.82rem;cursor:pointer;line-height:1.5;color:var(--gray-600)">
+              <input type="checkbox" id="c-consent" style="accent-color:var(--green-600);margin-top:2px;flex-shrink:0">
+              I agree to GreenBasket's <a href="#" style="color:var(--green-600)">Privacy Policy</a> and consent to being contacted about my enquiry.
+            </label>
+          </div>
+          <div class="form-footer">
+            <div class="privacy"><i class="fas fa-lock"></i> Your data is 100% secure and never sold</div>
+            <button class="btn btn-primary" onclick="submitForm()" id="submit-btn">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+          </div>
+        </div>
+
+        <!-- Success state -->
+        <div class="success-msg" id="success-msg">
+          <i class="fas fa-circle-check"></i>
+          <h3>Message Sent!</h3>
+          <p>Thanks for reaching out. We'll get back to you at <strong id="confirm-email"></strong> within 2 hours.</p>
+          <button class="btn btn-primary btn-sm" style="margin-top:16px" onclick="resetForm()">Send Another Message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Map placeholder -->
+<div class="container" style="padding-bottom:60px" data-aos>
+  <h2 style="margin-bottom:20px;font-size:1.3rem">Find Us</h2>
+  <div class="map-wrap">
+    <div class="map-placeholder">
+      <i class="fas fa-map-marked-alt"></i>
+      <p style="font-size:.92rem;font-weight:600;color:var(--gray-600);margin-bottom:4px">GreenBasket Head Office</p>
+      <p style="font-size:.82rem">42, Green Valley, Bandra West, Mumbai — 400050</p>
+      <a href="https://maps.google.com/?q=Bandra+West,+Mumbai" target="_blank" class="btn btn-primary btn-sm" style="margin-top:16px"><i class="fas fa-directions"></i> Get Directions</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── FAQ ── -->
+<section class="section" style="background:var(--gray-50)">
+  <div class="container">
+    <div class="section-header" data-aos>
+      <span class="section-header__eyebrow">Quick Answers</span>
+      <h2>Frequently Asked Questions</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="faq-grid" id="faq-grid">
+      <!-- rendered by JS -->
+    </div>
+    <div style="text-align:center;margin-top:36px" data-aos>
+      <p style="color:var(--gray-500);font-size:.88rem;margin-bottom:12px">Can't find your answer?</p>
+      <a href="https://wa.me/919876543210" target="_blank" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo">🌿 Green<span>Basket</span></div>
+        <p class="footer__desc">India's freshest online grocery. Delivered from farm to door in 30 minutes.</p>
+        <div class="footer__social">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+      <div><h4>Quick Links</h4><ul><li><a href="shop.html">Shop</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="account.html">Account</a></li></ul></div>
+      <div><h4>Categories</h4><ul><li><a href="shop.html?cat=vegetables">Vegetables</a></li><li><a href="shop.html?cat=fruits">Fruits</a></li><li><a href="shop.html?cat=dairy">Dairy</a></li><li><a href="shop.html?cat=bakery">Bakery</a></li></ul></div>
+      <div><h4>Newsletter</h4><form class="newsletter-form"><input type="email" class="footer__newsletter" placeholder="Your email" style="width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);color:#fff;font-size:.85rem;margin-bottom:8px"><button type="submit" style="width:100%;padding:10px;border-radius:10px;background:var(--green-600);color:#fff;font-weight:700;border:none;cursor:pointer">Subscribe</button></form></div>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(255,255,255,.07);padding:16px 0">
+    <div class="container footer__bottom"><span>© 2025 GreenBasket</span><div style="display:flex;gap:12px;opacity:.5"><i class="fab fa-cc-visa fa-lg"></i><i class="fab fa-cc-mastercard fa-lg"></i><i class="fas fa-mobile-screen-button fa-lg"></i></div></div>
+  </div>
+</footer>
+
+<!-- Cart Drawer -->
+<div id="cart-overlay" class="cart-overlay"></div>
+<div id="cart-drawer" class="cart-drawer">
+  <div class="cart-drawer__head"><h2>🛒 Your Cart</h2><button id="cart-close" class="cart-drawer__close"><i class="fas fa-times"></i></button></div>
+  <div id="cart-drawer-items" class="cart-drawer__items"></div>
+  <div id="cart-drawer-empty" class="cart-drawer__empty hidden"><i class="fas fa-shopping-basket"></i><p>Your basket is empty.</p></div>
+  <div id="cart-drawer-foot" class="cart-drawer__foot hidden">
+    <div class="cart-drawer__coupon"><input type="text" id="coupon-input" placeholder="Coupon code"><button id="apply-coupon">Apply</button></div>
+    <div id="coupon-msg" class="coupon-msg"></div>
+    <table class="cart-drawer__totals" style="width:100%;border-collapse:collapse">
+      <tr><td>Subtotal</td><td id="drawer-subtotal">₹0</td></tr>
+      <tr><td>Delivery</td><td id="drawer-delivery">₹49</td></tr>
+      <tr class="total-row"><td>Total</td><td id="drawer-total">₹0</td></tr>
+    </table>
+    <a href="checkout.html" class="btn btn-primary" onclick="closeCartDrawer()"><i class="fas fa-lock"></i> Checkout</a>
+  </div>
+</div>
+<button class="scroll-top"><i class="fas fa-chevron-up"></i></button>
+
+<script src="assets/js/products.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+// Subject pills
+let activeSubject = 'General Enquiry';
+document.querySelectorAll('.subject-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    document.querySelectorAll('.subject-pill').forEach(p=>p.classList.remove('active'));
+    pill.classList.add('active');
+    activeSubject = pill.dataset.subject;
+    // Show order ID for order-related issues
+    const orderGroup = document.getElementById('order-id-group');
+    const showOrder = ['Order Issue','Delivery Problem'].includes(activeSubject);
+    if(orderGroup) orderGroup.style.display = showOrder ? 'block' : 'none';
+  });
+});
+
+// Submit form
+function submitForm() {
+  const fname   = document.getElementById('c-fname').value.trim();
+  const lname   = document.getElementById('c-lname').value.trim();
+  const email   = document.getElementById('c-email').value.trim();
+  const message = document.getElementById('c-message').value.trim();
+  const consent = document.getElementById('c-consent').checked;
+  if (!fname || !lname) { showToast('Please enter your name','error'); return; }
+  if (!email || !email.includes('@')) { showToast('Please enter a valid email address','error'); return; }
+  if (!message || message.length < 10) { showToast('Please write a message (at least 10 characters)','error'); return; }
+  if (!consent) { showToast('Please agree to the Privacy Policy to continue','error'); return; }
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
+  setTimeout(() => {
+    document.getElementById('contact-form').style.display = 'none';
+    const sm = document.getElementById('success-msg');
+    sm.style.display = 'block';
+    document.getElementById('confirm-email').textContent = email;
+    showToast('✓ Message sent! We\'ll be in touch shortly.');
+  }, 1200);
+}
+function resetForm() {
+  document.getElementById('contact-form').style.display = 'block';
+  document.getElementById('success-msg').style.display = 'none';
+  document.getElementById('submit-btn').disabled = false;
+  document.getElementById('submit-btn').innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+  ['c-fname','c-lname','c-email','c-phone','c-message','c-orderid'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.value='';
+  });
+  document.getElementById('c-consent').checked = false;
+  document.getElementById('c-count').textContent = '0';
+}
+
+// FAQs
+const FAQS = [
+  { q:'How fast is your delivery?',               a:'We deliver in 30–45 minutes to most areas we serve. In select zones in Mumbai and Bengaluru, we\'re now offering 20-minute delivery.' },
+  { q:'Do you deliver on public holidays?',        a:'Yes! We operate 365 days a year, including all public holidays, though our hours may be slightly reduced. Check the app for real-time availability.' },
+  { q:'What if my product is not fresh?',          a:'We stand by our Freshness Guarantee. If you\'re unhappy with any product, contact us within 24 hours and we\'ll refund or replace it — no questions asked.' },
+  { q:'Can I cancel or modify my order?',          a:'Orders can be cancelled or modified within 5 minutes of placing them. After that, our team is already packing your order. Contact support immediately if you need changes.' },
+  { q:'Is online payment safe?',                   a:'Absolutely. All payments are processed through Razorpay, a PCI-DSS Level 1 certified payment gateway. We never store your card details.' },
+  { q:'Do you offer a subscription plan?',         a:'Our GreenBasket Plus subscription (₹199/month) gives you free delivery on all orders, 10% off on all products, and priority customer support. Coming soon!' },
+  { q:'What coupon codes are available?',          a:'New customers can use WELCOME50 for ₹50 off. Other codes like FRESH20 (20% off), GREEN10 (10% off) are shared in our newsletter and Instagram stories.' },
+  { q:'How do I track my order?',                  a:'Once your order is confirmed, you\'ll receive an SMS with a live tracking link. You can also track in real time through the My Orders section of your account.' },
+];
+
+const faqGrid = document.getElementById('faq-grid');
+if (faqGrid) {
+  faqGrid.innerHTML = FAQS.map((f,i)=>`
+    <div class="faq-item" data-aos data-aos-delay="${(i%4)*60}">
+      <div class="faq-question" onclick="toggleFAQ(this.parentElement)">
+        <span>${f.q}</span>
+        <i class="fas fa-plus"></i>
+      </div>
+      <div class="faq-answer">${f.a}</div>
+    </div>`).join('');
+}
+function toggleFAQ(item) {
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(f=>f.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+</script>
 </body>
-
 </html>

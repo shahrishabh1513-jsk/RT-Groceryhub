@@ -1,746 +1,531 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Account - RT GroceryHub</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <!-- DaisyUI + TailwindCSS -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/d18f75e53f.js" crossorigin="anonymous"></script>
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <style>
-        .font-sora { font-family: "Sora", serif; }
-        .font-poppins { font-family: "Poppins", serif; }
-        
-        .sidebar-item {
-            transition: all 0.3s ease;
-            position: relative;
-            cursor: pointer;
-        }
-        
-        .sidebar-item.active {
-            background-color: #f0fdf4;
-            color: #16a34a;
-        }
-        
-        .sidebar-item.active::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background-color: #16a34a;
-            border-radius: 3px;
-        }
-        
-        .sidebar-item:hover:not(.active) {
-            background-color: #f9fafb;
-            color: #16a34a;
-        }
-        
-        .profile-avatar {
-            transition: all 0.3s ease;
-        }
-        
-        .profile-avatar:hover {
-            transform: scale(1.05);
-        }
-        
-        .order-card {
-            transition: all 0.3s ease;
-        }
-        
-        .order-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .address-card {
-            transition: all 0.3s ease;
-        }
-        
-        .address-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        }
-        
-        .stat-card {
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .modal.active {
-            display: flex;
-        }
-        
-        .modal-content {
-            animation: modalSlideIn 0.3s ease;
-        }
-        
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        .order-item {
-            animation: slideIn 0.3s ease forwards;
-        }
-        
-        .btn-print-bill {
-            transition: all 0.3s ease;
-        }
-        
-        .btn-print-bill:hover {
-            background: #16a34a;
-            color: white;
-            transform: scale(1.05);
-        }
-    </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'btn-primary': '#16a34a',
-                        'primary-green': '#179800',
-                        'accent-orange': '#FF8C42',
-                    }
-                }
-            }
-        }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Account — GreenBasket</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+.account-layout { display:grid; grid-template-columns:280px 1fr; gap:28px; padding:40px 0 80px; }
+.account-sidebar { position:sticky; top:88px; height:fit-content; }
+.account-profile-card {
+  background:linear-gradient(135deg,#0a3d1a,#16a34a); border-radius:var(--radius-xl);
+  padding:28px 20px; text-align:center; color:#fff; margin-bottom:16px;
+}
+.account-avatar {
+  width:80px; height:80px; border-radius:50%; background:rgba(255,255,255,.2);
+  border:3px solid rgba(255,255,255,.4); display:flex; align-items:center; justify-content:center;
+  font-size:2rem; font-weight:800; margin:0 auto 14px; font-family:'Sora',sans-serif;
+}
+.account-name   { font-family:'Sora',sans-serif; font-size:1.05rem; font-weight:700; margin-bottom:4px; }
+.account-email  { font-size:.78rem; opacity:.75; }
+.account-since  { font-size:.72rem; opacity:.6; margin-top:6px; background:rgba(255,255,255,.12); border-radius:50px; padding:3px 12px; display:inline-block; }
+
+.account-nav { background:var(--white); border-radius:var(--radius-xl); overflow:hidden; border:1.5px solid var(--gray-100); box-shadow:var(--shadow-sm); }
+.account-nav-item {
+  display:flex; align-items:center; gap:12px; padding:14px 20px;
+  font-size:.87rem; font-weight:600; color:var(--gray-600); cursor:pointer;
+  border-left:3px solid transparent; transition:var(--transition);
+}
+.account-nav-item:not(:last-child) { border-bottom:1px solid var(--gray-100); }
+.account-nav-item:hover { background:var(--green-50); color:var(--green-700); }
+.account-nav-item.active { background:var(--green-50); color:var(--green-700); border-left-color:var(--green-600); }
+.account-nav-item i { width:18px; text-align:center; font-size:.9rem; }
+.account-nav-item.danger { color:var(--red); }
+.account-nav-item.danger:hover { background:#fee2e2; }
+
+/* Stats row */
+.stats-row { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:24px; }
+.stat-tile { background:var(--white); border-radius:var(--radius-lg); padding:20px; text-align:center; border:1.5px solid var(--gray-100); box-shadow:var(--shadow-sm); transition:var(--transition); }
+.stat-tile:hover { box-shadow:var(--shadow-lg); transform:translateY(-3px); }
+.stat-tile__num { font-size:1.8rem; font-weight:900; font-family:'Sora',sans-serif; color:var(--green-700); }
+.stat-tile__label { font-size:.78rem; color:var(--gray-400); margin-top:4px; }
+
+/* Content card */
+.content-card { background:var(--white); border-radius:var(--radius-xl); padding:28px; border:1.5px solid var(--gray-100); box-shadow:var(--shadow-sm); }
+.content-card__title { font-family:'Sora',sans-serif; font-size:1.05rem; font-weight:700; margin-bottom:22px; padding-bottom:14px; border-bottom:1px solid var(--gray-100); display:flex; align-items:center; gap:10px; }
+.content-card__title i { color:var(--green-600); }
+
+/* Order cards */
+.order-card { border:1.5px solid var(--gray-100); border-radius:var(--radius-lg); overflow:hidden; margin-bottom:14px; transition:var(--transition); }
+.order-card:hover { border-color:var(--green-200); box-shadow:var(--shadow); }
+.order-card__head { background:var(--gray-50); padding:14px 18px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; border-bottom:1px solid var(--gray-100); }
+.order-card__id   { font-family:monospace; font-size:.8rem; color:var(--gray-500); }
+.order-card__date { font-size:.78rem; color:var(--gray-400); }
+.order-card__body { padding:16px 18px; }
+.order-products { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+.order-product-img { width:52px; height:52px; border-radius:8px; object-fit:cover; border:1.5px solid var(--gray-100); }
+.order-more { width:52px; height:52px; border-radius:8px; background:var(--gray-100); display:flex; align-items:center; justify-content:center; font-size:.75rem; font-weight:700; color:var(--gray-500); }
+.order-card__foot { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+.order-total { font-weight:800; font-size:1.05rem; color:var(--gray-800); }
+.order-total small { font-weight:400; font-size:.75rem; color:var(--gray-400); margin-left:4px; }
+
+/* Address cards */
+.address-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.address-card { border:1.5px solid var(--gray-100); border-radius:var(--radius-lg); padding:18px; position:relative; transition:var(--transition); }
+.address-card:hover { border-color:var(--green-200); }
+.address-card.default { border-color:var(--green-400); background:var(--green-50); }
+.address-card__default { position:absolute; top:10px; right:10px; background:var(--green-600); color:#fff; font-size:.68rem; font-weight:700; padding:2px 8px; border-radius:50px; }
+.address-card h4 { font-size:.9rem; font-weight:700; margin-bottom:6px; }
+.address-card p { font-size:.82rem; color:var(--gray-600); line-height:1.6; }
+.address-card__actions { display:flex; gap:8px; margin-top:12px; }
+
+/* Profile form */
+.profile-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+
+/* Wishlist grid */
+.wishlist-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+
+/* Empty state */
+.empty-state { text-align:center; padding:60px 20px; }
+.empty-state i { font-size:3rem; color:var(--gray-200); margin-bottom:16px; }
+.empty-state h3 { color:var(--gray-600); margin-bottom:8px; font-size:1.1rem; }
+.empty-state p  { color:var(--gray-400); font-size:.87rem; margin-bottom:20px; }
+
+/* Notification toggles */
+.notif-row { display:flex; align-items:center; justify-content:space-between; padding:14px 0; border-bottom:1px solid var(--gray-100); }
+.notif-row:last-child { border-bottom:none; }
+.notif-row__info h4 { font-size:.9rem; font-weight:600; margin-bottom:2px; }
+.notif-row__info p  { font-size:.78rem; color:var(--gray-400); }
+.toggle { position:relative; width:44px; height:24px; }
+.toggle input { opacity:0; width:0; height:0; }
+.toggle__slider { position:absolute; cursor:pointer; inset:0; background:var(--gray-200); border-radius:24px; transition:var(--transition); }
+.toggle__slider::before { content:''; position:absolute; width:18px; height:18px; left:3px; bottom:3px; background:#fff; border-radius:50%; transition:var(--transition); }
+.toggle input:checked + .toggle__slider { background:var(--green-600); }
+.toggle input:checked + .toggle__slider::before { transform:translateX(20px); }
+
+@media(max-width:1000px){ .account-layout{grid-template-columns:1fr;} .account-sidebar{position:static;} .stats-row{grid-template-columns:repeat(3,1fr);} }
+@media(max-width:640px){ .stats-row{grid-template-columns:1fr 1fr;} .address-grid{grid-template-columns:1fr;} .profile-grid{grid-template-columns:1fr;} .wishlist-grid{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:400px){ .wishlist-grid{grid-template-columns:1fr;} }
+</style>
 </head>
+<body>
+<div id="page-progress"></div>
 
-<body class="bg-[#fffffe]">
-
-    <!-- Header Placeholder -->
-    <div id="header-placeholder"></div>
-
-    <main>
-        <!-- Account Header -->
-        <section class="w-full bg-gradient-to-r from-green-700 to-green-500 py-12 lg:py-16 text-white">
-            <div class="container mx-auto px-4 lg:px-20 text-center" data-aos="fade-down">
-                <h1 class="font-sora text-3xl lg:text-5xl font-bold mb-3">
-                    <i class="fas fa-user-circle"></i> My Account
-                </h1>
-                <p class="font-poppins text-base lg:text-lg">Manage your profile, orders, and preferences</p>
-            </div>
-        </section>
-
-        <!-- Account Content -->
-        <div class="container mx-auto px-4 lg:px-20 py-12">
-            <div class="flex flex-col lg:flex-row gap-8">
-                <!-- Sidebar -->
-                <aside class="lg:w-80" data-aos="fade-right">
-                    <div class="bg-white rounded-2xl shadow-sm overflow-hidden sticky top-24">
-                        <div class="p-6 text-center border-b border-gray-100">
-                            <div class="profile-avatar relative inline-block">
-                                <div class="w-24 h-24 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto">
-                                    <i class="fas fa-user text-4xl text-white"></i>
-                                </div>
-                            </div>
-                            <h3 id="user-name" class="font-sora font-bold text-xl mt-3">Guest User</h3>
-                            <p id="user-email" class="text-gray-500 text-sm">guest@example.com</p>
-                            <p class="text-xs text-green-600 mt-1" id="member-since">Member since 2024</p>
-                        </div>
-                        
-                        <div class="p-4">
-                            <button onclick="switchSection('profile')" class="sidebar-item active w-full text-left px-4 py-3 rounded-xl flex items-center gap-3 transition" data-section="profile">
-                                <i class="fas fa-user-circle w-5"></i>
-                                <span>Profile Information</span>
-                            </button>
-                            <button onclick="switchSection('orders')" class="sidebar-item w-full text-left px-4 py-3 rounded-xl flex items-center gap-3 transition" data-section="orders">
-                                <i class="fas fa-history w-5"></i>
-                                <span>Order History</span>
-                                <span id="order-count-badge" class="ml-auto bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">0</span>
-                            </button>
-                            <button onclick="switchSection('addresses')" class="sidebar-item w-full text-left px-4 py-3 rounded-xl flex items-center gap-3 transition" data-section="addresses">
-                                <i class="fas fa-map-marker-alt w-5"></i>
-                                <span>Saved Addresses</span>
-                                <span id="address-count-badge" class="ml-auto bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">0</span>
-                            </button>
-                            <div class="border-t border-gray-100 my-3"></div>
-                            <button id="logout-btn" class="sidebar-item w-full text-left px-4 py-3 rounded-xl flex items-center gap-3 transition text-red-500 hover:bg-red-50">
-                                <i class="fas fa-sign-out-alt w-5"></i>
-                                <span>Logout</span>
-                            </button>
-                        </div>
-                    </div>
-                </aside>
-
-                <!-- Main Content -->
-                <div class="flex-1" data-aos="fade-left">
-                    <!-- Profile Section -->
-                    <div id="profile-section" class="account-section active">
-                        <div class="bg-white rounded-2xl shadow-sm p-6 lg:p-8">
-                            <div class="flex justify-between items-center mb-6">
-                                <h2 class="font-sora text-2xl font-bold text-gray-800">
-                                    <i class="fas fa-id-card text-green-600"></i> Profile Information
-                                </h2>
-                                <button onclick="openProfileEditModal()" class="text-green-600 hover:text-green-700 font-semibold flex items-center gap-2">
-                                    <i class="fas fa-edit"></i> Edit Profile
-                                </button>
-                            </div>
-                            <div id="profile-info" class="space-y-4">
-                                <!-- Profile info loaded dynamically -->
-                            </div>
-                            
-                            <!-- Stats Cards -->
-                            <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 mt-8 pt-6 border-t">
-                                <div class="stat-card bg-gray-50 rounded-xl p-4 text-center">
-                                    <i class="fas fa-shopping-bag text-2xl text-green-600"></i>
-                                    <p class="text-2xl font-bold mt-1" id="total-orders">0</p>
-                                    <p class="text-sm text-gray-500">Total Orders</p>
-                                </div>
-                                <div class="stat-card bg-gray-50 rounded-xl p-4 text-center">
-                                    <i class="fas fa-rupee-sign text-2xl text-green-600"></i>
-                                    <p class="text-2xl font-bold mt-1" id="total-spent">₹0</p>
-                                    <p class="text-sm text-gray-500">Total Spent</p>
-                                </div>
-                                <div class="stat-card bg-gray-50 rounded-xl p-4 text-center">
-                                    <i class="fas fa-calendar-alt text-2xl text-green-600"></i>
-                                    <p class="text-2xl font-bold mt-1" id="member-days">0</p>
-                                    <p class="text-sm text-gray-500">Member Days</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Orders Section -->
-                    <div id="orders-section" class="account-section hidden">
-                        <div class="bg-white rounded-2xl shadow-sm p-6 lg:p-8">
-                            <div class="flex justify-between items-center mb-6 flex-wrap gap-4">
-                                <h2 class="font-sora text-2xl font-bold text-gray-800">
-                                    <i class="fas fa-history text-green-600"></i> Order History
-                                </h2>
-                                <select id="order-filter" class="p-2 border border-gray-200 rounded-lg bg-white">
-                                    <option value="all">All Orders</option>
-                                    <option value="delivered">Delivered</option>
-                                    <option value="pending">Pending</option>
-                                    <option value="cancelled">Cancelled</option>
-                                </select>
-                            </div>
-                            <div id="orders-list" class="space-y-4">
-                                <!-- Orders loaded dynamically -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Addresses Section -->
-                    <div id="addresses-section" class="account-section hidden">
-                        <div class="bg-white rounded-2xl shadow-sm p-6 lg:p-8">
-                            <div class="flex justify-between items-center mb-6">
-                                <h2 class="font-sora text-2xl font-bold text-gray-800">
-                                    <i class="fas fa-location-dot text-green-600"></i> Saved Addresses
-                                </h2>
-                                <button onclick="openAddressModal()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition flex items-center gap-2">
-                                    <i class="fas fa-plus"></i> Add New Address
-                                </button>
-                            </div>
-                            <div id="addresses-list" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                                <!-- Addresses loaded dynamically -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer Placeholder -->
-    <div id="footer-placeholder"></div>
-
-    <!-- Cart Sidebar -->
-    <div id="cart-sidebar" class="cart-sidebar">
-        <div class="cart-sidebar-header">
-            <h2 class="text-xl font-bold"><i class="fas fa-shopping-cart"></i> Your Cart</h2>
-            <button onclick="toggleCartSidebar()" class="text-2xl">&times;</button>
-        </div>
-        <div id="cart-sidebar-items" class="cart-sidebar-items"></div>
-        <div class="cart-sidebar-footer">
-            <div class="flex justify-between font-bold text-lg mb-4">
-                <span>Total:</span>
-                <span id="cart-sidebar-total">₹0</span>
-            </div>
-            <a href="cart.html" class="btn btn-primary w-full bg-green-600 text-white py-2 rounded-lg text-center block">View Cart</a>
-            <a href="checkout.html" class="btn btn-success w-full bg-orange-500 text-white py-2 rounded-lg text-center block mt-2">Checkout</a>
-        </div>
+<nav class="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">🌿 Green<span>Basket</span></a>
+    <div class="navbar__search">
+      <span class="navbar__search-icon"><i class="fas fa-search"></i></span>
+      <input type="text" placeholder="Search products…">
+      <div class="navbar__search-results"></div>
     </div>
-
-    <!-- Edit Profile Modal -->
-    <div id="edit-profile-modal" class="modal">
-        <div class="modal-content bg-white rounded-2xl max-w-md w-full mx-4 p-6">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="font-sora text-xl font-bold">Edit Profile</h3>
-                <button onclick="closeModal('edit-profile-modal')" class="text-2xl hover:text-red-500">&times;</button>
-            </div>
-            <form id="edit-profile-form">
-                <div class="mb-4">
-                    <label class="block text-sm font-medium mb-1">Full Name</label>
-                    <input type="text" id="edit-name" class="w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 focus:outline-none">
-                </div>
-                <div class="mb-4">
-                    <label class="block text-sm font-medium mb-1">Email Address</label>
-                    <input type="email" id="edit-email" class="w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 focus:outline-none">
-                </div>
-                <div class="mb-4">
-                    <label class="block text-sm font-medium mb-1">Phone Number</label>
-                    <input type="tel" id="edit-phone" class="w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 focus:outline-none">
-                </div>
-                <div class="flex gap-3">
-                    <button type="submit" class="flex-1 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition">Save Changes</button>
-                    <button type="button" onclick="closeModal('edit-profile-modal')" class="flex-1 border border-gray-300 py-2 rounded-lg hover:bg-gray-50 transition">Cancel</button>
-                </div>
-            </form>
-        </div>
+    <nav class="navbar__nav">
+      <a href="index.html">Home</a><a href="shop.html">Shop</a>
+      <a href="about.html">About</a><a href="contact.html">Contact</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="navbar__cart-btn" data-open-cart>
+        <i class="fas fa-shopping-basket"></i>
+        <span class="cart-badge" style="display:none">0</span>
+      </button>
+      <button class="navbar__hamburger"><span></span><span></span><span></span></button>
     </div>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html"><i class="fas fa-home fa-fw"></i> Home</a>
+  <a href="shop.html"><i class="fas fa-store fa-fw"></i> Shop</a>
+  <a href="account.html"><i class="fas fa-user fa-fw"></i> Account</a>
+</div>
 
-    <!-- Add Address Modal -->
-    <div id="address-modal" class="modal">
-        <div class="modal-content bg-white rounded-2xl max-w-md w-full mx-4 p-6">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="font-sora text-xl font-bold">Add New Address</h3>
-                <button onclick="closeModal('address-modal')" class="text-2xl hover:text-red-500">&times;</button>
-            </div>
-            <form id="add-address-form">
-                <div class="mb-4">
-                    <label class="block text-sm font-medium mb-1">Full Name</label>
-                    <input type="text" id="addr-name" class="w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 focus:outline-none">
-                </div>
-                <div class="mb-4">
-                    <label class="block text-sm font-medium mb-1">Phone Number</label>
-                    <input type="tel" id="addr-phone" class="w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 focus:outline-none">
-                </div>
-                <div class="mb-4">
-                    <label class="block text-sm font-medium mb-1">Street Address</label>
-                    <textarea id="addr-address" rows="2" class="w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 focus:outline-none"></textarea>
-                </div>
-                <div class="grid grid-cols-2 gap-3 mb-4">
-                    <div>
-                        <label class="block text-sm font-medium mb-1">City</label>
-                        <input type="text" id="addr-city" class="w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium mb-1">PIN Code</label>
-                        <input type="text" id="addr-pincode" class="w-full p-3 border border-gray-200 rounded-lg focus:border-green-500 focus:outline-none">
-                    </div>
-                </div>
-                <div class="flex gap-3">
-                    <button type="submit" class="flex-1 bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition">Save Address</button>
-                    <button type="button" onclick="closeModal('address-modal')" class="flex-1 border border-gray-300 py-2 rounded-lg hover:bg-gray-50 transition">Cancel</button>
-                </div>
-            </form>
-        </div>
+<div class="page-hero">
+  <div class="page-hero__content container">
+    <h1>My Account</h1>
+    <p>Manage your orders, profile and preferences</p>
+  </div>
+</div>
+
+<div style="background:var(--gray-50);border-bottom:1px solid var(--gray-100);padding:10px 0">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep"><i class="fas fa-chevron-right" style="font-size:.6rem"></i></span>
+      <span>My Account</span>
     </div>
+  </div>
+</div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="assets/js/products.js"></script>
-    <script src="assets/js/main.js"></script>
-    
-    <script>
-        let currentUser = null;
-        
-        // Initialize account page
-        function initAccountPage() {
-            currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            if (!currentUser) {
-                window.location.href = 'login.html';
-                return;
-            }
-            
-            document.getElementById('user-name').textContent = currentUser.name;
-            document.getElementById('user-email').textContent = currentUser.email;
-            
-            const joinDate = new Date(currentUser.joinDate);
-            document.getElementById('member-since').textContent = `Member since ${joinDate.toLocaleDateString('en-IN', { year: 'numeric', month: 'short' })}`;
-            
-            // Load all data
-            loadProfileInfo();
-            loadOrders();
-            loadAddresses();
-            updateStats();
+<!-- Guest redirect banner -->
+<div id="guest-banner" style="display:none;background:var(--orange);color:#fff;text-align:center;padding:14px;font-size:.88rem">
+  <i class="fas fa-info-circle"></i> You're viewing as a guest.
+  <a href="login.html?redirect=account.html" style="color:#fff;text-decoration:underline;font-weight:700;margin-left:6px">Sign in to see your orders →</a>
+</div>
+
+<div class="container">
+  <div class="account-layout">
+    <!-- Sidebar -->
+    <aside class="account-sidebar">
+      <div class="account-profile-card">
+        <div class="account-avatar" id="acc-avatar">G</div>
+        <div class="account-name" id="acc-name">Guest User</div>
+        <div class="account-email" id="acc-email">Not signed in</div>
+        <div class="account-since">Member since 2025</div>
+      </div>
+      <div class="account-nav">
+        <div class="account-nav-item active" data-section="dashboard"><i class="fas fa-gauge"></i> Dashboard</div>
+        <div class="account-nav-item" data-section="orders"><i class="fas fa-box"></i> My Orders</div>
+        <div class="account-nav-item" data-section="wishlist"><i class="far fa-heart"></i> Wishlist</div>
+        <div class="account-nav-item" data-section="addresses"><i class="fas fa-map-marker-alt"></i> Addresses</div>
+        <div class="account-nav-item" data-section="profile"><i class="fas fa-user-edit"></i> Edit Profile</div>
+        <div class="account-nav-item" data-section="notifications"><i class="fas fa-bell"></i> Notifications</div>
+        <div class="account-nav-item danger" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Sign Out</div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main id="account-main"></main>
+  </div>
+</div>
+
+<!-- Cart Drawer -->
+<div id="cart-overlay" class="cart-overlay"></div>
+<div id="cart-drawer" class="cart-drawer">
+  <div class="cart-drawer__head">
+    <h2>🛒 Your Cart</h2>
+    <button id="cart-close" class="cart-drawer__close"><i class="fas fa-times"></i></button>
+  </div>
+  <div id="cart-drawer-items" class="cart-drawer__items"></div>
+  <div id="cart-drawer-empty" class="cart-drawer__empty hidden"><i class="fas fa-shopping-basket"></i><p>Your basket is empty.</p></div>
+  <div id="cart-drawer-foot" class="cart-drawer__foot hidden">
+    <div class="cart-drawer__coupon"><input type="text" id="coupon-input" placeholder="Coupon code"><button id="apply-coupon">Apply</button></div>
+    <div id="coupon-msg" class="coupon-msg"></div>
+    <table class="cart-drawer__totals" style="width:100%;border-collapse:collapse">
+      <tr><td>Subtotal</td><td id="drawer-subtotal">₹0</td></tr>
+      <tr><td>Delivery</td><td id="drawer-delivery">₹49</td></tr>
+      <tr class="total-row"><td>Total</td><td id="drawer-total">₹0</td></tr>
+    </table>
+    <a href="checkout.html" class="btn btn-primary" onclick="closeCartDrawer()"><i class="fas fa-lock"></i> Checkout</a>
+  </div>
+</div>
+
+<button class="scroll-top"><i class="fas fa-chevron-up"></i></button>
+
+<script src="assets/js/products.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+const user   = getUser();
+const orders = JSON.parse(localStorage.getItem('gb_orders') || '[]');
+const wish   = getWishlist();
+
+// ── Init user info ──
+if (user) {
+  const initials = ((user.fname||'G')[0]+(user.lname||'U')[0]).toUpperCase();
+  document.getElementById('acc-avatar').textContent = initials;
+  document.getElementById('acc-name').textContent   = `${user.fname||''} ${user.lname||''}`.trim() || 'My Account';
+  document.getElementById('acc-email').textContent  = user.email || '';
+} else {
+  document.getElementById('guest-banner').style.display = 'block';
+}
+
+// ── Nav switching ──
+document.querySelectorAll('.account-nav-item[data-section]').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.account-nav-item').forEach(i=>i.classList.remove('active'));
+    item.classList.add('active');
+    renderSection(item.dataset.section);
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+// Check URL hash
+const hash = location.hash.replace('#','');
+if (['orders','wishlist','addresses','profile','notifications'].includes(hash)) {
+  const el = document.querySelector(`[data-section="${hash}"]`);
+  if (el) el.click();
+} else { renderSection('dashboard'); }
+
+// ── Sections ──
+function renderSection(section) {
+  const main = document.getElementById('account-main');
+  switch(section) {
+    case 'dashboard':     main.innerHTML = renderDashboard(); break;
+    case 'orders':        main.innerHTML = renderOrders(); break;
+    case 'wishlist':      main.innerHTML = renderWishlist(); break;
+    case 'addresses':     main.innerHTML = renderAddresses(); break;
+    case 'profile':       main.innerHTML = renderProfile(); break;
+    case 'notifications': main.innerHTML = renderNotifications(); break;
+  }
+}
+
+// ── Dashboard ──
+function renderDashboard() {
+  const totalSpent = orders.reduce((s,o)=>s+o.total, 0);
+  const wishCount  = wish.length;
+  return `
+    <div>
+      <div class="stats-row">
+        <div class="stat-tile">
+          <div class="stat-tile__num">${orders.length}</div>
+          <div class="stat-tile__label">Total Orders</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-tile__num">${fmt(totalSpent)}</div>
+          <div class="stat-tile__label">Total Spent</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-tile__num">${wishCount}</div>
+          <div class="stat-tile__label">Wishlist Items</div>
+        </div>
+      </div>
+
+      <div class="content-card" style="margin-bottom:20px">
+        <div class="content-card__title"><i class="fas fa-box"></i> Recent Orders</div>
+        ${orders.length === 0
+          ? `<div class="empty-state"><i class="fas fa-box-open"></i><h3>No orders yet</h3><p>Your order history will appear here.</p><a href="shop.html" class="btn btn-primary btn-sm">Start Shopping</a></div>`
+          : orders.slice(0,3).map(o=>orderCardHTML(o)).join('')
         }
-        
-        // Load profile info
-        function loadProfileInfo() {
-            const container = document.getElementById('profile-info');
-            container.innerHTML = `
-                <div class="flex justify-between items-center py-3 border-b">
-                    <span class="font-semibold text-gray-600">Full Name:</span>
-                    <span class="text-gray-800">${currentUser.name || 'Not set'}</span>
+        ${orders.length > 3 ? `<div style="text-align:center;margin-top:14px"><button class="btn btn-secondary btn-sm" onclick="document.querySelector('[data-section=orders]').click()">View All Orders</button></div>` : ''}
+      </div>
+
+      <div class="content-card">
+        <div class="content-card__title"><i class="fas fa-fire"></i> Quick Actions</div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+          ${[
+            {icon:'fas fa-store',label:'Browse Shop',href:'shop.html'},
+            {icon:'far fa-heart',label:'My Wishlist',section:'wishlist'},
+            {icon:'fas fa-map-marker-alt',label:'Manage Addresses',section:'addresses'},
+            {icon:'fas fa-user-edit',label:'Edit Profile',section:'profile'},
+          ].map(a=>`
+            <button class="feat-card" style="text-align:left;padding:16px;cursor:pointer" onclick="${a.href?`location.href='${a.href}'`:`document.querySelector('[data-section=${a.section}]').click()`}">
+              <i class="${a.icon}" style="color:var(--green-600);font-size:1.2rem;margin-bottom:8px"></i>
+              <div style="font-weight:600;font-size:.87rem">${a.label}</div>
+            </button>`).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+
+// ── Orders ──
+function renderOrders() {
+  return `
+    <div class="content-card">
+      <div class="content-card__title"><i class="fas fa-box"></i> My Orders (${orders.length})</div>
+      ${orders.length === 0
+        ? `<div class="empty-state"><i class="fas fa-box-open"></i><h3>No orders yet</h3><p>Your orders will appear here after you shop.</p><a href="shop.html" class="btn btn-primary">Start Shopping</a></div>`
+        : orders.map(o=>orderCardHTML(o)).join('')
+      }
+    </div>`;
+}
+
+function orderCardHTML(o) {
+  const statusClass = {paid:'badge-status--paid',confirmed:'badge-status--paid',pending:'badge-status--pending',cancelled:'badge-status--cancelled'}[o.status]||'badge-status--pending';
+  const shown = o.items.slice(0,4);
+  const extra = o.items.length - 4;
+  return `
+    <div class="order-card">
+      <div class="order-card__head">
+        <div>
+          <div class="order-card__id">#${o.orderId}</div>
+          <div class="order-card__date">${new Date(o.date).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span class="badge-status ${statusClass}">${o.status==='paid'?'Paid':o.status==='confirmed'?'Confirmed':o.status==='cancelled'?'Cancelled':'Pending'}</span>
+        </div>
+      </div>
+      <div class="order-card__body">
+        <div class="order-products">
+          ${shown.map(i=>`<img class="order-product-img" src="${i.image}" alt="${i.name}" onerror="this.src='https://placehold.co/52x52/dcfce7/16a34a?text=GB'" title="${i.name} ×${i.qty}">`).join('')}
+          ${extra>0?`<div class="order-more">+${extra}</div>`:''}
+        </div>
+        <div class="order-card__foot">
+          <div class="order-total">${fmt(o.total)} <small>· ${o.items.length} item${o.items.length!==1?'s':''}</small></div>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-secondary btn-sm" onclick='viewOrder(${JSON.stringify(JSON.stringify(o))})'>
+              <i class="fas fa-eye"></i> View
+            </button>
+            <a href="shop.html" class="btn btn-primary btn-sm"><i class="fas fa-rotate-right"></i> Reorder</a>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function viewOrder(orderJSON) {
+  const o = JSON.parse(orderJSON);
+  localStorage.setItem('gb_lastorder', JSON.stringify(o));
+  location.href = 'order-success.html';
+}
+
+// ── Wishlist ──
+function renderWishlist() {
+  const wishItems = PRODUCTS.filter(p => wish.includes(p.id));
+  return `
+    <div class="content-card">
+      <div class="content-card__title"><i class="far fa-heart"></i> My Wishlist (${wishItems.length})</div>
+      ${wishItems.length === 0
+        ? `<div class="empty-state"><i class="far fa-heart"></i><h3>Your wishlist is empty</h3><p>Save products you love by clicking the ♡ icon.</p><a href="shop.html" class="btn btn-primary">Browse Products</a></div>`
+        : `<div class="wishlist-grid">${wishItems.map(p=>{
+            const d=discPct(p);
+            return `
+              <div class="product-card">
+                <div class="product-card__img-wrap">
+                  <img class="product-card__img" src="${p.image}" alt="${p.name}" loading="lazy"
+                       onclick="location.href='product.html?id=${p.id}'"
+                       onerror="this.src='https://placehold.co/400x300/dcfce7/16a34a?text=GB'">
+                  ${p.badge?`<div class="product-card__badge">${p.badge}</div>`:''}
+                  ${d>0?`<div class="product-card__disc">-${d}%</div>`:''}
+                  <button class="product-card__wish wish-btn active" data-id="${p.id}" onclick="removeFromWish(${p.id},this)">
+                    <i class="fas fa-heart"></i>
+                  </button>
                 </div>
-                <div class="flex justify-between items-center py-3 border-b">
-                    <span class="font-semibold text-gray-600">Email Address:</span>
-                    <span class="text-gray-800">${currentUser.email || 'Not set'}</span>
+                <div class="product-card__body">
+                  <div class="product-card__brand">${p.brand}</div>
+                  <div class="product-card__name">${p.name}</div>
+                  <div class="product-card__price">
+                    <span class="current">${fmt(p.price)}</span>
+                    ${p.oldPrice?`<span class="old">${fmt(p.oldPrice)}</span>`:''}
+                  </div>
+                  <button class="product-card__btn" onclick="addToCart(${p.id});this.innerHTML='<i class=\\'fas fa-check\\'></i> Added!';setTimeout(()=>this.innerHTML='<i class=\\'fas fa-shopping-basket\\'></i> Add to Cart',1500)">
+                    <i class="fas fa-shopping-basket"></i> Add to Cart
+                  </button>
                 </div>
-                <div class="flex justify-between items-center py-3 border-b">
-                    <span class="font-semibold text-gray-600">Phone Number:</span>
-                    <span class="text-gray-800">${currentUser.phone || 'Not added'}</span>
-                </div>
-                <div class="flex justify-between items-center py-3">
-                    <span class="font-semibold text-gray-600">Member Since:</span>
-                    <span class="text-gray-800">${new Date(currentUser.joinDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
-                </div>
-            `;
-        }
-        
-        // Print bill function
-        function printBill(orderId) {
-            const orders = JSON.parse(localStorage.getItem('orders')) || [];
-            const order = orders.find(o => o.orderId === orderId);
-            
-            if (order) {
-                const printWindow = window.open('', '_blank');
-                printWindow.document.write(`
-                    <html>
-                    <head>
-                        <title>Order Bill - ${order.orderId}</title>
-                        <style>
-                            body { font-family: Arial, sans-serif; padding: 30px; }
-                            .bill-container { max-width: 800px; margin: 0 auto; border: 1px solid #ddd; padding: 30px; border-radius: 10px; }
-                            .header { text-align: center; border-bottom: 2px solid #16a34a; padding-bottom: 20px; margin-bottom: 20px; }
-                            .header h1 { color: #16a34a; margin: 0; }
-                            .order-details { margin-bottom: 20px; }
-                            .order-details table { width: 100%; border-collapse: collapse; }
-                            .order-details td { padding: 8px; }
-                            .items-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-                            .items-table th, .items-table td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-                            .items-table th { background: #16a34a; color: white; }
-                            .total { text-align: right; font-size: 18px; font-weight: bold; margin-top: 20px; }
-                            .footer { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 12px; }
-                        </style>
-                    </head>
-                    <body>
-                        <div class="bill-container">
-                            <div class="header">
-                                <h1>RT GroceryHub</h1>
-                                <p>Fresh Groceries Delivered with Love</p>
-                            </div>
-                            <div class="order-details">
-                                <table>
-                                    <tr><td><strong>Order ID:</strong></td><td>${order.orderId}</td></tr>
-                                    <tr><td><strong>Order Date:</strong></td><td>${new Date(order.orderDate).toLocaleString()}</td></tr>
-                                    <tr><td><strong>Customer Name:</strong></td><td>${order.customer?.name || 'N/A'}</td></tr>
-                                    <tr><td><strong>Phone:</strong></td><td>${order.customer?.phone || 'N/A'}</td></tr>
-                                    <tr><td><strong>Address:</strong></td><td>${order.customer?.address || 'N/A'}, ${order.customer?.city || ''} - ${order.customer?.pincode || ''}</td></tr>
-                                </table>
-                            </div>
-                            <table class="items-table">
-                                <thead><tr><th>Item</th><th>Quantity</th><th>Price</th><th>Total</th></tr></thead>
-                                <tbody>
-                                    ${order.items.map(item => `<tr><td>${item.name}</td><td>${item.quantity}</td><td>₹${item.price}</td><td>₹${item.price * item.quantity}</td></tr>`).join('')}
-                                </tbody>
-                            </table>
-                            <div class="total">
-                                <p>Grand Total: ₹${order.total}</p>
-                                <p>Payment Method: ${order.paymentMethod || 'Cash on Delivery'}</p>
-                            </div>
-                            <div class="footer">
-                                <p>Thank you for shopping with RT GroceryHub!</p>
-                                <p>For any queries, contact us at support@rtgroceryhub.com</p>
-                            </div>
-                        </div>
-                        <script>window.print();<\/script>
-                    </body>
-                    </html>
-                `);
-                printWindow.document.close();
-            } else {
-                showNotification('Order not found for printing', 'error');
-            }
-        }
-        
-        // Load orders with print bill button
-        function loadOrders() {
-            const orders = JSON.parse(localStorage.getItem('orders')) || [];
-            const userOrders = orders.filter(order => order.customer && order.customer.email === currentUser.email);
-            
-            document.getElementById('order-count-badge').textContent = userOrders.length;
-            
-            const filter = document.getElementById('order-filter')?.value || 'all';
-            let filteredOrders = userOrders;
-            if (filter !== 'all') {
-                filteredOrders = userOrders.filter(order => order.status === filter);
-            }
-            
-            const container = document.getElementById('orders-list');
-            if (filteredOrders.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-12">
-                        <i class="fas fa-shopping-bag text-5xl text-gray-300 mb-3"></i>
-                        <p class="text-gray-500">No orders found</p>
-                        <a href="shop.html" class="inline-block mt-3 text-green-600 font-semibold">Start Shopping →</a>
-                    </div>
-                `;
-                return;
-            }
-            
-            container.innerHTML = filteredOrders.map((order, index) => `
-                <div class="order-card border rounded-xl p-4 order-item" style="animation-delay: ${index * 0.05}s">
-                    <div class="flex justify-between items-start flex-wrap gap-2 mb-3">
-                        <div>
-                            <span class="font-mono text-green-600 font-bold">${order.orderId}</span>
-                            <p class="text-xs text-gray-400">${new Date(order.orderDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</p>
-                        </div>
-                        <span class="px-3 py-1 rounded-full text-xs font-semibold ${order.status === 'delivered' ? 'bg-green-100 text-green-600' : order.status === 'cancelled' ? 'bg-red-100 text-red-600' : 'bg-yellow-100 text-yellow-600'}">
-                            ${order.status || 'Delivered'}
-                        </span>
-                    </div>
-                    <div class="space-y-2">
-                        ${order.items && order.items.slice(0, 2).map(item => `
-                            <div class="flex justify-between text-sm">
-                                <span>${item.name} x ${item.quantity}</span>
-                                <span>₹${(item.price || 0) * (item.quantity || 0)}</span>
-                            </div>
-                        `).join('')}
-                        ${order.items && order.items.length > 2 ? `<div class="text-xs text-gray-400">+${order.items.length - 2} more items</div>` : ''}
-                    </div>
-                    <div class="flex justify-between items-center mt-3 pt-3 border-t">
-                        <span class="font-bold">Total: ₹${order.total || 0}</span>
-                        <div class="flex gap-2">
-                            <button onclick="viewOrderDetails('${order.orderId}')" class="text-green-600 text-sm hover:underline">View Details</button>
-                            <button onclick="printBill('${order.orderId}')" class="btn-print-bill text-gray-500 text-sm hover:text-green-600 px-2 py-1 rounded-lg transition">
-                                <i class="fas fa-print"></i> Print Bill
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-        
-        // View order details
-        function viewOrderDetails(orderId) {
-            const orders = JSON.parse(localStorage.getItem('orders')) || [];
-            const order = orders.find(o => o.orderId === orderId);
-            if (order) {
-                alert(`Order ID: ${order.orderId}\nDate: ${new Date(order.orderDate).toLocaleString()}\n\nItems:\n${order.items.map(i => `${i.name} x ${i.quantity} = ₹${i.price * i.quantity}`).join('\n')}\n\nTotal: ₹${order.total}\nPayment: ${order.paymentMethod}\nStatus: ${order.status || 'Delivered'}`);
-            } else {
-                alert('Order details not found');
-            }
-        }
-        
-        // Load addresses
-        function loadAddresses() {
-            let addresses = JSON.parse(localStorage.getItem('user_addresses')) || [];
-            addresses = addresses.filter(addr => addr.userEmail === currentUser.email);
-            
-            document.getElementById('address-count-badge').textContent = addresses.length;
-            
-            const container = document.getElementById('addresses-list');
-            if (addresses.length === 0) {
-                container.innerHTML = `
-                    <div class="col-span-full text-center py-12">
-                        <i class="fas fa-map-marker-alt text-5xl text-gray-300 mb-3"></i>
-                        <p class="text-gray-500">No saved addresses</p>
-                        <button onclick="openAddressModal()" class="inline-block mt-3 text-green-600 font-semibold">Add New Address →</button>
-                    </div>
-                `;
-                return;
-            }
-            
-            container.innerHTML = addresses.map((addr, index) => `
-                <div class="address-card border rounded-xl p-4">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="font-semibold">${addr.name}</p>
-                            <p class="text-sm text-gray-500">${addr.phone}</p>
-                        </div>
-                        <button onclick="deleteAddress(${index})" class="text-red-400 hover:text-red-600 transition">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                    </div>
-                    <p class="text-gray-600 text-sm mt-2">${addr.address}</p>
-                    <p class="text-gray-500 text-xs mt-1">${addr.city} - ${addr.pincode}</p>
-                    ${addr.isDefault ? '<span class="inline-block mt-2 text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Default</span>' : '<button onclick="setDefaultAddress(' + index + ')" class="mt-2 text-xs text-green-600 hover:underline">Set as Default</button>'}
-                </div>
-            `).join('');
-        }
-        
-        // Update stats
-        function updateStats() {
-            const orders = JSON.parse(localStorage.getItem('orders')) || [];
-            const userOrders = orders.filter(order => order.customer && order.customer.email === currentUser.email);
-            
-            const totalOrders = userOrders.length;
-            const totalSpent = userOrders.reduce((sum, order) => sum + (order.total || 0), 0);
-            const memberDays = Math.floor((new Date() - new Date(currentUser.joinDate)) / (1000 * 60 * 60 * 24));
-            
-            document.getElementById('total-orders').textContent = totalOrders;
-            document.getElementById('total-spent').textContent = `₹${totalSpent}`;
-            document.getElementById('member-days').textContent = memberDays;
-        }
-        
-        // Switch section
-        function switchSection(section) {
-            document.querySelectorAll('.account-section').forEach(s => s.classList.add('hidden'));
-            document.getElementById(`${section}-section`).classList.remove('hidden');
-            
-            document.querySelectorAll('.sidebar-item').forEach(item => {
-                if (item.getAttribute('onclick') && item.getAttribute('onclick').includes(section)) {
-                    item.classList.add('active');
-                } else if (item.getAttribute('data-section') === section) {
-                    item.classList.add('active');
-                } else {
-                    item.classList.remove('active');
-                }
-            });
-        }
-        
-        // Modal functions
-        function openProfileEditModal() {
-            document.getElementById('edit-name').value = currentUser.name || '';
-            document.getElementById('edit-email').value = currentUser.email || '';
-            document.getElementById('edit-phone').value = currentUser.phone || '';
-            document.getElementById('edit-profile-modal').classList.add('active');
-        }
-        
-        function openAddressModal() {
-            document.getElementById('address-modal').classList.add('active');
-        }
-        
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('active');
-        }
-        
-        // Edit profile submission
-        document.getElementById('edit-profile-form')?.addEventListener('submit', (e) => {
-            e.preventDefault();
-            currentUser.name = document.getElementById('edit-name').value;
-            currentUser.email = document.getElementById('edit-email').value;
-            currentUser.phone = document.getElementById('edit-phone').value;
-            
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            const userIndex = users.findIndex(u => u.email === currentUser.email);
-            if (userIndex !== -1) {
-                users[userIndex] = currentUser;
-                localStorage.setItem('users', JSON.stringify(users));
-            }
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            
-            loadProfileInfo();
-            closeModal('edit-profile-modal');
-            showNotification('Profile updated successfully!');
-        });
-        
-        // Add address submission
-        document.getElementById('add-address-form')?.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const newAddress = {
-                userEmail: currentUser.email,
-                name: document.getElementById('addr-name').value,
-                phone: document.getElementById('addr-phone').value,
-                address: document.getElementById('addr-address').value,
-                city: document.getElementById('addr-city').value,
-                pincode: document.getElementById('addr-pincode').value,
-                isDefault: false
-            };
-            
-            let addresses = JSON.parse(localStorage.getItem('user_addresses')) || [];
-            addresses.push(newAddress);
-            localStorage.setItem('user_addresses', JSON.stringify(addresses));
-            
-            loadAddresses();
-            closeModal('address-modal');
-            document.getElementById('add-address-form').reset();
-            showNotification('Address added successfully!');
-        });
-        
-        // Delete address
-        function deleteAddress(index) {
-            let addresses = JSON.parse(localStorage.getItem('user_addresses')) || [];
-            addresses = addresses.filter(addr => addr.userEmail === currentUser.email);
-            addresses.splice(index, 1);
-            
-            const allAddresses = JSON.parse(localStorage.getItem('user_addresses')) || [];
-            const filteredAddresses = allAddresses.filter(addr => addr.userEmail !== currentUser.email);
-            localStorage.setItem('user_addresses', JSON.stringify([...filteredAddresses, ...addresses]));
-            loadAddresses();
-            showNotification('Address deleted');
-        }
-        
-        // Set default address
-        function setDefaultAddress(index) {
-            let addresses = JSON.parse(localStorage.getItem('user_addresses')) || [];
-            addresses = addresses.filter(addr => addr.userEmail === currentUser.email);
-            addresses.forEach((addr, i) => addr.isDefault = (i === index));
-            
-            const allAddresses = JSON.parse(localStorage.getItem('user_addresses')) || [];
-            const otherAddresses = allAddresses.filter(addr => addr.userEmail !== currentUser.email);
-            localStorage.setItem('user_addresses', JSON.stringify([...otherAddresses, ...addresses]));
-            loadAddresses();
-            showNotification('Default address updated');
-        }
-        
-        function showNotification(message, isError = false) {
-            const notification = document.createElement('div');
-            notification.className = `fixed bottom-4 right-4 px-6 py-3 rounded-lg shadow-lg z-50 transition-all ${isError ? 'bg-red-500' : 'bg-green-500'} text-white`;
-            notification.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-check-circle'} mr-2"></i> ${message}`;
-            document.body.appendChild(notification);
-            setTimeout(() => notification.remove(), 3000);
-        }
-        
-        // Order filter
-        document.getElementById('order-filter')?.addEventListener('change', () => loadOrders());
-        
-        // Logout
-        document.getElementById('logout-btn').addEventListener('click', () => {
-            localStorage.removeItem('currentUser');
-            window.location.href = 'login.html';
-        });
-        
-        // Initialize on load
-        document.addEventListener('DOMContentLoaded', () => {
-            initAccountPage();
-            if (typeof AOS !== 'undefined') {
-                AOS.init({ duration: 800, once: true });
-            }
-        });
-    </script>
+              </div>`;}).join('')}</div>`
+      }
+    </div>`;
+}
+function removeFromWish(id, btn) {
+  toggleWishlist(id);
+  btn.closest('.product-card').style.opacity='0';
+  btn.closest('.product-card').style.transform='scale(0.9)';
+  setTimeout(()=>{ renderSection('wishlist'); document.querySelector('[data-section=wishlist]').classList.add('active'); }, 300);
+}
+
+// ── Addresses ──
+function renderAddresses() {
+  return `
+    <div class="content-card">
+      <div class="content-card__title" style="justify-content:space-between">
+        <span><i class="fas fa-map-marker-alt"></i> Saved Addresses</span>
+        <button class="btn btn-primary btn-sm" onclick="showAddAddressForm()"><i class="fas fa-plus"></i> Add New</button>
+      </div>
+      <div class="address-grid">
+        <div class="address-card default">
+          <span class="address-card__default">Default</span>
+          <h4><i class="fas fa-home" style="color:var(--green-600)"></i> Home</h4>
+          <p>${user?.fname||'Guest'} ${user?.lname||'User'}<br>
+          42, Green Valley, Bandra West<br>
+          Mumbai, Maharashtra — 400050<br>
+          📞 ${user?.phone||'+91 00000 00000'}</p>
+          <div class="address-card__actions">
+            <button class="btn btn-secondary btn-sm"><i class="fas fa-edit"></i> Edit</button>
+            <button class="btn btn-secondary btn-sm" style="color:var(--red)"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+        <div class="address-card">
+          <h4><i class="fas fa-briefcase" style="color:var(--orange)"></i> Office</h4>
+          <p>${user?.fname||'Guest'} ${user?.lname||'User'}<br>
+          Floor 4, Tech Park, Whitefield<br>
+          Bengaluru, Karnataka — 560066<br>
+          📞 ${user?.phone||'+91 00000 00000'}</p>
+          <div class="address-card__actions">
+            <button class="btn btn-secondary btn-sm"><i class="fas fa-edit"></i> Edit</button>
+            <button class="btn btn-secondary btn-sm"><i class="fas fa-check"></i> Set Default</button>
+          </div>
+        </div>
+        <div id="add-address-slot"></div>
+      </div>
+    </div>`;
+}
+function showAddAddressForm() {
+  const slot = document.getElementById('add-address-slot');
+  if (!slot) return;
+  slot.innerHTML = `
+    <div class="address-card" style="border-style:dashed;border-color:var(--green-300);background:var(--green-50)">
+      <h4 style="margin-bottom:14px"><i class="fas fa-plus" style="color:var(--green-600)"></i> New Address</h4>
+      <div class="form-group"><input type="text" class="form-input" placeholder="Label (Home / Office)"></div>
+      <div class="form-group"><input type="text" class="form-input" placeholder="Full address"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+        <input type="text" class="form-input" placeholder="City">
+        <input type="text" class="form-input" placeholder="Pincode" maxlength="6">
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-primary btn-sm" onclick="showToast('Address saved!');renderSection('addresses')"><i class="fas fa-save"></i> Save</button>
+        <button class="btn btn-secondary btn-sm" onclick="renderSection('addresses')">Cancel</button>
+      </div>
+    </div>`;
+}
+
+// ── Profile ──
+function renderProfile() {
+  return `
+    <div class="content-card">
+      <div class="content-card__title"><i class="fas fa-user-edit"></i> Edit Profile</div>
+      <div style="text-align:center;margin-bottom:28px">
+        <div class="account-avatar" style="width:90px;height:90px;font-size:2.2rem;background:var(--green-100);color:var(--green-700);border:3px solid var(--green-200);margin:0 auto 12px">
+          ${((user?.fname||'G')[0]+(user?.lname||'U')[0]).toUpperCase()}
+        </div>
+        <button class="btn btn-secondary btn-sm"><i class="fas fa-camera"></i> Change Photo</button>
+      </div>
+      <div class="profile-grid">
+        <div class="form-group"><label class="form-label">First Name</label><input type="text" class="form-input" id="p-fname" value="${user?.fname||''}"></div>
+        <div class="form-group"><label class="form-label">Last Name</label><input type="text" class="form-input" id="p-lname" value="${user?.lname||''}"></div>
+        <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" id="p-email" value="${user?.email||''}"></div>
+        <div class="form-group"><label class="form-label">Phone</label><input type="tel" class="form-input" id="p-phone" value="${user?.phone||''}"></div>
+      </div>
+      <div class="form-group"><label class="form-label">Date of Birth</label><input type="date" class="form-input" id="p-dob"></div>
+      <div style="height:1px;background:var(--gray-100);margin:20px 0"></div>
+      <h4 style="margin-bottom:16px;font-size:.92rem">Change Password</h4>
+      <div class="profile-grid">
+        <div class="form-group"><label class="form-label">Current Password</label><input type="password" class="form-input" placeholder="••••••••"></div>
+        <div class="form-group"><label class="form-label">New Password</label><input type="password" class="form-input" placeholder="Min 8 characters"></div>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:8px">
+        <button class="btn btn-primary" onclick="saveProfile()"><i class="fas fa-save"></i> Save Changes</button>
+        <button class="btn btn-secondary" onclick="renderSection('dashboard')">Cancel</button>
+      </div>
+    </div>`;
+}
+function saveProfile() {
+  const updated = { ...user,
+    fname: document.getElementById('p-fname').value.trim(),
+    lname: document.getElementById('p-lname').value.trim(),
+    email: document.getElementById('p-email').value.trim(),
+    phone: document.getElementById('p-phone').value.trim(),
+  };
+  localStorage.setItem('gb_user', JSON.stringify(updated));
+  document.getElementById('acc-name').textContent  = `${updated.fname} ${updated.lname}`.trim();
+  document.getElementById('acc-email').textContent = updated.email;
+  document.getElementById('acc-avatar').textContent= ((updated.fname||'G')[0]+(updated.lname||'U')[0]).toUpperCase();
+  showToast('✓ Profile updated successfully!');
+}
+
+// ── Notifications ──
+function renderNotifications() {
+  return `
+    <div class="content-card">
+      <div class="content-card__title"><i class="fas fa-bell"></i> Notification Preferences</div>
+      ${[
+        {title:'Order Updates', desc:'Receive status updates for your orders'},
+        {title:'Promotional Offers', desc:'Exclusive deals, coupons and flash sales'},
+        {title:'New Arrivals', desc:'Be the first to know about new products'},
+        {title:'Price Drop Alerts', desc:'Get notified when wishlist items go on sale'},
+        {title:'Weekly Newsletter', desc:'Fresh picks and recipes every week'},
+        {title:'SMS Notifications', desc:'Important updates via SMS'},
+      ].map((n,i)=>`
+        <div class="notif-row">
+          <div class="notif-row__info"><h4>${n.title}</h4><p>${n.desc}</p></div>
+          <label class="toggle">
+            <input type="checkbox" ${i<3?'checked':''} onchange="showToast('Preference saved!')">
+            <span class="toggle__slider"></span>
+          </label>
+        </div>`).join('')}
+      <button class="btn btn-primary mt-4" onclick="showToast('All preferences saved!')"><i class="fas fa-save"></i> Save Preferences</button>
+    </div>`;
+}
+
+// ── Logout ──
+function logout() {
+  if (confirm('Are you sure you want to sign out?')) {
+    localStorage.removeItem('gb_user');
+    showToast('Signed out. See you soon! 👋', 'info');
+    setTimeout(()=>location.href='login.html', 1000);
+  }
+}
+</script>
 </body>
-
 </html>

@@ -236,7 +236,7 @@ function renderPopularProducts() {
     const popular = productsDatabase.slice(0, 6);
     grid.innerHTML = popular.map(product => `
         <div class="product-card bg-white rounded-lg p-4 shadow-sm">
-            <img src="${product.image}" alt="${product.name}" class="w-full h-40 object-cover rounded-lg cursor-pointer" onclick="location.href='product-detail.html?id=${product.id}'">
+            <img src="${product.image}" alt="${product.name}" class="w-full h-40 object-cover rounded-lg cursor-pointer" onclick="location.href='product-detail.html?id=${product.id}'" onerror="this.onerror=null;this.src='https://placehold.co/300x300/dcfce7/16a34a?text=RT+GroceryHub'">
             <div class="flex items-center gap-1 mt-2">
                 <i class="fa-solid fa-star text-yellow-500 text-sm"></i>
                 <p class="text-sm">${product.rating}</p>
@@ -274,7 +274,7 @@ function openQuickView(id) {
     content.innerHTML = `
         <div class="flex flex-col md:flex-row gap-6">
             <div class="md:w-1/2">
-                <img src="${product.image}" alt="${product.name}" class="w-full rounded-xl">
+                <img src="${product.image}" alt="${product.name}" class="w-full rounded-xl" onerror="this.onerror=null;this.src='https://placehold.co/400x400/dcfce7/16a34a?text=RT+GroceryHub'">
             </div>
             <div class="md:w-1/2">
                 <h2 class="text-2xl font-bold text-gray-800">${product.name}</h2>
@@ -346,7 +346,7 @@ function renderShopProducts(filteredProducts = null) {
     
     grid.innerHTML = products.map(product => `
         <div class="product-card bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-            <img src="${product.image}" alt="${product.name}" class="w-full h-44 object-cover rounded-lg cursor-pointer" onclick="location.href='product-detail.html?id=${product.id}'">
+            <img src="${product.image}" alt="${product.name}" class="w-full h-44 object-cover rounded-lg cursor-pointer" onclick="location.href='product-detail.html?id=${product.id}'" onerror="this.onerror=null;this.src='https://placehold.co/300x300/dcfce7/16a34a?text=RT+GroceryHub'">
             <div class="flex items-center gap-1 mt-3">
                 <i class="fa-solid fa-star text-yellow-500 text-sm"></i>
                 <span class="text-sm">${product.rating}</span>
