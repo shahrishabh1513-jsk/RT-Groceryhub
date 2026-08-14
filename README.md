@@ -56,7 +56,7 @@
 
 <sub>👆 Click the preview to open the live app</sub>
 
-<br/><br/>
+<br/>
 
 <a href="https://shahrishabh1513-jsk.github.io/RT-Groceryhub/" target="_blank">
   <img src="https://img.shields.io/badge/🌐_Try_The_Live_App-2ECC71?style=for-the-badge&logoColor=white"/>
@@ -249,10 +249,6 @@ python -m http.server 8000
 # or
 npx serve .
 ```
-
-Then open `http://localhost:8000` in your browser.
-
-> ⚠️ **Tip:** Opening `index.html` directly usually works too, but a local server avoids any relative-path quirks with images and scripts.
 
 <img src="https://capsule-render.vercel.app/api?type=rect&color=0:2ECC71,100:FF8C00&height=3&section=header"/>
 
