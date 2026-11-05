@@ -1,349 +1,249 @@
-<div align="center">
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:FF8C00,100:2ECC71&height=220&section=header&text=RT%20GroceryHub&fontSize=48&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Fresh%20Groceries.%20Fast%20Shopping.%20One%20Click%20Away.%20🛒&descAlignY=58&descSize=20"/>
-
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=2ECC71&center=true&vCenter=true&width=750&lines=A+Modern+Grocery+Shopping+Website;Clean+UI+%2B+Smooth+Shopping+Experience;Built+with+HTML%2C+CSS+%26+JavaScript;Fast.+Responsive.+Beautifully+Simple." alt="Typing SVG" />
-
-<br/>
-
-[![Live Demo](https://img.shields.io/badge/🔴_LIVE_DEMO-View_App-2ECC71?style=for-the-badge)](https://shahrishabh1513-jsk.github.io/RT-Groceryhub/)
-[![Repository](https://img.shields.io/badge/📂_Repository-View_Code-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/shahrishabh1513-jsk/RT-Groceryhub)
-[![Star](https://img.shields.io/github/stars/shahrishabh1513-jsk/RT-Groceryhub?style=for-the-badge&color=FF8C00&label=⭐%20STARS)](https://github.com/shahrishabh1513-jsk/RT-Groceryhub/stargazers)
-
-<br/>
-
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![No Backend](https://img.shields.io/badge/Backend-None_Needed-2ECC71?style=for-the-badge)
-
-<img src="https://img.shields.io/github/last-commit/shahrishabh1513-jsk/RT-Groceryhub?style=flat-square&color=FF8C00&label=Last%20Updated"/>
-<img src="https://img.shields.io/badge/Status-Live%20✅-brightgreen?style=flat-square"/>
-<img src="https://img.shields.io/badge/Responsive-100%25-success?style=flat-square"/>
-<img src="https://img.shields.io/badge/UI-Modern-2ECC71?style=flat-square"/>
-<img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square"/>
-
-</div>
-
-<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%">
-
-## 📌 Table of Contents
-
-<div align="center">
-
-[![Preview](https://img.shields.io/badge/🔍_Preview-2ECC71?style=for-the-badge)](#-live-preview)
-[![About](https://img.shields.io/badge/📖_About-3FBE68?style=for-the-badge)](#-about-the-project)
-[![Features](https://img.shields.io/badge/✨_Features-52B15F?style=for-the-badge)](#-key-features)
-[![Tech Stack](https://img.shields.io/badge/🛠️_Tech_Stack-65A356?style=for-the-badge)](#️-tech-stack)
-[![Structure](https://img.shields.io/badge/📂_Structure-78964D?style=for-the-badge)](#-project-structure)
-[![Setup](https://img.shields.io/badge/🚀_Setup-8B8944?style=for-the-badge)](#-getting-started)
-[![Pages](https://img.shields.io/badge/🗂️_Pages-9E7B3B?style=for-the-badge)](#️-pages-overview)
-[![How It Works](https://img.shields.io/badge/🧭_How_It_Works-B16D32?style=for-the-badge)](#-how-it-works)
-[![Roadmap](https://img.shields.io/badge/🗺️_Roadmap-C46029?style=for-the-badge)](#️-roadmap)
-[![Contact](https://img.shields.io/badge/📬_Contact-FF8C00?style=for-the-badge)](#-contact)
-
-</div>
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:2ECC71,100:FF8C00&height=3&section=header"/>
-
-## 🔍 Live Preview
-
-<div align="center">
-
-<a href="https://shahrishabh1513-jsk.github.io/RT-Groceryhub/" target="_blank">
-  <img src="https://api.microlink.io/?url=https%3A%2F%2Fshahrishabh1513-jsk.github.io%2FRT-Groceryhub%2F&screenshot=true&meta=false&embed=screenshot.url&waitFor=2000" alt="RT GroceryHub Preview" width="90%" style="border-radius:12px; box-shadow: 0 8px 24px rgba(0,0,0,0.25);"/>
-</a>
-
-<sub>👆 Click the preview to open the live app</sub>
-
-<br/>
-
-<a href="https://shahrishabh1513-jsk.github.io/RT-Groceryhub/" target="_blank">
-  <img src="https://img.shields.io/badge/🌐_Try_The_Live_App-2ECC71?style=for-the-badge&logoColor=white"/>
-</a>
-
-</div>
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:FF8C00,100:2ECC71&height=3&section=header"/>
-
-## 📖 About The Project
-
-**RT GroceryHub** is a modern, fully front-end grocery shopping website built to deliver a smooth, intuitive online shopping experience — from browsing products to checkout — without needing a real backend to demonstrate the flow.
-
-Everything runs entirely in the browser using **HTML, CSS, and vanilla JavaScript**. The site covers the full grocery shopping journey: browsing categorized products, viewing detailed product pages, adding items to a cart, checking out, and managing an account — all wrapped in a clean, colourful, grocery-themed UI.
-
-> 💡 **Why this project?** Most beginner e-commerce clones stop at a product grid. RT GroceryHub goes further — a complete multi-page shopping flow (Home → Shop → Product Detail → Cart → Checkout → Order Success) with a consistent, polished design throughout.
-
-<div align="center">
-
-| | |
-|---|---|
-| 🎯 **Type** | Front-end grocery e-commerce website (static, no server) |
-| 🛍️ **Flow** | Browse → Product Detail → Cart → Checkout → Order Success |
-| 👤 **Built For** | Practicing real-world frontend & e-commerce UI patterns |
-| 🎨 **Design** | Clean, modern, grocery-themed (green & orange palette) |
-
-</div>
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:2ECC71,100:FF8C00&height=3&section=header"/>
-
-## ✨ Key Features
-
-<table>
-<tr>
-<td width="50%" valign="top">
-
-### 🏠 Home Page
-- Eye-catching hero banner with grocery visuals
-- Scrolling brand/partner slider
-- Featured categories & product highlights
-
-</td>
-<td width="50%" valign="top">
-
-### 🛍️ Shop Page
-- Full product catalog with category filters
-- Organized by **Fruits, Vegetables, Dairy, Grains & Rice, Spices, Oil**
-- Clean grid layout with product cards
-
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
-
-### 🔎 Product Details
-- Dedicated product detail page per item
-- Price, quantity & description display
-- Add-to-cart interaction from detail view
-
-</td>
-<td width="50%" valign="top">
-
-### 🛒 Cart & Checkout
-- Add / remove items with live cart updates
-- Order summary before checkout
-- Dedicated **checkout** & **order-success** pages
-
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
-
-### 👤 Account & Login
-- Simple login page for returning users
-- Personal account management page
-- Clean, focused authentication UI
-
-</td>
-<td width="50%" valign="top">
-
-### 📄 Info Pages
-- **About** page describing the store
-- **Contact** page for customer queries
-- Policy pages under `pages/policies`
-
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
-
-### 📱 Fully Responsive
-- Optimized for desktop, tablet & mobile
-- Grocery cards reflow cleanly on smaller screens
-- Touch-friendly navigation & buttons
-
-</td>
-<td width="50%" valign="top">
-
-### 🎨 Design
-- Fresh green & warm orange grocery palette
-- Smooth hover states & transitions
-- Consistent navigation across every page
-
-</td>
-</tr>
+<!-- ═══════════════════════ HEADER ═══════════════════════ -->
+<table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="20%" align="left" valign="middle">
+      <img src="https://github.com/user-attachments/assets/90c19f97-8b0b-4df1-96c4-a288d337503c" width="140" alt="Shah Rishabh badge logo"/>
+    </td>
+    <td width="60%" align="center" valign="middle">
+      <img src="https://github.com/shahrishabh1513-jsk/rt-forms/blob/main/assets/logo/rt-forms-logo.png?raw=true" width="110" alt="RT logo"/>
+      <h1>RT GROCERYHUB</h1>
+      <h3>🌿 Fresh From Farm to Table</h3>
+      <p>
+        A modern, responsive grocery shopping website with<br/>
+        <b>shop · cart · wishlist · checkout · account</b>
+      </p>
+    </td>
+    <td width="20%" align="right" valign="middle">
+      <img src="https://github.com/user-attachments/assets/41de0edc-f0a3-474a-9156-d8b3d10d41ba" width="140" alt="Shah Rishabh badge logo"/>
+    </td>
+  </tr>
 </table>
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:FF8C00,100:2ECC71&height=3&section=header"/>
+<!-- ═════════════ MAIN ACTION BUTTONS ═════════════ -->
+<p align="center">
+  <a href="https://shahrishabh1513-jsk.github.io/RT-Groceryhub/"><img src="https://img.shields.io/badge/🛒_LIVE_DEMO-OPEN_STORE-4ADE80?style=for-the-badge&logo=googlechrome&logoColor=0B3D2E&labelColor=0B3D2E" alt="Live Demo"/></a>
+  <a href="https://github.com/shahrishabh1513-jsk/RT-Groceryhub"><img src="https://img.shields.io/badge/💻_SOURCE_CODE-GITHUB-FB923C?style=for-the-badge&logo=github&logoColor=0B3D2E&labelColor=0B3D2E" alt="Source Code"/></a>
+</p>
 
-## 🛠️ Tech Stack
+<p align="center">
+  <a href="https://github.com/shahrishabh1513-jsk/RT-Groceryhub/stargazers"><img src="https://img.shields.io/badge/⭐_STAR-THIS_REPO-FEF3C7?style=for-the-badge&labelColor=0B3D2E" alt="Star"/></a>
+  <a href="https://github.com/shahrishabh1513-jsk/RT-Groceryhub/fork"><img src="https://img.shields.io/badge/🍴_FORK-THIS_REPO-BE185D?style=for-the-badge&labelColor=0B3D2E" alt="Fork"/></a>
+  <a href="https://github.com/shahrishabh1513-jsk/RT-Groceryhub/issues"><img src="https://img.shields.io/badge/🐞_ISSUES-VIEW_ALL-4ADE80?style=for-the-badge&labelColor=0B3D2E" alt="Issues"/></a>
+  <a href="https://github.com/shahrishabh1513-jsk/RT-Groceryhub/commits/main"><img src="https://img.shields.io/badge/🕒_COMMITS-HISTORY-FB923C?style=for-the-badge&labelColor=0B3D2E" alt="Commits"/></a>
+</p>
 
-<div align="center">
+<!-- ═════════════ TECH BADGES ═════════════ -->
+<p align="center">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5"/>
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3"/>
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=0B3D2E" alt="JavaScript"/>
+  <img src="https://img.shields.io/badge/RESPONSIVE-YES-4ADE80?style=for-the-badge&labelColor=0B3D2E" alt="Responsive"/>
+  <img src="https://img.shields.io/badge/HOSTED_ON-GITHUB_PAGES-BE185D?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=0B3D2E" alt="GitHub Pages"/>
+</p>
 
-| 🧩 Layer | 🚀 Technology | 📝 Purpose | 🏷️ Badge |
-|:---:|:---:|:---|:---:|
-| **Structure** | HTML5 | Semantic page markup across all pages | ![HTML5](https://img.shields.io/badge/-E34F26?style=flat-square&logo=html5&logoColor=white) |
-| **Styling** | CSS3 | `style.css`, `components.css`, `responsive.css` | ![CSS3](https://img.shields.io/badge/-1572B6?style=flat-square&logo=css3&logoColor=white) |
-| **Logic** | Vanilla JavaScript | Product rendering, cart logic, sliders | ![JavaScript](https://img.shields.io/badge/-F7DF1E?style=flat-square&logo=javascript&logoColor=black) |
-| **Layout** | Responsive Web Design | Mobile-first, flexible grid layouts | ![Responsive](https://img.shields.io/badge/-2ECC71?style=flat-square&logo=googlechrome&logoColor=white) |
-| **Assets** | Custom product imagery | Organized by category folders | ![Assets](https://img.shields.io/badge/-FF8C00?style=flat-square&logo=googlephotos&logoColor=white) |
-| **Hosting** | GitHub Pages | Live deployment | ![GitHub Pages](https://img.shields.io/badge/-181717?style=flat-square&logo=github&logoColor=white) |
-
-</div>
-
-<p align="center"><b>✅ No build tools · No <code>npm install</code> · No bundlers — clone it and open it.</b></p>
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:2ECC71,100:FF8C00&height=3&section=header"/>
-
-## 📂 Project Structure
-
-```bash
-RT_GROCERYHUB/
-│
-├── assets/
-│   ├── css/
-│   │   ├── style.css                # Core site styling
-│   │   ├── components.css           # Reusable UI components
-│   │   └── responsive.css           # Mobile/tablet breakpoints
-│   │
-│   ├── images/
-│   │   ├── Dairy/                   # Dairy product images
-│   │   ├── Fruits/                  # Fruit product images
-│   │   ├── Grains & Rice/           # Grains & rice product images
-│   │   ├── Spices/                  # Spice product images
-│   │   ├── Vegetables/              # Vegetable product images
-│   │   └── oil/                     # Cooking oil product images
-│   │
-│   └── js/
-│       ├── brand-slider.js          # Home page brand carousel
-│       ├── main.js                  # Core site logic & navigation
-│       └── products.js              # Product rendering & cart logic
-│
-├── pages/
-│   └── policies/                    # Terms, privacy & policy pages
-│
-├── about.html                       # About the store
-├── account.html                     # User account page
-├── cart.html                        # Shopping cart
-├── checkout.html                    # Checkout flow
-├── contact.html                     # Contact / support page
-├── index.html                       # Home page
-├── login.html                       # Login page
-├── order-success.html               # Order confirmation
-├── product-detail.html              # Single product detail view
-├── product.html                     # Product template page
-├── shop.html                        # Full shop / product catalog
-├── Folder Structure.txt
-└── README.md
-```
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:FF8C00,100:2ECC71&height=3&section=header"/>
-
-## 🚀 Getting Started
-
-### Option 1 — Just use the live version
-
-No setup needed 👉 **[Open the live app](https://shahrishabh1513-jsk.github.io/RT-Groceryhub/)**
-
-### Option 2 — Run it locally
-
-```bash
-# 1️⃣ Clone the repository
-git clone https://github.com/shahrishabh1513-jsk/RT-Groceryhub.git
-
-# 2️⃣ Move into the project folder
-cd RT-Groceryhub
-
-# 3️⃣ Serve it locally (recommended for consistent asset loading)
-python -m http.server 8000
-# or
-npx serve .
-```
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:2ECC71,100:FF8C00&height=3&section=header"/>
-
-## 🗂️ Pages Overview
-
-<div align="center">
-
-| Page | File | Purpose |
-|:---:|:---:|:---|
-| 🏠 Home | `index.html` | Landing page, hero banner, featured categories |
-| 🛍️ Shop | `shop.html` | Full product catalog with categories |
-| 🔍 Product Detail | `product-detail.html` | Individual product view |
-| 🛒 Cart | `cart.html` | View & manage cart items |
-| 💳 Checkout | `checkout.html` | Order & delivery details |
-| ✅ Order Success | `order-success.html` | Order confirmation screen |
-| 🔐 Login | `login.html` | User login |
-| 👤 Account | `account.html` | Manage account details |
-| ℹ️ About | `about.html` | About RT GroceryHub |
-| 📩 Contact | `contact.html` | Contact & support form |
-
-</div>
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:FF8C00,100:2ECC71&height=3&section=header"/>
-
-## 🧭 How It Works
-
-```
-Home  →  Shop  →  Product Detail  →  Cart  →  Checkout  →  Order Success
-  ↑__________________________________________________________________|
-                (browse more, manage account, come back anytime)
-```
-
-1. **Land** on the Home page and explore featured categories.
-2. Head to **Shop** to browse the full grocery catalog by category.
-3. Tap any product to view its **Product Detail** page.
-4. **Add to Cart** and review items on the Cart page.
-5. Proceed to **Checkout** and fill in delivery details.
-6. Land on **Order Success** once the order is placed.
-7. Manage your profile anytime from the **Account** page.
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:2ECC71,100:FF8C00&height=3&section=header"/>
-
-## 🗺️ Roadmap
-
-- [x] Home, Shop & Product Detail pages
-- [x] Cart, Checkout & Order Success flow
-- [x] Login & Account pages
-- [x] Fully responsive layout
-- [ ] 🛒 Persistent cart with `localStorage`
-- [ ] 🔐 Real authentication (Firebase / Supabase)
-- [ ] 💳 Payment gateway integration
-- [ ] 📦 Order tracking system
-- [ ] 🌐 Backend & database integration
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:FF8C00,100:2ECC71&height=3&section=header"/>
-
-## 🤝 Contributing
-
-Contributions make the open-source community amazing — any contributions are **greatly appreciated**.
-
-1. 🍴 Fork the project
-2. 🌿 Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. 💾 Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. 📤 Push to the branch (`git push origin feature/AmazingFeature`)
-5. 🔁 Open a Pull Request
-
-Have an idea? [Open an issue](https://github.com/shahrishabh1513-jsk/RT-Groceryhub/issues) — suggestions are always welcome!
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:2ECC71,100:FF8C00&height=3&section=header"/>
-
-## 📬 Contact
-
-<div align="center">
-
-**Rishabh Alpeshabhai Shah**
-
-[![Portfolio](https://img.shields.io/badge/Portfolio-2ECC71?style=for-the-badge&logo=netlify&logoColor=white)](https://rishabh-shah-portfolio.netlify.app/)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/rishabh-alpeshabhai-shah-91b9072a6/)
-[![Gmail](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:shahrishu1515@gmail.com)
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/shahrishabh1513-jsk)
-
-</div>
+<!-- ═════════════ NAVIGATION BUTTONS ═════════════ -->
+<p align="center">
+  <a href="#-live-preview"><img src="https://img.shields.io/badge/🌐-PREVIEW-4ADE80?style=for-the-badge&labelColor=0B3D2E" alt="Preview"/></a>
+  <a href="#-features"><img src="https://img.shields.io/badge/🚀-FEATURES-FB923C?style=for-the-badge&labelColor=0B3D2E" alt="Features"/></a>
+  <a href="#-website-pages"><img src="https://img.shields.io/badge/📑-PAGES-BE185D?style=for-the-badge&labelColor=0B3D2E" alt="Pages"/></a>
+  <a href="#-tech-stack"><img src="https://img.shields.io/badge/🧰-TECH_STACK-4ADE80?style=for-the-badge&labelColor=0B3D2E" alt="Tech Stack"/></a>
+  <a href="#%EF%B8%8F-getting-started"><img src="https://img.shields.io/badge/⚙️-GET_STARTED-FB923C?style=for-the-badge&labelColor=0B3D2E" alt="Getting Started"/></a>
+  <a href="#-color-palette"><img src="https://img.shields.io/badge/🎨-COLORS-BE185D?style=for-the-badge&labelColor=0B3D2E" alt="Colors"/></a>
+  <a href="#-author"><img src="https://img.shields.io/badge/👨‍💻-AUTHOR-4ADE80?style=for-the-badge&labelColor=0B3D2E" alt="Author"/></a>
+</p>
 
 ---
 
-<div align="center">
+## 🌐 Live Preview
 
-### ⭐ If this project helped you, consider giving it a star!
+<p align="center">
+  <a href="https://shahrishabh1513-jsk.github.io/RT-Groceryhub/">
+    <img src="https://image.thum.io/get/width/1200/crop/720/https://shahrishabh1513-jsk.github.io/RT-Groceryhub/" alt="RT GroceryHub live preview" width="90%"/>
+  </a>
+</p>
 
-<img src="https://komarev.com/ghpvc/?username=rt-groceryhub&label=Repo%20Views&color=FF8C00&style=for-the-badge" alt="Repo Views" />
+<p align="center">
+  <a href="https://shahrishabh1513-jsk.github.io/RT-Groceryhub/"><img src="https://img.shields.io/badge/▶_START_SHOPPING-CLICK_TO_OPEN-FB923C?style=for-the-badge&logo=googlechrome&logoColor=0B3D2E&labelColor=4ADE80" alt="Start shopping"/></a>
+</p>
 
-<br/>
+<p align="center"><sub>💡 Click the preview or the button to open the live website.</sub></p>
 
-**✧ Designed with purpose & passion ✧**
+---
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:FF8C00,100:2ECC71&height=120&section=footer"/>
+## ✨ About
 
-</div>
+**RT GroceryHub** is a modern grocery shopping website that gives users a smooth and easy online shopping experience. It brings together fresh produce, pantry staples and artisan foods in a clean, mobile-friendly design, with a **30-minute delivery** promise, a cart, a wishlist and a checkout flow. It is built with plain **HTML5, CSS3 and JavaScript**, so there is no framework, no build step and nothing to install.
+
+---
+
+## 🚀 Features
+
+| | Feature | Description |
+|---|---|---|
+| 🛍️ | **Product Listings** | Browse groceries with prices and quantities |
+| 🗂️ | **Shop by Category** | Vegetables, fruits, dairy & eggs, bakery, meat & seafood and more |
+| 🔍 | **Easy Browsing** | Category filters and a dedicated shop page |
+| 🔥 | **Featured & Best Sellers** | Weekly top picks and customer favourites |
+| 🛒 | **Shopping Cart** | Add items, see subtotal, discount, delivery fee and total |
+| 🎟️ | **Coupon Codes** | Apply offers at checkout (for example `FRESH20`) |
+| ❤️ | **Wishlist** | Save products to buy later |
+| 👤 | **Account & Login** | Login and account pages for shoppers |
+| 💳 | **Checkout Flow** | Checkout page and order success confirmation |
+| ⏱️ | **Sale Countdown** | Live countdown banner for weekend offers |
+| 🗣️ | **Customer Reviews** | Testimonials section to build trust |
+| 📱 | **Fully Responsive** | Works smoothly on mobile, tablet and desktop |
+
+---
+
+## 📑 Website Pages
+
+| Page | File | Purpose |
+|---|---|---|
+| 🏠 Home | `index.html` | Hero, categories, featured products, offers, reviews |
+| 🛍️ Shop | `shop.html` | Browse and filter all products |
+| 📦 Product Detail | `product-detail.html` | Full details of one product |
+| 🛒 Cart | `cart.html` | Review items and totals |
+| 💳 Checkout | `checkout.html` | Enter details and place the order |
+| ✅ Order Success | `order-success.html` | Order confirmation |
+| 🔐 Login | `login.html` | Sign in to your account |
+| 👤 Account | `account.html` | Manage your profile and orders |
+| ℹ️ About | `about.html` | About the store |
+| 📞 Contact | `contact.html` | Get in touch |
+
+---
+
+## 🧰 Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Structure | HTML5 |
+| Styling | CSS3 (components + responsive stylesheets) |
+| Logic | Vanilla JavaScript (ES6+) |
+| Images | Organized by category (dairy, fruits, grains & rice, spices, vegetables, oil) |
+| Hosting | GitHub Pages |
+
+---
+
+## ⚙️ Getting Started
+
+**1. Clone the repository**
+
+```bash
+git clone https://github.com/shahrishabh1513-jsk/RT-Groceryhub.git
+```
+
+**2. Open the project folder**
+
+```bash
+cd RT-Groceryhub
+```
+
+**3. Run it**
+
+Just open `index.html` in your browser, or use a local server:
+
+```bash
+# Python
+python -m http.server 5500
+
+# or VS Code → "Live Server" extension → Go Live
+```
+
+Then visit **http://localhost:5500** 🎉
+
+---
+
+## 📁 Project Structure
+
+```text
+RT-Groceryhub/
+├── assets/
+│   ├── css/
+│   │   ├── style.css            # Main styles & theme colors
+│   │   ├── components.css       # Reusable UI components
+│   │   └── responsive.css       # Mobile & tablet layouts
+│   ├── images/
+│   │   ├── Dairy/
+│   │   ├── Fruits/
+│   │   ├── Grains & Rice/
+│   │   ├── Spices/
+│   │   ├── Vegetables/
+│   │   └── oil/
+│   └── js/
+│       ├── main.js              # Core site logic
+│       ├── products.js          # Product data
+│       └── brand-slider.js      # Brand slider
+├── pages/
+│   └── policies/                # Policy pages
+├── index.html
+├── shop.html
+├── product-detail.html
+├── cart.html
+├── checkout.html
+├── order-success.html
+├── login.html
+├── account.html
+├── about.html
+├── contact.html
+└── README.md                    # You are here
+```
+
+---
+
+## 🎨 Color Palette
+
+| Swatch | Name | Hex | Used for |
+|:---:|---|---|---|
+| ![](https://img.shields.io/badge/-%20%20%20%20%20%20-0B3D2E?style=flat-square) | Forest | `#0B3D2E` | Backgrounds, text, badge base |
+| ![](https://img.shields.io/badge/-%20%20%20%20%20%20-4ADE80?style=flat-square) | Fresh Leaf | `#4ADE80` | Primary buttons & freshness accents |
+| ![](https://img.shields.io/badge/-%20%20%20%20%20%20-FB923C?style=flat-square) | Mango | `#FB923C` | Offers & call-to-action |
+| ![](https://img.shields.io/badge/-%20%20%20%20%20%20-BE185D?style=flat-square) | Berry | `#BE185D` | Highlights & sale tags |
+| ![](https://img.shields.io/badge/-%20%20%20%20%20%20-FEF3C7?style=flat-square) | Cream | `#FEF3C7` | Soft backgrounds & cards |
+
+---
+
+## 🛣️ Roadmap
+
+- [ ] Backend and database integration
+- [ ] Live online payment gateway
+- [ ] Real-time order tracking
+- [ ] Product reviews and ratings
+- [ ] Installable web app (PWA)
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!
+
+1. Fork the project
+2. Create your branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m "Add amazing feature"`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
+<p align="center">
+  <a href="https://github.com/shahrishabh1513-jsk/RT-Groceryhub/issues/new"><img src="https://img.shields.io/badge/🐞_REPORT-A_BUG-BE185D?style=for-the-badge&labelColor=0B3D2E" alt="Report a bug"/></a>
+  <a href="https://github.com/shahrishabh1513-jsk/RT-Groceryhub/issues/new"><img src="https://img.shields.io/badge/💡_REQUEST-A_FEATURE-FB923C?style=for-the-badge&labelColor=0B3D2E" alt="Request a feature"/></a>
+  <a href="https://github.com/shahrishabh1513-jsk/RT-Groceryhub/pulls"><img src="https://img.shields.io/badge/🔀_OPEN-PULL_REQUEST-4ADE80?style=for-the-badge&labelColor=0B3D2E" alt="Pull request"/></a>
+</p>
+
+---
+
+## 👨‍💻 Author
+
+<p align="center">
+  <a href="https://github.com/shahrishabh1513-jsk"><img src="https://img.shields.io/badge/GITHUB-@shahrishabh1513--jsk-4ADE80?style=for-the-badge&logo=github&logoColor=0B3D2E&labelColor=0B3D2E" alt="GitHub"/></a>
+  <a href="https://www.linkedin.com/in/rishabh-alpeshabhai-shah-91b9072a6/"><img src="https://img.shields.io/badge/LINKEDIN-RISHABH_A._SHAH-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=0B3D2E" alt="LinkedIn"/></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/shahrishabh1513-jsk/RT-Groceryhub"><img src="https://img.shields.io/badge/⭐_STAR_THIS-REPOSITORY-FB923C?style=for-the-badge&logo=github&logoColor=0B3D2E&labelColor=0B3D2E" alt="Star this repository"/></a>
+  <a href="https://shahrishabh1513-jsk.github.io/RT-Groceryhub/"><img src="https://img.shields.io/badge/🛒_VISIT-LIVE_STORE-BE185D?style=for-the-badge&labelColor=0B3D2E" alt="Visit live store"/></a>
+</p>
+
+<p align="center"><sub>Thank you for visiting <b>RT GroceryHub</b> 🛒 · Built with ❤️ by <b>Rishabh A. Shah</b></sub></p>
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0B3D2E,50:4ADE80,100:FB923C&height=100&section=footer" width="100%" alt="footer wave"/>
+</p>
