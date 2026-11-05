@@ -5,7 +5,6 @@
       <img src="https://github.com/user-attachments/assets/90c19f97-8b0b-4df1-96c4-a288d337503c" width="140" alt="Shah Rishabh badge logo"/>
     </td>
     <td width="60%" align="center" valign="middle">
-      <img src="https://github.com/shahrishabh1513-jsk/rt-forms/blob/main/assets/logo/rt-forms-logo.png?raw=true" width="110" alt="RT logo"/>
       <h1>RT GROCERYHUB</h1>
       <h3>🌿 Fresh From Farm to Table</h3>
       <p>
