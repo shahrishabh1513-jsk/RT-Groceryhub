@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shop — GreenBasket</title>
+<title>Shop — RT-Groceryhub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -78,14 +78,15 @@
   .mobile-filter-btn { display:flex; }
 }
 </style>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo/favicon-32.png"><link rel="apple-touch-icon" href="assets/images/logo/favicon-192.png"><link rel="stylesheet" href="assets/css/rt-theme.css">
 </head>
-<body>
+<body><div id="rt-loader" role="status" aria-label="Loading"><img src="assets/images/logo/rt-groceryhub-logo.png" alt="RT-Groceryhub"><div class="rt-bar"><i></i></div><p>Fresh Choices, Happy Living!</p></div>
 <div id="page-progress"></div>
 
 <!-- ── Navbar ── -->
 <nav class="navbar">
   <div class="navbar__inner">
-    <a href="index.html" class="navbar__logo">🌿 Green<span>Basket</span></a>
+    <a href="index.html" class="navbar__logo"><img class="rt-logo" src="assets/images/logo/rt-groceryhub-logo.png" alt="RT-Groceryhub – Fresh Healthy"></a>
     <div class="navbar__search">
       <span class="navbar__search-icon"><i class="fas fa-search"></i></span>
       <input type="text" id="nav-search" placeholder="Search products, brands…">
@@ -241,27 +242,7 @@
 </div>
 
 <!-- ── Footer ── -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer__grid">
-      <div>
-        <div class="footer__logo">🌿 Green<span>Basket</span></div>
-        <p class="footer__desc">India's freshest online grocery. Direct from farms to your door in 30 minutes.</p>
-        <div class="footer__social">
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-        </div>
-      </div>
-      <div><h4>Shop</h4><ul><li><a href="shop.html?cat=vegetables">Vegetables</a></li><li><a href="shop.html?cat=fruits">Fruits</a></li><li><a href="shop.html?cat=dairy">Dairy</a></li><li><a href="shop.html?cat=bakery">Bakery</a></li></ul></div>
-      <div><h4>Help</h4><ul><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="#">FAQs</a></li><li><a href="#">Returns</a></li></ul></div>
-      <div><h4>Newsletter</h4><form class="newsletter-form"><input type="email" class="footer__newsletter" placeholder="Your email" style="width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);color:#fff;font-size:.85rem;margin-bottom:8px"><button type="submit" style="width:100%;padding:10px;border-radius:10px;background:var(--green-600);color:#fff;font-weight:700;border:none;cursor:pointer">Subscribe</button></form></div>
-    </div>
-  </div>
-  <div style="border-top:1px solid rgba(255,255,255,.07);padding:16px 0">
-    <div class="container footer__bottom"><span>© 2025 GreenBasket</span><div style="display:flex;gap:12px;opacity:.5"><i class="fab fa-cc-visa fa-lg"></i><i class="fab fa-cc-mastercard fa-lg"></i><i class="fas fa-mobile-screen-button fa-lg"></i></div></div>
-  </div>
-</footer>
+<footer class="rt-footer"><div class="rt-footer__row"><a href="index.html" class="rt-footer__brand"><img src="assets/images/logo/rt-groceryhub-logo.png" alt="RT-Groceryhub"></a><nav class="rt-footer__nav" aria-label="Footer"><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav><div class="rt-footer__social"><a href="https://github.com/shahrishabh1513-jsk" target="_blank" rel="noopener" aria-label="GitHub profile"><i class="fab fa-github"></i></a><a href="https://github.com/shahrishabh1513-jsk/RT-Groceryhub" target="_blank" rel="noopener" aria-label="Project repository"><i class="fas fa-code-branch"></i></a></div></div><div class="rt-footer__bottom">© 2026 RT-Groceryhub. All Rights Reserved. | Designed &amp; Developed by RT1504</div></footer>
 
 <!-- Cart Drawer -->
 <div id="cart-overlay" class="cart-overlay"></div>
@@ -549,5 +530,6 @@ function initAOS(){
   document.querySelectorAll("[data-aos]:not(.aos-animate)").forEach(el=>io.observe(el));
 }
 </script>
+<script src="assets/js/rt-theme.js"></script>
 </body>
 </html>

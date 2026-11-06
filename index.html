@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GreenBasket — Fresh Groceries Delivered</title>
-<meta name="description" content="Shop fresh organic produce, premium pantry staples and artisan foods from 40+ curated brands. Delivered in 30 minutes.">
+<title>RT-Groceryhub — Fresh Groceries Delivered</title>
+<meta name="description" content="Shop fresh organic produce, premium pantry staples and artisan foods from 40+ curated brands. Fresh Choices, Happy Living!">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -77,14 +77,15 @@
 @media(max-width:768px){ .hero__grid{ grid-template-columns:1fr; gap:32px; } .hero__image{ order:-1; } .cat-grid{ grid-template-columns:repeat(3,1fr); } .promo-grid{ grid-template-columns:1fr; } .test-grid{ grid-template-columns:1fr; } .app-section{ grid-template-columns:1fr; padding:36px 24px; } .app-img{ display:none; } .offer-strip{ flex-direction:column; text-align:center; } }
 @media(max-width:480px){ .cat-grid{ grid-template-columns:repeat(2,1fr); } }
 </style>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo/favicon-32.png"><link rel="apple-touch-icon" href="assets/images/logo/favicon-192.png"><link rel="stylesheet" href="assets/css/rt-theme.css">
 </head>
-<body>
+<body><div id="rt-loader" role="status" aria-label="Loading"><img src="assets/images/logo/rt-groceryhub-logo.png" alt="RT-Groceryhub"><div class="rt-bar"><i></i></div><p>Fresh Choices, Happy Living!</p></div>
 <div id="page-progress"></div>
 
 <!-- ── Navbar ── -->
 <nav class="navbar">
   <div class="navbar__inner">
-    <a href="index.html" class="navbar__logo">🌿 Green<span>Basket</span></a>
+    <a href="index.html" class="navbar__logo"><img class="rt-logo" src="assets/images/logo/rt-groceryhub-logo.png" alt="RT-Groceryhub – Fresh Healthy"></a>
     <div class="navbar__search">
       <span class="navbar__search-icon"><i class="fas fa-search"></i></span>
       <input type="text" placeholder="Search fresh produce, brands…">
@@ -130,16 +131,16 @@
           <span>🌿</span> 100% Organic &amp; Natural
           <span style="background:rgba(255,255,255,.25);border-radius:50px;padding:2px 10px;font-size:.7rem;">New Arrivals</span>
         </div>
-        <h1>Fresh From <em>Farm to Table</em> in 30 Minutes</h1>
-        <p>Discover 200+ curated groceries from trusted brands. Organic produce, artisan foods, premium pantry—all delivered lightning-fast.</p>
+        <h1><em>Freshness</em> Delivered Daily!</h1>
+        <p>Shop everyday vegetarian essentials, fresh fruits, vegetables, dairy, snacks and more — all in one place.</p>
         <div class="hero__buttons">
           <a href="shop.html" class="btn btn-orange"><i class="fas fa-shopping-basket"></i> Shop Now</a>
           <a href="about.html" class="btn btn-ghost"><i class="fas fa-play-circle"></i> How It Works</a>
         </div>
         <div style="display:flex;gap:32px;margin-top:40px">
-          <div><strong style="display:block;color:#fde68a;font-size:1.4rem;font-weight:800">50K+</strong><span style="font-size:.8rem;opacity:.75">Happy Customers</span></div>
+          <div><strong style="display:block;color:#fde68a;font-size:1.4rem;font-weight:800">100%</strong><span style="font-size:.8rem;opacity:.75">Vegetarian</span></div>
           <div style="width:1px;background:rgba(255,255,255,.2)"></div>
-          <div><strong style="display:block;color:#fde68a;font-size:1.4rem;font-weight:800">200+</strong><span style="font-size:.8rem;opacity:.75">Products</span></div>
+          <div><strong style="display:block;color:#fde68a;font-size:1.4rem;font-weight:800">Daily</strong><span style="font-size:.8rem;opacity:.75">Fresh Picks</span></div>
           <div style="width:1px;background:rgba(255,255,255,.2)"></div>
           <div><strong style="display:block;color:#fde68a;font-size:1.4rem;font-weight:800">30 min</strong><span style="font-size:.8rem;opacity:.75">Avg. Delivery</span></div>
         </div>
@@ -298,7 +299,7 @@
     <div class="test-grid">
       <div class="testimonial-card" data-aos>
         <div class="testimonial-card__stars">★★★★★</div>
-        <p>"The mangoes from KonkanKing are absolutely divine. Arrived perfectly ripe, packaged beautifully. GreenBasket is now my go-to for premium fruits!"</p>
+        <p>"The mangoes from KonkanKing are absolutely divine. Arrived perfectly ripe, packaged beautifully. RT-Groceryhub is now my go-to for premium fruits!"</p>
         <div class="testimonial-card__author">
           <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="Priya" onerror="this.src='https://placehold.co/44x44/dcfce7/16a34a?text=P'">
           <div><strong>Priya Sharma</strong><span>Mumbai, Maharashtra</span></div>
@@ -306,7 +307,7 @@
       </div>
       <div class="testimonial-card" data-aos data-aos-delay="100">
         <div class="testimonial-card__stars">★★★★★</div>
-        <p>"I switched to GreenBasket for my weekly groceries and never looked back. The sourdough from ArtisanBread is hands-down the best I've had."</p>
+        <p>"I switched to RT-Groceryhub for my weekly groceries and never looked back. The sourdough from ArtisanBread is hands-down the best I've had."</p>
         <div class="testimonial-card__author">
           <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Rahul" onerror="this.src='https://placehold.co/44x44/dcfce7/16a34a?text=R'">
           <div><strong>Rahul Mehta</strong><span>Bengaluru, Karnataka</span></div>
@@ -338,77 +339,14 @@
         </div>
       </div>
       <div style="text-align:right">
-        <img class="app-img" src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="App" onerror="this.src='https://placehold.co/360x280/0a3d1a/fde68a?text=GreenBasket+App'">
+        <img class="app-img" src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="App" onerror="this.src='https://placehold.co/360x280/0a3d1a/fde68a?text=RT-Groceryhub+App'">
       </div>
     </div>
   </div>
 </section>
 
 <!-- ── Footer ── -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer__grid">
-      <div>
-        <div class="footer__logo">🌿 Green<span>Basket</span></div>
-        <p class="footer__desc">India's freshest online grocery store. We partner directly with farms so you get the best quality at honest prices — delivered in 30 minutes.</p>
-        <div class="footer__social">
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        </div>
-      </div>
-      <div>
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="shop.html">Shop All</a></li>
-          <li><a href="shop.html?cat=vegetables">Vegetables</a></li>
-          <li><a href="shop.html?cat=fruits">Fruits</a></li>
-          <li><a href="shop.html?cat=dairy">Dairy & Eggs</a></li>
-          <li><a href="shop.html?cat=bakery">Bakery</a></li>
-          <li><a href="shop.html?cat=meat">Meat & Seafood</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Help &amp; Support</h4>
-        <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="#">FAQs</a></li>
-          <li><a href="#">Delivery Info</a></li>
-          <li><a href="#">Return Policy</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Get in Touch</h4>
-        <ul class="footer__contact">
-          <li><i class="fas fa-map-marker-alt"></i><span>42, Green Valley, Bandra West, Mumbai — 400050</span></li>
-          <li><i class="fas fa-phone"></i><span>+91 98765 43210</span></li>
-          <li><i class="fas fa-envelope"></i><span>hello@greenbasket.in</span></li>
-          <li><i class="fas fa-clock"></i><span>Mon–Sun, 6 AM – 11 PM</span></li>
-        </ul>
-        <h4 style="margin-top:20px">Newsletter</h4>
-        <form class="newsletter-form" style="margin-top:8px">
-          <input type="email" class="footer__newsletter" placeholder="Your email address" style="width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);color:#fff;font-size:.85rem;margin-bottom:8px">
-          <button type="submit" style="width:100%;padding:10px;border-radius:10px;background:var(--green-600);color:#fff;font-weight:700;font-size:.87rem;border:none;cursor:pointer;transition:var(--transition)">Subscribe <i class="fas fa-arrow-right"></i></button>
-        </form>
-      </div>
-    </div>
-  </div>
-  <div style="border-top:1px solid rgba(255,255,255,.07);padding:20px 0">
-    <div class="container footer__bottom">
-      <span>© 2025 GreenBasket. Made with 💚 in India.</span>
-      <div style="display:flex;gap:16px;align-items:center;font-size:.78rem;opacity:.5">
-        <span>Secured by Razorpay</span>
-        <i class="fab fa-cc-visa fa-lg"></i>
-        <i class="fab fa-cc-mastercard fa-lg"></i>
-        <i class="fas fa-mobile-screen-button fa-lg" title="UPI"></i>
-        <i class="fas fa-wallet fa-lg" title="Wallets"></i>
-      </div>
-    </div>
-  </div>
-</footer>
+<footer class="rt-footer"><div class="rt-footer__row"><a href="index.html" class="rt-footer__brand"><img src="assets/images/logo/rt-groceryhub-logo.png" alt="RT-Groceryhub"></a><nav class="rt-footer__nav" aria-label="Footer"><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav><div class="rt-footer__social"><a href="https://github.com/shahrishabh1513-jsk" target="_blank" rel="noopener" aria-label="GitHub profile"><i class="fab fa-github"></i></a><a href="https://github.com/shahrishabh1513-jsk/RT-Groceryhub" target="_blank" rel="noopener" aria-label="Project repository"><i class="fas fa-code-branch"></i></a></div></div><div class="rt-footer__bottom">© 2026 RT-Groceryhub. All Rights Reserved. | Designed &amp; Developed by RT1504</div></footer>
 
 <!-- ── Cart Drawer ── -->
 <div id="cart-overlay" class="cart-overlay"></div>
@@ -547,5 +485,6 @@ function startTimer(){
 }
 startTimer();
 </script>
+<script src="assets/js/rt-theme.js"></script>
 </body>
 </html>

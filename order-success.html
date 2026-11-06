@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Order Confirmed — GreenBasket</title>
+<title>Order Confirmed — RT-Groceryhub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -88,8 +88,9 @@
 }
 @media(max-width:900px){ .receipt-layout{ grid-template-columns:1fr; } }
 </style>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo/favicon-32.png"><link rel="apple-touch-icon" href="assets/images/logo/favicon-192.png"><link rel="stylesheet" href="assets/css/rt-theme.css">
 </head>
-<body>
+<body><div id="rt-loader" role="status" aria-label="Loading"><img src="assets/images/logo/rt-groceryhub-logo.png" alt="RT-Groceryhub"><div class="rt-bar"><i></i></div><p>Fresh Choices, Happy Living!</p></div>
 
 <!-- Confetti container -->
 <div id="confetti-container"></div>
@@ -97,7 +98,7 @@
 <!-- Navbar -->
 <nav class="navbar no-print">
   <div class="navbar__inner">
-    <a href="index.html" class="navbar__logo">🌿 Green<span>Basket</span></a>
+    <a href="index.html" class="navbar__logo"><img class="rt-logo" src="assets/images/logo/rt-groceryhub-logo.png" alt="RT-Groceryhub – Fresh Healthy"></a>
     <div style="margin-left:auto;display:flex;gap:12px">
       <a href="shop.html" class="btn btn-secondary btn-sm"><i class="fas fa-store"></i> Continue Shopping</a>
       <a href="account.html" class="btn btn-primary btn-sm"><i class="fas fa-receipt"></i> My Orders</a>
@@ -110,7 +111,7 @@
   <div style="position:relative;z-index:1" data-aos>
     <div class="success-circle" id="success-icon">✓</div>
     <h1>Order Confirmed!</h1>
-    <p>Thank you for shopping with GreenBasket 💚<br>Your fresh groceries are being packed right now.</p>
+    <p>Thank you for shopping with RT-Groceryhub 💚<br>Your fresh groceries are being packed right now.</p>
     <div class="order-ref" id="order-ref-display">Loading…</div>
   </div>
 </div>
@@ -188,7 +189,7 @@ if (!order) {
 } else {
   // ── Set order reference ──
   document.getElementById('order-ref-display').textContent = `Order #${order.orderId}`;
-  document.title = `Order ${order.orderId} — GreenBasket`;
+  document.title = `Order ${order.orderId} — RT-Groceryhub`;
 
   // ── Render receipt ──
   const c      = order.customer;
@@ -324,5 +325,7 @@ if (recGrid) {
   }).join('');
 }
 </script>
+<footer class="rt-footer"><div class="rt-footer__row"><a href="index.html" class="rt-footer__brand"><img src="assets/images/logo/rt-groceryhub-logo.png" alt="RT-Groceryhub"></a><nav class="rt-footer__nav" aria-label="Footer"><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav><div class="rt-footer__social"><a href="https://github.com/shahrishabh1513-jsk" target="_blank" rel="noopener" aria-label="GitHub profile"><i class="fab fa-github"></i></a><a href="https://github.com/shahrishabh1513-jsk/RT-Groceryhub" target="_blank" rel="noopener" aria-label="Project repository"><i class="fas fa-code-branch"></i></a></div></div><div class="rt-footer__bottom">© 2026 RT-Groceryhub. All Rights Reserved. | Designed &amp; Developed by RT1504</div></footer>
+<script src="assets/js/rt-theme.js"></script>
 </body>
 </html>

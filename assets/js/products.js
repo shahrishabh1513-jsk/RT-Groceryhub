@@ -32,9 +32,8 @@ const PRODUCTS = [
   { id:22, name:"Pineapple",            brand:"TropicFresh",  category:"fruits", price:99,  oldPrice:130, image:"https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=400&q=80", rating:4.6, reviews:267, stock:60,  unit:"1 pc", badge:null,      description:"Sweet, tangy pineapple — perfect fresh or in smoothies." },
   { id:23, name:"Figs (Fresh)",         brand:"FigGrove",     category:"fruits", price:299, oldPrice:380, image:"https://images.unsplash.com/photo-1504877800426-0a17d2d50a8c?w=400&q=80", rating:4.8, reviews:189, stock:40,  unit:"250g", badge:"Premium",  description:"Soft, honey-sweet fresh figs. A Mediterranean delicacy." },
 
-  // ── DAIRY & EGGS ─────────────────────────────────────────────
+  // ── DAIRY PRODUCTS ─────────────────────────────────────────────
   { id:24, name:"Greek Yogurt - Plain",  brand:"MilkyWay",     category:"dairy", price:149, oldPrice:180, image:"https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&q=80", rating:4.8, reviews:567, stock:150, unit:"400g", badge:"Probiotic", description:"Thick, creamy Greek yogurt with live cultures. No added sugar." },
-  { id:25, name:"Free-Range Eggs",       brand:"HappyHen",     category:"dairy", price:119, oldPrice:150, image:"https://images.unsplash.com/photo-1518569656558-1f25e69d2fd4?w=400&q=80", rating:4.9, reviews:789, stock:200, unit:"12 pcs", badge:"Free Range", description:"Golden-yolk eggs from cage-free, pasture-raised hens." },
   { id:26, name:"Aged Cheddar",         brand:"CheeseHouse",  category:"dairy", price:289, oldPrice:360, image:"https://images.unsplash.com/photo-1618164436241-4473940d1f5c?w=400&q=80", rating:4.8, reviews:412, stock:80,  unit:"200g", badge:"Aged",     description:"Sharp, crumbly aged cheddar matured for 12 months." },
   { id:27, name:"Fresh Mozzarella",     brand:"ItaliaDelite", category:"dairy", price:249, oldPrice:310, image:"https://images.unsplash.com/photo-1607908555464-8003f7e5c1be?w=400&q=80", rating:4.7, reviews:334, stock:90,  unit:"200g", badge:"Fresh",    description:"Soft, milky mozzarella balls. Perfect for Caprese." },
   { id:28, name:"Butter - Salted",      brand:"CreAmour",     category:"dairy", price:89,  oldPrice:110, image:"https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=400&q=80", rating:4.7, reviews:456, stock:160, unit:"100g", badge:null,       description:"Rich, creamy salted butter for baking and cooking." },
@@ -85,13 +84,6 @@ const PRODUCTS = [
   { id:65, name:"Oat Flour",            brand:"WheatWorks",   category:"pantry", price:179, oldPrice:220, image:"https://images.unsplash.com/photo-1567599872555-1b9e8e3f0f3a?w=400&q=80", rating:4.6, reviews:189, stock:160, unit:"500g", badge:"Gluten-Friendly", description:"Stone-ground oat flour for healthier bakes." },
   { id:66, name:"Quinoa - White",       brand:"GrainCraft",   category:"pantry", price:349, oldPrice:430, image:"https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80", rating:4.8, reviews:312, stock:110, unit:"500g", badge:"Superfood", description:"Fluffy white quinoa — complete protein and gluten-free." },
 
-  // ── MEAT & SEAFOOD ───────────────────────────────────────────
-  { id:67, name:"Chicken Breast Fillets",brand:"FarmGrown",   category:"meat", price:349, oldPrice:430, image:"https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=400&q=80", rating:4.7, reviews:523, stock:100, unit:"500g", badge:"Antibiotic-Free", description:"Boneless, skinless chicken breast from free-range birds." },
-  { id:68, name:"Salmon Fillet",         brand:"OceanPrime",  category:"meat", price:699, oldPrice:870, image:"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&q=80", rating:4.9, reviews:678, stock:60,  unit:"300g", badge:"Wild-Caught", description:"Fresh Atlantic salmon fillet — rich in omega-3 fatty acids." },
-  { id:69, name:"Grass-Fed Ground Beef", brand:"RanchForce",  category:"meat", price:499, oldPrice:620, image:"https://images.unsplash.com/photo-1551135049-8a33b5883817?w=400&q=80", rating:4.8, reviews:389, stock:80,  unit:"500g", badge:"Grass-Fed",  description:"100% grass-fed lean ground beef. No hormones or antibiotics." },
-  { id:70, name:"Tiger Prawns",          brand:"OceanPrime",  category:"meat", price:599, oldPrice:750, image:"https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=400&q=80", rating:4.8, reviews:445, stock:70,  unit:"500g", badge:"Fresh",      description:"Jumbo tiger prawns — fresh, cleaned and deveined." },
-  { id:71, name:"Lamb Chops",           brand:"HighlandFarm", category:"meat", price:799, oldPrice:990, image:"https://images.unsplash.com/photo-1529694157872-4e0c0f3b238b?w=400&q=80", rating:4.7, reviews:234, stock:50,  unit:"400g", badge:"Premium",    description:"Tender, marbled lamb chops with delicate herb flavour." },
-  { id:72, name:"Tuna Steak",           brand:"OceanPrime",  category:"meat", price:549, oldPrice:680, image:"https://images.unsplash.com/photo-1607893378714-007fd47c8719?w=400&q=80", rating:4.8, reviews:312, stock:60,  unit:"250g", badge:"Wild-Caught", description:"Yellowfin tuna steak — sear it rare for the perfect meal." },
 
   // ── FROZEN ───────────────────────────────────────────────────
   { id:73, name:"Acai Berry Smoothie Pack", brand:"BreezeFresh", category:"frozen", price:449, oldPrice:560, image:"https://images.unsplash.com/photo-1525385444278-b7968e515e7a?w=400&q=80", rating:4.8, reviews:389, stock:100, unit:"4 sachets", badge:"Superfood", description:"Frozen Brazilian açaí packets — just blend for a perfect bowl." },
@@ -128,12 +120,11 @@ const CATEGORIES = [
   { key:"all",        label:"All Products",    icon:"🛒", count: PRODUCTS.length },
   { key:"vegetables", label:"Vegetables",      icon:"🥬", count: PRODUCTS.filter(p=>p.category==="vegetables").length },
   { key:"fruits",     label:"Fruits",          icon:"🍎", count: PRODUCTS.filter(p=>p.category==="fruits").length },
-  { key:"dairy",      label:"Dairy & Eggs",    icon:"🥛", count: PRODUCTS.filter(p=>p.category==="dairy").length },
+  { key:"dairy",      label:"Dairy Products",    icon:"🥛", count: PRODUCTS.filter(p=>p.category==="dairy").length },
   { key:"bakery",     label:"Bakery",          icon:"🍞", count: PRODUCTS.filter(p=>p.category==="bakery").length },
   { key:"beverages",  label:"Beverages",       icon:"☕", count: PRODUCTS.filter(p=>p.category==="beverages").length },
   { key:"snacks",     label:"Snacks",          icon:"🍿", count: PRODUCTS.filter(p=>p.category==="snacks").length },
   { key:"pantry",     label:"Pantry",          icon:"🫙", count: PRODUCTS.filter(p=>p.category==="pantry").length },
-  { key:"meat",       label:"Meat & Seafood",  icon:"🐟", count: PRODUCTS.filter(p=>p.category==="meat").length },
   { key:"frozen",     label:"Frozen",          icon:"🧊", count: PRODUCTS.filter(p=>p.category==="frozen").length },
   { key:"health",     label:"Health",          icon:"💊", count: PRODUCTS.filter(p=>p.category==="health").length },
   { key:"personal",   label:"Personal Care",   icon:"🧴", count: PRODUCTS.filter(p=>p.category==="personal").length },

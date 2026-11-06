@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact Us — GreenBasket</title>
+<title>Contact Us — RT-Groceryhub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -112,19 +112,20 @@
 @media(max-width:900px){ .contact-grid{grid-template-columns:1fr;} .faq-grid{grid-template-columns:1fr;} .faq-item:nth-child(odd){border-right:none;padding-right:0;} .faq-item:nth-child(even){padding-left:0;} }
 @media(max-width:480px){ .form-card{padding:24px 18px;} .contact-info-card{padding:28px 20px;} }
 </style>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo/favicon-32.png"><link rel="apple-touch-icon" href="assets/images/logo/favicon-192.png"><link rel="stylesheet" href="assets/css/rt-theme.css">
 </head>
-<body>
+<body><div id="rt-loader" role="status" aria-label="Loading"><img src="assets/images/logo/rt-groceryhub-logo.png" alt="RT-Groceryhub"><div class="rt-bar"><i></i></div><p>Fresh Choices, Happy Living!</p></div>
 <div id="page-progress"></div>
 
 <!-- WhatsApp Float -->
-<a href="https://wa.me/919876543210?text=Hi GreenBasket! I need help with my order." class="wa-float" target="_blank" title="Chat on WhatsApp">
+<a href="https://wa.me/919876543210?text=Hi RT-Groceryhub! I need help with my order." class="wa-float" target="_blank" title="Chat on WhatsApp">
   <i class="fab fa-whatsapp"></i>
 </a>
 
 <!-- Navbar -->
 <nav class="navbar">
   <div class="navbar__inner">
-    <a href="index.html" class="navbar__logo">🌿 Green<span>Basket</span></a>
+    <a href="index.html" class="navbar__logo"><img class="rt-logo" src="assets/images/logo/rt-groceryhub-logo.png" alt="RT-Groceryhub – Fresh Healthy"></a>
     <div class="navbar__search">
       <span class="navbar__search-icon"><i class="fas fa-search"></i></span>
       <input type="text" placeholder="Search products…">
@@ -265,7 +266,7 @@
           <div class="form-group">
             <label style="display:flex;align-items:flex-start;gap:8px;font-size:.82rem;cursor:pointer;line-height:1.5;color:var(--gray-600)">
               <input type="checkbox" id="c-consent" style="accent-color:var(--green-600);margin-top:2px;flex-shrink:0">
-              I agree to GreenBasket's <a href="#" style="color:var(--green-600)">Privacy Policy</a> and consent to being contacted about my enquiry.
+              I agree to RT-Groceryhub's <a href="#" style="color:var(--green-600)">Privacy Policy</a> and consent to being contacted about my enquiry.
             </label>
           </div>
           <div class="form-footer">
@@ -294,8 +295,8 @@
   <div class="map-wrap">
     <div class="map-placeholder">
       <i class="fas fa-map-marked-alt"></i>
-      <p style="font-size:.92rem;font-weight:600;color:var(--gray-600);margin-bottom:4px">GreenBasket Head Office</p>
-      <p style="font-size:.82rem">42, Green Valley, Bandra West, Mumbai — 400050</p>
+      <p style="font-size:.92rem;font-weight:600;color:var(--gray-600);margin-bottom:4px">RT-Groceryhub Head Office</p>
+      <p style="font-size:.82rem">Online store — India</p>
       <a href="https://maps.google.com/?q=Bandra+West,+Mumbai" target="_blank" class="btn btn-primary btn-sm" style="margin-top:16px"><i class="fas fa-directions"></i> Get Directions</a>
     </div>
   </div>
@@ -320,27 +321,7 @@
 </section>
 
 <!-- Footer -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer__grid">
-      <div>
-        <div class="footer__logo">🌿 Green<span>Basket</span></div>
-        <p class="footer__desc">India's freshest online grocery. Delivered from farm to door in 30 minutes.</p>
-        <div class="footer__social">
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-        </div>
-      </div>
-      <div><h4>Quick Links</h4><ul><li><a href="shop.html">Shop</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="account.html">Account</a></li></ul></div>
-      <div><h4>Categories</h4><ul><li><a href="shop.html?cat=vegetables">Vegetables</a></li><li><a href="shop.html?cat=fruits">Fruits</a></li><li><a href="shop.html?cat=dairy">Dairy</a></li><li><a href="shop.html?cat=bakery">Bakery</a></li></ul></div>
-      <div><h4>Newsletter</h4><form class="newsletter-form"><input type="email" class="footer__newsletter" placeholder="Your email" style="width:100%;padding:10px 14px;border-radius:10px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);color:#fff;font-size:.85rem;margin-bottom:8px"><button type="submit" style="width:100%;padding:10px;border-radius:10px;background:var(--green-600);color:#fff;font-weight:700;border:none;cursor:pointer">Subscribe</button></form></div>
-    </div>
-  </div>
-  <div style="border-top:1px solid rgba(255,255,255,.07);padding:16px 0">
-    <div class="container footer__bottom"><span>© 2025 GreenBasket</span><div style="display:flex;gap:12px;opacity:.5"><i class="fab fa-cc-visa fa-lg"></i><i class="fab fa-cc-mastercard fa-lg"></i><i class="fas fa-mobile-screen-button fa-lg"></i></div></div>
-  </div>
-</footer>
+<footer class="rt-footer"><div class="rt-footer__row"><a href="index.html" class="rt-footer__brand"><img src="assets/images/logo/rt-groceryhub-logo.png" alt="RT-Groceryhub"></a><nav class="rt-footer__nav" aria-label="Footer"><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav><div class="rt-footer__social"><a href="https://github.com/shahrishabh1513-jsk" target="_blank" rel="noopener" aria-label="GitHub profile"><i class="fab fa-github"></i></a><a href="https://github.com/shahrishabh1513-jsk/RT-Groceryhub" target="_blank" rel="noopener" aria-label="Project repository"><i class="fas fa-code-branch"></i></a></div></div><div class="rt-footer__bottom">© 2026 RT-Groceryhub. All Rights Reserved. | Designed &amp; Developed by RT1504</div></footer>
 
 <!-- Cart Drawer -->
 <div id="cart-overlay" class="cart-overlay"></div>
@@ -419,7 +400,7 @@ const FAQS = [
   { q:'What if my product is not fresh?',          a:'We stand by our Freshness Guarantee. If you\'re unhappy with any product, contact us within 24 hours and we\'ll refund or replace it — no questions asked.' },
   { q:'Can I cancel or modify my order?',          a:'Orders can be cancelled or modified within 5 minutes of placing them. After that, our team is already packing your order. Contact support immediately if you need changes.' },
   { q:'Is online payment safe?',                   a:'Absolutely. All payments are processed through Razorpay, a PCI-DSS Level 1 certified payment gateway. We never store your card details.' },
-  { q:'Do you offer a subscription plan?',         a:'Our GreenBasket Plus subscription (₹199/month) gives you free delivery on all orders, 10% off on all products, and priority customer support. Coming soon!' },
+  { q:'Do you offer a subscription plan?',         a:'Our RT-Groceryhub Plus subscription (₹199/month) gives you free delivery on all orders, 10% off on all products, and priority customer support. Coming soon!' },
   { q:'What coupon codes are available?',          a:'New customers can use WELCOME50 for ₹50 off. Other codes like FRESH20 (20% off), GREEN10 (10% off) are shared in our newsletter and Instagram stories.' },
   { q:'How do I track my order?',                  a:'Once your order is confirmed, you\'ll receive an SMS with a live tracking link. You can also track in real time through the My Orders section of your account.' },
 ];
@@ -441,5 +422,6 @@ function toggleFAQ(item) {
   if (!isOpen) item.classList.add('open');
 }
 </script>
+<script src="assets/js/rt-theme.js"></script>
 </body>
 </html>

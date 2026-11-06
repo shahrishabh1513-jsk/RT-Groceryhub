@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Checkout — GreenBasket</title>
+<title>Checkout — RT-Groceryhub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -101,8 +101,9 @@
 @media(max-width:900px){ .checkout-layout{ grid-template-columns:1fr; } .summary-sticky{ position:static; } }
 @media(max-width:580px){ .form-grid{ grid-template-columns:1fr; } }
 </style>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo/favicon-32.png"><link rel="apple-touch-icon" href="assets/images/logo/favicon-192.png"><link rel="stylesheet" href="assets/css/rt-theme.css">
 </head>
-<body>
+<body><div id="rt-loader" role="status" aria-label="Loading"><img src="assets/images/logo/rt-groceryhub-logo.png" alt="RT-Groceryhub"><div class="rt-bar"><i></i></div><p>Fresh Choices, Happy Living!</p></div>
 <div id="page-progress"></div>
 
 <!-- Pay Loader -->
@@ -115,7 +116,7 @@
 <!-- Navbar -->
 <nav class="navbar">
   <div class="navbar__inner">
-    <a href="index.html" class="navbar__logo">🌿 Green<span>Basket</span></a>
+    <a href="index.html" class="navbar__logo"><img class="rt-logo" src="assets/images/logo/rt-groceryhub-logo.png" alt="RT-Groceryhub – Fresh Healthy"></a>
     <div style="margin-left:auto;display:flex;align-items:center;gap:16px">
       <span style="font-size:.82rem;color:var(--green-600);font-weight:600"><i class="fas fa-lock"></i> Secure Checkout</span>
       <a href="shop.html" class="btn btn-secondary btn-sm"><i class="fas fa-arrow-left"></i> Continue Shopping</a>
@@ -148,25 +149,13 @@
   </div>
 </div>
 
-<footer style="background:var(--gray-50);border-top:1px solid var(--gray-100);padding:20px 0;margin-top:60px">
-  <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
-    <span style="font-size:.82rem;color:var(--gray-400)">© 2025 GreenBasket · All transactions secured by Razorpay</span>
-    <div style="display:flex;gap:14px;color:var(--gray-400);font-size:1rem">
-      <i class="fab fa-cc-visa" title="Visa"></i>
-      <i class="fab fa-cc-mastercard" title="Mastercard"></i>
-      <i class="fab fa-cc-amex" title="Amex"></i>
-      <i class="fas fa-mobile-screen-button" title="UPI"></i>
-      <i class="fas fa-wallet" title="Wallets"></i>
-      <i class="fas fa-university" title="Net Banking"></i>
-    </div>
-  </div>
-</footer>
+<footer class="rt-footer"><div class="rt-footer__row"><a href="index.html" class="rt-footer__brand"><img src="assets/images/logo/rt-groceryhub-logo.png" alt="RT-Groceryhub"></a><nav class="rt-footer__nav" aria-label="Footer"><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav><div class="rt-footer__social"><a href="https://github.com/shahrishabh1513-jsk" target="_blank" rel="noopener" aria-label="GitHub profile"><i class="fab fa-github"></i></a><a href="https://github.com/shahrishabh1513-jsk/RT-Groceryhub" target="_blank" rel="noopener" aria-label="Project repository"><i class="fas fa-code-branch"></i></a></div></div><div class="rt-footer__bottom">© 2026 RT-Groceryhub. All Rights Reserved. | Designed &amp; Developed by RT1504</div></footer>
 
 <script src="assets/js/products.js"></script>
 <script src="assets/js/app.js"></script>
 <script>
 // ================================================================
-//  GreenBasket — Checkout + Razorpay Payment Gateway
+//  RT-Groceryhub — Checkout + Razorpay Payment Gateway
 //
 //  TEST CREDENTIALS (no real money):
 //  Key:  rzp_test_1DP5mmOlF5G5ag
@@ -516,7 +505,7 @@ function placeOrder() {
       key:         RAZORPAY_KEY,
       amount:      Math.round(order.total * 100), // amount in paise
       currency:    'INR',
-      name:        'GreenBasket',
+      name:        'RT-Groceryhub',
       description: `Order ${order.orderId} · ${order.items.length} item${order.items.length!==1?'s':''}`,
       // order_id: '',  // PRODUCTION: pass Razorpay order_id from your server here
       prefill: {
@@ -561,5 +550,6 @@ function placeOrder() {
 // Init
 init();
 </script>
+<script src="assets/js/rt-theme.js"></script>
 </body>
 </html>
