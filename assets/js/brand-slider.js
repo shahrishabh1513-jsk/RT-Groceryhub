@@ -2,10 +2,10 @@
 function initBrandSlider() {
     const container = document.getElementById('brand-slider');
     if (!container) return;
-    
+
     // Duplicate brands for seamless loop
     const allBrands = [...brands, ...brands, ...brands];
-    
+
     container.innerHTML = allBrands.map(brand => `
         <div class="brand-item">
             <div class="brand-logo-wrapper">

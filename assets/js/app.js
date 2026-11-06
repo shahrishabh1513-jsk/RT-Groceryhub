@@ -47,7 +47,7 @@ function initNavbar() {
       document.body.style.overflow = open ? "hidden" : "";
       const spans = hamburger.querySelectorAll("span");
       spans[0].style.transform = open ? "rotate(45deg) translate(5px,5px)" : "";
-      spans[1].style.opacity  = open ? "0" : "1";
+      spans[1].style.opacity = open ? "0" : "1";
       spans[2].style.transform = open ? "rotate(-45deg) translate(5px,-5px)" : "";
     });
     mobileMenu.querySelectorAll("a").forEach(a => {
@@ -105,25 +105,25 @@ function initSearch() {
 
 // ── Cart Drawer ───────────────────────────────────────────────
 function initCartDrawer() {
-  const drawer  = document.getElementById("cart-drawer");
+  const drawer = document.getElementById("cart-drawer");
   const overlay = document.getElementById("cart-overlay");
   if (!drawer) return;
 
-  function open()  { drawer.classList.add("open"); overlay?.classList.add("open"); document.body.style.overflow = "hidden"; renderCartDrawer(); }
+  function open() { drawer.classList.add("open"); overlay?.classList.add("open"); document.body.style.overflow = "hidden"; renderCartDrawer(); }
   function close() { drawer.classList.remove("open"); overlay?.classList.remove("open"); document.body.style.overflow = ""; }
 
   document.querySelectorAll("[data-open-cart]").forEach(el => el.addEventListener("click", open));
   document.getElementById("cart-close")?.addEventListener("click", close);
   overlay?.addEventListener("click", close);
 
-  window.openCartDrawer  = open;
+  window.openCartDrawer = open;
   window.closeCartDrawer = close;
 }
 
 function renderCartDrawer() {
   const container = document.getElementById("cart-drawer-items");
-  const emptyEl   = document.getElementById("cart-drawer-empty");
-  const footEl    = document.getElementById("cart-drawer-foot");
+  const emptyEl = document.getElementById("cart-drawer-empty");
+  const footEl = document.getElementById("cart-drawer-foot");
   if (!container) return;
 
   const cart = getCart();
@@ -164,10 +164,10 @@ function renderCartDrawer() {
 }
 
 function updateDrawerTotals(discount = 0) {
-  const cart      = getCart();
-  const subtotal  = cart.reduce((s,i) => s + i.price*i.qty, 0);
-  const delivery  = subtotal > 499 ? 0 : 49;
-  const total     = subtotal - discount + delivery;
+  const cart = getCart();
+  const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  const delivery = subtotal > 499 ? 0 : 49;
+  const total = subtotal - discount + delivery;
   const el = id => document.getElementById(id);
   if (el("drawer-subtotal")) el("drawer-subtotal").textContent = fmt(subtotal);
   if (el("drawer-discount")) {
@@ -175,33 +175,33 @@ function updateDrawerTotals(discount = 0) {
     el("drawer-discount").style.color = discount > 0 ? "var(--green-600)" : "";
   }
   if (el("drawer-delivery")) el("drawer-delivery").textContent = delivery === 0 ? "FREE" : fmt(delivery);
-  if (el("drawer-total"))    el("drawer-total").textContent    = fmt(total);
-  if (el("drawer-items-count")) el("drawer-items-count").textContent = getCartCount() + " item" + (getCartCount()!==1?"s":"");
+  if (el("drawer-total")) el("drawer-total").textContent = fmt(total);
+  if (el("drawer-items-count")) el("drawer-items-count").textContent = getCartCount() + " item" + (getCartCount() !== 1 ? "s" : "");
   window._cartDiscount = discount;
 }
 
 // ── Coupon System ─────────────────────────────────────────────
 const COUPONS = {
-  "GREEN10":  { type:"pct", val:10, label:"10% off" },
-  "FRESH20":  { type:"pct", val:20, label:"20% off" },
-  "WELCOME50":{ type:"flat", val:50, label:"₹50 off" },
-  "BASKET15": { type:"pct", val:15, label:"15% off" },
+  "GREEN10": { type: "pct", val: 10, label: "10% off" },
+  "FRESH20": { type: "pct", val: 20, label: "20% off" },
+  "WELCOME50": { type: "flat", val: 50, label: "₹50 off" },
+  "BASKET15": { type: "pct", val: 15, label: "15% off" },
 };
 
 function applyCoupon(code) {
   const subtotal = getCartTotal();
-  const msg  = document.getElementById("coupon-msg");
+  const msg = document.getElementById("coupon-msg");
   const coupon = COUPONS[code?.trim().toUpperCase()];
   if (!coupon) {
     if (msg) { msg.textContent = "Invalid coupon code."; msg.className = "coupon-msg err"; }
     updateDrawerTotals(0);
     return 0;
   }
-  const discount = coupon.type === "pct" ? Math.round(subtotal * coupon.val/100) : coupon.val;
+  const discount = coupon.type === "pct" ? Math.round(subtotal * coupon.val / 100) : coupon.val;
   if (msg) { msg.textContent = `✓ Coupon applied: ${coupon.label}`; msg.className = "coupon-msg ok"; }
   updateDrawerTotals(discount);
-  window._couponCode   = code.trim().toUpperCase();
-  window._couponLabel  = coupon.label;
+  window._couponCode = code.trim().toUpperCase();
+  window._couponLabel = coupon.label;
   return discount;
 }
 
@@ -223,15 +223,15 @@ function initProgress() {
   if (!bar) return;
   window.addEventListener("scroll", () => {
     const scrolled = window.scrollY;
-    const total    = document.documentElement.scrollHeight - window.innerHeight;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
     bar.style.width = (scrolled / total * 100) + "%";
-  }, { passive:true });
+  }, { passive: true });
 }
 
 // ── Scroll-to-top ─────────────────────────────────────────────
 function initScrollTop() {
   const btn = document.querySelector(".scroll-top");
-  if (btn) btn.addEventListener("click", () => window.scrollTo({ top:0, behavior:"smooth" }));
+  if (btn) btn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 }
 
 // ── Newsletter form ───────────────────────────────────────────
@@ -252,7 +252,7 @@ function initNewsletter() {
 document.addEventListener("click", e => {
   const btn = e.target.closest(".wish-btn");
   if (!btn) return;
-  const id   = parseInt(btn.dataset.id);
+  const id = parseInt(btn.dataset.id);
   const added = toggleWishlist(id);
   btn.classList.toggle("active", added);
   btn.innerHTML = added ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>';

@@ -18,7 +18,7 @@ function getCartTotal() {
     return cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 }
 
-window.addToCart = function(id, name, price, image) {
+window.addToCart = function (id, name, price, image) {
     const existingItem = cart.find(item => item.id === id);
     if (existingItem) {
         existingItem.quantity += 1;
@@ -30,7 +30,7 @@ window.addToCart = function(id, name, price, image) {
     renderShopProducts(); // Re-render to update button states
 };
 
-window.updateQuantity = function(id, change) {
+window.updateQuantity = function (id, change) {
     const item = cart.find(item => item.id === id);
     if (item) {
         item.quantity += change;
@@ -43,7 +43,7 @@ window.updateQuantity = function(id, change) {
     }
 };
 
-window.removeFromCart = function(id) {
+window.removeFromCart = function (id) {
     cart = cart.filter(item => item.id !== id);
     saveCart();
     renderCartPage();
@@ -68,13 +68,13 @@ function showNotification(message, type = 'success') {
 function renderCartSidebar() {
     const container = document.getElementById('cart-sidebar-items');
     if (!container) return;
-    
+
     if (cart.length === 0) {
         container.innerHTML = '<div class="text-center py-8 text-gray-500">Your cart is empty</div>';
         document.getElementById('cart-sidebar-total').textContent = '₹0';
         return;
     }
-    
+
     container.innerHTML = cart.map(item => `
         <div class="cart-sidebar-item">
             <img src="${item.image}" alt="${item.name}">
@@ -91,7 +91,7 @@ function renderCartSidebar() {
             <div class="font-bold">₹${item.price * item.quantity}</div>
         </div>
     `).join('');
-    
+
     document.getElementById('cart-sidebar-total').textContent = `₹${getCartTotal()}`;
 }
 
@@ -104,7 +104,7 @@ function toggleCartSidebar() {
 function loadHeader() {
     const headerPlaceholder = document.getElementById('header-placeholder');
     if (!headerPlaceholder) return;
-    
+
     headerPlaceholder.innerHTML = `
         <header class="main-header">
             <nav class="w-full border-b-2 border-green-300 lg:border-b-0">
@@ -149,7 +149,7 @@ function loadHeader() {
             </nav>
         </header>
     `;
-    
+
     // Add shop link protection
     const shopLink = document.getElementById('shop-nav-link');
     if (shopLink) {
@@ -167,7 +167,7 @@ function loadHeader() {
 function loadFooter() {
     const footerPlaceholder = document.getElementById('footer-placeholder');
     if (!footerPlaceholder) return;
-    
+
     footerPlaceholder.innerHTML = `
         <div class="relative mt-20">
             <div class="absolute w-5/6 -top-28 left-1/2 transform -translate-x-1/2 lg:w-5/6 flex flex-col lg:flex-row gap-4 p-6 bg-[#EFEBE4] rounded-3xl z-20 shadow-xl">
@@ -218,7 +218,7 @@ function loadFooter() {
     `;
 }
 
-window.subscribeNewsletter = function() {
+window.subscribeNewsletter = function () {
     const email = document.getElementById('newsletter-email')?.value;
     if (email && email.includes('@')) {
         showNotification(`Thanks for subscribing! ${email} will receive exclusive offers.`);
@@ -232,7 +232,7 @@ window.subscribeNewsletter = function() {
 function renderPopularProducts() {
     const grid = document.getElementById('popular-products-grid');
     if (!grid) return;
-    
+
     const popular = productsDatabase.slice(0, 6);
     grid.innerHTML = popular.map(product => `
         <div class="product-card bg-white rounded-lg p-4 shadow-sm">
@@ -267,10 +267,10 @@ function openQuickView(id) {
     const product = getProductById(id);
     if (!product) return;
     quickViewProduct = product;
-    
+
     const modal = document.getElementById('quick-view-modal');
     const content = document.getElementById('quick-view-content');
-    
+
     content.innerHTML = `
         <div class="flex flex-col md:flex-row gap-6">
             <div class="md:w-1/2">
@@ -285,7 +285,7 @@ function openQuickView(id) {
                 <div class="flex gap-3 items-center mt-4">
                     <span class="text-3xl font-bold text-orange-600">₹${product.price}</span>
                     <span class="text-gray-400 line-through text-xl">₹${product.oldPrice}</span>
-                    <span class="bg-green-100 text-green-600 px-2 py-1 rounded-lg text-sm">${Math.round((1 - product.price/product.oldPrice) * 100)}% OFF</span>
+                    <span class="bg-green-100 text-green-600 px-2 py-1 rounded-lg text-sm">${Math.round((1 - product.price / product.oldPrice) * 100)}% OFF</span>
                 </div>
                 <p class="text-gray-600 mt-4">${product.description}</p>
                 <div class="mt-4">
@@ -315,7 +315,7 @@ function openQuickView(id) {
             </div>
         </div>
     `;
-    
+
     modal.classList.add('active');
 }
 
@@ -334,16 +334,16 @@ function buyNow(id) {
 function renderShopProducts(filteredProducts = null) {
     const grid = document.getElementById('shop-products-grid');
     if (!grid) return;
-    
+
     let products = filteredProducts || productsDatabase;
     const countEl = document.getElementById('products-count');
     if (countEl) countEl.textContent = `Showing ${products.length} products`;
-    
+
     if (products.length === 0) {
         grid.innerHTML = '<div class="col-span-full text-center py-12 text-gray-500">No products found</div>';
         return;
     }
-    
+
     grid.innerHTML = products.map(product => `
         <div class="product-card bg-white rounded-xl p-4 shadow-sm border border-gray-100">
             <img src="${product.image}" alt="${product.name}" class="w-full h-44 object-cover rounded-lg cursor-pointer" onclick="location.href='product-detail.html?id=${product.id}'" onerror="this.onerror=null;this.src='https://placehold.co/300x300/dcfce7/16a34a?text=RT+GroceryHub'">
@@ -356,7 +356,7 @@ function renderShopProducts(filteredProducts = null) {
             <div class="flex gap-2 items-center mt-1">
                 <span class="text-orange-600 font-bold text-xl">₹${product.price}</span>
                 <span class="text-gray-400 line-through text-sm">₹${product.oldPrice}</span>
-                <span class="bg-green-100 text-green-600 text-xs px-2 py-0.5 rounded-full">${Math.round((1 - product.price/product.oldPrice) * 100)}%</span>
+                <span class="bg-green-100 text-green-600 text-xs px-2 py-0.5 rounded-full">${Math.round((1 - product.price / product.oldPrice) * 100)}%</span>
             </div>
             
             <div class="product-actions mt-3">
@@ -382,7 +382,7 @@ function renderShopProducts(filteredProducts = null) {
 function renderCartPage() {
     const container = document.getElementById('cart-items-container');
     if (!container) return;
-    
+
     if (cart.length === 0) {
         container.innerHTML = `
             <div class="text-center py-16">
@@ -395,7 +395,7 @@ function renderCartPage() {
         if (document.getElementById('cart-total')) document.getElementById('cart-total').textContent = '₹40';
         return;
     }
-    
+
     container.innerHTML = cart.map(item => `
         <div class="flex gap-4 p-4 border-b">
             <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded-lg">
@@ -412,7 +412,7 @@ function renderCartPage() {
             <div class="font-bold text-lg">₹${item.price * item.quantity}</div>
         </div>
     `).join('');
-    
+
     const subtotal = getCartTotal();
     if (document.getElementById('cart-subtotal')) document.getElementById('cart-subtotal').textContent = `₹${subtotal}`;
     if (document.getElementById('cart-total')) document.getElementById('cart-total').textContent = `₹${subtotal + 40}`;
@@ -426,10 +426,10 @@ function setupFilters() {
     const minPrice = document.getElementById('min-price');
     const maxPrice = document.getElementById('max-price');
     const categoryCheckboxes = document.querySelectorAll('.category-filter');
-    
+
     function filterProducts() {
         let filtered = [...productsDatabase];
-        
+
         // Category filter (radio style - only one category)
         let selectedCategory = null;
         categoryCheckboxes.forEach(cb => {
@@ -437,36 +437,36 @@ function setupFilters() {
                 selectedCategory = cb.value;
             }
         });
-        
+
         if (selectedCategory) {
             filtered = filtered.filter(p => p.category === selectedCategory);
         }
-        
+
         // Search filter
         if (searchInput && searchInput.value) {
             const query = searchInput.value.toLowerCase();
             filtered = filtered.filter(p => p.name.toLowerCase().includes(query));
         }
-        
+
         // Price filter
         const min = parseInt(minPrice?.value) || 0;
         const max = parseInt(maxPrice?.value) || 1000;
         filtered = filtered.filter(p => p.price >= min && p.price <= max);
-        
+
         // Sort
         if (sortSelect) {
             filtered = sortProducts(filtered, sortSelect.value);
         }
-        
+
         renderShopProducts(filtered);
     }
-    
+
     if (searchInput) searchInput.addEventListener('input', filterProducts);
     if (sortSelect) sortSelect.addEventListener('change', filterProducts);
     if (minPrice) minPrice.addEventListener('input', filterProducts);
     if (maxPrice) maxPrice.addEventListener('input', filterProducts);
     categoryCheckboxes.forEach(cb => cb.addEventListener('change', filterProducts));
-    
+
     if (resetBtn) {
         resetBtn.addEventListener('click', () => {
             categoryCheckboxes.forEach(cb => cb.checked = false);
@@ -479,26 +479,26 @@ function setupFilters() {
             filterProducts();
         });
     }
-    
+
     filterProducts();
 }
 
 // ========== CHECKOUT ==========
 function loadOrderSummary() {
     if (!document.getElementById('order-items-list')) return;
-    
+
     if (cart.length === 0) {
         window.location.href = 'cart.html';
         return;
     }
-    
+
     document.getElementById('order-items-list').innerHTML = cart.map(item => `
         <div class="flex justify-between py-2 border-b">
             <span>${item.name} x ${item.quantity}</span>
             <span>₹${item.price * item.quantity}</span>
         </div>
     `).join('');
-    
+
     const subtotal = getCartTotal();
     document.getElementById('order-subtotal').textContent = `₹${subtotal}`;
     document.getElementById('order-total').textContent = `₹${subtotal + 40}`;
@@ -507,18 +507,18 @@ function loadOrderSummary() {
 function setupCheckout() {
     const form = document.getElementById('checkout-form');
     if (!form) return;
-    
+
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        
+
         if (cart.length === 0) {
             showNotification('Your cart is empty!', 'error');
             window.location.href = 'shop.html';
             return;
         }
-        
+
         const currentUser = JSON.parse(localStorage.getItem('currentUser')) || {};
-        
+
         const orderData = {
             orderId: 'ORD' + Date.now(),
             customer: {
@@ -534,15 +534,15 @@ function setupCheckout() {
             orderDate: new Date().toISOString(),
             status: 'delivered'
         };
-        
+
         const orders = JSON.parse(localStorage.getItem('orders')) || [];
         orders.push(orderData);
         localStorage.setItem('orders', JSON.stringify(orders));
         localStorage.setItem('lastOrder', JSON.stringify(orderData));
-        
+
         cart = [];
         saveCart();
-        
+
         showNotification('Order placed successfully!');
         window.location.href = 'order-success.html';
     });
@@ -560,7 +560,7 @@ function checkAuthAndRedirect() {
 function setupAuth() {
     const loginForm = document.getElementById('login-form');
     const registerForm = document.getElementById('register-form');
-    
+
     if (loginForm) {
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -568,7 +568,7 @@ function setupAuth() {
             const password = document.getElementById('login-password')?.value;
             const users = JSON.parse(localStorage.getItem('users')) || [];
             const user = users.find(u => (u.email === email || u.phone === email) && u.password === password);
-            
+
             if (user) {
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 showNotification('Login successful!');
@@ -583,7 +583,7 @@ function setupAuth() {
             }
         });
     }
-    
+
     if (registerForm) {
         registerForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -592,23 +592,23 @@ function setupAuth() {
             const phone = document.getElementById('reg-phone')?.value;
             const password = document.getElementById('reg-password')?.value;
             const confirm = document.getElementById('reg-confirm')?.value;
-            
+
             if (password !== confirm) {
                 showNotification('Passwords do not match!', 'error');
                 return;
             }
-            
+
             if (password.length < 6) {
                 showNotification('Password must be at least 6 characters', 'error');
                 return;
             }
-            
+
             const users = JSON.parse(localStorage.getItem('users')) || [];
             if (users.find(u => u.email === email)) {
                 showNotification('Email already registered!', 'error');
                 return;
             }
-            
+
             const newUser = { name, email, phone, password, joinDate: new Date().toISOString() };
             users.push(newUser);
             localStorage.setItem('users', JSON.stringify(users));
@@ -628,7 +628,7 @@ function setupAuth() {
 function printBill(orderId) {
     const orders = JSON.parse(localStorage.getItem('orders')) || [];
     const order = orders.find(o => o.orderId === orderId);
-    
+
     if (order) {
         const printWindow = window.open('', '_blank');
         printWindow.document.write(`
@@ -703,10 +703,10 @@ document.addEventListener('DOMContentLoaded', () => {
     loadOrderSummary();
     setupCheckout();
     setupAuth();
-    
+
     // Initialize brand slider
     if (typeof initBrandSlider === 'function') initBrandSlider();
-    
+
     if (typeof AOS !== 'undefined') {
         AOS.init({ duration: 800, once: true });
     }
