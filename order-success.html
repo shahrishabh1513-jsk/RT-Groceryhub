@@ -1,206 +1,465 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Order Confirmed — RT-Groceryhub</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="assets/css/style.css">
-<style>
-/* Confetti */
-.confetti-piece {
-  position:fixed; top:-20px; border-radius:3px; z-index:9998;
-  animation:confettiFall linear forwards;
-}
-@keyframes confettiFall {
-  0%   { transform:translateY(-20px) rotate(0deg); opacity:1; }
-  100% { transform:translateY(110vh)  rotate(720deg); opacity:0; }
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmed — RT-Groceryhub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* Confetti */
+    .confetti-piece {
+      position: fixed;
+      top: -20px;
+      border-radius: 3px;
+      z-index: 9998;
+      animation: confettiFall linear forwards;
+    }
 
-/* Success hero */
-.success-hero {
-  background:linear-gradient(135deg,#0a3d1a,#16a34a 60%,#22c55e);
-  min-height:320px; display:flex; align-items:center; justify-content:center;
-  text-align:center; color:#fff; padding:60px 20px; position:relative; overflow:hidden;
-}
-.success-hero::before {
-  content:''; position:absolute; inset:0;
-  background:url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='3' fill='rgba(255,255,255,0.06)'/%3E%3C/svg%3E");
-}
-.success-circle {
-  width:96px; height:96px; border-radius:50%; background:rgba(255,255,255,.15);
-  backdrop-filter:blur(8px); border:3px solid rgba(255,255,255,.3);
-  display:flex; align-items:center; justify-content:center; margin:0 auto 24px;
-  font-size:2.8rem; animation:popIn .5s cubic-bezier(0.34,1.56,0.64,1) both;
-}
-@keyframes popIn { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
-.success-hero h1 { font-size:2.2rem; margin-bottom:10px; }
-.success-hero p  { opacity:.85; font-size:1rem; }
-.order-ref { display:inline-block; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.3); border-radius:50px; padding:6px 20px; font-size:.88rem; font-weight:700; margin-top:14px; letter-spacing:.5px; }
+    @keyframes confettiFall {
+      0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 1;
+      }
 
-/* Progress tracker */
-.tracker { display:flex; align-items:flex-start; justify-content:center; gap:0; margin:40px 0; padding:0 20px; overflow-x:auto; }
-.tracker-step { display:flex; flex-direction:column; align-items:center; text-align:center; flex:1; min-width:100px; }
-.tracker-step__icon { width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.1rem; margin-bottom:10px; transition:var(--transition); }
-.tracker-step.done   .tracker-step__icon { background:var(--green-600); color:#fff; box-shadow:0 4px 14px rgba(22,163,74,.4); }
-.tracker-step.active .tracker-step__icon { background:var(--orange); color:#fff; animation:pulseGlow 2s infinite; }
-.tracker-step.todo   .tracker-step__icon { background:var(--gray-100); color:var(--gray-400); }
-.tracker-step__label { font-size:.78rem; font-weight:600; color:var(--gray-600); }
-.tracker-step.done .tracker-step__label   { color:var(--green-700); }
-.tracker-step.active .tracker-step__label { color:var(--orange); }
-.tracker-line { flex:1; height:2px; background:var(--gray-200); margin-top:24px; transition:var(--transition); min-width:40px; }
-.tracker-line.done { background:var(--green-500); }
+      100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
 
-/* Receipt layout */
-.receipt-layout { display:grid; grid-template-columns:1fr 380px; gap:28px; padding-bottom:60px; }
-.receipt-card { background:var(--white); border-radius:var(--radius-xl); padding:28px; border:1.5px solid var(--gray-100); box-shadow:var(--shadow-sm); }
-.receipt-card__title { font-family:'Sora',sans-serif; font-size:.95rem; font-weight:700; display:flex; align-items:center; gap:8px; padding-bottom:14px; border-bottom:1px solid var(--gray-100); margin-bottom:18px; color:var(--gray-700); }
-.receipt-card__title i { color:var(--green-600); }
+    /* Success hero */
+    .success-hero {
+      background: linear-gradient(135deg, #0a3d1a, #16a34a 60%, #22c55e);
+      min-height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      padding: 60px 20px;
+      position: relative;
+      overflow: hidden;
+    }
 
-.order-item { display:flex; gap:12px; padding:12px 0; border-bottom:1px solid var(--gray-100); }
-.order-item:last-child { border-bottom:none; }
-.order-item img { width:60px; height:60px; border-radius:10px; object-fit:cover; flex-shrink:0; }
-.order-item__info { flex:1; }
-.order-item__name  { font-weight:600; font-size:.87rem; }
-.order-item__brand { font-size:.73rem; color:var(--green-600); font-weight:600; }
-.order-item__meta  { display:flex; justify-content:space-between; margin-top:6px; font-size:.8rem; color:var(--gray-500); }
+    .success-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='3' fill='rgba(255,255,255,0.06)'/%3E%3C/svg%3E");
+    }
 
-.info-row { display:flex; justify-content:space-between; align-items:flex-start; padding:8px 0; border-bottom:1px solid var(--gray-100); font-size:.87rem; }
-.info-row:last-child { border-bottom:none; }
-.info-row span:first-child { color:var(--gray-500); min-width:120px; }
-.info-row span:last-child  { font-weight:600; text-align:right; color:var(--gray-800); }
+    .success-circle {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .15);
+      backdrop-filter: blur(8px);
+      border: 3px solid rgba(255, 255, 255, .3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 2.8rem;
+      animation: popIn .5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
 
-.total-row-receipt { background:var(--green-50); border-radius:10px; padding:14px 16px; display:flex; justify-content:space-between; align-items:center; margin-top:16px; }
-.total-row-receipt span:first-child { font-weight:700; color:var(--gray-700); }
-.total-row-receipt span:last-child  { font-size:1.25rem; font-weight:900; color:var(--green-700); }
+    @keyframes popIn {
+      from {
+        transform: scale(0);
+        opacity: 0
+      }
 
-.action-buttons { display:flex; flex-direction:column; gap:10px; margin-top:20px; }
-.action-buttons .btn { justify-content:center; }
+      to {
+        transform: scale(1);
+        opacity: 1
+      }
+    }
 
-/* Print styles */
-@media print {
-  .navbar, .no-print, footer, .action-buttons, .scroll-top { display:none !important; }
-  .receipt-layout { grid-template-columns:1fr; }
-  body { background:#fff; }
-}
-@media(max-width:900px){ .receipt-layout{ grid-template-columns:1fr; } }
-</style>
-<link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo/favicon-32.png"><link rel="apple-touch-icon" href="assets/images/logo/favicon-192.png"><link rel="stylesheet" href="assets/css/rt-theme.css">
+    .success-hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .success-hero p {
+      opacity: .85;
+      font-size: 1rem;
+    }
+
+    .order-ref {
+      display: inline-block;
+      background: rgba(255, 255, 255, .15);
+      border: 1px solid rgba(255, 255, 255, .3);
+      border-radius: 50px;
+      padding: 6px 20px;
+      font-size: .88rem;
+      font-weight: 700;
+      margin-top: 14px;
+      letter-spacing: .5px;
+    }
+
+    /* Progress tracker */
+    .tracker {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0;
+      margin: 40px 0;
+      padding: 0 20px;
+      overflow-x: auto;
+    }
+
+    .tracker-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      flex: 1;
+      min-width: 100px;
+    }
+
+    .tracker-step__icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      transition: var(--transition);
+    }
+
+    .tracker-step.done .tracker-step__icon {
+      background: var(--green-600);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(22, 163, 74, .4);
+    }
+
+    .tracker-step.active .tracker-step__icon {
+      background: var(--orange);
+      color: #fff;
+      animation: pulseGlow 2s infinite;
+    }
+
+    .tracker-step.todo .tracker-step__icon {
+      background: var(--gray-100);
+      color: var(--gray-400);
+    }
+
+    .tracker-step__label {
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--gray-600);
+    }
+
+    .tracker-step.done .tracker-step__label {
+      color: var(--green-700);
+    }
+
+    .tracker-step.active .tracker-step__label {
+      color: var(--orange);
+    }
+
+    .tracker-line {
+      flex: 1;
+      height: 2px;
+      background: var(--gray-200);
+      margin-top: 24px;
+      transition: var(--transition);
+      min-width: 40px;
+    }
+
+    .tracker-line.done {
+      background: var(--green-500);
+    }
+
+    /* Receipt layout */
+    .receipt-layout {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 28px;
+      padding-bottom: 60px;
+    }
+
+    .receipt-card {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      border: 1.5px solid var(--gray-100);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .receipt-card__title {
+      font-family: 'Sora', sans-serif;
+      font-size: .95rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--gray-100);
+      margin-bottom: 18px;
+      color: var(--gray-700);
+    }
+
+    .receipt-card__title i {
+      color: var(--green-600);
+    }
+
+    .order-item {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .order-item:last-child {
+      border-bottom: none;
+    }
+
+    .order-item img {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .order-item__info {
+      flex: 1;
+    }
+
+    .order-item__name {
+      font-weight: 600;
+      font-size: .87rem;
+    }
+
+    .order-item__brand {
+      font-size: .73rem;
+      color: var(--green-600);
+      font-weight: 600;
+    }
+
+    .order-item__meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+      font-size: .8rem;
+      color: var(--gray-500);
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--gray-100);
+      font-size: .87rem;
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .info-row span:first-child {
+      color: var(--gray-500);
+      min-width: 120px;
+    }
+
+    .info-row span:last-child {
+      font-weight: 600;
+      text-align: right;
+      color: var(--gray-800);
+    }
+
+    .total-row-receipt {
+      background: var(--green-50);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+    }
+
+    .total-row-receipt span:first-child {
+      font-weight: 700;
+      color: var(--gray-700);
+    }
+
+    .total-row-receipt span:last-child {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--green-700);
+    }
+
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .action-buttons .btn {
+      justify-content: center;
+    }
+
+    /* Print styles */
+    @media print {
+
+      .navbar,
+      .no-print,
+      footer,
+      .action-buttons,
+      .scroll-top {
+        display: none !important;
+      }
+
+      .receipt-layout {
+        grid-template-columns: 1fr;
+      }
+
+      body {
+        background: #fff;
+      }
+    }
+
+    @media(max-width:900px) {
+      .receipt-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/images/logo/favicon-192.png">
+  <link rel="stylesheet" href="assets/css/rt-theme.css">
 </head>
-<body><div id="rt-loader" role="status" aria-label="Loading"><img src="assets/images/logo/rt-groceryhub-logo.png" alt="RT-Groceryhub"><div class="rt-bar"><i></i></div><p>Fresh Choices, Happy Living!</p></div>
 
-<!-- Confetti container -->
-<div id="confetti-container"></div>
-
-<!-- Navbar -->
-<nav class="navbar no-print">
-  <div class="navbar__inner">
-    <a href="index.html" class="navbar__logo"><img class="rt-logo" src="assets/images/logo/rt-groceryhub-logo.png" alt="RT-Groceryhub – Fresh Healthy"></a>
-    <div style="margin-left:auto;display:flex;gap:12px">
-      <a href="shop.html" class="btn btn-secondary btn-sm"><i class="fas fa-store"></i> Continue Shopping</a>
-      <a href="account.html" class="btn btn-primary btn-sm"><i class="fas fa-receipt"></i> My Orders</a>
-    </div>
+<body>
+  <div id="rt-loader" role="status" aria-label="Loading"><img src="assets/images/logo/rt-groceryhub-logo.png"
+      alt="RT-Groceryhub">
+    <div class="rt-bar"><i></i></div>
+    <p>Fresh Choices, Happy Living!</p>
   </div>
-</nav>
 
-<!-- Success Hero -->
-<div class="success-hero" id="success-hero">
-  <div style="position:relative;z-index:1" data-aos>
-    <div class="success-circle" id="success-icon">✓</div>
-    <h1>Order Confirmed!</h1>
-    <p>Thank you for shopping with RT-Groceryhub 💚<br>Your fresh groceries are being packed right now.</p>
-    <div class="order-ref" id="order-ref-display">Loading…</div>
-  </div>
-</div>
+  <!-- Confetti container -->
+  <div id="confetti-container"></div>
 
-<!-- Delivery Tracker -->
-<div class="container">
-  <div class="tracker no-print">
-    <div class="tracker-step done">
-      <div class="tracker-step__icon"><i class="fas fa-check"></i></div>
-      <div class="tracker-step__label">Order Placed</div>
+  <!-- Navbar -->
+  <nav class="navbar no-print">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo"><img class="rt-logo" src="assets/images/logo/rt-groceryhub-logo.png"
+          alt="RT-Groceryhub – Fresh Healthy"></a>
+      <div style="margin-left:auto;display:flex;gap:12px">
+        <a href="shop.html" class="btn btn-secondary btn-sm"><i class="fas fa-store"></i> Continue Shopping</a>
+        <a href="account.html" class="btn btn-primary btn-sm"><i class="fas fa-receipt"></i> My Orders</a>
+      </div>
     </div>
-    <div class="tracker-line done"></div>
-    <div class="tracker-step done">
-      <div class="tracker-step__icon"><i class="fas fa-box"></i></div>
-      <div class="tracker-step__label">Being Packed</div>
-    </div>
-    <div class="tracker-line done"></div>
-    <div class="tracker-step active">
-      <div class="tracker-step__icon"><i class="fas fa-truck-fast"></i></div>
-      <div class="tracker-step__label">Out for Delivery</div>
-    </div>
-    <div class="tracker-line"></div>
-    <div class="tracker-step todo">
-      <div class="tracker-step__icon"><i class="fas fa-house"></i></div>
-      <div class="tracker-step__label">Delivered</div>
+  </nav>
+
+  <!-- Success Hero -->
+  <div class="success-hero" id="success-hero">
+    <div style="position:relative;z-index:1" data-aos>
+      <div class="success-circle" id="success-icon">✓</div>
+      <h1>Order Confirmed!</h1>
+      <p>Thank you for shopping with RT-Groceryhub 💚<br>Your fresh groceries are being packed right now.</p>
+      <div class="order-ref" id="order-ref-display">Loading…</div>
     </div>
   </div>
 
-  <!-- Estimated time badge -->
-  <div style="text-align:center;margin-bottom:40px" class="no-print">
-    <div style="display:inline-flex;align-items:center;gap:10px;background:var(--orange);color:#fff;padding:10px 24px;border-radius:50px;font-weight:700;font-size:.92rem;box-shadow:0 4px 14px rgba(249,115,22,.35)">
-      <i class="fas fa-clock"></i>
-      Estimated delivery: <span id="eta-text">25–40 minutes</span>
-    </div>
-  </div>
-
-  <!-- Receipt -->
-  <div class="receipt-layout" id="receipt-layout">
-    <p style="text-align:center;color:var(--gray-400);padding:40px;grid-column:span 2">
-      <i class="fas fa-spinner fa-spin"></i> Loading your order details…
-    </p>
-  </div>
-</div>
-
-<!-- Recommended section -->
-<section class="section no-print" style="background:var(--gray-50)">
+  <!-- Delivery Tracker -->
   <div class="container">
-    <div class="section-header">
-      <span class="section-header__eyebrow">Don't Miss Out</span>
-      <h2>You Might Also Like</h2>
-      <div class="section-divider"></div>
+    <div class="tracker no-print">
+      <div class="tracker-step done">
+        <div class="tracker-step__icon"><i class="fas fa-check"></i></div>
+        <div class="tracker-step__label">Order Placed</div>
+      </div>
+      <div class="tracker-line done"></div>
+      <div class="tracker-step done">
+        <div class="tracker-step__icon"><i class="fas fa-box"></i></div>
+        <div class="tracker-step__label">Being Packed</div>
+      </div>
+      <div class="tracker-line done"></div>
+      <div class="tracker-step active">
+        <div class="tracker-step__icon"><i class="fas fa-truck-fast"></i></div>
+        <div class="tracker-step__label">Out for Delivery</div>
+      </div>
+      <div class="tracker-line"></div>
+      <div class="tracker-step todo">
+        <div class="tracker-step__icon"><i class="fas fa-house"></i></div>
+        <div class="tracker-step__label">Delivered</div>
+      </div>
     </div>
-    <div class="grid-4" id="rec-products"></div>
+
+    <!-- Estimated time badge -->
+    <div style="text-align:center;margin-bottom:40px" class="no-print">
+      <div
+        style="display:inline-flex;align-items:center;gap:10px;background:var(--orange);color:#fff;padding:10px 24px;border-radius:50px;font-weight:700;font-size:.92rem;box-shadow:0 4px 14px rgba(249,115,22,.35)">
+        <i class="fas fa-clock"></i>
+        Estimated delivery: <span id="eta-text">25–40 minutes</span>
+      </div>
+    </div>
+
+    <!-- Receipt -->
+    <div class="receipt-layout" id="receipt-layout">
+      <p style="text-align:center;color:var(--gray-400);padding:40px;grid-column:span 2">
+        <i class="fas fa-spinner fa-spin"></i> Loading your order details…
+      </p>
+    </div>
   </div>
-</section>
 
-<button class="scroll-top no-print"><i class="fas fa-chevron-up"></i></button>
+  <!-- Recommended section -->
+  <section class="section no-print" style="background:var(--gray-50)">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-header__eyebrow">Don't Miss Out</span>
+        <h2>You Might Also Like</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="grid-4" id="rec-products"></div>
+    </div>
+  </section>
 
-<script src="assets/js/products.js"></script>
-<script src="assets/js/app.js"></script>
-<script>
-// ── Load order ──
-const order = JSON.parse(localStorage.getItem('gb_lastorder') || 'null');
+  <button class="scroll-top no-print"><i class="fas fa-chevron-up"></i></button>
 
-if (!order) {
-  document.getElementById('receipt-layout').innerHTML = `
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    // ── Load order ──
+    const order = JSON.parse(localStorage.getItem('gb_lastorder') || 'null');
+
+    if (!order) {
+      document.getElementById('receipt-layout').innerHTML = `
     <div style="text-align:center;padding:60px;grid-column:span 2">
       <i class="fas fa-exclamation-circle fa-3x" style="color:var(--gray-300);margin-bottom:20px"></i>
       <h2 style="color:var(--gray-600);margin-bottom:12px">No Order Found</h2>
       <p style="color:var(--gray-400);margin-bottom:20px">It looks like you haven't placed an order yet.</p>
       <a href="shop.html" class="btn btn-primary"><i class="fas fa-store"></i> Start Shopping</a>
     </div>`;
-  document.getElementById('success-icon').textContent = '!';
-  document.getElementById('order-ref-display').textContent = 'No recent order';
-} else {
-  // ── Set order reference ──
-  document.getElementById('order-ref-display').textContent = `Order #${order.orderId}`;
-  document.title = `Order ${order.orderId} — RT-Groceryhub`;
+      document.getElementById('success-icon').textContent = '!';
+      document.getElementById('order-ref-display').textContent = 'No recent order';
+    } else {
+      // ── Set order reference ──
+      document.getElementById('order-ref-display').textContent = `Order #${order.orderId}`;
+      document.title = `Order ${order.orderId} — RT-Groceryhub`;
 
-  // ── Render receipt ──
-  const c      = order.customer;
-  const isPaid = order.status === 'paid';
+      // ── Render receipt ──
+      const c = order.customer;
+      const isPaid = order.status === 'paid';
 
-  document.getElementById('receipt-layout').innerHTML = `
+      document.getElementById('receipt-layout').innerHTML = `
     <!-- Order Items -->
     <div>
       <div class="receipt-card">
         <div class="receipt-card__title"><i class="fas fa-shopping-basket"></i> Items Ordered</div>
-        ${order.items.map(item=>`
+        ${order.items.map(item => `
           <div class="order-item">
             <img src="${item.image}" alt="${item.name}" onerror="this.src='https://placehold.co/60x60/dcfce7/16a34a?text=GB'">
             <div class="order-item__info">
@@ -220,10 +479,10 @@ if (!order) {
         <p style="font-size:.87rem;color:var(--gray-700);line-height:1.7">
           <strong>${c.firstName} ${c.lastName}</strong><br>
           ${c.address},<br>
-          ${c.city}${c.state?', '+c.state:''} — ${c.pincode}<br>
+          ${c.city}${c.state ? ', ' + c.state : ''} — ${c.pincode}<br>
           <i class="fas fa-phone" style="color:var(--green-600);font-size:.75rem"></i> ${c.phone}<br>
           <i class="fas fa-envelope" style="color:var(--green-600);font-size:.75rem"></i> ${c.email}
-          ${c.notes?`<br><i class="fas fa-sticky-note" style="color:var(--green-600);font-size:.75rem"></i> ${c.notes}`:''}
+          ${c.notes ? `<br><i class="fas fa-sticky-note" style="color:var(--green-600);font-size:.75rem"></i> ${c.notes}` : ''}
         </p>
       </div>
     </div>
@@ -239,25 +498,25 @@ if (!order) {
         </div>
         <div class="info-row">
           <span>Order Date</span>
-          <span>${new Date(order.date).toLocaleString('en-IN',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})}</span>
+          <span>${new Date(order.date).toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</span>
         </div>
         <div class="info-row">
           <span>Payment</span>
           <span>${order.paymentMethod}</span>
         </div>
-        ${order.paymentId?`<div class="info-row"><span>Payment ID</span><span style="font-family:monospace;font-size:.78rem;color:var(--green-700)">${order.paymentId}</span></div>`:''}
+        ${order.paymentId ? `<div class="info-row"><span>Payment ID</span><span style="font-family:monospace;font-size:.78rem;color:var(--green-700)">${order.paymentId}</span></div>` : ''}
         <div class="info-row">
           <span>Status</span>
-          <span class="badge-status ${isPaid?'badge-status--paid':order.status==='confirmed'?'badge-status--paid':'badge-status--pending'}">
-            ${isPaid?'✓ Paid':order.status==='confirmed'?'✓ Confirmed':'Pending'}
+          <span class="badge-status ${isPaid ? 'badge-status--paid' : order.status === 'confirmed' ? 'badge-status--paid' : 'badge-status--pending'}">
+            ${isPaid ? '✓ Paid' : order.status === 'confirmed' ? '✓ Confirmed' : 'Pending'}
           </span>
         </div>
 
         <div style="height:1px;background:var(--gray-100);margin:14px 0"></div>
 
         <div class="info-row"><span>Subtotal</span><span>${fmt(order.subtotal)}</span></div>
-        ${order.discount>0?`<div class="info-row" style="color:var(--green-600)"><span>Discount (${order.coupon})</span><span>−${fmt(order.discount)}</span></div>`:''}
-        <div class="info-row"><span>Delivery</span><span>${order.delivery===0?'<span style="color:var(--green-600);font-weight:700">FREE</span>':fmt(order.delivery)}</span></div>
+        ${order.discount > 0 ? `<div class="info-row" style="color:var(--green-600)"><span>Discount (${order.coupon})</span><span>−${fmt(order.discount)}</span></div>` : ''}
+        <div class="info-row"><span>Delivery</span><span>${order.delivery === 0 ? '<span style="color:var(--green-600);font-weight:700">FREE</span>' : fmt(order.delivery)}</span></div>
 
         <div class="total-row-receipt">
           <span>Total Paid</span>
@@ -279,53 +538,65 @@ if (!order) {
       </div>
     </div>`;
 
-  // ── Confetti ──
-  const colors = ['#22c55e','#16a34a','#f97316','#fde68a','#ffffff','#86efac','#fed7aa'];
-  const container = document.getElementById('confetti-container');
-  for (let i = 0; i < 80; i++) {
-    const el = document.createElement('div');
-    el.className = 'confetti-piece';
-    el.style.cssText = `
-      left:${Math.random()*100}%;
-      width:${6+Math.random()*8}px;
-      height:${6+Math.random()*8}px;
-      background:${colors[Math.floor(Math.random()*colors.length)]};
-      animation-duration:${2+Math.random()*3}s;
-      animation-delay:${Math.random()*1.5}s;
-      border-radius:${Math.random()>0.5?'50%':'2px'};
+      // ── Confetti ──
+      const colors = ['#22c55e', '#16a34a', '#f97316', '#fde68a', '#ffffff', '#86efac', '#fed7aa'];
+      const container = document.getElementById('confetti-container');
+      for (let i = 0; i < 80; i++) {
+        const el = document.createElement('div');
+        el.className = 'confetti-piece';
+        el.style.cssText = `
+      left:${Math.random() * 100}%;
+      width:${6 + Math.random() * 8}px;
+      height:${6 + Math.random() * 8}px;
+      background:${colors[Math.floor(Math.random() * colors.length)]};
+      animation-duration:${2 + Math.random() * 3}s;
+      animation-delay:${Math.random() * 1.5}s;
+      border-radius:${Math.random() > 0.5 ? '50%' : '2px'};
     `;
-    container.appendChild(el);
-    el.addEventListener('animationend', ()=>el.remove());
-  }
-}
+        container.appendChild(el);
+        el.addEventListener('animationend', () => el.remove());
+      }
+    }
 
-// ── Recommended products ──
-const recGrid = document.getElementById('rec-products');
-if (recGrid) {
-  const rec = [...PRODUCTS].sort(()=>Math.random()-.5).slice(0,4);
-  recGrid.innerHTML = rec.map(p=>{
-    const d=discPct(p);
-    return `<div class="product-card">
+    // ── Recommended products ──
+    const recGrid = document.getElementById('rec-products');
+    if (recGrid) {
+      const rec = [...PRODUCTS].sort(() => Math.random() - .5).slice(0, 4);
+      recGrid.innerHTML = rec.map(p => {
+        const d = discPct(p);
+        return `<div class="product-card">
       <div class="product-card__img-wrap">
         <img class="product-card__img" src="${p.image}" alt="${p.name}" loading="lazy"
              onclick="location.href='product.html?id=${p.id}'"
              onerror="this.src='https://placehold.co/400x300/dcfce7/16a34a?text=GB'">
-        ${p.badge?`<div class="product-card__badge">${p.badge}</div>`:''}
-        ${d>0?`<div class="product-card__disc">-${d}%</div>`:''}
+        ${p.badge ? `<div class="product-card__badge">${p.badge}</div>` : ''}
+        ${d > 0 ? `<div class="product-card__disc">-${d}%</div>` : ''}
       </div>
       <div class="product-card__body">
         <div class="product-card__brand">${p.brand}</div>
         <div class="product-card__name" onclick="location.href='product.html?id=${p.id}'" style="cursor:pointer">${p.name}</div>
-        <div class="product-card__price"><span class="current">${fmt(p.price)}</span>${p.oldPrice?`<span class="old">${fmt(p.oldPrice)}</span>`:''}</div>
+        <div class="product-card__price"><span class="current">${fmt(p.price)}</span>${p.oldPrice ? `<span class="old">${fmt(p.oldPrice)}</span>` : ''}</div>
         <button class="product-card__btn" onclick="addToCart(${p.id});this.innerHTML='<i class=\\'fas fa-check\\'></i> Added!';setTimeout(()=>this.innerHTML='<i class=\\'fas fa-shopping-basket\\'></i> Add to Cart',1500)">
           <i class="fas fa-shopping-basket"></i> Add to Cart
         </button>
       </div>
     </div>`;
-  }).join('');
-}
-</script>
-<footer class="rt-footer"><div class="rt-footer__row"><a href="index.html" class="rt-footer__brand"><img src="assets/images/logo/rt-groceryhub-logo.png" alt="RT-Groceryhub"></a><nav class="rt-footer__nav" aria-label="Footer"><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav><div class="rt-footer__social"><a href="https://github.com/shahrishabh1513-jsk" target="_blank" rel="noopener" aria-label="GitHub profile"><i class="fab fa-github"></i></a><a href="https://github.com/shahrishabh1513-jsk/RT-Groceryhub" target="_blank" rel="noopener" aria-label="Project repository"><i class="fas fa-code-branch"></i></a></div></div><div class="rt-footer__bottom">© 2026 RT-Groceryhub. All Rights Reserved. | Designed &amp; Developed by RT1504</div></footer>
-<script src="assets/js/rt-theme.js"></script>
+      }).join('');
+    }
+  </script>
+  <footer class="rt-footer">
+    <div class="rt-footer__row"><a href="index.html" class="rt-footer__brand"><img
+          src="assets/images/logo/rt-groceryhub-logo.png" alt="RT-Groceryhub"></a>
+      <nav class="rt-footer__nav" aria-label="Footer"><a href="index.html">Home</a><a href="shop.html">Shop</a><a
+          href="about.html">About</a><a href="contact.html">Contact</a></nav>
+      <div class="rt-footer__social"><a href="https://github.com/shahrishabh1513-jsk" target="_blank" rel="noopener"
+          aria-label="GitHub profile"><i class="fab fa-github"></i></a><a
+          href="https://github.com/shahrishabh1513-jsk/RT-Groceryhub" target="_blank" rel="noopener"
+          aria-label="Project repository"><i class="fas fa-code-branch"></i></a></div>
+    </div>
+    <div class="rt-footer__bottom">© 2026 RT-Groceryhub. All Rights Reserved. | Designed &amp; Developed by RT1504</div>
+  </footer>
+  <script src="assets/js/rt-theme.js"></script>
 </body>
+
 </html>

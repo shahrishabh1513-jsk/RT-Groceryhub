@@ -1,300 +1,525 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login — RT-Groceryhub</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="assets/css/style.css">
-<style>
-body { min-height:100vh; background:var(--gray-50); }
-.auth-layout { min-height:100vh; display:grid; grid-template-columns:1fr 1fr; }
-.auth-side {
-  background:linear-gradient(135deg,#0a3d1a 0%,#16a34a 60%,#22c55e 100%);
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  padding:60px 48px; position:relative; overflow:hidden;
-}
-.auth-side::before {
-  content:''; position:absolute; inset:0;
-  background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='4' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E");
-}
-.auth-side__inner { position:relative; z-index:1; text-align:center; color:#fff; }
-.auth-side__logo { font-family:'Sora',sans-serif; font-size:2rem; font-weight:800; margin-bottom:40px; }
-.auth-side__logo span { color:#fde68a; }
-.auth-side h2 { font-size:1.8rem; margin-bottom:16px; }
-.auth-side p  { opacity:.8; line-height:1.7; font-size:.95rem; margin-bottom:32px; }
-.auth-perks { display:flex; flex-direction:column; gap:14px; text-align:left; }
-.auth-perk { display:flex; align-items:center; gap:14px; background:rgba(255,255,255,.1); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.15); border-radius:var(--radius-lg); padding:14px 18px; }
-.auth-perk__icon { width:40px; height:40px; border-radius:10px; background:rgba(255,255,255,.15); display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; }
-.auth-perk__text strong { display:block; font-size:.88rem; font-weight:700; margin-bottom:2px; }
-.auth-perk__text span   { font-size:.78rem; opacity:.75; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — RT-Groceryhub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    body {
+      min-height: 100vh;
+      background: var(--gray-50);
+    }
 
-/* Form panel */
-.auth-form-panel {
-  display:flex; align-items:center; justify-content:center; padding:40px;
-  background:var(--white);
-}
-.auth-form-box { width:100%; max-width:440px; }
-.auth-form-box .tabs { margin-bottom:28px; border-bottom:2px solid var(--gray-100); }
-.auth-form-box .tab-btn { font-size:1rem; padding:12px 24px; }
+    .auth-layout {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
 
-.form-input-wrap { position:relative; }
-.form-input-wrap .form-input { padding-left:42px; }
-.form-input-icon { position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--gray-400); font-size:.85rem; }
-.show-pwd { position:absolute; right:14px; top:50%; transform:translateY(-50%); color:var(--gray-400); cursor:pointer; font-size:.85rem; }
-.show-pwd:hover { color:var(--green-600); }
+    .auth-side {
+      background: linear-gradient(135deg, #0a3d1a 0%, #16a34a 60%, #22c55e 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 48px;
+      position: relative;
+      overflow: hidden;
+    }
 
-.divider { display:flex; align-items:center; gap:12px; margin:20px 0; }
-.divider::before, .divider::after { content:''; flex:1; height:1px; background:var(--gray-200); }
-.divider span { font-size:.78rem; color:var(--gray-400); white-space:nowrap; }
+    .auth-side::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='4' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E");
+    }
 
-.social-login { display:flex; gap:10px; }
-.social-btn { flex:1; padding:11px; border:1.5px solid var(--gray-200); border-radius:10px; display:flex; align-items:center; justify-content:center; gap:8px; font-size:.85rem; font-weight:600; color:var(--gray-700); transition:var(--transition); cursor:pointer; background:var(--white); }
-.social-btn:hover { border-color:var(--green-300); background:var(--green-50); color:var(--green-700); }
+    .auth-side__inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: #fff;
+    }
 
-.strength-bar { height:4px; border-radius:2px; background:var(--gray-100); margin-top:6px; overflow:hidden; }
-.strength-fill { height:100%; border-radius:2px; transition:width .3s,background .3s; }
+    .auth-side__logo {
+      font-family: 'Sora', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 40px;
+    }
 
-@media(max-width:768px){ .auth-layout{grid-template-columns:1fr;} .auth-side{display:none;} .auth-form-panel{padding:32px 20px;min-height:100vh;} }
-</style>
-<link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo/favicon-32.png"><link rel="apple-touch-icon" href="assets/images/logo/favicon-192.png"><link rel="stylesheet" href="assets/css/rt-theme.css">
+    .auth-side__logo span {
+      color: #fde68a;
+    }
+
+    .auth-side h2 {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .auth-side p {
+      opacity: .8;
+      line-height: 1.7;
+      font-size: .95rem;
+      margin-bottom: 32px;
+    }
+
+    .auth-perks {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-align: left;
+    }
+
+    .auth-perk {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(255, 255, 255, .1);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, .15);
+      border-radius: var(--radius-lg);
+      padding: 14px 18px;
+    }
+
+    .auth-perk__icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, .15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .auth-perk__text strong {
+      display: block;
+      font-size: .88rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .auth-perk__text span {
+      font-size: .78rem;
+      opacity: .75;
+    }
+
+    /* Form panel */
+    .auth-form-panel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      background: var(--white);
+    }
+
+    .auth-form-box {
+      width: 100%;
+      max-width: 440px;
+    }
+
+    .auth-form-box .tabs {
+      margin-bottom: 28px;
+      border-bottom: 2px solid var(--gray-100);
+    }
+
+    .auth-form-box .tab-btn {
+      font-size: 1rem;
+      padding: 12px 24px;
+    }
+
+    .form-input-wrap {
+      position: relative;
+    }
+
+    .form-input-wrap .form-input {
+      padding-left: 42px;
+    }
+
+    .form-input-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray-400);
+      font-size: .85rem;
+    }
+
+    .show-pwd {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray-400);
+      cursor: pointer;
+      font-size: .85rem;
+    }
+
+    .show-pwd:hover {
+      color: var(--green-600);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gray-200);
+    }
+
+    .divider span {
+      font-size: .78rem;
+      color: var(--gray-400);
+      white-space: nowrap;
+    }
+
+    .social-login {
+      display: flex;
+      gap: 10px;
+    }
+
+    .social-btn {
+      flex: 1;
+      padding: 11px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--gray-700);
+      transition: var(--transition);
+      cursor: pointer;
+      background: var(--white);
+    }
+
+    .social-btn:hover {
+      border-color: var(--green-300);
+      background: var(--green-50);
+      color: var(--green-700);
+    }
+
+    .strength-bar {
+      height: 4px;
+      border-radius: 2px;
+      background: var(--gray-100);
+      margin-top: 6px;
+      overflow: hidden;
+    }
+
+    .strength-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width .3s, background .3s;
+    }
+
+    @media(max-width:768px) {
+      .auth-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .auth-side {
+        display: none;
+      }
+
+      .auth-form-panel {
+        padding: 32px 20px;
+        min-height: 100vh;
+      }
+    }
+  </style>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/images/logo/favicon-192.png">
+  <link rel="stylesheet" href="assets/css/rt-theme.css">
 </head>
-<body><div id="rt-loader" role="status" aria-label="Loading"><img src="assets/images/logo/rt-groceryhub-logo.png" alt="RT-Groceryhub"><div class="rt-bar"><i></i></div><p>Fresh Choices, Happy Living!</p></div>
-<div class="auth-layout">
-  <!-- Left brand panel -->
-  <div class="auth-side">
-    <div class="auth-side__inner">
-      <div class="auth-side__logo"><img class="rt-logo" src="assets/images/logo/rt-groceryhub-logo.png" alt="RT-Groceryhub – Fresh Healthy"></div>
-      <h2>Fresh Groceries,<br>Delivered Fast</h2>
-      <p>Join 50,000+ happy customers who get farm-fresh groceries delivered to their door in 30 minutes.</p>
-      <div class="auth-perks">
-        <div class="auth-perk">
-          <div class="auth-perk__icon">🚀</div>
-          <div class="auth-perk__text"><strong>30-Minute Delivery</strong><span>Live tracking from our dark store to your door</span></div>
-        </div>
-        <div class="auth-perk">
-          <div class="auth-perk__icon">🌿</div>
-          <div class="auth-perk__text"><strong>100% Fresh Guarantee</strong><span>Full refund if you're not delighted</span></div>
-        </div>
-        <div class="auth-perk">
-          <div class="auth-perk__icon">💰</div>
-          <div class="auth-perk__text"><strong>Exclusive Member Deals</strong><span>Save up to 30% on weekly essentials</span></div>
-        </div>
-        <div class="auth-perk">
-          <div class="auth-perk__icon">🔒</div>
-          <div class="auth-perk__text"><strong>Secure &amp; Private</strong><span>Your data is encrypted and never shared</span></div>
+
+<body>
+  <div id="rt-loader" role="status" aria-label="Loading"><img src="assets/images/logo/rt-groceryhub-logo.png"
+      alt="RT-Groceryhub">
+    <div class="rt-bar"><i></i></div>
+    <p>Fresh Choices, Happy Living!</p>
+  </div>
+  <div class="auth-layout">
+    <!-- Left brand panel -->
+    <div class="auth-side">
+      <div class="auth-side__inner">
+        <div class="auth-side__logo"><img class="rt-logo" src="assets/images/logo/rt-groceryhub-logo.png"
+            alt="RT-Groceryhub – Fresh Healthy"></div>
+        <h2>Fresh Groceries,<br>Delivered Fast</h2>
+        <p>Join 50,000+ happy customers who get farm-fresh groceries delivered to their door in 30 minutes.</p>
+        <div class="auth-perks">
+          <div class="auth-perk">
+            <div class="auth-perk__icon">🚀</div>
+            <div class="auth-perk__text"><strong>30-Minute Delivery</strong><span>Live tracking from our dark store to
+                your door</span></div>
+          </div>
+          <div class="auth-perk">
+            <div class="auth-perk__icon">🌿</div>
+            <div class="auth-perk__text"><strong>100% Fresh Guarantee</strong><span>Full refund if you're not
+                delighted</span></div>
+          </div>
+          <div class="auth-perk">
+            <div class="auth-perk__icon">💰</div>
+            <div class="auth-perk__text"><strong>Exclusive Member Deals</strong><span>Save up to 30% on weekly
+                essentials</span></div>
+          </div>
+          <div class="auth-perk">
+            <div class="auth-perk__icon">🔒</div>
+            <div class="auth-perk__text"><strong>Secure &amp; Private</strong><span>Your data is encrypted and never
+                shared</span></div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Right form panel -->
-  <div class="auth-form-panel">
-    <div class="auth-form-box">
-      <!-- Logo for mobile -->
-      <div style="display:none;text-align:center;margin-bottom:28px" id="mobile-logo">
-        <a href="index.html" style="font-family:'Sora',sans-serif;font-size:1.6rem;font-weight:800;color:var(--green-700)">🌿 Green<span style="color:var(--orange)">Basket</span></a>
-      </div>
-
-      <div class="tabs">
-        <button class="tab-btn active" data-tab="login">Sign In</button>
-        <button class="tab-btn" data-tab="register">Create Account</button>
-      </div>
-
-      <!-- ── Login Tab ── -->
-      <div class="tab-panel active" id="tab-login">
-        <div style="margin-bottom:24px">
-          <h2 style="font-size:1.4rem;margin-bottom:6px">Welcome back 👋</h2>
-          <p style="font-size:.87rem;color:var(--gray-500)">Sign in to your RT-Groceryhub account</p>
+    <!-- Right form panel -->
+    <div class="auth-form-panel">
+      <div class="auth-form-box">
+        <!-- Logo for mobile -->
+        <div style="display:none;text-align:center;margin-bottom:28px" id="mobile-logo">
+          <a href="index.html"
+            style="font-family:'Sora',sans-serif;font-size:1.6rem;font-weight:800;color:var(--green-700)">🌿 Green<span
+              style="color:var(--orange)">Basket</span></a>
         </div>
 
-        <div class="social-login" style="margin-bottom:4px">
-          <button class="social-btn" onclick="socialLogin('Google')"><i class="fab fa-google" style="color:#ea4335"></i> Google</button>
-          <button class="social-btn" onclick="socialLogin('Facebook')"><i class="fab fa-facebook" style="color:#1877f2"></i> Facebook</button>
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="login">Sign In</button>
+          <button class="tab-btn" data-tab="register">Create Account</button>
         </div>
-        <div class="divider"><span>or sign in with email</span></div>
 
-        <div class="form-group">
-          <label class="form-label">Email Address</label>
-          <div class="form-input-wrap">
-            <i class="fas fa-envelope form-input-icon"></i>
-            <input type="email" id="l-email" class="form-input" placeholder="you@email.com" autocomplete="email">
+        <!-- ── Login Tab ── -->
+        <div class="tab-panel active" id="tab-login">
+          <div style="margin-bottom:24px">
+            <h2 style="font-size:1.4rem;margin-bottom:6px">Welcome back 👋</h2>
+            <p style="font-size:.87rem;color:var(--gray-500)">Sign in to your RT-Groceryhub account</p>
           </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label" style="display:flex;justify-content:space-between">
-            Password
-            <a href="#" style="font-weight:400;color:var(--green-600);font-size:.82rem">Forgot password?</a>
+
+          <div class="social-login" style="margin-bottom:4px">
+            <button class="social-btn" onclick="socialLogin('Google')"><i class="fab fa-google"
+                style="color:#ea4335"></i> Google</button>
+            <button class="social-btn" onclick="socialLogin('Facebook')"><i class="fab fa-facebook"
+                style="color:#1877f2"></i> Facebook</button>
+          </div>
+          <div class="divider"><span>or sign in with email</span></div>
+
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <div class="form-input-wrap">
+              <i class="fas fa-envelope form-input-icon"></i>
+              <input type="email" id="l-email" class="form-input" placeholder="you@email.com" autocomplete="email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" style="display:flex;justify-content:space-between">
+              Password
+              <a href="#" style="font-weight:400;color:var(--green-600);font-size:.82rem">Forgot password?</a>
+            </label>
+            <div class="form-input-wrap">
+              <i class="fas fa-lock form-input-icon"></i>
+              <input type="password" id="l-pass" class="form-input" placeholder="Your password"
+                autocomplete="current-password">
+              <span class="show-pwd" onclick="togglePwd('l-pass',this)"><i class="fas fa-eye"></i></span>
+            </div>
+          </div>
+          <label style="display:flex;align-items:center;gap:8px;font-size:.85rem;margin-bottom:20px;cursor:pointer">
+            <input type="checkbox" id="l-remember" style="accent-color:var(--green-600)"> Keep me signed in
           </label>
-          <div class="form-input-wrap">
-            <i class="fas fa-lock form-input-icon"></i>
-            <input type="password" id="l-pass" class="form-input" placeholder="Your password" autocomplete="current-password">
-            <span class="show-pwd" onclick="togglePwd('l-pass',this)"><i class="fas fa-eye"></i></span>
-          </div>
-        </div>
-        <label style="display:flex;align-items:center;gap:8px;font-size:.85rem;margin-bottom:20px;cursor:pointer">
-          <input type="checkbox" id="l-remember" style="accent-color:var(--green-600)"> Keep me signed in
-        </label>
-        <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:14px" onclick="doLogin()">
-          <i class="fas fa-sign-in-alt"></i> Sign In
-        </button>
-        <p style="text-align:center;font-size:.83rem;color:var(--gray-400);margin-top:20px">
-          Don't have an account?
-          <button onclick="switchTab('register')" style="color:var(--green-600);font-weight:700">Create one free →</button>
-        </p>
-      </div>
-
-      <!-- ── Register Tab ── -->
-      <div class="tab-panel" id="tab-register">
-        <div style="margin-bottom:24px">
-          <h2 style="font-size:1.4rem;margin-bottom:6px">Create your account ✨</h2>
-          <p style="font-size:.87rem;color:var(--gray-500)">Free forever · No credit card required</p>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:14px"
+            onclick="doLogin()">
+            <i class="fas fa-sign-in-alt"></i> Sign In
+          </button>
+          <p style="text-align:center;font-size:.83rem;color:var(--gray-400);margin-top:20px">
+            Don't have an account?
+            <button onclick="switchTab('register')" style="color:var(--green-600);font-weight:700">Create one free
+              →</button>
+          </p>
         </div>
 
-        <div class="form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-          <div class="form-group" style="margin-bottom:0">
-            <label class="form-label">First Name</label>
-            <div class="form-input-wrap">
-              <i class="fas fa-user form-input-icon"></i>
-              <input type="text" id="r-fname" class="form-input" placeholder="Aarav">
+        <!-- ── Register Tab ── -->
+        <div class="tab-panel" id="tab-register">
+          <div style="margin-bottom:24px">
+            <h2 style="font-size:1.4rem;margin-bottom:6px">Create your account ✨</h2>
+            <p style="font-size:.87rem;color:var(--gray-500)">Free forever · No credit card required</p>
+          </div>
+
+          <div class="form-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+            <div class="form-group" style="margin-bottom:0">
+              <label class="form-label">First Name</label>
+              <div class="form-input-wrap">
+                <i class="fas fa-user form-input-icon"></i>
+                <input type="text" id="r-fname" class="form-input" placeholder="Aarav">
+              </div>
+            </div>
+            <div class="form-group" style="margin-bottom:0">
+              <label class="form-label">Last Name</label>
+              <div class="form-input-wrap">
+                <i class="fas fa-user form-input-icon"></i>
+                <input type="text" id="r-lname" class="form-input" placeholder="Sharma">
+              </div>
             </div>
           </div>
-          <div class="form-group" style="margin-bottom:0">
-            <label class="form-label">Last Name</label>
+          <div class="form-group" style="margin-top:14px">
+            <label class="form-label">Email Address</label>
             <div class="form-input-wrap">
-              <i class="fas fa-user form-input-icon"></i>
-              <input type="text" id="r-lname" class="form-input" placeholder="Sharma">
+              <i class="fas fa-envelope form-input-icon"></i>
+              <input type="email" id="r-email" class="form-input" placeholder="aarav@email.com">
             </div>
           </div>
-        </div>
-        <div class="form-group" style="margin-top:14px">
-          <label class="form-label">Email Address</label>
-          <div class="form-input-wrap">
-            <i class="fas fa-envelope form-input-icon"></i>
-            <input type="email" id="r-email" class="form-input" placeholder="aarav@email.com">
+          <div class="form-group">
+            <label class="form-label">Phone Number</label>
+            <div class="form-input-wrap">
+              <i class="fas fa-phone form-input-icon"></i>
+              <input type="tel" id="r-phone" class="form-input" placeholder="+91 98765 43210">
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Phone Number</label>
-          <div class="form-input-wrap">
-            <i class="fas fa-phone form-input-icon"></i>
-            <input type="tel" id="r-phone" class="form-input" placeholder="+91 98765 43210">
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <div class="form-input-wrap">
+              <i class="fas fa-lock form-input-icon"></i>
+              <input type="password" id="r-pass" class="form-input" placeholder="Min 8 characters"
+                oninput="checkStrength(this.value)">
+              <span class="show-pwd" onclick="togglePwd('r-pass',this)"><i class="fas fa-eye"></i></span>
+            </div>
+            <div class="strength-bar">
+              <div class="strength-fill" id="strength-fill" style="width:0"></div>
+            </div>
+            <div id="strength-label" style="font-size:.72rem;color:var(--gray-400);margin-top:4px"></div>
           </div>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Password</label>
-          <div class="form-input-wrap">
-            <i class="fas fa-lock form-input-icon"></i>
-            <input type="password" id="r-pass" class="form-input" placeholder="Min 8 characters" oninput="checkStrength(this.value)">
-            <span class="show-pwd" onclick="togglePwd('r-pass',this)"><i class="fas fa-eye"></i></span>
+          <div class="form-group">
+            <label class="form-label">Confirm Password</label>
+            <div class="form-input-wrap">
+              <i class="fas fa-lock form-input-icon"></i>
+              <input type="password" id="r-pass2" class="form-input" placeholder="Repeat password">
+              <span class="show-pwd" onclick="togglePwd('r-pass2',this)"><i class="fas fa-eye"></i></span>
+            </div>
           </div>
-          <div class="strength-bar"><div class="strength-fill" id="strength-fill" style="width:0"></div></div>
-          <div id="strength-label" style="font-size:.72rem;color:var(--gray-400);margin-top:4px"></div>
+          <label
+            style="display:flex;align-items:flex-start;gap:8px;font-size:.82rem;margin-bottom:20px;cursor:pointer;line-height:1.5">
+            <input type="checkbox" id="r-terms" style="accent-color:var(--green-600);margin-top:2px;flex-shrink:0">
+            I agree to RT-Groceryhub's <a href="#" style="color:var(--green-600)">Terms of Service</a> and <a href="#"
+              style="color:var(--green-600)">Privacy Policy</a>
+          </label>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:14px"
+            onclick="doRegister()">
+            <i class="fas fa-user-plus"></i> Create Account
+          </button>
+          <p style="text-align:center;font-size:.83rem;color:var(--gray-400);margin-top:20px">
+            Already have an account?
+            <button onclick="switchTab('login')" style="color:var(--green-600);font-weight:700">Sign in →</button>
+          </p>
         </div>
-        <div class="form-group">
-          <label class="form-label">Confirm Password</label>
-          <div class="form-input-wrap">
-            <i class="fas fa-lock form-input-icon"></i>
-            <input type="password" id="r-pass2" class="form-input" placeholder="Repeat password">
-            <span class="show-pwd" onclick="togglePwd('r-pass2',this)"><i class="fas fa-eye"></i></span>
-          </div>
-        </div>
-        <label style="display:flex;align-items:flex-start;gap:8px;font-size:.82rem;margin-bottom:20px;cursor:pointer;line-height:1.5">
-          <input type="checkbox" id="r-terms" style="accent-color:var(--green-600);margin-top:2px;flex-shrink:0">
-          I agree to RT-Groceryhub's <a href="#" style="color:var(--green-600)">Terms of Service</a> and <a href="#" style="color:var(--green-600)">Privacy Policy</a>
-        </label>
-        <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:14px" onclick="doRegister()">
-          <i class="fas fa-user-plus"></i> Create Account
-        </button>
-        <p style="text-align:center;font-size:.83rem;color:var(--gray-400);margin-top:20px">
-          Already have an account?
-          <button onclick="switchTab('login')" style="color:var(--green-600);font-weight:700">Sign in →</button>
-        </p>
       </div>
     </div>
   </div>
-</div>
 
-<script src="assets/js/products.js"></script>
-<script src="assets/js/app.js"></script>
-<script>
-// Mobile logo
-if (window.innerWidth <= 768) document.getElementById('mobile-logo').style.display = 'block';
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    // Mobile logo
+    if (window.innerWidth <= 768) document.getElementById('mobile-logo').style.display = 'block';
 
-// Tabs
-document.querySelectorAll('.tab-btn').forEach(btn=>{
-  btn.addEventListener('click',()=>switchTab(btn.dataset.tab));
-});
-function switchTab(tab){
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('tab-'+tab).classList.add('active');
-}
+    // Tabs
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+    });
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('tab-' + tab).classList.add('active');
+    }
 
-// Show/hide password
-function togglePwd(id, btn){
-  const input = document.getElementById(id);
-  const isText = input.type === 'text';
-  input.type = isText ? 'password' : 'text';
-  btn.innerHTML = isText ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
-}
+    // Show/hide password
+    function togglePwd(id, btn) {
+      const input = document.getElementById(id);
+      const isText = input.type === 'text';
+      input.type = isText ? 'password' : 'text';
+      btn.innerHTML = isText ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+    }
 
-// Password strength
-function checkStrength(v){
-  const fill  = document.getElementById('strength-fill');
-  const label = document.getElementById('strength-label');
-  const scores = [/[a-z]/.test(v), /[A-Z]/.test(v), /\d/.test(v), /[^a-zA-Z0-9]/.test(v), v.length>=8];
-  const s = scores.filter(Boolean).length;
-  const map = { 0:['0%','',''], 1:['20%','#ef4444','Weak'], 2:['40%','#f97316','Fair'], 3:['60%','#eab308','Good'], 4:['80%','#22c55e','Strong'], 5:['100%','#16a34a','Very Strong'] };
-  const [w,c,t] = map[s] || ['0%','',''];
-  fill.style.width = w; fill.style.background = c; label.textContent = t; label.style.color = c;
-}
+    // Password strength
+    function checkStrength(v) {
+      const fill = document.getElementById('strength-fill');
+      const label = document.getElementById('strength-label');
+      const scores = [/[a-z]/.test(v), /[A-Z]/.test(v), /\d/.test(v), /[^a-zA-Z0-9]/.test(v), v.length >= 8];
+      const s = scores.filter(Boolean).length;
+      const map = { 0: ['0%', '', ''], 1: ['20%', '#ef4444', 'Weak'], 2: ['40%', '#f97316', 'Fair'], 3: ['60%', '#eab308', 'Good'], 4: ['80%', '#22c55e', 'Strong'], 5: ['100%', '#16a34a', 'Very Strong'] };
+      const [w, c, t] = map[s] || ['0%', '', ''];
+      fill.style.width = w; fill.style.background = c; label.textContent = t; label.style.color = c;
+    }
 
-// Redirect after login
-const redirect = new URLSearchParams(location.search).get('redirect') || 'account.html';
+    // Redirect after login
+    const redirect = new URLSearchParams(location.search).get('redirect') || 'account.html';
 
-function doLogin(){
-  const email = document.getElementById('l-email').value.trim();
-  const pass  = document.getElementById('l-pass').value;
-  if (!email || !pass){ showToast('Please fill in all fields','error'); return; }
-  if (!email.includes('@')){ showToast('Enter a valid email address','error'); return; }
-  // Simulate login (in production: POST to your auth API)
-  const user = { email, fname:'Guest', lname:'User', phone:'' };
-  localStorage.setItem('gb_user', JSON.stringify(user));
-  showToast('✓ Signed in successfully!');
-  setTimeout(()=>location.href=redirect, 900);
-}
+    function doLogin() {
+      const email = document.getElementById('l-email').value.trim();
+      const pass = document.getElementById('l-pass').value;
+      if (!email || !pass) { showToast('Please fill in all fields', 'error'); return; }
+      if (!email.includes('@')) { showToast('Enter a valid email address', 'error'); return; }
+      // Simulate login (in production: POST to your auth API)
+      const user = { email, fname: 'Guest', lname: 'User', phone: '' };
+      localStorage.setItem('gb_user', JSON.stringify(user));
+      showToast('✓ Signed in successfully!');
+      setTimeout(() => location.href = redirect, 900);
+    }
 
-function doRegister(){
-  const fname  = document.getElementById('r-fname').value.trim();
-  const lname  = document.getElementById('r-lname').value.trim();
-  const email  = document.getElementById('r-email').value.trim();
-  const phone  = document.getElementById('r-phone').value.trim();
-  const pass   = document.getElementById('r-pass').value;
-  const pass2  = document.getElementById('r-pass2').value;
-  const terms  = document.getElementById('r-terms').checked;
-  if (!fname||!lname||!email||!pass||!pass2){ showToast('Please fill in all fields','error'); return; }
-  if (!email.includes('@')){ showToast('Enter a valid email address','error'); return; }
-  if (pass.length<8){ showToast('Password must be at least 8 characters','error'); return; }
-  if (pass!==pass2) { showToast('Passwords do not match','error'); return; }
-  if (!terms) { showToast('Please accept the Terms of Service','error'); return; }
-  const user = { fname, lname, email, phone };
-  localStorage.setItem('gb_user', JSON.stringify(user));
-  showToast('🎉 Account created! Welcome to RT-Groceryhub!');
-  setTimeout(()=>location.href=redirect, 1000);
-}
+    function doRegister() {
+      const fname = document.getElementById('r-fname').value.trim();
+      const lname = document.getElementById('r-lname').value.trim();
+      const email = document.getElementById('r-email').value.trim();
+      const phone = document.getElementById('r-phone').value.trim();
+      const pass = document.getElementById('r-pass').value;
+      const pass2 = document.getElementById('r-pass2').value;
+      const terms = document.getElementById('r-terms').checked;
+      if (!fname || !lname || !email || !pass || !pass2) { showToast('Please fill in all fields', 'error'); return; }
+      if (!email.includes('@')) { showToast('Enter a valid email address', 'error'); return; }
+      if (pass.length < 8) { showToast('Password must be at least 8 characters', 'error'); return; }
+      if (pass !== pass2) { showToast('Passwords do not match', 'error'); return; }
+      if (!terms) { showToast('Please accept the Terms of Service', 'error'); return; }
+      const user = { fname, lname, email, phone };
+      localStorage.setItem('gb_user', JSON.stringify(user));
+      showToast('🎉 Account created! Welcome to RT-Groceryhub!');
+      setTimeout(() => location.href = redirect, 1000);
+    }
 
-function socialLogin(provider){
-  const user = { fname:'Guest', lname:'User', email:`guest@${provider.toLowerCase()}.com`, phone:'' };
-  localStorage.setItem('gb_user', JSON.stringify(user));
-  showToast(`✓ Signed in with ${provider}!`);
-  setTimeout(()=>location.href=redirect, 900);
-}
-</script>
-<footer class="rt-footer"><div class="rt-footer__row"><a href="index.html" class="rt-footer__brand"><img src="assets/images/logo/rt-groceryhub-logo.png" alt="RT-Groceryhub"></a><nav class="rt-footer__nav" aria-label="Footer"><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav><div class="rt-footer__social"><a href="https://github.com/shahrishabh1513-jsk" target="_blank" rel="noopener" aria-label="GitHub profile"><i class="fab fa-github"></i></a><a href="https://github.com/shahrishabh1513-jsk/RT-Groceryhub" target="_blank" rel="noopener" aria-label="Project repository"><i class="fas fa-code-branch"></i></a></div></div><div class="rt-footer__bottom">© 2026 RT-Groceryhub. All Rights Reserved. | Designed &amp; Developed by RT1504</div></footer>
-<script src="assets/js/rt-theme.js"></script>
+    function socialLogin(provider) {
+      const user = { fname: 'Guest', lname: 'User', email: `guest@${provider.toLowerCase()}.com`, phone: '' };
+      localStorage.setItem('gb_user', JSON.stringify(user));
+      showToast(`✓ Signed in with ${provider}!`);
+      setTimeout(() => location.href = redirect, 900);
+    }
+  </script>
+  <footer class="rt-footer">
+    <div class="rt-footer__row"><a href="index.html" class="rt-footer__brand"><img
+          src="assets/images/logo/rt-groceryhub-logo.png" alt="RT-Groceryhub"></a>
+      <nav class="rt-footer__nav" aria-label="Footer"><a href="index.html">Home</a><a href="shop.html">Shop</a><a
+          href="about.html">About</a><a href="contact.html">Contact</a></nav>
+      <div class="rt-footer__social"><a href="https://github.com/shahrishabh1513-jsk" target="_blank" rel="noopener"
+          aria-label="GitHub profile"><i class="fab fa-github"></i></a><a
+          href="https://github.com/shahrishabh1513-jsk/RT-Groceryhub" target="_blank" rel="noopener"
+          aria-label="Project repository"><i class="fas fa-code-branch"></i></a></div>
+    </div>
+    <div class="rt-footer__bottom">© 2026 RT-Groceryhub. All Rights Reserved. | Designed &amp; Developed by RT1504</div>
+  </footer>
+  <script src="assets/js/rt-theme.js"></script>
 </body>
+
 </html>
