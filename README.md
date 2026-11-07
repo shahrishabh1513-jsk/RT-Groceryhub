@@ -6,12 +6,6 @@
     </td>
     <td width="60%" align="center" valign="middle">
       <img src="https://github.com/user-attachments/assets/f05d87f9-63eb-4e32-935d-a9f4527e0ff0" width="110" alt="RT logo"/>
-      <h1>RT GROCERYHUB</h1>
-      <h3>🌿 Fresh From Farm to Table</h3>
-      <p>
-        A modern, responsive grocery shopping website with<br/>
-        <b>shop · cart · wishlist · checkout · account</b>
-      </p>
     </td>
     <td width="20%" align="right" valign="middle">
       <img src="https://github.com/user-attachments/assets/41de0edc-f0a3-474a-9156-d8b3d10d41ba" width="140" alt="Shah Rishabh badge logo"/>
