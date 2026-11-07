@@ -5,7 +5,7 @@
       <img src="https://github.com/user-attachments/assets/90c19f97-8b0b-4df1-96c4-a288d337503c" width="140" alt="Shah Rishabh badge logo"/>
     </td>
     <td width="60%" align="center" valign="middle">
-      <img src="https://github.com/shahrishabh1513-jsk/rt-forms/blob/main/assets/logo/rt-forms-logo.png?raw=true" width="110" alt="RT logo"/>
+      <img src="https://github.com/user-attachments/assets/f05d87f9-63eb-4e32-935d-a9f4527e0ff0" width="110" alt="RT logo"/>
       <h1>RT GROCERYHUB</h1>
       <h3>🌿 Fresh From Farm to Table</h3>
       <p>
@@ -58,7 +58,7 @@
 
 <p align="center">
   <a href="https://shahrishabh1513-jsk.github.io/RT-Groceryhub/">
-    <img src="https://image.thum.io/get/width/1200/crop/720/https://shahrishabh1513-jsk.github.io/RT-Groceryhub/" alt="RT GroceryHub live preview" width="90%"/>
+    <img src="https://github.com/user-attachments/assets/95c91113-762f-4604-93ab-94a8bd9ac403" alt="RT GroceryHub live preview" width="90%"/>
   </a>
 </p>
 
