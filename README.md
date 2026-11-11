@@ -57,7 +57,7 @@
 
 <p align="center">
   <a href="https://shahrishabh1513-jsk.github.io/RT-Groceryhub/">
-    <img src="https://image.thum.io/get/width/1200/crop/720/https://shahrishabh1513-jsk.github.io/RT-Groceryhub/" alt="RT GroceryHub live preview" width="92%"/>
+    <img src="https://github.com/user-attachments/assets/08e2d86e-3cef-4c8a-9025-4e12686409e9" alt="RT GroceryHub live preview" width="92%"/>
   </a>
 </p>
 
